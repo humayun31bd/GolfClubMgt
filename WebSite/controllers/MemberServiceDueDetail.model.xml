@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberServiceDueDetail" alias="MemberServiceDueDetail" created="2018-04-11T09:39:07" modified="2018-04-11T12:29:27" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Service" parentTableSchema="dbo" parentTableName="MemberService" x="375" y="204">
+      <foreignKeyColumn columnName="ServiceID" parentColumnName="ServiceID" />
+    </foreignKey>
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="658" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberServiceDueDetailID" fieldName="MemberServiceDueDetailID" label="Member Service Due Detail ID" />
+    <column name="ServiceID" fieldName="ServiceID" label="Service ID" aliasColumnName="ServiceName" aliasForeignKey="Service" />
+    <column name="ServiceName" fieldName="ServiceName" label="Service Name" foreignKey="Service" />
+    <column name="ServiceFee" fieldName="ServiceFee1" label="Service Fee" foreignKey="Service" />
+    <column name="ServiceFee" fieldName="ServiceFee" label="Service Fee" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="dd/MM/yyyy hh:mm tt" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="MemberInfo" />
+    <column name="NameOfMember" fieldName="MemberInfoNameOfMember" label="Member Info Name Of Member" foreignKey="MemberInfo" />
+    <column name="MemberCode" fieldName="MemberInfoMemberCode" label="Member Info Member Code" foreignKey="MemberInfo" />
+    <column name="Quantity" fieldName="Quantity" label="Quantity" />
+    <column name="ServiceDate" fieldName="ServiceDate" label="Service Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="MemberBillID" fieldName="MemberBillID" label="Member Bill ID" />
+  </columns>
+</dataModel>

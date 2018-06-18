@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberStatusChange" alias="MemberStatusChange" created="2018-04-14T08:02:25" modified="2018-06-15T01:48:55" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="OldMemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="366" y="20">
+      <foreignKeyColumn columnName="OldMemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="672" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="376" y="146">
+      <foreignKeyColumn columnName="NewMemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberStatusChangeID" fieldName="MemberStatusChangeID" label="Member Status Change ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="MemberInfo" />
+    <column name="MemberCode" fieldName="MemberShipNo" label="Member Ship No" foreignKey="MemberInfo" />
+    <column name="NameOfMember" fieldName="MemberName" label="Member Name" foreignKey="MemberInfo" />
+    <column name="OldMemberStatusID" fieldName="OldMemberStatusID" label="Old Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="OldMemberStatus" />
+    <column name="MemberStatus" fieldName="OldMemberStatus" label="Old Member Status" foreignKey="OldMemberStatus" />
+    <column name="NewMemberStatusID" fieldName="NewMemberStatusID" label="New Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="MemberStatus" />
+    <column name="MemberStatus" fieldName="MemberStatusMemberStatus" label="Member Status Member Status" foreignKey="MemberStatus" />
+    <column name="TransferDate" fieldName="TransferDate" label="Transfer Date" format="dd/MM/yyyy" />
+    <column name="IsAbsentee" fieldName="IsAbsentee" label="Is Absentee" />
+    <column name="NoOfDaysPlay" fieldName="NoOfDaysPlay" label="No Of Days Play" />
+    <column name="NoOfDaysPlayed" fieldName="NoOfDaysPlayed" label="No Of Days Played" />
+  </columns>
+</dataModel>

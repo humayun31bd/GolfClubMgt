@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GolfCart" alias="GolfCart" created="2018-04-24T08:30:13" modified="2018-04-24T08:30:16" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="GolfCartID" fieldName="GolfCartID" label="Golf Cart ID" />
+    <column name="GolfCartCode" fieldName="GolfCartCode" label="Golf Cart Code" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+  </columns>
+</dataModel>

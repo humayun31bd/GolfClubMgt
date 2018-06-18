@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberInfoChild" label="MemberInfoChild" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberInfo"."MemberID" "MemberID"
+	,"MemberInfo"."MemberCode" "MemberCode"
+	,"MemberInfo"."MemberCategoryID" "MemberCategoryID"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberInfo"."MemberStatusID" "MemberStatusID"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberInfo"."ParentMemberID" "ParentMemberID"
+	,"MemberInfo1"."NameOfMember" "MemberInfo1NameOfMember"
+	,"MemberInfo"."NameOfMember" "NameOfMember"
+	,"MemberInfo"."FatherName" "FatherName"
+	,"MemberInfo"."SubsriptionDate" "SubsriptionDate"
+	,"MemberInfo"."GenderID" "GenderID"
+	,"Gender"."GenderDesc" "GenderDesc"
+	,"MemberInfo"."NationalityID" "NationalityID"
+	,"Nationality"."Nationality" "Nationality"
+	,"MemberInfo"."NID" "Nid"
+	,"MemberInfo"."HandiCap" "HandiCap"
+	,"MemberInfo"."DOB" "Dob"
+	,"MemberInfo"."BloodGroupID" "BloodGroupID"
+	,"BloodGroup"."BloodGroupName" "BloodGroupName"
+	,"MemberInfo"."MemberFee" "MemberFee"
+	,"MemberInfo"."MonthlySubcriptionFee" "MonthlySubcriptionFee"
+	,"MemberInfo"."MonthlyDonation" "MonthlyDonation"
+	,"MemberInfo"."PresentAddress" "PresentAddress"
+	,"MemberInfo"."PermanentAddress" "PermanentAddress"
+	,"MemberInfo"."Fax" "Fax"
+	,"MemberInfo"."CellPhone" "CellPhone"
+	,"MemberInfo"."LandPhone" "LandPhone"
+	,"MemberInfo"."Email" "Email"
+	,"MemberInfo"."Photo" "Photo"
+	,"MemberInfo"."FileName" "FileName"
+	,"MemberInfo"."ContentType" "ContentType"
+	,"MemberInfo"."Length" "Length"
+	,"MemberInfo"."IsActive" "IsActive"
+	,"MemberInfo"."MemberAge" "MemberAge"
+	,"MemberInfo"."MemberOfType" "MemberOfType"
+	,"MemberInfo"."AnualFee" "AnualFee"
+	,"MemberInfo"."MemberGroupID" "MemberGroupID"
+	,"MemberGroup"."MemberGroupName" "MemberGroupMemberGroupName"
+	,"MemberInfo"."MemberTypeID" "MemberTypeID"
+	,"MemberType"."MemberTypeDesc" "MemberTypeMemberTypeDesc"
+	,"MemberInfo"."BGFID" "Bgfid"
+	,"MemberInfo"."NFCID" "Nfcid"
+	,"MemberInfo"."BillingAddress" "BillingAddress"
+	,"MemberInfo"."ClubName" "ClubName"
+	,"MemberInfo"."ContributionFee" "ContributionFee"
+from "dbo"."MemberInfo" "MemberInfo"
+	left join "dbo"."MemberCategory" "MemberCategory" on "MemberInfo"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberGroup" "MemberGroup" on "MemberCategory"."MemberGroupID" = "MemberGroup"."MemberGroupID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "MemberInfo"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."Gender" "Gender" on "MemberInfo"."GenderID" = "Gender"."GenderID"
+	left join "dbo"."Nationality" "Nationality" on "MemberInfo"."NationalityID" = "Nationality"."NationalityID"
+	left join "dbo"."BloodGroup" "BloodGroup" on "MemberInfo"."BloodGroupID" = "BloodGroup"."BloodGroupID"
+	left join "dbo"."MemberInfo" "MemberInfo1" on "MemberInfo"."ParentMemberID" = "MemberInfo1"."MemberID"
+	left join "dbo"."MemberType" "MemberType" on "MemberInfo"."MemberTypeID" = "MemberType"."MemberTypeID"
+]]></text>
+    </command>
+    <command id="MemberIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member ID" readOnly="true" />
+    <field name="MemberCode" type="String" label="Membership No" length="50" showInSummary="true" />
+    <field name="MemberCategoryID" type="Int32" label="Member Category ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberCategory" newDataView="createForm1" dataValueField="MemberCategoryID" dataTextField="CategoryName" copy="MemberGroupMemberGroupName=MemberGroupName" />
+    </field>
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category" length="150" />
+    <field name="MemberStatusID" type="Int32" label="Member Status ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberStatus" newDataView="createForm1" dataValueField="MemberStatusID" dataTextField="MemberStatus" />
+    </field>
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="ParentMemberID" type="Int32" label="Parent Member" showInSummary="true" allowNulls="false">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="NameOfMember" dataView="grid1" />
+    </field>
+    <field name="MemberInfo1NameOfMember" type="String" readOnly="true" label="Parent Member Name" length="150" />
+    <field name="NameOfMember" type="String" label="Name Of Member" length="150" showInSummary="true" />
+    <field name="FatherName" type="String" label="Father Name" length="150" />
+    <field name="SubsriptionDate" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Subsription Date" />
+    <field name="GenderID" type="Int32" label="Gender ID">
+      <items style="RadioButtonList" dataController="Gender" dataValueField="GenderID" dataTextField="GenderDesc" dataView="grid1" />
+    </field>
+    <field name="GenderDesc" type="String" readOnly="true" label="Gender" length="50" />
+    <field name="NationalityID" type="Int32" label="Nationality ID">
+      <items style="Lookup" dataController="Nationality" newDataView="createForm1" dataValueField="NationalityID" dataTextField="Nationality" />
+    </field>
+    <field name="Nationality" type="String" readOnly="true" label="Nationality" length="50" />
+    <field name="Nid" type="String" label="NationalID/Passport Number" length="50" />
+    <field name="HandiCap" type="Int32" label="Handi Cap" />
+    <field name="Dob" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Date of Birth" />
+    <field name="BloodGroupID" type="Int32" label="Blood Group ID">
+      <items style="Lookup" dataController="BloodGroup" newDataView="createForm1" dataValueField="BloodGroupID" dataTextField="BloodGroupName" />
+    </field>
+    <field name="BloodGroupName" type="String" readOnly="true" label="Blood Group" length="50" />
+    <field name="MemberFee" type="Decimal" label="Member Fee" />
+    <field name="MonthlySubcriptionFee" type="Decimal" label="Monthly Subcription Fee" />
+    <field name="MonthlyDonation" type="Decimal" label="Monthly Donation" />
+    <field name="PresentAddress" type="String" label="Present Address" length="150" />
+    <field name="PermanentAddress" type="String" label="Permanent Address" length="150" />
+    <field name="Fax" type="String" label="Fax" length="50" />
+    <field name="CellPhone" type="String" label="Cell Phone" length="100" />
+    <field name="LandPhone" type="String" label="Land Phone" length="50" />
+    <field name="Email" type="String" label="Email" length="50" />
+    <field name="Photo" type="Byte[]" onDemand="true" sourceFields="MemberID" onDemandHandler="MemberInfoPhoto" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Photo" />
+    <field name="FileName" type="String" label="File Name" length="50" />
+    <field name="ContentType" type="String" label="Content Type" length="50" />
+    <field name="Length" type="Int32" label="Length" />
+    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="MemberAge" type="Int32" label="Member Age" />
+    <field name="MemberOfType" type="String" label="Member Of Type" length="50" />
+    <field name="AnualFee" type="Decimal" label="Anual Fee" />
+    <field name="MemberGroupID" type="Int32" label="Member Group ID" />
+    <field name="MemberGroupMemberGroupName" type="String" readOnly="true" label="Member Group " length="50" />
+    <field name="MemberTypeID" type="Int32" label="Member Type ID">
+      <items style="Lookup" dataController="MemberType" newDataView="createForm1" dataValueField="MemberTypeID" dataTextField="MemberTypeDesc" />
+    </field>
+    <field name="MemberTypeMemberTypeDesc" type="String" readOnly="true" label="Member Type Member Type Desc" length="50" />
+    <field name="Bgfid" type="String" label="Bgfid" length="50" />
+    <field name="Nfcid" type="String" label="Nfcid" length="50" />
+    <field name="BillingAddress" type="String" label="Billing Address" length="150" />
+    <field name="ClubName" type="String" label="Club Name" length="150" />
+    <field name="ContributionFee" type="Decimal" label="Contribution Fee" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Member Children Information" filter="MemberOfType = 'Children Of Member'">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="Photo" columns="15" />
+        <dataField fieldName="NameOfMember" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+        <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
+        <dataField fieldName="SubsriptionDate" columns="20" />
+        <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
+        <dataField fieldName="NationalityID" aliasFieldName="Nationality" />
+        <dataField fieldName="CellPhone" />
+        <dataField fieldName="LandPhone" columns="50" />
+        <dataField fieldName="Email" columns="50" />
+        <dataField fieldName="IsActive" />
+        <dataField fieldName="MemberOfType" columns="50" />
+        <dataField fieldName="AnualFee" columns="15" />
+        <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
+        <dataField fieldName="MemberTypeID" aliasFieldName="MemberTypeMemberTypeDesc" hidden="true" />
+        <dataField fieldName="Bgfid" columns="50" />
+        <dataField fieldName="Nfcid" columns="50" />
+        <dataField fieldName="BillingAddress" />
+        <dataField fieldName="ClubName" />
+        <dataField fieldName="ContributionFee" columns="15" />
+        <dataField fieldName="MemberInfo1NameOfMember" rows="5" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Children Information">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Member Children Information" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="NameOfMember" />
+            <dataField fieldName="Photo" columns="15" />
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+            <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfo1NameOfMember" />
+            <dataField fieldName="MemberCode" columns="50" textMode="Static" />
+            <dataField fieldName="SubsriptionDate" columns="20" textMode="Text" />
+            <dataField fieldName="GenderID" aliasFieldName="GenderDesc" columns="15" rows="1" />
+            <dataField fieldName="MemberFee" columns="15" />
+            <dataField fieldName="MonthlySubcriptionFee" columns="15" />
+            <dataField fieldName="MonthlyDonation" columns="15" />
+            <dataField fieldName="HandiCap" columns="15" />
+            <dataField fieldName="Fax" columns="50" />
+            <dataField fieldName="CellPhone" />
+            <dataField fieldName="LandPhone" columns="50" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="FileName" columns="50" hidden="true" />
+            <dataField fieldName="ContentType" columns="50" hidden="true" />
+            <dataField fieldName="Length" columns="15" hidden="true" />
+            <dataField fieldName="IsActive" />
+            <dataField fieldName="MemberAge" columns="15" hidden="true" />
+            <dataField fieldName="MemberOfType" columns="50" hidden="true" />
+            <dataField fieldName="AnualFee" columns="15" />
+            <dataField fieldName="MemberTypeID" aliasFieldName="MemberTypeMemberTypeDesc" hidden="true" />
+            <dataField fieldName="Bgfid" columns="50" />
+            <dataField fieldName="Nfcid" columns="50" />
+            <dataField fieldName="BillingAddress" />
+            <dataField fieldName="ClubName" />
+            <dataField fieldName="ContributionFee" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Personnel" id="c3" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="FatherName" />
+            <dataField fieldName="Dob" columns="20" />
+            <dataField fieldName="NationalityID" aliasFieldName="Nationality" />
+            <dataField fieldName="Nid" columns="50" />
+            <dataField fieldName="BloodGroupID" aliasFieldName="BloodGroupName" />
+            <dataField fieldName="PermanentAddress" />
+            <dataField fieldName="PresentAddress" />
+            <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Children Information">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Member Children Information" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="NameOfMember" />
+            <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" hidden="true" />
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" hidden="true" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfo1NameOfMember" />
+            <dataField fieldName="MemberCode" columns="50" hidden="true" />
+            <dataField fieldName="SubsriptionDate" columns="20" />
+            <dataField fieldName="GenderID" aliasFieldName="GenderDesc" columns="15" rows="1" />
+            <dataField fieldName="MemberFee" columns="15" />
+            <dataField fieldName="MonthlySubcriptionFee" columns="15" />
+            <dataField fieldName="MonthlyDonation" columns="15" />
+            <dataField fieldName="HandiCap" columns="15" />
+            <dataField fieldName="Fax" columns="50" />
+            <dataField fieldName="CellPhone" />
+            <dataField fieldName="LandPhone" columns="50" />
+            <dataField fieldName="Email" columns="50" />
+            <dataField fieldName="Photo" columns="15" />
+            <dataField fieldName="FileName" columns="50" hidden="true" />
+            <dataField fieldName="ContentType" columns="50" hidden="true" />
+            <dataField fieldName="Length" columns="15" hidden="true" />
+            <dataField fieldName="IsActive" hidden="true" />
+            <dataField fieldName="MemberOfType" columns="50" hidden="true" />
+            <dataField fieldName="AnualFee" columns="15" />
+            <dataField fieldName="MemberTypeID" aliasFieldName="MemberTypeMemberTypeDesc" hidden="true" />
+            <dataField fieldName="Bgfid" columns="50" />
+            <dataField fieldName="Nfcid" columns="50" />
+            <dataField fieldName="BillingAddress" />
+            <dataField fieldName="ClubName" />
+            <dataField fieldName="ContributionFee" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Personnel" id="c3" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="FatherName" />
+            <dataField fieldName="Dob" columns="20" />
+            <dataField fieldName="NationalityID" aliasFieldName="Nationality" />
+            <dataField fieldName="Nid" columns="50" />
+            <dataField fieldName="BloodGroupID" aliasFieldName="BloodGroupName" />
+            <dataField fieldName="PermanentAddress" />
+            <dataField fieldName="PresentAddress" />
+            <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert|Update" type="Sql" phase="Before"><![CDATA[if (@MemberOfType is null)
+set @MemberOfType = 'Children Of Member'
+
+Declare @NoOfChildExists int, @MaxCildCount int
+set @NoOfChildExists = 0
+SELECT @NoOfChildExists = Max([ChildNo])
+  FROM [dbo].[MemberChildren]
+  where [ParentMemberID] = @ParentMemberID
+Set @NoOfChildExists = IsNull(@NoOfChildExists,0)
+
+select @MaxCildCount=MaxChildCount
+from dbo.MemberCategory
+where MemberCategoryID=@MemberCategoryID
+
+
+if (@NoOfChildExists = @MaxCildCount) 
+begin
+	set @BusinessRules_PreventDefault = 1
+	set @Result_ShowMessage = 'No of Children Exit the Limit.'
+end
+]]></rule>
+    <rule id="r101" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[Exec [dbo].[USP_MemberParentData_Update]  @MemberID,@ParentMemberID
+
+declare @EntranceFee decimal(18,2), @AnnualFee decimal(18,2), 
+@NonMemberCatID int , @MonthlyFee decimal(18,2), @MemberGroupID int
+
+select @EntranceFee=EntranceFee, 
+@AnnualFee=AnnualFee, 
+@MemberGroupID = MemberGroupID,
+@NonMemberCatID=NonMemberCatID
+from MemberCategory
+Where MemberCategoryID=@MemberCategoryID
+
+Select @MonthlyFee=MonthlyFee
+from dbo.MemberFee
+Where MemberCategoryID=@MemberCategoryID
+And MemberStatusID=@MemberStatusID
+
+set @MonthlyFee= IsNull(@MonthlyFee,0)
+
+Update dbo.MemberInfo
+set MemberFee = @EntranceFee, 
+MonthlySubcriptionFee=@MonthlyFee,
+MemberGroupID = @MemberGroupID,
+AnualFee = @AnnualFee, 
+NonMemberCatID=@NonMemberCatID
+Where MemberID=@MemberID
+
+]]></rule>
+    <rule id="r104" type="JavaScript" commandName="Insert|Update" phase="Before" name="ParentMemberID_Validator"><![CDATA[
+var fieldValue = [ParentMemberID];
+if (fieldValue == null) {
+    // prevent the default action processing
+    this.preventDefault();
+    // set the focus on the field and display an error
+    this.result.focus('ParentMemberID', 'Required field.');
+}]]></rule>
+    <rule id="r102" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[
+Exec dbo.USP_MemberCode_Insert @MemberID]]></rule>
+  </businessRules>
+</dataController>

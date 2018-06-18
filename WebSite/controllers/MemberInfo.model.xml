@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberInfo" alias="MemberInfo" created="2018-04-09T20:38:28" modified="2018-06-15T02:33:17" x="20" y="69" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="410" y="20">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="363" y="301">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="363" y="440">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="Nationality" parentTableSchema="dbo" parentTableName="Nationality" x="363" y="580">
+      <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
+    </foreignKey>
+    <foreignKey id="BloodGroup" parentTableSchema="dbo" parentTableName="BloodGroup" x="363" y="720">
+      <foreignKeyColumn columnName="BloodGroupID" parentColumnName="BloodGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="1056" y="69" baseForeignKey="MemberCategory">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberInfo1" parentTableSchema="dbo" parentTableName="MemberInfo" x="363" y="861">
+      <foreignKeyColumn columnName="ParentMemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" x="746" y="69">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberID" fieldName="MemberID" label="Member ID" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" aliasColumnName="CategoryName" aliasForeignKey="MemberCategory" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category" foreignKey="MemberCategory" />
+    <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="MemberStatus" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="ParentMemberID" fieldName="ParentMemberID" label="Parent Member ID" aliasColumnName="NameOfMember" aliasForeignKey="MemberInfo1" />
+    <column name="NameOfMember" fieldName="MemberInfo1NameOfMember" label="Parent Member Name" foreignKey="MemberInfo1" />
+    <column name="NameOfMember" fieldName="NameOfMember" label="Name Of Member" />
+    <column name="FatherName" fieldName="FatherName" label="Father Name" />
+    <column name="SubsriptionDate" fieldName="SubsriptionDate" label="Subsription Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" aliasColumnName="GenderDesc" aliasForeignKey="Gender" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender" foreignKey="Gender" />
+    <column name="NationalityID" fieldName="NationalityID" label="Nationality ID" aliasColumnName="Nationality" aliasForeignKey="Nationality" />
+    <column name="Nationality" fieldName="Nationality" label="Nationality" foreignKey="Nationality" />
+    <column name="NID" fieldName="Nid" label="NationalID/Passport Number" />
+    <column name="HandiCap" fieldName="HandiCap" label="Handi Cap" />
+    <column name="DOB" fieldName="Dob" label="Date of Birth" format="dd/MM/yyyy hh:mm tt" />
+    <column name="BloodGroupID" fieldName="BloodGroupID" label="Blood Group ID" aliasColumnName="BloodGroupName" aliasForeignKey="BloodGroup" />
+    <column name="BloodGroupName" fieldName="BloodGroupName" label="Blood Group" foreignKey="BloodGroup" />
+    <column name="MemberFee" fieldName="MemberFee" label="Member Fee" />
+    <column name="MonthlySubcriptionFee" fieldName="MonthlySubcriptionFee" label="Monthly Subcription Fee" />
+    <column name="MonthlyDonation" fieldName="MonthlyDonation" label="Monthly Donation" />
+    <column name="PresentAddress" fieldName="PresentAddress" label="Present Address" />
+    <column name="PermanentAddress" fieldName="PermanentAddress" label="Permanent Address" />
+    <column name="Fax" fieldName="Fax" label="Fax" />
+    <column name="CellPhone" fieldName="CellPhone" label="Cell Phone" />
+    <column name="LandPhone" fieldName="LandPhone" label="Land Phone" />
+    <column name="Email" fieldName="Email" label="Email" />
+    <column name="Photo" fieldName="Photo" label="Photo" />
+    <column name="FileName" fieldName="FileName" label="File Name" />
+    <column name="ContentType" fieldName="ContentType" label="Content Type" />
+    <column name="Length" fieldName="Length" label="Length" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="MemberAge" fieldName="MemberAge" label="Member Age" />
+    <column name="MemberOfType" fieldName="MemberOfType" label="Member Of Type" />
+    <column name="AnualFee" fieldName="AnualFee" label="Anual Fee" />
+    <column name="MemberGroupID" fieldName="MemberGroupID" label="Member Group ID" />
+    <column name="MemberGroupName" fieldName="MemberGroupMemberGroupName" label="Member Group Member Group Name" foreignKey="MemberGroup" />
+    <column name="MemberTypeID" fieldName="MemberTypeID" label="Member Type ID" aliasColumnName="MemberTypeDesc" aliasForeignKey="MemberType" />
+    <column name="MemberTypeDesc" fieldName="MemberTypeMemberTypeDesc" label="Member Type Member Type Desc" foreignKey="MemberType" />
+    <column name="BGFID" fieldName="Bgfid" label="Bgfid" />
+    <column name="NFCID" fieldName="Nfcid" label="Nfcid" />
+    <column name="BillingAddress" fieldName="BillingAddress" label="Billing Address" />
+    <column name="ClubName" fieldName="ClubName" label="Club Name" />
+    <column name="ContributionFee" fieldName="ContributionFee" label="Contribution Fee" />
+  </columns>
+</dataModel>

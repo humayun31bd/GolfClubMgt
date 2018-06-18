@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberChildren" alias="MemberChildren" created="2018-04-14T07:59:44" modified="2018-04-16T06:16:19" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="318" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberBloodGroup" parentTableSchema="dbo" parentTableName="BloodGroup" baseForeignKey="Member" x="642" y="20">
+      <foreignKeyColumn columnName="BloodGroupID" parentColumnName="BloodGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberGender" parentTableSchema="dbo" parentTableName="Gender" baseForeignKey="Member" x="642" y="160">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="642" y="300">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberCategoryMemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" baseForeignKey="MemberCategory" x="961" y="20">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberCategoryMemberType" parentTableSchema="dbo" parentTableName="MemberType" baseForeignKey="MemberCategory" x="961" y="176">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberCategoryNonMemberCat" parentTableSchema="dbo" parentTableName="NonMemberCategory" baseForeignKey="MemberCategory" x="961" y="332">
+      <foreignKeyColumn columnName="NonMemberCatID" parentColumnName="NonMemberCatID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="642" y="530">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberNationality" parentTableSchema="dbo" parentTableName="Nationality" baseForeignKey="Member" x="642" y="670">
+      <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
+    </foreignKey>
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="321" y="251">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="308" y="363">
+      <foreignKeyColumn columnName="ParentMemberID" parentColumnName="MemberID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberChildID" fieldName="MemberChildID" label="Member Child ID" />
+    <column name="ChildNo" fieldName="ChildNo" label="Child No" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="BloodGroupName" fieldName="MemberBloodGroupName" label="Member Blood Group" foreignKey="MemberBloodGroup" />
+    <column name="GenderDesc" fieldName="MemberGenderDesc" label="Member Gender" foreignKey="MemberGender" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category" foreignKey="MemberCategory" />
+    <column name="MemberGroupName" fieldName="MemberCategoryMemberGroupName" label="Member Group" foreignKey="MemberCategoryMemberGroup" />
+    <column name="MemberTypeDesc" fieldName="MemberCategoryMemberTypeDesc" label="Member Category Type" foreignKey="MemberCategoryMemberType" />
+    <column name="NonMemCateory" fieldName="MemberCategoryNonMemberCatNonMemCateory" label="Non Member Cateory" foreignKey="MemberCategoryNonMemberCat" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="Nationality" fieldName="MemberNationality" label="Member Nationality" foreignKey="MemberNationality" />
+    <column name="Name" fieldName="Name" label="Name" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" />
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" aliasColumnName="GenderDesc" aliasForeignKey="Gender" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender" foreignKey="Gender" />
+    <column name="DOB" fieldName="Dob" label="Date Of Birth" />
+    <column name="HandiCap" fieldName="HandiCap" label="Handi Cap" />
+    <column name="Pic" fieldName="Pic" label="Pic" />
+    <column name="PicFileName" fieldName="PicFileName" label="Pic File Name" />
+    <column name="PicContentType" fieldName="PicContentType" label="Pic Content Type" />
+    <column name="PicLength" fieldName="PicLength" label="Pic Length" />
+    <column name="ParentMemberID" fieldName="ParentMemberID" label="Parent Member ID" aliasColumnName="NameOfMember" aliasForeignKey="MemberInfo" />
+    <column name="NameOfMember" fieldName="MemberInfoNameOfMember" label="Self Member" foreignKey="MemberInfo" />
+  </columns>
+</dataModel>

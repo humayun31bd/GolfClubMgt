@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CustomSMSBody" label="CustomSMSBody" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="SMSBody" type="String" label="SMS Body" length="250" />
+  </fields>
+</dataController>

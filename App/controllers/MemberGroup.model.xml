@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberGroup" alias="MemberGroup" created="2018-04-09T20:38:29" modified="2018-04-09T20:41:24" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="MemberGroupID" fieldName="MemberGroupID" label="Member Group ID" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group Name" />
+  </columns>
+</dataModel>

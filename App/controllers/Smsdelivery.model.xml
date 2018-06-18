@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSDelivery" alias="SMSDelivery" created="2018-04-27T19:13:32" modified="2018-04-27T19:14:10" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SMSOutLogID" fieldName="SmsoutLogID" label="SMS Out Log ID" />
+    <column name="ReceiptNumber" fieldName="ReceiptNumber" label="Receipt Number" />
+    <column name="SenderNumber" fieldName="SenderNumber" label="Sender Number" />
+    <column name="sMessage" fieldName="SMessage" label="s Message" />
+    <column name="DeliveryTime" fieldName="DeliveryTime" label="Delivery Time" format="dd/MM/yyyy hh:mm tt" />
+    <column name="SMSCount" fieldName="Smscount" label="SMS Count" />
+  </columns>
+</dataModel>

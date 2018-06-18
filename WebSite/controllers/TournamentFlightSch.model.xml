@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TournamentFlightSch" alias="TournamentFlightSch" created="2018-04-10T13:04:04" modified="2018-04-25T08:57:00" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament" x="340" y="20">
+      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
+    </foreignKey>
+    <foreignKey id="Tee" parentTableSchema="dbo" parentTableName="TeeName" x="340" y="344">
+      <foreignKeyColumn columnName="TeeID" parentColumnName="TeeID" />
+    </foreignKey>
+    <foreignKey id="GameCategory" parentTableSchema="dbo" parentTableName="GameCategory" x="651" y="20">
+      <foreignKeyColumn columnName="GameCateoryID" parentColumnName="GameCategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TournamentFlightSchID" fieldName="TournamentFlightSchID" label="Tournament Flight Sch ID" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="Tournament" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" foreignKey="Tournament" />
+    <column name="TeeID" fieldName="TeeID" label="Tee ID" aliasColumnName="TeeName" aliasForeignKey="Tee" />
+    <column name="TeeName" fieldName="TeeName" label="Tee Name" foreignKey="Tee" />
+    <column name="Date" fieldName="Date" label="Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="StartTime" fieldName="StartTime" label="Start Time" />
+    <column name="EndTime" fieldName="EndTime" label="End Time" />
+    <column name="Delay" fieldName="Delay" label="Delay" />
+    <column name="NumberofPlay" fieldName="NumberofPlay" label="Numberof Player" />
+    <column name="TotalFlight" fieldName="TotalFlight" label="Total Flight" />
+    <column name="GameCateoryID" fieldName="GameCateoryID" label="Game Cateory ID" aliasColumnName="GameCategoryName" aliasForeignKey="GameCategory" />
+    <column name="GameCategoryName" fieldName="GameCategoryGameCategoryName" label="Game Category" foreignKey="GameCategory" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" />
+    <column name="FlightSchNo" fieldName="FlightSchNo" label="Flight Sch No" />
+    <column name="MaxPlayer" fieldName="MaxPlayer" label="Max Player" />
+  </columns>
+</dataModel>

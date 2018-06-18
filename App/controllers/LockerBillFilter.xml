@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="LockerBillFilter" label="LockerBillFilter" conflictDetection="overwriteChanges" handler="MyCompany.Rules.LockerBillFilterBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="FromDate" type="DateTime" label="From Date" dataFormatString="dd/MM/yyyy" />
+    <field name="ToDate" type="DateTime" label="To Date" dataFormatString="dd/MM/yyyy" />
+  </fields>
+</dataController>

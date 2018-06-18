@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DateRangeSelection" label="DateRangeSelection" conflictDetection="overwriteChanges" handler="MyCompany.Rules.DateRangeSelectionBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="FromDate" type="DateTime" label="From Date" />
+    <field name="ToDate" type="DateTime" label="To Date" />
+    <field name="MemberID" type="Int32" label="Member ">
+      <items style="Lookup" dataController="MemberInfo" dataView="AllMembers" dataTextField="MemberCode" dataValueField="MemberID" />
+    </field>
+  </fields>
+</dataController>

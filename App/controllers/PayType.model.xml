@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="PayType" alias="PayType" created="2018-05-01T14:50:13" modified="2018-05-01T14:50:16" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" />
+    <column name="PayTypeName" fieldName="PayTypeName" label="Pay Type Name" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+  </columns>
+</dataModel>

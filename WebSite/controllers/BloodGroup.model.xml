@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="BloodGroup" alias="BloodGroup" created="2018-04-09T20:38:35" modified="2018-04-09T20:49:16" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="BloodGroupID" fieldName="BloodGroupID" label="Blood Group ID" />
+    <column name="BloodGroupName" fieldName="BloodGroupName" label="Blood Group Name" />
+  </columns>
+</dataModel>

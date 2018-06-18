@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="LockerBooking" alias="LockerBooking" created="2018-04-09T20:38:31" modified="2018-06-03T13:06:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Locker" parentTableSchema="dbo" parentTableName="Locker" x="307" y="20">
+      <foreignKeyColumn columnName="LockerID" parentColumnName="LockerID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="307" y="322">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="632" y="20">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="LockerBookID" fieldName="LockerBookID" label="Locker Book ID" />
+    <column name="LockerID" fieldName="LockerID" label="Locker ID" aliasColumnName="LockerCode" aliasForeignKey="Locker" />
+    <column name="LockerCode" fieldName="LockerCode" label="Locker Number" foreignKey="Locker" />
+    <column name="IsFree" fieldName="LockerIsFree" label="Locker Is Free" foreignKey="Locker" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="BookStart" fieldName="BookStart" label="Book Start" format="dd/MM/yyyy" />
+    <column name="BookEnd" fieldName="BookEnd" label="Book End" format="dd/MM/yyyy" />
+    <column name="BookStatus" fieldName="BookStatus" label="Booking Status" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" aliasColumnName="CategoryName" aliasForeignKey="MemberCategory" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="LockerBillAmount" fieldName="LockerBillAmount" label="Locker Bill Amount" />
+  </columns>
+</dataModel>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Smsprovider" conflictDetection="overwriteChanges" label="Smsprovider" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"SMSProvider"."ProviderID" "ProviderID"
+	,"SMSProvider"."ProviderName" "ProviderName"
+	,"SMSProvider"."IsMaskingActive" "IsMaskingActive"
+	,"SMSProvider"."MaskName" "MaskName"
+	,"SMSProvider"."SMSLimit" "Smslimit"
+	,"SMSProvider"."IsActive" "IsActive"
+	,"SMSProvider"."SenderMobileNumber" "SenderMobileNumber"
+	,"SMSProvider"."SMSBalance" "Smsbalance"
+	,"SMSProvider"."SMSAccountName" "SmsaccountName"
+	,"SMSProvider"."SMSHashTag" "SmshashTag"
+	,"SMSProvider"."TotalStudent" "TotalStudent"
+	,"SMSProvider"."NoOfFreeSMS" "NoOfFreeSms"
+from "dbo"."SMSProvider" "SMSProvider"
+]]></text>
+    </command>
+    <command id="ProviderIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="ProviderID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="ProviderID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Provider ID" readOnly="true" />
+    <field name="ProviderName" type="String" label="Provider Name" length="50" showInSummary="true" />
+    <field name="IsMaskingActive" type="Boolean" default="((0))" label="Is Masking Active" showInSummary="true" />
+    <field name="MaskName" type="String" label="Mask Name" length="50" showInSummary="true" />
+    <field name="Smslimit" type="Int32" label="SMS Limit" showInSummary="true" />
+    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" showInSummary="true" />
+    <field name="SenderMobileNumber" type="String" label="Sender Mobile Number" length="15" />
+    <field name="Smsbalance" type="Int32" label="SMS Balance" />
+    <field name="SmsaccountName" type="String" label="SMS Account Name" length="100" />
+    <field name="SmshashTag" type="String" label="SMS Hash Tag" length="100" />
+    <field name="TotalStudent" type="Int32" label="Total Student" />
+    <field name="NoOfFreeSms" type="Int32" label="No Of Free SMS" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Smsprovider">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="ProviderName" columns="50" />
+        <dataField fieldName="IsMaskingActive" />
+        <dataField fieldName="MaskName" columns="50" />
+        <dataField fieldName="Smslimit" columns="15" />
+        <dataField fieldName="IsActive" />
+        <dataField fieldName="SenderMobileNumber" columns="15" />
+        <dataField fieldName="Smsbalance" columns="15" />
+        <dataField fieldName="SmsaccountName" />
+        <dataField fieldName="SmshashTag" />
+        <dataField fieldName="TotalStudent" columns="15" />
+        <dataField fieldName="NoOfFreeSms" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Smsprovider">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Smsprovider" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="ProviderName" columns="50" />
+            <dataField fieldName="IsMaskingActive" />
+            <dataField fieldName="MaskName" columns="50" />
+            <dataField fieldName="Smslimit" columns="15" />
+            <dataField fieldName="IsActive" />
+            <dataField fieldName="SenderMobileNumber" columns="15" />
+            <dataField fieldName="Smsbalance" columns="15" />
+            <dataField fieldName="SmsaccountName" />
+            <dataField fieldName="SmshashTag" />
+            <dataField fieldName="TotalStudent" columns="15" />
+            <dataField fieldName="NoOfFreeSms" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Smsprovider">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="ProviderName" columns="50" />
+            <dataField fieldName="IsMaskingActive" />
+            <dataField fieldName="MaskName" columns="50" />
+            <dataField fieldName="Smslimit" columns="15" />
+            <dataField fieldName="IsActive" />
+            <dataField fieldName="SenderMobileNumber" columns="15" />
+            <dataField fieldName="Smsbalance" columns="15" />
+            <dataField fieldName="SmsaccountName" />
+            <dataField fieldName="SmshashTag" />
+            <dataField fieldName="TotalStudent" columns="15" />
+            <dataField fieldName="NoOfFreeSms" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

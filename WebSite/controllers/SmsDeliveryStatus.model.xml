@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SmsDeliveryStatus" alias="SmsDeliveryStatus" created="2018-05-20T17:56:03" modified="2018-05-20T17:56:03" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Provider" parentTableSchema="dbo" parentTableName="SMSProvider">
+      <foreignKeyColumn columnName="ProviderID" parentColumnName="ProviderID" />
+    </foreignKey>
+    <foreignKey id="SMSStatusGroup" parentTableSchema="dbo" parentTableName="SMSStatusGroup">
+      <foreignKeyColumn columnName="SMSStatusGroupID" parentColumnName="SMSStatusGroupID" />
+    </foreignKey>
+    <foreignKey id="SMSStatusGroupProvider" parentTableSchema="dbo" parentTableName="SMSProvider" baseForeignKey="SMSStatusGroup">
+      <foreignKeyColumn columnName="ProviderID" parentColumnName="ProviderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="DeliveryStatusID" fieldName="DeliveryStatusID" label="Delivery Status ID" />
+    <column name="DeliveryStatusDesc" fieldName="DeliveryStatusDesc" label="Delivery Status Desc" />
+    <column name="Description" fieldName="Description" label="Description" />
+    <column name="ProviderID" fieldName="ProviderID" label="Provider ID" aliasColumnName="ProviderName" aliasForeignKey="Provider" />
+    <column name="ProviderName" fieldName="ProviderName" label="Provider Name" foreignKey="Provider" />
+    <column name="SMSStatusGroupID" fieldName="SmsstatusGroupID" label="SMS Status Group ID" aliasColumnName="GroupName" aliasForeignKey="SMSStatusGroup" />
+    <column name="GroupName" fieldName="SmsstatusGroupName" label="SMS Status Group Name" foreignKey="SMSStatusGroup" />
+    <column name="ProviderName" fieldName="SmsstatusGroupProviderName" label="SMS Status Group Provider Name" foreignKey="SMSStatusGroupProvider" />
+    <column name="Action" fieldName="Action" label="Action" />
+  </columns>
+</dataModel>

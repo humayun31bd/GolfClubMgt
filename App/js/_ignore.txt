@@ -1,0 +1,6 @@
+﻿daf/*
+sys/*
+lib/*
+surveys/*
+Ensured js/*
+_references.js

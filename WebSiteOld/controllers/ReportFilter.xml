@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="ReportFilter" label="ReportFilter" conflictDetection="overwriteChanges" handler="MyCompany.Rules.ReportFilterBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="MemberID" type="Int32" label="Member">
+      <items style="Lookup" dataController="MemberInfo" dataView="AllMembers" dataTextField="MemberCode" dataValueField="MemberID" />
+    </field>
+    <field name="FromDate" type="DateTime" label="From Date" allowNulls="false" dataFormatString="dd/MM/yyyy" />
+    <field name="ToDate" type="DateTime" allowNulls="false" label="To Date" dataFormatString="dd/MM/yyyy" />
+    <field name="PaymentTypeID" type="Int32" label="Payment Type">
+      <items style="RadioButtonList">
+        <item value="0" text="All" />
+        <item value="1" text="Cash" />
+        <item value="2" text="Cheque" />
+        <item value="3" text="Bank Card" />
+        <item value="4" text="Member Card" />
+        <item value="5" text="Credit" />
+      </items>
+    </field>
+  </fields>
+</dataController>

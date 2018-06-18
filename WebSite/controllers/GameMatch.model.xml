@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameMatch" alias="GameMatch" created="2018-04-23T20:32:50" modified="2018-04-23T20:32:54" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="GameMatchID" fieldName="GameMatchID" label="Game Match ID" />
+    <column name="LastMatchID" fieldName="LastMatchID" label="Last Match ID" />
+    <column name="GameDate" fieldName="GameDate" label="Game Date" format="g" />
+  </columns>
+</dataModel>

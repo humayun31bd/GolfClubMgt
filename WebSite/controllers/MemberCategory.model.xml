@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberCategory" alias="MemberCategory" created="2018-04-09T20:38:30" modified="2018-06-15T01:56:54" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="345" y="20">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" x="345" y="160">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="NonMemberCategory" parentTableSchema="dbo" parentTableName="NonMemberCategory" x="669" y="20">
+      <foreignKeyColumn columnName="NonMemberCatID" parentColumnName="NonMemberCatID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" />
+    <column name="CategoryName" fieldName="CategoryName" label="Category Name" />
+    <column name="MemberGroupID" fieldName="MemberGroupID" label="Member Group ID" aliasColumnName="MemberGroupName" aliasForeignKey="MemberGroup" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group" foreignKey="MemberGroup" />
+    <column name="MemberTypeID" fieldName="MemberTypeID" label="Member Type ID" aliasColumnName="MemberTypeDesc" aliasForeignKey="MemberType" />
+    <column name="MemberTypeDesc" fieldName="MemberTypeDesc" label="Member Type" foreignKey="MemberType" />
+    <column name="MemberExpireType" fieldName="MemberExpireType" label="Expire Type" />
+    <column name="ExpireNumberCount" fieldName="ExpireNumberCount" label="Expire Number Count" />
+    <column name="MaxMemberInGroup" fieldName="MaxMemberInGroup" label="Max Member In Group" />
+    <column name="IsMemberSpouse" fieldName="IsMemberSpouse" label="Is Member Spouse" />
+    <column name="IsChildren" fieldName="IsChildren" label="Is Children" />
+    <column name="ChildrenAgeLimit" fieldName="ChildrenAgeLimit" label="Children Age Limit" />
+    <column name="MaxChildCount" fieldName="MaxChildCount" label="Max Child Count" />
+    <column name="IsActiveMember" fieldName="IsActiveMember" label="Is Active Member" />
+    <column name="IsHandiCap" fieldName="IsHandiCap" label="Is Handi Cap" />
+    <column name="NonMemberCatID" fieldName="NonMemberCatID" label="Non Member Cat ID" aliasColumnName="NonMemCateory" aliasForeignKey="NonMemberCategory" />
+    <column name="NonMemCateory" fieldName="NonMemberCategoryNonMemCateory" label="Non Member Category Non Mem Cateory" foreignKey="NonMemberCategory" />
+  </columns>
+</dataModel>

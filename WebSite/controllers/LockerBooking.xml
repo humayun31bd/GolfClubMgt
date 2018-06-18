@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="LockerBooking" conflictDetection="overwriteChanges" label="Locker Booking" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"LockerBooking"."LockerBookID" "LockerBookID"
+	,"LockerBooking"."LockerID" "LockerID"
+	,"Locker"."LockerCode" "LockerCode"
+	,"Locker"."IsFree" "LockerIsFree"
+	,"LockerBooking"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"Member"."MemberCode" "MemberCode"
+	,"LockerBooking"."BookStart" "BookStart"
+	,"LockerBooking"."BookEnd" "BookEnd"
+	,"LockerBooking"."BookStatus" "BookStatus"
+	,"LockerBooking"."MemberCategoryID" "MemberCategoryID"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"LockerBooking"."LockerBillAmount" "LockerBillAmount"
+from "dbo"."LockerBooking" "LockerBooking"
+	left join "dbo"."Locker" "Locker" on "LockerBooking"."LockerID" = "Locker"."LockerID"
+	left join "dbo"."MemberInfo" "Member" on "LockerBooking"."MemberID" = "Member"."MemberID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "LockerBooking"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+]]></text>
+    </command>
+    <command id="LockerBookIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="LockerBookID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="LockerBookID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Locker Book ID" readOnly="true" />
+    <field name="LockerID" type="Int32" label="Locker ID" showInSummary="true">
+      <items style="Lookup" dataController="Locker" newDataView="createForm1" dataValueField="LockerID" dataTextField="LockerCode" copy="LockerIsFree=IsFree" dataView="FreeLockers" />
+    </field>
+    <field name="LockerCode" type="String" readOnly="true" label="Locker Number" length="50" />
+    <field name="LockerIsFree" type="Boolean" readOnly="true" label="Locker Status">
+      <items style="DropDownList">
+        <item value="0" text="Locker Booked" />
+        <item value="1" text="Booking Close" />
+      </items>
+    </field>
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true" allowNulls="false">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberNameOfMember=NameOfMember" dataView="AllMembers" />
+    </field>
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Member Name" length="150" />
+    <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="BookStart" type="DateTime" dataFormatString="dd/MM/yyyy" label="Book Start" showInSummary="true" allowNulls="false" />
+    <field name="BookEnd" type="DateTime" dataFormatString="dd/MM/yyyy" label="Book End" showInSummary="true" allowNulls="false" />
+    <field name="BookStatus" type="String" label="Booking Status" length="50" showInSummary="true" />
+    <field name="MemberCategoryID" type="Int32" label="Member Category ID">
+      <items style="Lookup" dataController="MemberCategory" newDataView="createForm1" dataValueField="MemberCategoryID" dataTextField="CategoryName" />
+    </field>
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category Name" length="150" />
+    <field name="LockerBillAmount" type="Decimal" label="Locker Bill Amount" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Locker Booking">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="LockerID" aliasFieldName="LockerCode" />
+        <dataField fieldName="LockerIsFree" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="BookStart" columns="20" />
+        <dataField fieldName="BookEnd" columns="20" />
+        <dataField fieldName="BookStatus" columns="50" />
+        <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+        <dataField fieldName="LockerBillAmount" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Locker Booking">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Locker Booking" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="LockerID" aliasFieldName="LockerCode" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="BookStart" columns="20" />
+            <dataField fieldName="LockerIsFree" textMode="Static" hidden="true" />
+            <dataField fieldName="BookEnd" columns="20" hidden="true" />
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" hidden="true" />
+            <dataField fieldName="LockerBillAmount" columns="15" hidden="true" />
+            <dataField fieldName="BookStatus" columns="50" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Locker Booking">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="LockerID" aliasFieldName="LockerCode" />
+            <dataField fieldName="LockerIsFree" hidden="true" textMode="Static" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="BookStart" columns="20" />
+            <dataField fieldName="BookEnd" columns="20" hidden="true" />
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" hidden="true" />
+            <dataField fieldName="LockerBillAmount" columns="15" hidden="true" />
+            <dataField fieldName="BookStatus" columns="50" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" whenHRef="false:" />
+      <action id="a3" commandName="Delete" whenHRef="false:" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" whenHRef="false:" />
+      <action commandName="SQL" headerText="Booking Close" id="a100" confirmation="Do you confirmed?" />
+      <action id="a2" commandName="Delete" whenHRef="false:" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action commandName="Custom" commandArgument="LockerFreeDone" headerText="Close Booking" id="a100" confirmation="_controller=CloseBookingLocker&#xD;&#xA;_title=Select Closing Date" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" type="Sql" commandName="Insert|Update" phase="Before" name="MemberID_Validator"><![CDATA[
+if @MemberID is null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'MemberID,Required field.'
+end
+]]></rule>
+    <rule id="r101" type="Sql" commandName="Insert|Update" phase="Before" name="BookStart_Validator"><![CDATA[
+if @BookStart is null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'BookStart,Required field.'
+end
+]]></rule>
+    <rule id="r104" commandName="Custom" commandArgument="LockerFreeDone" type="Sql" phase="Execute"><![CDATA[Exec USP_LockerFreeDone @LockerBookID,@LockerID,@Parameters_ClosingDate]]></rule>
+    <rule id="r105" commandName="Insert" type="Sql" phase="Before"><![CDATA[Set @BookStatus = 'Locker Booked']]></rule>
+    <rule id="r106" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[Exec [dbo].[USP_LockerBillGenerate] @LockerBookID,@MemberID,@LockerID
+]]></rule>
+  </businessRules>
+</dataController>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSPurchase" alias="SMSPurchase" created="2018-04-27T18:09:47" modified="2018-04-27T18:09:49" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SMSInstitutePurID" fieldName="SmsinstitutePurID" label="SMS Institute Pur ID" />
+    <column name="OrderNo" fieldName="OrderNo" label="Order No" />
+    <column name="InstituteID" fieldName="InstituteID" label="Institute ID" />
+    <column name="SMSPurchased" fieldName="Smspurchased" label="SMS Purchased" />
+    <column name="PurchasedOrderBy" fieldName="PurchasedOrderBy" label="Purchased Order By" />
+    <column name="PurchaseOrderdate" fieldName="PurchaseOrderdate" label="Purchase Orderdate" format="g" />
+    <column name="CreatedBY" fieldName="CreatedBy" label="Created BY" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+  </columns>
+</dataModel>

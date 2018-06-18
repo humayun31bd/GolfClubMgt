@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TournamentFee" conflictDetection="overwriteChanges" label="Tournament Fee" handler="MyCompany.Rules.TournamentFeeBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"TournamentFee"."TournamentFeeID" "TournamentFeeID"
+	,"TournamentFee"."TournamentID" "TournamentID"
+	,"Tournament"."TournamentName" "TournamentName"
+	,"TournamentFee"."MemberGroupID" "MemberGroupID"
+	,"MemberGroup"."MemberGroupName" "MemberGroupName"
+	,"TournamentFee"."HoleTypeID" "HoleTypeID"
+	,"HoleType"."HoleTypeDesc" "HoleTypeHoleTypeDesc"
+	,"TournamentFee"."MemberFee" "MemberFee"
+	,"TournamentFee"."SpouseFee" "SpouseFee"
+	,"TournamentFee"."ChildrenFee" "ChildrenFee"
+	,"TournamentFee"."IsActive" "IsActive"
+from "dbo"."TournamentFee" "TournamentFee"
+	left join "dbo"."Tournament" "Tournament" on "TournamentFee"."TournamentID" = "Tournament"."TournamentID"
+	left join "dbo"."MemberGroup" "MemberGroup" on "TournamentFee"."MemberGroupID" = "MemberGroup"."MemberGroupID"
+	left join "dbo"."HoleType" "HoleType" on "TournamentFee"."HoleTypeID" = "HoleType"."HoleTypeID"
+]]></text>
+    </command>
+    <command id="TournamentFeeIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="TournamentFeeID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="TournamentFeeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Tournament Fee ID" readOnly="true" />
+    <field name="TournamentID" type="Int32" allowNulls="false" label="Tournament ID" showInSummary="true">
+      <items style="Lookup" dataController="Tournament" newDataView="createForm1" dataValueField="TournamentID" dataTextField="TournamentName" />
+    </field>
+    <field name="TournamentName" type="String" readOnly="true" label="Tournament Name" length="50" />
+    <field name="MemberGroupID" type="Int32" label="Member Group ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberGroup" newDataView="createForm1" dataValueField="MemberGroupID" dataTextField="MemberGroupName" />
+    </field>
+    <field name="MemberGroupName" type="String" readOnly="true" label="Member Group Name" length="50" />
+    <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true">
+      <items style="Lookup" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" />
+    </field>
+    <field name="HoleTypeHoleTypeDesc" type="String" readOnly="true" label="Hole Type" length="50" />
+    <field name="MemberFee" type="Decimal" label="Member Fee" showInSummary="true" />
+    <field name="SpouseFee" type="Decimal" label="Spouse Fee" showInSummary="true" />
+    <field name="ChildrenFee" type="Decimal" label="Children Fee" />
+    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Tournament Fee">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+        <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
+        <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
+        <dataField fieldName="MemberFee" columns="15" />
+        <dataField fieldName="SpouseFee" columns="15" />
+        <dataField fieldName="ChildrenFee" columns="15" />
+        <dataField fieldName="IsActive" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Tournament Fee">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Tournament Fee" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
+            <dataField fieldName="MemberFee" columns="15" />
+            <dataField fieldName="SpouseFee" columns="15" />
+            <dataField fieldName="ChildrenFee" columns="15" />
+            <dataField fieldName="IsActive" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Tournament Fee">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Tournament Fee" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
+            <dataField fieldName="MemberFee" columns="15" />
+            <dataField fieldName="SpouseFee" columns="15" />
+            <dataField fieldName="ChildrenFee" columns="15" />
+            <dataField fieldName="IsActive" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action commandName="Edit" commandArgument="editForm1" headerText="change" cssClass="material-icon-build" id="a100" />
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

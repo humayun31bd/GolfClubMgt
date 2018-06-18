@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TournamentFlieghtSch" conflictDetection="overwriteChanges" label="Tournament Flieght Sch" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"TournamentFlieghtSch"."TournamentFlieghtSchID" "TournamentFlieghtSchID"
+	,"TournamentFlieghtSch"."TournamentID" "TournamentID"
+	,"Tournament"."TournamentName" "TournamentName"
+	,"TournamentFlieghtSch"."GameTypeID" "GameTypeID"
+	,"GameType"."GameName" "GameTypeGameName"
+	,"TournamentFlieghtSch"."TeeID" "TeeID"
+	,"Tee"."TeeName" "TeeName"
+	,"TournamentFlieghtSch"."Date" "Date"
+	,"TournamentFlieghtSch"."StartTime" "StartTime"
+	,"TournamentFlieghtSch"."EndTime" "EndTime"
+	,"TournamentFlieghtSch"."Delay" "Delay"
+	,"TournamentFlieghtSch"."NumberofPlay" "NumberofPlay"
+	,"TournamentFlieghtSch"."TotalFlight" "TotalFlight"
+from "dbo"."TournamentFlieghtSch" "TournamentFlieghtSch"
+	left join "dbo"."Tournament" "Tournament" on "TournamentFlieghtSch"."TournamentID" = "Tournament"."TournamentID"
+	left join "dbo"."GameType" "GameType" on "TournamentFlieghtSch"."GameTypeID" = "GameType"."GameTypeID"
+	left join "dbo"."TeeName" "Tee" on "TournamentFlieghtSch"."TeeID" = "Tee"."TeeID"
+]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="TournamentFlieghtSchID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Tournament Flieght Sch ID" />
+    <field name="TournamentID" type="Int32" label="Tournament ID" showInSummary="true">
+      <items style="Lookup" dataController="Tournament" newDataView="createForm1" dataValueField="TournamentID" dataTextField="TournamentName" />
+    </field>
+    <field name="TournamentName" type="String" readOnly="true" label="Tournament Name" length="50" />
+    <field name="GameTypeID" type="Int32" label="Game Type ID" showInSummary="true">
+      <items style="Lookup" dataController="GameType" newDataView="createForm1" dataValueField="GameTypeID" dataTextField="GameName" />
+    </field>
+    <field name="GameTypeGameName" type="String" readOnly="true" label="Game Type" length="50" />
+    <field name="TeeID" type="Int32" label="Tee ID" showInSummary="true">
+      <items style="Lookup" dataController="TeeName" newDataView="createForm1" dataValueField="TeeID" dataTextField="TeeName" />
+    </field>
+    <field name="TeeName" type="String" readOnly="true" label="Tee Name" length="50" />
+    <field name="Date" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Date" showInSummary="true" />
+    <field name="StartTime" type="TimeSpan" label="Start Time" length="7" showInSummary="true" />
+    <field name="EndTime" type="TimeSpan" label="End Time" length="7" />
+    <field name="Delay" type="Int32" label="Delay" />
+    <field name="NumberofPlay" type="Int32" label="Numberof Play" />
+    <field name="TotalFlight" type="Int32" label="Total Flight" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Tournament Flieght Sch">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="TournamentFlieghtSchID" columns="15" />
+        <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+        <dataField fieldName="GameTypeID" aliasFieldName="GameTypeGameName" />
+        <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+        <dataField fieldName="Date" columns="20" />
+        <dataField fieldName="StartTime" columns="15" />
+        <dataField fieldName="EndTime" columns="15" />
+        <dataField fieldName="Delay" columns="15" />
+        <dataField fieldName="NumberofPlay" columns="15" />
+        <dataField fieldName="TotalFlight" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Tournament Flieght Sch">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Tournament Flieght Sch" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentFlieghtSchID" columns="15" />
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="GameTypeID" aliasFieldName="GameTypeGameName" />
+            <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+            <dataField fieldName="Date" columns="20" />
+            <dataField fieldName="StartTime" columns="15" />
+            <dataField fieldName="EndTime" columns="15" />
+            <dataField fieldName="Delay" columns="15" />
+            <dataField fieldName="NumberofPlay" columns="15" />
+            <dataField fieldName="TotalFlight" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Tournament Flieght Sch">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Tournament Flieght Sch" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentFlieghtSchID" columns="15" />
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="GameTypeID" aliasFieldName="GameTypeGameName" />
+            <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+            <dataField fieldName="Date" columns="20" />
+            <dataField fieldName="StartTime" columns="15" />
+            <dataField fieldName="EndTime" columns="15" />
+            <dataField fieldName="Delay" columns="15" />
+            <dataField fieldName="NumberofPlay" columns="15" />
+            <dataField fieldName="TotalFlight" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

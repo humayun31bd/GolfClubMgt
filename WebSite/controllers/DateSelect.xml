@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DateSelect" label="DateSelect" conflictDetection="overwriteChanges" handler="MyCompany.Rules.DateSelectBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="FromDate" type="DateTime" label="From Date" />
+  </fields>
+</dataController>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberStatus" alias="MemberStatus" created="2018-04-09T20:38:27" modified="2018-06-15T01:19:28" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" />
+    <column name="IsTerminate" fieldName="IsTerminate" label="Is Terminate" />
+    <column name="IsExpired" fieldName="IsExpired" label="Is Expired" />
+  </columns>
+</dataModel>

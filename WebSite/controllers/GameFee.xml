@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="GameFee" conflictDetection="overwriteChanges" label="Game Fee" handler="MyCompany.Rules.GameFeeBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"GameFee"."GameFeeID" "GameFeeID"
+	,"GameFee"."MemberCategoryID" "MemberCategoryID"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberCategory"."MemberCategoryID" "MemberCategoryMemberCategoryID"
+	,"MemberCategory"."MemberGroupID" "MemberCategoryMemberGroupID"
+	,"GameFee"."MemberStatusID" "MemberStatusID"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberStatus"."MemberStatusID" "MemberStatusMemberStatusID"
+	,"GameFee"."HoleTypeID" "HoleTypeID"
+	,"HoleType"."HoleTypeDesc" "HoleTypeDesc"
+	,"GameFee"."GreenFee" "GreenFee"
+	,"GameFee"."GreenFeeAccountID" "GreenFeeAccountID"
+	,"GameFee"."CaddieFee" "CaddieFee"
+	,"GameFee"."CaddieFeeAccountID" "CaddieFeeAccountID"
+	,"GameFee"."IsActive" "IsActive"
+	,"GameFee"."GolfCartFee" "GolfCartFee"
+	,"GameFee"."CaddieSubsidy" "CaddieSubsidy"
+	,"GameFee"."SpouseCaddieSubsidy" "SpouseCaddieSubsidy"
+	,"GameFee"."CildrenCaddieSubsidy" "CildrenCaddieSubsidy"
+	,"GameFee"."BallBoyFee" "BallBoyFee"
+	,"GameFee"."BallBoyAccountID" "BallBoyAccountID"
+	,"GameFee"."BallBoySubsiDy" "BallBoySubsiDy"
+	,"GameFee"."SpouseBallBoySubsidy" "SpouseBallBoySubsidy"
+	,"GameFee"."ChildrenBallBoySubsidy" "ChildrenBallBoySubsidy"
+	,"GameFee"."GreenSubsidy" "GreenSubsidy"
+from "dbo"."GameFee" "GameFee"
+	left join "dbo"."MemberCategory" "MemberCategory" on "GameFee"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "GameFee"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."HoleType" "HoleType" on "GameFee"."HoleTypeID" = "HoleType"."HoleTypeID"
+]]></text>
+    </command>
+    <command id="GameFeeIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="GameFeeID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="GameFeeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Game Fee ID" readOnly="true" />
+    <field name="MemberCategoryID" type="Int32" label="Member Category ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberCategory" newDataView="createForm1" dataValueField="MemberCategoryID" dataTextField="CategoryName" copy="MemberCategoryMemberCategoryID=MemberCategoryID, MemberCategoryMemberGroupID=MemberGroupID" />
+    </field>
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category" length="150" />
+    <field name="MemberCategoryMemberCategoryID" type="Int32" label="Member Category Member Category ID" readOnly="true" />
+    <field name="MemberCategoryMemberGroupID" type="Int32" readOnly="true" label="Member Category Member Group ID" />
+    <field name="MemberStatusID" type="Int32" label="Member Status ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberStatus" newDataView="createForm1" dataValueField="MemberStatusID" dataTextField="MemberStatus" copy="MemberStatusMemberStatusID=MemberStatusID" />
+    </field>
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="MemberStatusMemberStatusID" type="Int32" label="Member Status Member Status ID" readOnly="true" />
+    <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true">
+      <items style="RadioButtonList" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" dataView="grid1" />
+    </field>
+    <field name="HoleTypeDesc" type="String" readOnly="true" label="Hole Type" length="50" />
+    <field name="GreenFee" type="Decimal" label="Green Fee" showInSummary="true" />
+    <field name="GreenFeeAccountID" type="Int32" label="Green Fee Account ID" showInSummary="true" />
+    <field name="CaddieFee" type="Decimal" label="Member Caddie Fee" />
+    <field name="CaddieFeeAccountID" type="Int32" label="Caddie Fee Account ID" />
+    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="GolfCartFee" type="Decimal" label="Golf Cart Fee" />
+    <field name="CaddieSubsidy" type="Decimal" label="Member Caddie Subsidy" />
+    <field name="SpouseCaddieSubsidy" type="Decimal" label="Spouse Caddie Subsidy" />
+    <field name="CildrenCaddieSubsidy" type="Decimal" label="Cildren Caddie Subsidy" />
+    <field name="BallBoyFee" type="Decimal" label="Member Ball Boy Fee" />
+    <field name="BallBoyAccountID" type="Int32" label="Ball Boy Account ID" />
+    <field name="BallBoySubsiDy" type="Decimal" label="Member Ball Boy Subsidy" />
+    <field name="SpouseBallBoySubsidy" type="Decimal" label="Spouse Ball Boy Subsidy" />
+    <field name="ChildrenBallBoySubsidy" type="Decimal" label="Children Ball Boy Subsidy" />
+    <field name="GreenSubsidy" type="Decimal" label="Green Subsidy" />
+    <field name="GameDays" type="String" label="Game Days" length="150">
+      <items style="CheckBoxList" dataController="WeekDay" dataView="grid1" dataTextField="WeekDayName" dataValueField="WeekDayID" targetController="GameFeeDay" />
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Game Fee">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+        <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
+        <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" />
+        <dataField fieldName="GreenFee" columns="15" />
+        <dataField fieldName="CaddieFee" columns="15" />
+        <dataField fieldName="IsActive" />
+        <dataField fieldName="GolfCartFee" columns="15" />
+        <dataField fieldName="CaddieSubsidy" columns="15" />
+        <dataField fieldName="SpouseCaddieSubsidy" columns="15" />
+        <dataField fieldName="CildrenCaddieSubsidy" columns="15" />
+        <dataField fieldName="BallBoyFee" columns="15" />
+        <dataField fieldName="BallBoySubsiDy" columns="15" />
+        <dataField fieldName="SpouseBallBoySubsidy" columns="15" />
+        <dataField fieldName="ChildrenBallBoySubsidy" columns="15" />
+        <dataField fieldName="GreenSubsidy" columns="15" />
+        <dataField fieldName="GameDays" rows="1" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Game Fee">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+            <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" columns="15" rows="1" />
+          </dataFields>
+        </category>
+        <category id="c3">
+          <dataFields>
+            <dataField fieldName="GameDays" rows="3" columns="3" />
+          </dataFields>
+        </category>
+        <category headerText="Member Fee" id="c2" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="GreenFee" columns="15" />
+            <dataField fieldName="CaddieFee" columns="15" />
+            <dataField fieldName="CaddieSubsidy" columns="15" watermark="Enter Member Caddie Subsidy" />
+            <dataField fieldName="SpouseCaddieSubsidy" columns="15" watermark="Enter Spouse Caddie Subsidy" />
+            <dataField fieldName="CildrenCaddieSubsidy" columns="15" watermark="Enter Children Caddie Subsidy" />
+            <dataField fieldName="BallBoyFee" columns="15" />
+            <dataField fieldName="BallBoySubsiDy" columns="15" watermark="Member Ball Boy Subsidy" />
+            <dataField fieldName="SpouseBallBoySubsidy" columns="15" watermark="Enter Spouse Ball Boy Subsidy" />
+            <dataField fieldName="ChildrenBallBoySubsidy" columns="15" watermark="Enter Children Ball Boy Subsidy" />
+            <dataField fieldName="GolfCartFee" columns="15" />
+            <dataField fieldName="GreenSubsidy" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Game Fee">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
+            <dataField fieldName="MemberCategoryMemberCategoryID" columns="15" hidden="true" />
+            <dataField fieldName="MemberCategoryMemberGroupID" columns="15" hidden="true" />
+            <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
+            <dataField fieldName="MemberStatusMemberStatusID" columns="15" hidden="true" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" columns="15" rows="3" />
+          </dataFields>
+        </category>
+        <category id="c3">
+          <dataFields>
+            <dataField fieldName="GameDays" rows="3" columns="3" />
+          </dataFields>
+        </category>
+        <category headerText="Member Fee" id="c2" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="GreenFee" columns="15" />
+            <dataField fieldName="CaddieFee" columns="15" watermark="Enter Member Caddie Fee" />
+            <dataField fieldName="CaddieSubsidy" columns="15" watermark="Enter Member Caddie Subsidy" />
+            <dataField fieldName="SpouseCaddieSubsidy" columns="15" watermark="Enter Spouse Caddie Subsidy" />
+            <dataField fieldName="CildrenCaddieSubsidy" columns="15" watermark="Enter Children Caddie Subsidy" />
+            <dataField fieldName="BallBoyFee" columns="15" watermark="Enter Member Ball Boy Fee" />
+            <dataField fieldName="BallBoySubsiDy" columns="15" watermark="Member Ball Boy Subsidy" />
+            <dataField fieldName="SpouseBallBoySubsidy" columns="15" watermark="Enter Spouse Ball Boy Subsidy" />
+            <dataField fieldName="ChildrenBallBoySubsidy" columns="15" watermark="Enter Children Ball Boy Subsidy" />
+            <dataField fieldName="GolfCartFee" columns="15" />
+            <dataField fieldName="GreenSubsidy" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action commandName="Edit" commandArgument="editForm1" headerText="change" cssClass="material-icon-build" id="a100" />
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert" type="Sql" phase="Before"><![CDATA[if Exists(select * from dbo.GameFee Where MemberCategoryID=@MemberCategoryID
+And MemberStatusID = @MemberStatusID
+And HoleTypeID=@HoleTypeID)
+begin
+set @BusinessRules_PreventDefault = 1
+set @Result_ShowMessage = 'Duplicate Category Found.....!!!'
+end
+
+]]></rule>
+    <rule id="r101" type="JavaScript" commandName="Insert|Update" phase="Before" name="MemberCategoryID_Validator"><![CDATA[
+var fieldValue = [MemberCategoryID];
+if (fieldValue == null) {
+    // prevent the default action processing
+    this.preventDefault();
+    // set the focus on the field and display an error
+    this.result.focus('MemberCategoryID', 'Required field.');
+}]]></rule>
+    <rule id="r102" type="Sql" commandName="Insert|Update" phase="Before" name="MemberStatusID_Validator"><![CDATA[
+if @MemberStatusID is null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'MemberStatusID,Required field.'
+end
+]]></rule>
+  </businessRules>
+</dataController>

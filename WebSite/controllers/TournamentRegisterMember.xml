@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TournamentRegisterMember" conflictDetection="overwriteChanges" label="Tournament Register Member" handler="MyCompany.Rules.TournamentRegisterMemberBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text" custom="false">
+      <text><![CDATA[select
+	"TournamentRegisterMember"."TournamentRegisterID" "TournamentRegisterID"
+	,"TournamentRegisterMember"."TournamentID" "TournamentID"
+	,"Tournament"."TournamentName" "TournamentName"
+	,"TournamentRegisterMember"."GameCategoryID" "GameCategoryID"
+	,"GameCategory"."GameCategoryName" "GameCategoryName"
+	,"TournamentRegisterMember"."TeeID" "TeeID"
+	,"Tee"."TeeName" "TeeName"
+	,"TournamentRegisterMember"."HoleTypeID" "HoleTypeID"
+	,"HoleType"."HoleTypeDesc" "HoleTypeDesc"
+	,"TournamentRegisterMember"."TournamentFlightSchID" "TournamentFlightSchID"
+	,"TournamentFlightSch"."FlightSchNo" "TournamentFlightSchFlightSchNo"
+	,"TournamentRegisterMember"."RegDate" "RegDate"
+	,"TournamentRegisterMember"."RegNo" "RegNo"
+	,"TournamentRegisterMember"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"Member"."MemberCode" "MemberCode"
+	,"TournamentRegisterMember"."GameFeeAmount" "GameFeeAmount"
+	,"TournamentRegisterMember"."CaddieID" "CaddieID"
+	,"Caddie"."CaddieCode" "CaddieCode"
+	,"Caddie"."CaddieName" "CaddieName"
+	,"TournamentRegisterMember"."BallBoyID" "BallBoyID"
+	,"BallBoy"."BallBoyCode" "BallBoyBallBoyCode"
+	,"BallBoy"."BallBoyName" "BallBoyBallBoyName"
+	,"TournamentRegisterMember"."CaddieFee" "CaddieFee"
+	,"TournamentRegisterMember"."BallBoyFee" "BallBoyFee"
+	,"TournamentRegisterMember"."CaddieSubsidy" "CaddieSubsidy"
+	,"TournamentRegisterMember"."BallBoySubsidy" "BallBoySubsidy"
+	,"TournamentRegisterMember"."GreenFee" "GreenFee"
+	,"TournamentRegisterMember"."GolfCartFee" "GolfCartFee"
+	,"TournamentRegisterMember"."TotalAmount" "TotalAmount"
+	,"TournamentRegisterMember"."VoucherID" "VoucherID"
+	,"TournamentRegisterMember"."VoucherNo" "VoucherNo"
+	,"TournamentRegisterMember"."CollectedBy" "CollectedBy"
+	,"TournamentRegisterMember"."PayTypeID" "PayTypeID"
+	,"PayType"."PayTypeName" "PayTypePayTypeName"
+	,"TournamentRegisterMember"."BankID" "BankID"
+	,"Bank"."BankName" "BankName"
+	,"TournamentRegisterMember"."ChequeNo" "ChequeNo"
+	,"TournamentRegisterMember"."ChequeDT" "ChequeDT"
+	,"TournamentRegisterMember"."MemberBillID" "MemberBillID"
+	,"TournamentRegisterMember"."IsApproved" "IsApproved"
+	,"TournamentRegisterMember"."ApprovedBy" "ApprovedBy"
+	,"TournamentRegisterMember"."CreatedBY" "CreatedBY"
+	,"TournamentRegisterMember"."CreatedDT" "CreatedDT"
+from "dbo"."TournamentRegisterMember" "TournamentRegisterMember"
+	left join "dbo"."Tournament" "Tournament" on "TournamentRegisterMember"."TournamentID" = "Tournament"."TournamentID"
+	left join "dbo"."GameCategory" "GameCategory" on "TournamentRegisterMember"."GameCategoryID" = "GameCategory"."GameCategoryID"
+	left join "dbo"."TeeName" "Tee" on "TournamentRegisterMember"."TeeID" = "Tee"."TeeID"
+	left join "dbo"."HoleType" "HoleType" on "TournamentRegisterMember"."HoleTypeID" = "HoleType"."HoleTypeID"
+	left join "dbo"."TournamentFlightSch" "TournamentFlightSch" on "TournamentRegisterMember"."TournamentFlightSchID" = "TournamentFlightSch"."TournamentFlightSchID"
+	left join "dbo"."MemberInfo" "Member" on "TournamentRegisterMember"."MemberID" = "Member"."MemberID"
+	left join "dbo"."Caddie" "Caddie" on "TournamentRegisterMember"."CaddieID" = "Caddie"."CaddieID"
+	left join "dbo"."BallBoy" "BallBoy" on "TournamentRegisterMember"."BallBoyID" = "BallBoy"."BallBoyID"
+	left join "dbo"."Bank" "Bank" on "TournamentRegisterMember"."BankID" = "Bank"."BankID"
+	left join "dbo"."PayType" "PayType" on "TournamentRegisterMember"."PayTypeID" = "PayType"."PayTypeID"
+]]></text>
+    </command>
+    <command id="TournamentRegisterIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="TournamentRegisterID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="TournamentRegisterID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Tournament Register ID" readOnly="true" />
+    <field name="TournamentID" type="Int32" label="Tournament ID" showInSummary="true">
+      <items style="Lookup" dataController="Tournament" newDataView="createForm1" dataValueField="TournamentID" dataTextField="TournamentName" />
+    </field>
+    <field name="TournamentName" type="String" readOnly="true" label="Tournament Name" length="50" />
+    <field name="GameCategoryID" type="Int32" label="Game Category ID" showInSummary="true">
+      <items style="Lookup" dataController="GameCategory" newDataView="createForm1" dataValueField="GameCategoryID" dataTextField="GameCategoryName" />
+    </field>
+    <field name="GameCategoryName" type="String" readOnly="true" label="Game Category Name" length="50" />
+    <field name="TeeID" type="Int32" label="Tee ID" showInSummary="true">
+      <items style="Lookup" dataController="TeeName" newDataView="createForm1" dataValueField="TeeID" dataTextField="TeeName" />
+    </field>
+    <field name="TeeName" type="String" readOnly="true" label="Tee Name" length="50" />
+    <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true">
+      <items style="Lookup" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" />
+    </field>
+    <field name="HoleTypeDesc" type="String" readOnly="true" label="Hole Type" length="50" />
+    <field name="TournamentFlightSchID" type="Int32" label="Tournament Flight Sch ID" showInSummary="true">
+      <items style="Lookup" dataController="TournamentFlightSch" dataValueField="TournamentFlightSchID" dataTextField="StartTime" dataView="grid1" />
+    </field>
+    <field name="TournamentFlightSchNo" type="String" readOnly="true" label="Tournament Flight Sch No" length="30" />
+    <field name="RegDate" type="DateTime" dataFormatString="g" label="Reg Date" />
+    <field name="RegNo" type="String" label="Reg No" length="50" />
+    <field name="MemberID" type="Int32" label="Member">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" dataView="grid1" />
+    </field>
+    <field name="MemberCode" type="String" readOnly="true" label="Member Code" length="50" />
+    <field name="GameFeeAmount" type="Decimal" label="Game Fee Amount" causesCalculate="true" />
+    <field name="CaddieID" type="Int32" label="Caddie" causesCalculate="true" contextFields="MemberID">
+      <items style="Lookup" dataController="Caddie" newDataView="createForm1" dataValueField="CaddieID" dataTextField="CaddieCode" dataView="grid1" />
+    </field>
+    <field name="CaddieCode" type="String" readOnly="true" label="Caddie Code" length="50" />
+    <field name="BallBoyID" type="Int32" label="Ball Boy" contextFields="MemberID" causesCalculate="true">
+      <items style="Lookup" dataController="BallBoy" newDataView="createForm1" dataValueField="BallBoyID" dataTextField="BallBoyCode" dataView="grid1" />
+    </field>
+    <field name="BallBoyCode" type="String" readOnly="true" label="Ball Boy Code" length="50" />
+    <field name="CaddieFee" type="Decimal" label="Caddie Fee" contextFields="CaddieID" />
+    <field name="BallBoyFee" type="Decimal" label="Ball Boy Fee" contextFields="BallBoyID" />
+    <field name="CaddieSubsidy" type="Decimal" label="Caddie Subsidy" contextFields="CaddieID" />
+    <field name="BallBoySubsidy" type="Decimal" label="Ball Boy Subsidy" contextFields="BallBoyID" />
+    <field name="GreenFee" type="Decimal" label="Green Fee" contextFields="MemberID" />
+    <field name="GolfCartFee" type="Decimal" label="Golf Cart Fee" contextFields="MemberID" />
+    <field name="TotalAmount" type="Decimal" label="Total Amount" />
+    <field name="VoucherID" type="Int32" label="Voucher ID" />
+    <field name="VoucherNo" type="String" label="Voucher No" length="50" />
+    <field name="CollectedBy" type="String" label="Collected By" length="50" />
+    <field name="PayTypeID" type="Int32" label="Pay Type ID">
+      <items style="RadioButtonList" dataController="PayType" newDataView="createForm1" dataValueField="PayTypeID" dataTextField="PayTypeName" dataView="grid1" />
+    </field>
+    <field name="PayTypeName" type="String" readOnly="true" label="Pay Type Name" length="50" />
+    <field name="BankID" type="Int32" label="Bank ID">
+      <items style="Lookup" dataController="Bank" newDataView="createForm1" dataValueField="BankID" dataTextField="BankName" dataView="grid1" />
+    </field>
+    <field name="BankName" type="String" readOnly="true" label="Bank Name" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDt" type="DateTime" dataFormatString="g" label="Cheque DT" />
+    <field name="MemberBillID" type="Int32" label="Member Bill ID" />
+    <field name="IsApproved" type="Boolean" default="((0))" label="Is Approved" />
+    <field name="ApprovedBy" type="String" label="Approved By" length="50" />
+    <field name="CreatedBy" type="String" label="Created BY" length="50" />
+    <field name="CreatedDt" type="DateTime" dataFormatString="g" label="Created DT" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Tournament Register Member">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+        <dataField fieldName="GameCategoryID" aliasFieldName="GameCategoryName" />
+        <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+        <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" />
+        <dataField fieldName="TournamentFlightSchID" aliasFieldName="TournamentFlightSchNo" />
+        <dataField fieldName="RegDate" columns="20" />
+        <dataField fieldName="RegNo" columns="50" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+        <dataField fieldName="GameFeeAmount" columns="15" />
+        <dataField fieldName="CaddieID" aliasFieldName="CaddieCode" />
+        <dataField fieldName="BallBoyID" aliasFieldName="BallBoyCode" />
+        <dataField fieldName="CaddieFee" columns="15" />
+        <dataField fieldName="BallBoyFee" columns="15" />
+        <dataField fieldName="CaddieSubsidy" columns="15" />
+        <dataField fieldName="BallBoySubsidy" columns="15" />
+        <dataField fieldName="GreenFee" columns="15" />
+        <dataField fieldName="GolfCartFee" columns="15" />
+        <dataField fieldName="TotalAmount" columns="15" />
+        <dataField fieldName="CollectedBy" columns="50" />
+        <dataField fieldName="PayTypeID" aliasFieldName="PayTypeName" />
+        <dataField fieldName="BankID" aliasFieldName="BankName" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="ChequeDt" columns="20" />
+        <dataField fieldName="IsApproved" />
+        <dataField fieldName="ApprovedBy" columns="50" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="CreatedDt" columns="20" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Tournament Register Member">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Tournament Register Member" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="GameCategoryID" aliasFieldName="GameCategoryName" />
+            <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" />
+            <dataField fieldName="TournamentFlightSchID" aliasFieldName="TournamentFlightSchFlightSchNo" />
+            <dataField fieldName="RegDate" columns="20" />
+            <dataField fieldName="RegNo" columns="50" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="GameFeeAmount" columns="15" />
+            <dataField fieldName="CaddieID" aliasFieldName="CaddieCode" />
+            <dataField fieldName="BallBoyID" aliasFieldName="BallBoyCode" />
+            <dataField fieldName="CaddieFee" columns="15" />
+            <dataField fieldName="BallBoyFee" columns="15" />
+            <dataField fieldName="CaddieSubsidy" columns="15" />
+            <dataField fieldName="BallBoySubsidy" columns="15" />
+            <dataField fieldName="GreenFee" columns="15" />
+            <dataField fieldName="GolfCartFee" columns="15" />
+            <dataField fieldName="TotalAmount" columns="15" />
+            <dataField fieldName="CollectedBy" columns="50" />
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypeName" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDt" columns="20" />
+            <dataField fieldName="IsApproved" />
+            <dataField fieldName="ApprovedBy" columns="50" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="CreatedDt" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Tournament Register Member">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="GameCategoryID" aliasFieldName="GameCategoryName" />
+            <dataField fieldName="TeeID" aliasFieldName="TeeName" />
+            <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" />
+            <dataField fieldName="TournamentFlightSchID" aliasFieldName="TournamentFlightSchFlightSchNo" />
+            <dataField fieldName="RegDate" columns="20" hidden="true" />
+            <dataField fieldName="RegNo" columns="50" hidden="true" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="CaddieID" aliasFieldName="CaddieCode" />
+            <dataField fieldName="BallBoyID" aliasFieldName="BallBoyCode" />
+            <dataField fieldName="VoucherID" columns="15" hidden="true" />
+            <dataField fieldName="VoucherNo" columns="50" hidden="true" />
+            <dataField fieldName="CollectedBy" columns="50" hidden="true" />
+            <dataField fieldName="ChequeDt" columns="20" />
+            <dataField fieldName="IsApproved" />
+            <dataField fieldName="ApprovedBy" columns="50" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="CreatedDt" columns="20" />
+          </dataFields>
+        </category>
+        <category headerText="Member Information" id="c3" />
+        <category headerText="Payment" id="c4" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypeName" />
+            <dataField fieldName="ChequeNo" columns="50">
+              <visibility>
+                <expression test="[PayTypeID]=2" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="BankID" aliasFieldName="BankName">
+              <visibility>
+                <expression test="[PayTypeID]=2" type="ClientScript" />
+              </visibility>
+            </dataField>
+          </dataFields>
+        </category>
+        <category headerText="Fee Information" id="c2">
+          <dataFields>
+            <dataField fieldName="GreenFee" columns="15" />
+            <dataField fieldName="GolfCartFee" columns="15" />
+            <dataField fieldName="CaddieFee" columns="15" />
+            <dataField fieldName="CaddieSubsidy" columns="15" />
+            <dataField fieldName="BallBoyFee" columns="15" />
+            <dataField fieldName="BallBoySubsidy" columns="15" />
+            <dataField fieldName="GameFeeAmount" columns="15" />
+            <dataField fieldName="TotalAmount" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+      <action commandName="Custom" commandArgument="CalculateFees" headerText="Calculate Fees" id="a100" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert" type="Sql" phase="After"><![CDATA[Exec USP_TournamentFeeUpdate @TournamentRegisterID]]></rule>
+    <rule id="r101" commandName="Custom" type="Code" phase="Execute" commandArgument="CalculateFees" />
+  </businessRules>
+</dataController>

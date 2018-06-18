@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberFee" alias="MemberFee" created="2018-04-09T20:38:30" modified="2018-06-15T01:56:38" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="321" y="20">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="629" y="20">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberFeeID" fieldName="MemberFeeID" label="Member Fee ID" />
+    <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="MemberStatus" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="MonthlyFee" fieldName="MonthlyFee" label="Monthly Fee" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="EffectFrom" fieldName="EffectFrom" label="Effective From" format="dd/MM/yyyy" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" aliasColumnName="CategoryName" aliasForeignKey="MemberCategory" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberTypeID" fieldName="MemberCategoryMemberTypeID" label="Member Category Member Type ID" foreignKey="MemberCategory" />
+    <column name="ContributionFee" fieldName="ContributionFee" label="Contribution Fee" />
+    <column name="LockerFee" fieldName="LockerFee" label="Locker Fee" />
+    <column name="EntranceFee" fieldName="EntranceFee" label="Entrance Fee" />
+    <column name="AnnualFee" fieldName="AnnualFee" label="Annual Fee" />
+  </columns>
+</dataModel>

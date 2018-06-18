@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TourFlightCreate" label="TourFlightCreate" conflictDetection="overwriteChanges" handler="MyCompany.Rules.TourFlightCreateBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="TournamentID" type="Int32" label="Tournament" allowNulls="false">
+      <items style="Lookup" dataController="Tournament" dataView="grid1" dataTextField="TournamentName" dataValueField="TournamentID" />
+    </field>
+    <field name="GameCateoryID" type="Int32" label="Game Cateory" allowNulls="false">
+      <items style="Lookup" dataController="GameCategory" dataView="grid1" dataTextField="GameCategoryName" dataValueField="GameCategoryID" />
+    </field>
+    <field name="FlightStart" type="DateTime" label="Flight Start" dataFormatString="g" allowNulls="false" />
+    <field name="FlightEnd" type="DateTime" label="Flight End" allowNulls="false" dataFormatString="g" />
+    <field name="IntervalInMinute" type="Int32" label="Interval In Minute" allowNulls="false" />
+  </fields>
+</dataController>

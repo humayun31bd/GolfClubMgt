@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSGSMErrorCode" alias="SMSGSMErrorCode" created="2018-05-20T17:56:02" modified="2018-05-20T17:56:02" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Provider" parentTableSchema="dbo" parentTableName="SMSProvider">
+      <foreignKeyColumn columnName="ProviderID" parentColumnName="ProviderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="SMSGSMErrorID" fieldName="SmsgsmerrorID" label="SMSGSM Error ID" />
+    <column name="ShortDescription" fieldName="ShortDescription" label="Short Description" />
+    <column name="IsPermanent" fieldName="IsPermanent" label="Is Permanent" />
+    <column name="ProviderID" fieldName="ProviderID" label="Provider ID" aliasColumnName="ProviderName" aliasForeignKey="Provider" />
+    <column name="ProviderName" fieldName="ProviderName" label="Provider Name" foreignKey="Provider" />
+  </columns>
+</dataModel>

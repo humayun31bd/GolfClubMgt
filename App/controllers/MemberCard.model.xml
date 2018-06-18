@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberCard" alias="MemberCard" created="2018-04-14T08:02:31" modified="2018-05-14T22:13:47" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="340" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="665" y="20" baseForeignKey="Member">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberCardID" fieldName="MemberCardID" label="Member Card ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name" foreignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" foreignKey="Member" />
+    <column name="CardNumber" fieldName="CardNumber" label="Card Number" />
+    <column name="CARDPIN" fieldName="Cardpin" label="Cardpin" />
+    <column name="CardHashTag" fieldName="CardHashTag" label="Card Hash Tag" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="dd/MM/yyyy hh:mm tt" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="Updated" fieldName="Updated" label="Updated" format="dd/MM/yyyy hh:mm tt" />
+    <column name="UpdatedBy" fieldName="UpdatedBy" label="Updated By" />
+    <column name="CardBalance" fieldName="CardBalance" label="Card Balance" />
+    <column name="MobileNo" fieldName="MobileNo" label="Mobile No" />
+    <column name="IsCardActive" fieldName="IsCardActive" label="Is Card Active" />
+    <column name="IsVarifiedPIN" fieldName="IsVarifiedPin" label="Is Varified Pin" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+  </columns>
+</dataModel>

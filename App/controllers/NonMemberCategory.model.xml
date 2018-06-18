@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="NonMemberCategory" alias="NonMemberCategory" created="2018-04-14T07:58:59" modified="2018-04-14T07:59:01" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" x="331" y="20">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="NonMemberCatID" fieldName="NonMemberCatID" label="Non Member Cat ID" />
+    <column name="NonMemCateory" fieldName="NonMemCateory" label="Non Mem Cateory" />
+    <column name="MemberTypeID" fieldName="MemberTypeID" label="Member Type ID" aliasColumnName="MemberTypeDesc" aliasForeignKey="MemberType" />
+    <column name="MemberTypeDesc" fieldName="MemberTypeDesc" label="Member Type Desc" foreignKey="MemberType" />
+  </columns>
+</dataModel>

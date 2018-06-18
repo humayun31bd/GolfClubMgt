@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberCard" conflictDetection="overwriteChanges" label="Member Card" handler="MyCompany.Rules.MemberCardBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberCard"."MemberCardID" "MemberCardID"
+	,"MemberCard"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"Member"."MemberCode" "MemberCode"
+	,"Member"."MemberCategoryID" "MemberCategoryID"
+	,"Member"."CellPhone" "MemberCellPhone"
+	,"MemberCard"."CardNumber" "CardNumber"
+	,"MemberCard"."CARDPIN" "Cardpin"
+	,"MemberCard"."CardHashTag" "CardHashTag"
+	,"MemberCard"."CreatedDT" "CreatedDt"
+	,"MemberCard"."CreatedBy" "CreatedBy"
+	,"MemberCard"."Updated" "Updated"
+	,"MemberCard"."UpdatedBy" "UpdatedBy"
+	,"MemberCard"."CardBalance" "CardBalance"
+	,"MemberCard"."MobileNo" "MobileNo"
+	,"MemberCard"."IsCardActive" "IsCardActive"
+	,"MemberCard"."IsVarifiedPIN" "IsVarifiedPin"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+from "dbo"."MemberCard" "MemberCard"
+	left join "dbo"."MemberInfo" "Member" on "MemberCard"."MemberID" = "Member"."MemberID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+]]></text>
+    </command>
+    <command id="MemberCardIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberCardID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberCardID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Card ID" readOnly="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberCode=MemberCode, MemberCategoryID=MemberCategoryID, MemberCategoryName=MemberCategoryName,&#xD;&#xA;MemberNameOfMember=NameOfMember, MemberCellPhone=CellPhone,MobileNo=CellPhone" dataView="AllMembers" />
+    </field>
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Member Name" length="150" />
+    <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="MemberCategoryID" type="Int32" readOnly="true" label="Member Category ID" />
+    <field name="MemberCellPhone" type="String" readOnly="true" label="Member Cell Phone" length="100" />
+    <field name="CardNumber" type="String" label="Card Number" length="50" showInSummary="true" />
+    <field name="Cardpin" type="String" label="Cardpin" length="50" showInSummary="true" />
+    <field name="CardHashTag" type="String" label="Card Hash Tag" length="50" showInSummary="true" />
+    <field name="CreatedDt" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" default="(getdate())" label="Created DT" showInSummary="true" />
+    <field name="CreatedBy" type="String" label="Created By" length="50">
+      <items style="UserNameLookup" />
+    </field>
+    <field name="Updated" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Updated" />
+    <field name="UpdatedBy" type="String" label="Updated By" length="50" />
+    <field name="CardBalance" type="Decimal" label="Card Balance" />
+    <field name="MobileNo" type="String" label="Mobile No" length="50" allowNulls="false" />
+    <field name="IsCardActive" type="Boolean" label="Is Card Active" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="IsVarifiedPin" type="Boolean" label="Is Varified Pin" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category Name" length="150" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Member Card">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="MemberCategoryID" columns="15" />
+        <dataField fieldName="MemberCellPhone" />
+        <dataField fieldName="CardNumber" columns="50" />
+        <dataField fieldName="CreatedDt" columns="20" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="MemberCategoryName" />
+        <dataField fieldName="IsCardActive" />
+        <dataField fieldName="IsVarifiedPin" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Card">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Member Card" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MobileNo" columns="50" />
+            <dataField fieldName="MemberCellPhone" />
+            <dataField fieldName="CardNumber" columns="50" />
+            <dataField fieldName="Cardpin" columns="50" hidden="true" />
+            <dataField fieldName="CardHashTag" columns="50" hidden="true" />
+            <dataField fieldName="Updated" columns="20" hidden="true" />
+            <dataField fieldName="UpdatedBy" columns="50" hidden="true" />
+            <dataField fieldName="CardBalance" columns="15" textMode="Static" hidden="true" />
+            <dataField fieldName="IsCardActive" hidden="true" />
+            <dataField fieldName="IsVarifiedPin" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Card">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MemberCellPhone" hidden="true" />
+            <dataField fieldName="MobileNo" columns="50" watermark="Enter Mobile No (Card verification)" textMode="Static" />
+            <dataField fieldName="CardNumber" columns="50" watermark="Scan or Register your Card Number" textMode="Password" />
+            <dataField fieldName="Cardpin" columns="50" hidden="true" />
+            <dataField fieldName="CreatedDt" columns="20" hidden="true" />
+            <dataField fieldName="CreatedBy" columns="50" hidden="true" />
+            <dataField fieldName="CardBalance" columns="15" hidden="true" textMode="Static" />
+            <dataField fieldName="IsCardActive" hidden="true" />
+            <dataField fieldName="IsVarifiedPin" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action commandName="Custom" commandArgument="SendPINforCard" headerText="Send PIN" id="a100" roles="Administrators" />
+      <action commandName="Custom" commandArgument="MemverVerifyCard" headerText="Varify Card" id="a101" confirmation="_controller = MemberCardVerify&#xD;&#xA;_title = Enter your PIN Number" roles="Administrators" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,CardAdmin" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Custom" commandArgument="SendPINforCard" type="Code" phase="Execute" />
+    <rule id="r101" commandName="Custom" commandArgument="MemverVerifyCard" type="Sql" phase="Execute"><![CDATA[Exec USP_VeryCardPIN @MemberCardID,@Parameters_VerifyCard]]></rule>
+    <rule id="r102" commandName="Insert" type="Sql" phase="Before"><![CDATA[Set @CreatedBy = @BusinessRules_Username
+Set @IsCardActive = 1
+
+Declare @Dupl int
+set @Dupl = 0
+if exists(
+	SELECT [MemberCardID]
+  FROM [dbo].[MemberCard]
+  where MemberID=@MemberID
+)
+begin
+Set @Dupl = 1
+end
+if (@Dupl>0)
+begin
+set @CardNumber = ''
+set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'CardNumber,Duplicate Member Card Register.'
+end
+]]></rule>
+    <rule id="r103" commandName="Update" type="Sql" phase="Before"><![CDATA[Set @UpdatedBy = @BusinessRules_Username]]></rule>
+    <rule id="r104" type="Sql" commandName="Insert|Update" phase="Before" name="CardNumber_Validator"><![CDATA[if @CardNumber is null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'CardNumber,Required field.'
+end
+]]></rule>
+    <rule id="r105" type="Sql" commandName="Insert|Update" phase="Before" name="MobileNo_Validator"><![CDATA[
+if @MobileNo is null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_Focus = 'MobileNo,Required field.'
+end
+]]></rule>
+  </businessRules>
+</dataController>

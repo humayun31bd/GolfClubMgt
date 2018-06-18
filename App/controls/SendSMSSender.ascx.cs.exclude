@@ -1,0 +1,1068 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using RestSharp;
+using Newtonsoft.Json.Linq;
+using MyCompany.Web;
+
+
+
+
+public partial class Controls_SendSMSSender : System.Web.UI.UserControl
+{
+    //static int _ReportID = 0;
+    //static int ShopID = 0;
+    //static int _CustOrderID = 0;
+    //private SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MyCompany"].ConnectionString);
+    //protected void Page_Load(object sender, EventArgs e)
+    //{
+    //    if (!IsPostBack)
+    //    {
+    //        if (Request.QueryString["_ReportID"] != null)
+    //        {
+    //            _ReportID = Convert.ToInt32(Request.QueryString["_ReportID"].ToString());
+    //        }
+    //        if (_ReportID == 1)
+    //        {
+    //            #region [Ready To Delivery]
+
+    //            if (Request.QueryString["ShopID"] != null)
+    //            {
+    //                ShopID = Convert.ToInt32(Request.QueryString["ShopID"].ToString());
+    //            }
+    //            if (Request.QueryString["CustOrderID"] != null)
+    //            {
+    //                _CustOrderID = Convert.ToInt32(Request.QueryString["CustOrderID"].ToString());
+    //                SendSMSForReadyOrder(_CustOrderID);
+    //            }
+
+    //            #endregion
+    //        }
+
+    //        if (_ReportID == 2)
+    //        {
+    //            #region [Ready To Delivery]
+
+    //            if (Request.QueryString["ShopID"] != null)
+    //            {
+    //                ShopID = Convert.ToInt32(Request.QueryString["ShopID"].ToString());
+    //            }
+    //            if (Request.QueryString["CustOrderID"] != null)
+    //            {
+    //                _CustOrderID = Convert.ToInt32(Request.QueryString["CustOrderID"].ToString());
+    //                SendSMSForNonReadyOrder(_CustOrderID);
+    //            }
+
+    //            #endregion
+    //        }
+    //    }
+    //}
+
+    //private async void SendSMSForReadyOrder(int _CustOrderID)
+    //{
+    //    await ReadyOrderSendSmsAsync(_CustOrderID);
+    //}
+    //private async void SendSMSForNonReadyOrder(int _CustOrderID)
+    //{
+    //    await NonReadyOrderSendSmsAsync(_CustOrderID);
+    //}
+
+    //public string[] MobileNo(string mob)
+    //{
+    //    string[] str_return = new string[2];
+    //    string strPlus = "+";
+    //    bool isPlus = mob.Contains(strPlus);
+    //    if (isPlus == true)
+    //    {
+    //        int indexof = mob.IndexOf('+') + 1;
+    //        string MinusPlus = mob.Substring(indexof);
+    //        int moblength = MinusPlus.Length;
+    //        if (moblength == 11)
+    //        {
+    //            MinusPlus = "88" + MinusPlus;
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else if (moblength == 13)
+    //        {
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else
+    //        {
+    //            str_return[0] = "1";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        string MinusPlus = mob;
+    //        int moblength = MinusPlus.Length;
+    //        if (moblength == 11)
+    //        {
+    //            MinusPlus = "88" + MinusPlus;
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else if (moblength == 13)
+    //        {
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else
+    //        {
+    //            str_return[0] = "1";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //    }
+    //    return str_return;
+    //}
+    //public async Task ReadyOrderSendSmsAsync(int _CustOrderID)
+    //{
+    //    string debugSMSSttings = ConfigurationManager.AppSettings["debugSMS"].ToString();
+    //    bool debugSMS = Convert.ToBoolean(debugSMSSttings);
+    //    string sSendSMSWithShopName = ConfigurationManager.AppSettings["SendSMSWithShopName"].ToString();
+    //    bool SendSMSWithShopName = Convert.ToBoolean(sSendSMSWithShopName);
+    //    string StrProvider = ConfigurationManager.AppSettings["SMSProvider"].ToString();
+    //    string StrMasking = ConfigurationManager.AppSettings["SMSMaskName"].ToString();
+    //    string SMSAccountName = ConfigurationManager.AppSettings["SMSAccountName"].ToString();
+    //    int ShortNoticeID = 0;
+    //    string bSendSMSSendWithOrderReady = ConfigurationManager.AppSettings["SendSMSSendWithOrderReady"].ToString();
+    //    Boolean SendSMSSendWithOrderReady = Convert.ToBoolean(bSendSMSSendWithOrderReady);
+    //    string StrSMSEndPoint = ConfigurationManager.AppSettings["SMSEndPoint"].ToString();
+
+    //    int providerid = 0;
+    //    bool IsMaskingActive;
+    //    string MaskName = string.Empty;
+    //    int SMSLimit = 0;
+    //    string ClientMobileNO = string.Empty;
+    //    string SenderMobileNumber = string.Empty;
+    //    string SMSNoticeBody = string.Empty;
+    //    //For balance update
+    //    double SMSBalanceold = 0;
+    //    int SMSPurchaseQtyold = 0;
+    //    double SMSBalanceNew = 0;
+    //    int SMSPurchaseQtyNew = 0;
+    //    // end of balance update
+    //    Boolean AllSmsSend = false;
+    //    //for present IT
+    //    string smsto = string.Empty;
+    //    string groupid = string.Empty;
+    //    string groupname = string.Empty;
+    //    string statusid = string.Empty;
+    //    string statusname = string.Empty;
+    //    string description = string.Empty;
+    //    string smsCount = string.Empty;
+    //    string messageId = string.Empty;
+    //    string status = string.Empty;
+    //    string statuscode = string.Empty;
+    //    string statusDescription = string.Empty;
+    //    string smsOrderNumber = string.Empty;
+    //    // end 
+    //    string strInsert = string.Empty;
+    //    string strBalanceUpdate = string.Empty;
+    //    string HashAutor = string.Empty;
+
+    //    #region [Reader Provider record]
+    //    string strSelect = "select * from SMSProvider where ProviderName='" + StrProvider + "' and SMSAccountName='" + SMSAccountName + "'";
+    //    SqlCommand cmd1 = new SqlCommand();
+    //    DataTable dtProvider = new DataTable();
+    //    SqlDataAdapter daProvider = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSelect;
+    //    // cmd1.Transaction = Transection;
+    //    daProvider.SelectCommand = cmd1;
+    //    daProvider.Fill(dtProvider);
+    //    if (dtProvider.Rows.Count > 0)
+    //    {
+    //        if (dtProvider.Rows[0]["ProviderID"] != DBNull.Value)
+    //        {
+    //            providerid = Convert.ToInt32(dtProvider.Rows[0]["ProviderID"]);
+    //        }
+    //        if (dtProvider.Rows[0]["IsMaskingActive"] != DBNull.Value)
+    //        {
+    //            IsMaskingActive = Convert.ToBoolean(dtProvider.Rows[0]["IsMaskingActive"]);
+    //        }
+    //        if (dtProvider.Rows[0]["SMSLimit"] != DBNull.Value)
+    //        {
+    //            SMSLimit = Convert.ToInt32(dtProvider.Rows[0]["SMSLimit"].ToString());
+    //        }
+    //        MaskName = dtProvider.Rows[0]["MaskName"].ToString();
+    //        SenderMobileNumber = dtProvider.Rows[0]["SenderMobileNumber"].ToString();
+    //        HashAutor = dtProvider.Rows[0]["SMSHashTag"].ToString();
+    //    }
+    //    #endregion
+    //    #region [Get sms balance ]
+    //    string strSMSBalance = "select * from SMSBalance where ShopID=" + ShopID + " and SMSAccountName='" + SMSAccountName + "'";
+    //    cmd1 = new SqlCommand();
+    //    DataTable dtSMSBalance = new DataTable();
+    //    SqlDataAdapter daSMSBalance = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSMSBalance;
+    //    //cmd1.Transaction = Transection;
+    //    daSMSBalance.SelectCommand = cmd1;
+    //    daSMSBalance.Fill(dtSMSBalance);
+
+    //    if (dtSMSBalance.Rows.Count > 0)
+    //    {
+    //        if (dtSMSBalance.Rows[0]["SMSBalanceQty"] != DBNull.Value)
+    //        {
+    //            SMSBalanceold = Convert.ToDouble(dtSMSBalance.Rows[0]["SMSBalanceQty"]);
+    //        }
+    //    }
+    //    #endregion
+
+    //    #region [Get sms Client Mobile No ]
+    //    string strSMSMobile = "SELECT AccSubName,Mobile,D.DeliveryDate,O.OrderNumber  FROM [dbo].[CustomerOrder] O Left Outer Join dbo.AccSubNames A ";
+    //    strSMSMobile = strSMSMobile + "ON O.AccSubCode = A.AccSubCode Left Outer Join dbo.CustomerOrderDetail D ";
+    //    strSMSMobile = strSMSMobile + "ON O.CustOrderID = D.CustOrderID ";
+    //    strSMSMobile = strSMSMobile + "Where O.CustOrderID = " + _CustOrderID.ToString();
+    //    strSMSMobile = strSMSMobile + " And O.ShopID=" + ShopID.ToString();
+    //    cmd1 = new SqlCommand();
+    //    dtSMSBalance = new DataTable();
+    //    daSMSBalance = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSMSMobile;
+    //    //cmd1.Transaction = Transection;
+    //    daSMSBalance.SelectCommand = cmd1;
+    //    daSMSBalance.Fill(dtSMSBalance);
+    //    string SMSClientName = "";
+    //    string SmSClientMobile = "";
+    //    string SMSDeliveryDate = "";
+    //    DateTime dSMSDeliveryDate;
+    //    if (dtSMSBalance.Rows.Count > 0)
+    //    {
+    //        if (dtSMSBalance.Rows[0]["AccSubName"] != DBNull.Value)
+    //        {
+    //            SMSClientName = Convert.ToString(dtSMSBalance.Rows[0]["AccSubName"]);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["Mobile"] != DBNull.Value)
+    //        {
+    //            SmSClientMobile = Convert.ToString(dtSMSBalance.Rows[0]["Mobile"]);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["DeliveryDate"] != DBNull.Value)
+    //        {
+    //            SMSDeliveryDate = Convert.ToString(dtSMSBalance.Rows[0]["DeliveryDate"]);
+    //            dSMSDeliveryDate = Convert.ToDateTime(SMSDeliveryDate);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["OrderNumber"] != DBNull.Value)
+    //        {
+    //            smsOrderNumber = Convert.ToString(dtSMSBalance.Rows[0]["OrderNumber"]);
+    //        }
+
+    //    }
+    //    #endregion
+
+
+    //    DataTable dtsms = new DataTable();
+
+    //    SMSNoticeBody = "";
+    //    string str = "";
+    //    #region [Attendance Record Read]
+    //    if (SendSMSWithShopName)
+    //    {
+    //        str = "Select ShopName + ', ' + (Select ReadySMSDesc from dbo.SMSSetting s where s.ShopID = h.ShopID) as Body From dbo.CompanyShop h where ShopID = " + ShopID.ToString();
+    //    }
+    //    else
+    //    {
+    //        str = "Select (Select ReadySMSDesc from dbo.SMSSetting s where s.ShopID = h.ShopID)  as Body From dbo.CompanyShop h where ShopID = " + ShopID.ToString();
+    //    }
+    //    cmd1 = new SqlCommand();
+    //    if (conn.State == 0)
+    //    {
+    //        conn.Open();
+    //    }
+    //    SqlDataAdapter da = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = str;
+    //    //cmd1.Transaction = Transection;
+    //    da.SelectCommand = cmd1;
+    //    try
+    //    {
+    //        da.Fill(dtsms);
+    //    }
+    //    catch
+    //    {
+    //    }
+    //    if (dtsms.Rows.Count > 0)
+    //    {
+    //        SMSNoticeBody = dtsms.Rows[0]["Body"].ToString() + "Your Order # " + smsOrderNumber.ToString();
+    //    }
+
+    //    #endregion
+
+
+    //    if (_CustOrderID > 0)
+    //    {
+    //        #region [Client SMS Send]
+
+    //        int rowsAffected = -1;
+    //        if (conn.State == 0)
+    //        {
+    //            conn.Open();
+    //        }
+    //        try
+    //        {
+    //            if (SMSBalanceold > 0)
+    //            {
+    //                #region [Enough balance to send sms]
+    //                string[] strmobile = FormatMobileNo(SmSClientMobile);
+    //                int SMSOutLogID = 0;
+
+    //                if (strmobile[0] == "0")
+    //                {
+    //                    if (StrProvider == "InfoBip")
+    //                    {
+    //                        #region [InfoBip]
+
+
+    //                        if (debugSMS == false)
+    //                        {
+    //                            cmd1 = new SqlCommand();
+    //                            if (conn.State == 0)
+    //                            {
+    //                                conn.Open();
+    //                            }
+    //                            cmd1.Connection = conn;
+    //                            if (SMSOutLogID == 0)
+    //                            {
+    //                                strInsert = "USP_InsertUpdateSMSDelevary";
+    //                                cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
+    //                                cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
+    //                                cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
+    //                                cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
+    //                                cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@type", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@MessageID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
+    //                                cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
+
+    //                                cmd1.CommandType = CommandType.StoredProcedure;
+
+    //                                cmd1.CommandText = strInsert;
+    //                                //cmd1.Transaction = Transection;
+    //                                rowsAffected = cmd1.ExecuteNonQuery();
+    //                                SMSOutLogID = (int)cmd1.Parameters["@SMSOutLogIDRef"].Value;
+    //                            }
+    //                            //#region [PresentIT]
+    //                            var restRequestClass = new RestRequestClass()
+    //                            {
+    //                                from = SenderMobileNumber,
+    //                                to = strmobile[1].ToString(),
+    //                                text = SMSNoticeBody
+    //                            };
+    //                            var json = JsonConvert.SerializeObject(restRequestClass);
+
+    //                            var client = new RestClient(StrSMSEndPoint);
+    //                            var request = new RestRequest(Method.POST);
+    //                            request.AddHeader("accept", "application/xml");
+    //                            request.AddHeader("content-type", "application/xml");
+    //                            request.AddHeader("authorization", "Basic " + HashAutor);
+    //                            //request.AddParameter("application/json",
+
+    //                            //    "{\"from\":\"IPACSOFTWAR\",\"to\":\"8801912616994\",\"text\":\"Test SMS.\"}", 
+    //                            //    ParameterType.RequestBody);
+    //                            request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+    //                            try
+    //                            {
+    //                                IRestResponse response = client.Execute(request);
+    //                                if (!string.IsNullOrEmpty(response.Content))
+    //                                {
+    //                                    JObject o = JObject.Parse(response.Content);
+    //                                    smsto = o["messages"][0]["to"].ToString();
+    //                                    groupid = o["messages"][0]["status"]["groupId"].ToString();
+    //                                    groupname = o["messages"][0]["status"]["groupName"].ToString();
+    //                                    statusid = o["messages"][0]["status"]["id"].ToString();
+    //                                    statusname = o["messages"][0]["status"]["name"].ToString();
+    //                                    description = o["messages"][0]["status"]["description"].ToString();
+    //                                    smsCount = o["messages"][0]["smsCount"].ToString();
+    //                                    messageId = o["messages"][0]["messageId"].ToString();
+    //                                    status = response.ResponseStatus.ToString();
+    //                                    statuscode = response.StatusCode.ToString();
+    //                                    statusDescription = response.StatusDescription.ToString();
+    //                                    if (!string.IsNullOrEmpty(smsCount))
+    //                                    {
+    //                                        //SMSPurchaseQtyNew = SMSPurchaseQtyold - int.Parse(smsCount);
+    //                                        SMSBalanceNew = SMSBalanceold - Convert.ToDouble(smsCount);
+    //                                        strBalanceUpdate = "Update SMSBalance set  SMSBalanceQty=" + SMSBalanceNew + " where ShopID=" + ShopID + " and SMSAccountName='" + SMSAccountName + "'";
+    //                                        cmd1 = new SqlCommand();
+    //                                        if (conn.State == 0)
+    //                                        {
+    //                                            conn.Open();
+    //                                        }
+    //                                        cmd1.Connection = conn;
+    //                                        cmd1.CommandType = CommandType.Text;
+    //                                        cmd1.CommandText = strBalanceUpdate;
+    //                                        //cmd1.Transaction = Transection;
+    //                                        try
+    //                                        {
+    //                                            int rowsAffected2 = cmd1.ExecuteNonQuery();
+    //                                        }
+    //                                        catch
+    //                                        { }
+    //                                        SMSBalanceold = SMSBalanceNew;
+    //                                        /// if failed
+    //                                        /// send mail to system Admin and sms to Administrator
+    //                                        ///
+
+    //                                        strSMSMobile = strSMSMobile + " Update dbo.CustomerOrder set SendSMSCount = " + smsCount.ToString() + "  where CustOrderID =" + _CustOrderID.ToString();
+    //                                        cmd1 = new SqlCommand();
+    //                                        dtSMSBalance = new DataTable();
+    //                                        daSMSBalance = new SqlDataAdapter();
+    //                                        cmd1.Connection = conn;
+    //                                        cmd1.CommandType = CommandType.Text;
+    //                                        cmd1.CommandText = strSMSMobile;
+    //                                        //cmd1.Transaction = Transection;
+    //                                        daSMSBalance.SelectCommand = cmd1;
+    //                                        try
+    //                                        {
+    //                                            daSMSBalance.Fill(dtSMSBalance);
+    //                                        }
+    //                                        catch
+    //                                        {
+    //                                        }
+
+    //                                    }
+
+    //                                }
+
+    //                            }
+    //                            catch (Exception ex)
+    //                            {
+    //                                //lblError.Text = ex.InnerException.ToString();
+    //                            }
+    //                        }
+
+    //                        if (string.IsNullOrEmpty(statusid))
+    //                        {
+    //                            statusid = "0";
+    //                        }
+    //                        if (string.IsNullOrEmpty(groupid))
+    //                        {
+    //                            groupid = "0";
+    //                        }
+    //                        if (string.IsNullOrEmpty(smsCount))
+    //                        {
+    //                            smsCount = "0";
+    //                        }
+    //                        if (SMSOutLogID > 0)
+    //                        {
+    //                            cmd1 = new SqlCommand();
+    //                            if (conn.State == 0)
+    //                            {
+    //                                conn.Open();
+    //                            }
+    //                            cmd1.Connection = conn;
+
+    //                            strInsert = "USP_InsertUpdateSMSDelevary";
+    //                            cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
+    //                            cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
+    //                            cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
+    //                            cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
+    //                            cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = 15;
+    //                            cmd1.Parameters.Add("@type", SqlDbType.Int).Value = 1;
+    //                            cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = statusid;
+    //                            cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = statusname;
+    //                            cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DateTime.Now;
+    //                            cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = providerid;
+    //                            cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = groupid;
+    //                            cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = groupname;
+    //                            cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = description;
+    //                            cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = smsCount;
+    //                            cmd1.Parameters.Add("@MessageID", SqlDbType.NVarChar).Value = messageId;
+    //                            cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
+    //                            cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
+
+    //                            cmd1.CommandType = CommandType.StoredProcedure;
+
+    //                            cmd1.CommandText = strInsert;
+    //                            //cmd1.Transaction = Transection;
+    //                            rowsAffected = cmd1.ExecuteNonQuery();
+
+    //                        }
+    //                        #endregion
+    //                    }
+
+    //                }
+    //                else
+    //                {
+    //                    #region [No Provider set]
+    //                    strInsert = "INSERT INTO [dbo].[SMSDelivery] " +
+    //                                " (ReceiptNumber" +
+    //                                " ,SenderNumber" +
+    //                                " ,sMessage" +
+    //                                " ,delay " +
+    //                                " ,type" +
+    //                                " ,DeliveryStatusID" +
+    //                                " ,Result" +
+    //                                " ,DeliveryTime)" +
+    //                                " VALUES" +
+    //                                " ('" + strmobile[1].ToString() + "'" +
+    //                                " , 'ISS'" +
+    //                                " , '" + dtsms.Rows[0]["Body"].ToString() + "'" +
+    //                                " , " + int.Parse(dtsms.Rows[0]["Delay"].ToString()) + "" +
+    //                                " , 1" +
+    //                                " , 8 " +
+    //                                " , 'recipient mobile number is invalid'" +
+    //                                " , '" + DateTime.Now + "')";
+    //                    cmd1 = new SqlCommand();
+    //                    if (conn.State == 0)
+    //                    {
+    //                        conn.Open();
+
+    //                    }
+    //                    cmd1.Connection = conn;
+    //                    cmd1.CommandType = CommandType.Text;
+    //                    cmd1.CommandText = strInsert;
+    //                    //cmd1.Transaction = Transection;
+    //                    rowsAffected = cmd1.ExecuteNonQuery();
+    //                    #endregion
+    //                }
+
+    //                #endregion
+    //            }
+    //            else
+    //            {
+    //                PopUp("SMS Balance is 0, Please Recharge Balance amount");
+    //            }
+    //            //end check sms balance                            
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            //Transection.Rollback();
+    //        }
+    //        finally
+    //        {
+    //            conn.Close();
+    //        }
+
+    //        //await StudentAttendenceListgridBind();
+    //        #endregion
+
+
+
+
+    //    }
+
+
+    //}
+    //public async Task NonReadyOrderSendSmsAsync(int _CustOrderID)
+    //{
+    //    string debugSMSSttings = ConfigurationManager.AppSettings["debugSMS"].ToString();
+    //    bool debugSMS = Convert.ToBoolean(debugSMSSttings);
+    //    string sSendSMSWithShopName = ConfigurationManager.AppSettings["SendSMSWithShopName"].ToString();
+    //    bool SendSMSWithShopName = Convert.ToBoolean(sSendSMSWithShopName);
+    //    string StrProvider = ConfigurationManager.AppSettings["SMSProvider"].ToString();
+    //    string StrMasking = ConfigurationManager.AppSettings["SMSMaskName"].ToString();
+    //    string SMSAccountName = ConfigurationManager.AppSettings["SMSAccountName"].ToString();
+    //    int ShortNoticeID = 0;
+    //    string bSendSMSSendWithOrderReady = ConfigurationManager.AppSettings["SendSMSSendWithOrderDelay"].ToString();
+    //    Boolean SendSMSSendWithOrderReady = Convert.ToBoolean(bSendSMSSendWithOrderReady);
+    //    string StrSMSEndPoint = ConfigurationManager.AppSettings["SMSEndPoint"].ToString();
+
+    //    int providerid = 0;
+    //    bool IsMaskingActive;
+    //    string MaskName = string.Empty;
+    //    int SMSLimit = 0;
+    //    string ClientMobileNO = string.Empty;
+    //    string SenderMobileNumber = string.Empty;
+    //    string SMSNoticeBody = string.Empty;
+    //    //For balance update
+    //    double SMSBalanceold = 0;
+    //    int SMSPurchaseQtyold = 0;
+    //    double SMSBalanceNew = 0;
+    //    int SMSPurchaseQtyNew = 0;
+    //    // end of balance update
+    //    Boolean AllSmsSend = false;
+    //    //for present IT
+    //    string smsto = string.Empty;
+    //    string groupid = string.Empty;
+    //    string groupname = string.Empty;
+    //    string statusid = string.Empty;
+    //    string statusname = string.Empty;
+    //    string description = string.Empty;
+    //    string smsCount = string.Empty;
+    //    string messageId = string.Empty;
+    //    string status = string.Empty;
+    //    string statuscode = string.Empty;
+    //    string statusDescription = string.Empty;
+    //    string smsOrderNumber = string.Empty;
+    //    // end 
+    //    string strInsert = string.Empty;
+    //    string strBalanceUpdate = string.Empty;
+    //    string HashAutor = string.Empty;
+
+    //    #region [Reader Provider record]
+    //    string strSelect = "select * from SMSProvider where ProviderName='" + StrProvider + "' and SMSAccountName='" + SMSAccountName + "'";
+    //    SqlCommand cmd1 = new SqlCommand();
+    //    DataTable dtProvider = new DataTable();
+    //    SqlDataAdapter daProvider = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSelect;
+    //    // cmd1.Transaction = Transection;
+    //    daProvider.SelectCommand = cmd1;
+    //    daProvider.Fill(dtProvider);
+    //    if (dtProvider.Rows.Count > 0)
+    //    {
+    //        if (dtProvider.Rows[0]["ProviderID"] != DBNull.Value)
+    //        {
+    //            providerid = Convert.ToInt32(dtProvider.Rows[0]["ProviderID"]);
+    //        }
+    //        if (dtProvider.Rows[0]["IsMaskingActive"] != DBNull.Value)
+    //        {
+    //            IsMaskingActive = Convert.ToBoolean(dtProvider.Rows[0]["IsMaskingActive"]);
+    //        }
+    //        if (dtProvider.Rows[0]["SMSLimit"] != DBNull.Value)
+    //        {
+    //            SMSLimit = Convert.ToInt32(dtProvider.Rows[0]["SMSLimit"].ToString());
+    //        }
+    //        MaskName = dtProvider.Rows[0]["MaskName"].ToString();
+    //        SenderMobileNumber = dtProvider.Rows[0]["SenderMobileNumber"].ToString();
+    //        HashAutor = dtProvider.Rows[0]["SMSHashTag"].ToString();
+    //    }
+    //    #endregion
+    //    #region [Get sms balance ]
+    //    string strSMSBalance = "select * from SMSBalance where ShopID=" + ShopID + " and SMSAccountName='" + SMSAccountName + "'";
+    //    cmd1 = new SqlCommand();
+    //    DataTable dtSMSBalance = new DataTable();
+    //    SqlDataAdapter daSMSBalance = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSMSBalance;
+    //    //cmd1.Transaction = Transection;
+    //    daSMSBalance.SelectCommand = cmd1;
+    //    daSMSBalance.Fill(dtSMSBalance);
+
+    //    if (dtSMSBalance.Rows.Count > 0)
+    //    {
+    //        if (dtSMSBalance.Rows[0]["SMSBalanceQty"] != DBNull.Value)
+    //        {
+    //            SMSBalanceold = Convert.ToDouble(dtSMSBalance.Rows[0]["SMSBalanceQty"]);
+    //        }
+    //    }
+    //    #endregion
+
+    //    #region [Get sms Client Mobile No ]
+    //    string strSMSMobile = "SELECT AccSubName,Mobile,D.DeliveryDate,O.OrderNumber  FROM [dbo].[CustomerOrder] O Left Outer Join dbo.AccSubNames A ";
+    //    strSMSMobile = strSMSMobile + "ON O.AccSubCode = A.AccSubCode Left Outer Join dbo.CustomerOrderDetail D ";
+    //    strSMSMobile = strSMSMobile + "ON O.CustOrderID = D.CustOrderID ";
+    //    strSMSMobile = strSMSMobile + "Where O.CustOrderID = " + _CustOrderID.ToString();
+    //    strSMSMobile = strSMSMobile + " And O.ShopID=" + ShopID.ToString();
+    //    cmd1 = new SqlCommand();
+    //    dtSMSBalance = new DataTable();
+    //    daSMSBalance = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = strSMSMobile;
+    //    //cmd1.Transaction = Transection;
+    //    daSMSBalance.SelectCommand = cmd1;
+    //    daSMSBalance.Fill(dtSMSBalance);
+    //    string SMSClientName = "";
+    //    string SmSClientMobile = "";
+    //    string SMSDeliveryDate = "";
+    //    DateTime dSMSDeliveryDate;
+    //    if (dtSMSBalance.Rows.Count > 0)
+    //    {
+    //        if (dtSMSBalance.Rows[0]["AccSubName"] != DBNull.Value)
+    //        {
+    //            SMSClientName = Convert.ToString(dtSMSBalance.Rows[0]["AccSubName"]);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["Mobile"] != DBNull.Value)
+    //        {
+    //            SmSClientMobile = Convert.ToString(dtSMSBalance.Rows[0]["Mobile"]);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["DeliveryDate"] != DBNull.Value)
+    //        {
+    //            SMSDeliveryDate = Convert.ToString(dtSMSBalance.Rows[0]["DeliveryDate"]);
+    //            dSMSDeliveryDate = Convert.ToDateTime(SMSDeliveryDate);
+    //        }
+    //        if (dtSMSBalance.Rows[0]["OrderNumber"] != DBNull.Value)
+    //        {
+    //            smsOrderNumber = Convert.ToString(dtSMSBalance.Rows[0]["OrderNumber"]);
+    //        }
+
+    //    }
+    //    #endregion
+
+
+    //    DataTable dtsms = new DataTable();
+
+    //    SMSNoticeBody = "";
+    //    string str = "";
+    //    #region [Attendance Record Read]
+    //    if (SendSMSWithShopName)
+    //    {
+    //        str = "Select ShopName + ', ' + (Select NotReadySMSDesc from dbo.SMSSetting s where s.ShopID = h.ShopID) as Body From dbo.CompanyShop h where ShopID = " + ShopID.ToString();
+    //    }
+    //    else
+    //    {
+    //        str = "Select (Select NotReadySMSDesc from dbo.SMSSetting s where s.ShopID = h.ShopID)  as Body From dbo.CompanyShop h where ShopID = " + ShopID.ToString();
+    //    }
+    //    cmd1 = new SqlCommand();
+    //    if (conn.State == 0)
+    //    {
+    //        conn.Open();
+    //    }
+    //    SqlDataAdapter da = new SqlDataAdapter();
+    //    cmd1.Connection = conn;
+    //    cmd1.CommandType = CommandType.Text;
+    //    cmd1.CommandText = str;
+    //    //cmd1.Transaction = Transection;
+    //    da.SelectCommand = cmd1;
+    //    try
+    //    {
+    //        da.Fill(dtsms);
+    //    }
+    //    catch
+    //    {
+    //    }
+    //    if (dtsms.Rows.Count > 0)
+    //    {
+    //        SMSNoticeBody = dtsms.Rows[0]["Body"].ToString() + "Your Order # " + smsOrderNumber.ToString();
+    //    }
+
+    //    #endregion
+
+
+    //    if (_CustOrderID > 0)
+    //    {
+    //        #region [Client SMS Send]
+
+    //        int rowsAffected = -1;
+    //        if (conn.State == 0)
+    //        {
+    //            conn.Open();
+    //        }
+    //        try
+    //        {
+    //            if (SMSBalanceold > 0)
+    //            {
+    //                #region [Enough balance to send sms]
+    //                string[] strmobile = FormatMobileNo(SmSClientMobile);
+    //                int SMSOutLogID = 0;
+
+    //                if (strmobile[0] == "0")
+    //                {
+    //                    if (StrProvider == "InfoBip")
+    //                    {
+    //                        #region [InfoBip]
+
+
+    //                        if (debugSMS == false)
+    //                        {
+    //                            cmd1 = new SqlCommand();
+    //                            if (conn.State == 0)
+    //                            {
+    //                                conn.Open();
+    //                            }
+    //                            cmd1.Connection = conn;
+    //                            if (SMSOutLogID == 0)
+    //                            {
+    //                                strInsert = "USP_InsertUpdateSMSDelevary";
+    //                                cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
+    //                                cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
+    //                                cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
+    //                                cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
+    //                                cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@type", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@MessageID", SqlDbType.Int).Value = DBNull.Value;
+    //                                cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
+    //                                cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
+
+    //                                cmd1.CommandType = CommandType.StoredProcedure;
+
+    //                                cmd1.CommandText = strInsert;
+    //                                //cmd1.Transaction = Transection;
+    //                                rowsAffected = cmd1.ExecuteNonQuery();
+    //                                SMSOutLogID = (int)cmd1.Parameters["@SMSOutLogIDRef"].Value;
+    //                            }
+    //                            //#region [PresentIT]
+    //                            var restRequestClass = new RestRequestClass()
+    //                            {
+    //                                from = SenderMobileNumber,
+    //                                to = strmobile[1].ToString(),
+    //                                text = SMSNoticeBody
+    //                            };
+    //                            var json = JsonConvert.SerializeObject(restRequestClass);
+
+    //                            var client = new RestClient(StrSMSEndPoint);
+    //                            var request = new RestRequest(Method.POST);
+    //                            request.AddHeader("accept", "application/xml");
+    //                            request.AddHeader("content-type", "application/xml");
+    //                            request.AddHeader("authorization", "Basic " + HashAutor);
+    //                            //request.AddParameter("application/json",
+
+    //                            //    "{\"from\":\"IPACSOFTWAR\",\"to\":\"8801912616994\",\"text\":\"Test SMS.\"}", 
+    //                            //    ParameterType.RequestBody);
+    //                            request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+    //                            try
+    //                            {
+    //                                IRestResponse response = client.Execute(request);
+    //                                if (!string.IsNullOrEmpty(response.Content))
+    //                                {
+    //                                    JObject o = JObject.Parse(response.Content);
+    //                                    smsto = o["messages"][0]["to"].ToString();
+    //                                    groupid = o["messages"][0]["status"]["groupId"].ToString();
+    //                                    groupname = o["messages"][0]["status"]["groupName"].ToString();
+    //                                    statusid = o["messages"][0]["status"]["id"].ToString();
+    //                                    statusname = o["messages"][0]["status"]["name"].ToString();
+    //                                    description = o["messages"][0]["status"]["description"].ToString();
+    //                                    smsCount = o["messages"][0]["smsCount"].ToString();
+    //                                    messageId = o["messages"][0]["messageId"].ToString();
+    //                                    status = response.ResponseStatus.ToString();
+    //                                    statuscode = response.StatusCode.ToString();
+    //                                    statusDescription = response.StatusDescription.ToString();
+    //                                    if (!string.IsNullOrEmpty(smsCount))
+    //                                    {
+    //                                        //SMSPurchaseQtyNew = SMSPurchaseQtyold - int.Parse(smsCount);
+    //                                        SMSBalanceNew = SMSBalanceold - Convert.ToDouble(smsCount);
+    //                                        strBalanceUpdate = "Update SMSBalance set  SMSBalanceQty=" + SMSBalanceNew + " where ShopID=" + ShopID + " and SMSAccountName='" + SMSAccountName + "'";
+    //                                        cmd1 = new SqlCommand();
+    //                                        if (conn.State == 0)
+    //                                        {
+    //                                            conn.Open();
+    //                                        }
+    //                                        cmd1.Connection = conn;
+    //                                        cmd1.CommandType = CommandType.Text;
+    //                                        cmd1.CommandText = strBalanceUpdate;
+    //                                        //cmd1.Transaction = Transection;
+    //                                        try
+    //                                        {
+    //                                            int rowsAffected2 = cmd1.ExecuteNonQuery();
+    //                                        }
+    //                                        catch
+    //                                        { }
+    //                                        SMSBalanceold = SMSBalanceNew;
+    //                                        /// if failed
+    //                                        /// send mail to system Admin and sms to Administrator
+    //                                        ///
+
+    //                                        strSMSMobile = strSMSMobile + " Update dbo.CustomerOrder set NonDeliverySMS = " + smsCount.ToString() + "  where CustOrderID =" + _CustOrderID.ToString();
+    //                                        cmd1 = new SqlCommand();
+    //                                        dtSMSBalance = new DataTable();
+    //                                        daSMSBalance = new SqlDataAdapter();
+    //                                        cmd1.Connection = conn;
+    //                                        cmd1.CommandType = CommandType.Text;
+    //                                        cmd1.CommandText = strSMSMobile;
+    //                                        //cmd1.Transaction = Transection;
+    //                                        daSMSBalance.SelectCommand = cmd1;
+    //                                        try
+    //                                        {
+    //                                            daSMSBalance.Fill(dtSMSBalance);
+    //                                        }
+    //                                        catch
+    //                                        {
+    //                                        }
+
+    //                                    }
+
+    //                                }
+
+    //                            }
+    //                            catch (Exception ex)
+    //                            {
+    //                                //lblError.Text = ex.InnerException.ToString();
+    //                            }
+    //                        }
+
+    //                        if (string.IsNullOrEmpty(statusid))
+    //                        {
+    //                            statusid = "0";
+    //                        }
+    //                        if (string.IsNullOrEmpty(groupid))
+    //                        {
+    //                            groupid = "0";
+    //                        }
+    //                        if (string.IsNullOrEmpty(smsCount))
+    //                        {
+    //                            smsCount = "0";
+    //                        }
+    //                        if (SMSOutLogID > 0)
+    //                        {
+    //                            cmd1 = new SqlCommand();
+    //                            if (conn.State == 0)
+    //                            {
+    //                                conn.Open();
+    //                            }
+    //                            cmd1.Connection = conn;
+
+    //                            strInsert = "USP_InsertUpdateSMSDelevary";
+    //                            cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
+    //                            cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
+    //                            cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
+    //                            cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
+    //                            cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = 15;
+    //                            cmd1.Parameters.Add("@type", SqlDbType.Int).Value = 1;
+    //                            cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = statusid;
+    //                            cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = statusname;
+    //                            cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DateTime.Now;
+    //                            cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = providerid;
+    //                            cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = groupid;
+    //                            cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = groupname;
+    //                            cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = description;
+    //                            cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = smsCount;
+    //                            cmd1.Parameters.Add("@MessageID", SqlDbType.NVarChar).Value = messageId;
+    //                            cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
+    //                            cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
+
+    //                            cmd1.CommandType = CommandType.StoredProcedure;
+
+    //                            cmd1.CommandText = strInsert;
+    //                            //cmd1.Transaction = Transection;
+    //                            rowsAffected = cmd1.ExecuteNonQuery();
+
+    //                        }
+    //                        #endregion
+    //                    }
+
+    //                }
+    //                else
+    //                {
+    //                    #region [No Provider set]
+    //                    strInsert = "INSERT INTO [dbo].[SMSDelivery] " +
+    //                                " (ReceiptNumber" +
+    //                                " ,SenderNumber" +
+    //                                " ,sMessage" +
+    //                                " ,delay " +
+    //                                " ,type" +
+    //                                " ,DeliveryStatusID" +
+    //                                " ,Result" +
+    //                                " ,DeliveryTime)" +
+    //                                " VALUES" +
+    //                                " ('" + strmobile[1].ToString() + "'" +
+    //                                " , 'ISS'" +
+    //                                " , '" + dtsms.Rows[0]["Body"].ToString() + "'" +
+    //                                " , " + int.Parse(dtsms.Rows[0]["Delay"].ToString()) + "" +
+    //                                " , 1" +
+    //                                " , 8 " +
+    //                                " , 'recipient mobile number is invalid'" +
+    //                                " , '" + DateTime.Now + "')";
+    //                    cmd1 = new SqlCommand();
+    //                    if (conn.State == 0)
+    //                    {
+    //                        conn.Open();
+
+    //                    }
+    //                    cmd1.Connection = conn;
+    //                    cmd1.CommandType = CommandType.Text;
+    //                    cmd1.CommandText = strInsert;
+    //                    //cmd1.Transaction = Transection;
+    //                    rowsAffected = cmd1.ExecuteNonQuery();
+    //                    #endregion
+    //                }
+
+    //                #endregion
+    //            }
+    //            else
+    //            {
+    //                PopUp("SMS Balance is 0, Please Recharge Balance amount");
+    //            }
+    //            //end check sms balance                            
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            //Transection.Rollback();
+    //        }
+    //        finally
+    //        {
+    //            conn.Close();
+    //        }
+
+    //        //await StudentAttendenceListgridBind();
+    //        #endregion
+
+
+
+
+    //    }
+
+
+    //}
+
+    //public void PopUp(string sMsg)
+    //{
+    //    ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), Guid.NewGuid().ToString(), "alert('" + sMsg + "');", true);
+    //}
+    //public string[] FormatMobileNo(string mob)
+    //{
+    //    string[] str_return = new string[2];
+    //    string strPlus = "+";
+    //    bool isPlus = mob.Contains(strPlus);
+    //    if (isPlus == true)
+    //    {
+    //        int indexof = mob.IndexOf('+') + 1;
+    //        string MinusPlus = mob.Substring(indexof);
+    //        int moblength = MinusPlus.Length;
+    //        if (moblength == 11)
+    //        {
+    //            MinusPlus = "88" + MinusPlus;
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else if (moblength == 13)
+    //        {
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else
+    //        {
+    //            str_return[0] = "1";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        string MinusPlus = mob;
+    //        int moblength = MinusPlus.Length;
+    //        if (moblength == 11)
+    //        {
+    //            MinusPlus = "88" + MinusPlus;
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else if (moblength == 13)
+    //        {
+    //            str_return[0] = "0";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //        else
+    //        {
+    //            str_return[0] = "1";
+    //            str_return[1] = MinusPlus;
+    //        }
+    //    }
+    //    return str_return;
+    //}
+}

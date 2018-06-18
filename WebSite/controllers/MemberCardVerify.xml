@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberCardVerify" label="MemberCardVerify" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="VerifyCard" type="String" label="Card PIN" length="4" />
+  </fields>
+</dataController>

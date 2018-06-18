@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+
+public partial class Pages_SMSPanel : MyCompany.Web.PageBase
+{
+
+    public string CssClass
+    {
+        get
+        {
+            return "";
+        }
+    }
+    
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    
+
+
+    protected void btnMemberSendSMS_Click(object sender, EventArgs e)
+    {
+    }
+    protected void btnSendSMSCancel_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void chk_select_CheckedChanged(object sender, EventArgs e)
+    {
+        
+
+    }
+    protected void Member_grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameType" alias="GameType" created="2018-05-20T17:56:19" modified="2018-05-20T17:56:19" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="GameTypeID" fieldName="GameTypeID" label="Game Type ID" />
+    <column name="GameName" fieldName="GameName" label="Game Name" />
+  </columns>
+</dataModel>

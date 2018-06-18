@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberStatusChange" alias="MemberStatusChange" created="2018-04-14T08:02:25" modified="2018-04-14T08:02:28" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="OldMemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="365" y="20">
+      <foreignKeyColumn columnName="OldMemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="NewMemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="365" y="160">
+      <foreignKeyColumn columnName="NewMemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberStatusChangeID" fieldName="MemberStatusChangeID" label="Member Status Change ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" />
+    <column name="OldMemberStatusID" fieldName="OldMemberStatusID" label="Old Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="OldMemberStatus" />
+    <column name="MemberStatus" fieldName="OldMemberStatus" label="Old Member Status" foreignKey="OldMemberStatus" />
+    <column name="NewMemberStatusID" fieldName="NewMemberStatusID" label="New Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="NewMemberStatus" />
+    <column name="MemberStatus" fieldName="NewMemberStatus" label="New Member Status" foreignKey="NewMemberStatus" />
+    <column name="TransferDate" fieldName="TransferDate" label="Transfer Date" format="g" />
+    <column name="MemberCodeOld" fieldName="MemberCodeOld" label="Member Code Old" />
+    <column name="MemberCodeNew" fieldName="MemberCodeNew" label="Member Code New" />
+  </columns>
+</dataModel>

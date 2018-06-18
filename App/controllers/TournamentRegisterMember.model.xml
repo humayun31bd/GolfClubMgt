@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TournamentRegisterMember" alias="TournamentRegisterMember" created="2018-05-20T17:55:57" modified="2018-05-20T17:55:57" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament">
+      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
+    </foreignKey>
+    <foreignKey id="GameCategory" parentTableSchema="dbo" parentTableName="GameCategory">
+      <foreignKeyColumn columnName="GameCategoryID" parentColumnName="GameCategoryID" />
+    </foreignKey>
+    <foreignKey id="Tee" parentTableSchema="dbo" parentTableName="TeeName">
+      <foreignKeyColumn columnName="TeeID" parentColumnName="TeeID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="TournamentFlightSch" parentTableSchema="dbo" parentTableName="TournamentFlightSch">
+      <foreignKeyColumn columnName="TournamentFlightSchID" parentColumnName="TournamentFlightSchID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="Caddie" parentTableSchema="dbo" parentTableName="Caddie">
+      <foreignKeyColumn columnName="CaddieID" parentColumnName="CaddieID" />
+    </foreignKey>
+    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy">
+      <foreignKeyColumn columnName="BallBoyID" parentColumnName="BallBoyID" />
+    </foreignKey>
+    <foreignKey id="PayType" parentTableSchema="dbo" parentTableName="PayType">
+      <foreignKeyColumn columnName="PayTypeID" parentColumnName="PayTypeID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TournamentRegisterID" fieldName="TournamentRegisterID" label="Tournament Register ID" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="Tournament" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" foreignKey="Tournament" />
+    <column name="GameCategoryID" fieldName="GameCategoryID" label="Game Category ID" aliasColumnName="GameCategoryName" aliasForeignKey="GameCategory" />
+    <column name="GameCategoryName" fieldName="GameCategoryName" label="Game Category Name" foreignKey="GameCategory" />
+    <column name="TeeID" fieldName="TeeID" label="Tee ID" aliasColumnName="TeeName" aliasForeignKey="Tee" />
+    <column name="TeeName" fieldName="TeeName" label="Tee Name" foreignKey="Tee" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type Desc" foreignKey="HoleType" />
+    <column name="TournamentFlightSchID" fieldName="TournamentFlightSchID" label="Tournament Flight Sch ID" aliasColumnName="FlightSchNo" aliasForeignKey="TournamentFlightSch" />
+    <column name="FlightSchNo" fieldName="TournamentFlightSchNo" label="Tournament Flight Sch No" foreignKey="TournamentFlightSch" />
+    <column name="RegDate" fieldName="RegDate" label="Reg Date" format="g" />
+    <column name="RegNo" fieldName="RegNo" label="Reg No" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="GameFeeAmount" fieldName="GameFeeAmount" label="Game Fee Amount" />
+    <column name="CaddieID" fieldName="CaddieID" label="Caddie ID" aliasColumnName="CaddieCode" aliasForeignKey="Caddie" />
+    <column name="CaddieCode" fieldName="CaddieCode" label="Caddie Code" foreignKey="Caddie" />
+    <column name="BallBoyID" fieldName="BallBoyID" label="Ball Boy ID" aliasColumnName="BallBoyCode" aliasForeignKey="BallBoy" />
+    <column name="BallBoyCode" fieldName="BallBoyCode" label="Ball Boy Code" foreignKey="BallBoy" />
+    <column name="CaddieFee" fieldName="CaddieFee" label="Caddie Fee" />
+    <column name="BallBoyFee" fieldName="BallBoyFee" label="Ball Boy Fee" />
+    <column name="CaddieSubsidy" fieldName="CaddieSubsidy" label="Caddie Subsidy" />
+    <column name="BallBoySubsidy" fieldName="BallBoySubsidy" label="Ball Boy Subsidy" />
+    <column name="GreenFee" fieldName="GreenFee" label="Green Fee" />
+    <column name="GolfCartFee" fieldName="GolfCartFee" label="Golf Cart Fee" />
+    <column name="TotalAmount" fieldName="TotalAmount" label="Total Amount" />
+    <column name="VoucherID" fieldName="VoucherID" label="Voucher ID" />
+    <column name="VoucherNo" fieldName="VoucherNo" label="Voucher No" />
+    <column name="CollectedBy" fieldName="CollectedBy" label="Collected By" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" aliasColumnName="PayTypeName" aliasForeignKey="PayType" />
+    <column name="PayTypeName" fieldName="PayTypeName" label="Pay Type Name" foreignKey="PayType" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDT" fieldName="ChequeDt" label="Cheque DT" format="g" />
+    <column name="MemberBillID" fieldName="MemberBillID" label="Member Bill ID" />
+    <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
+    <column name="ApprovedBy" fieldName="ApprovedBy" label="Approved By" />
+    <column name="CreatedBY" fieldName="CreatedBy" label="Created BY" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="g" />
+  </columns>
+</dataModel>

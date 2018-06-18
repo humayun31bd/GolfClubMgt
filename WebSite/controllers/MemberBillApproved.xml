@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberBillApproved" label="MemberBillApproved" conflictDetection="overwriteChanges" handler="MyCompany.Rules.MemberBillApprovedBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text" custom="false">
+      <text><![CDATA[select
+	"MemberBill"."MemberBillID" "MemberBillID"
+	,"MemberBill"."BillNo" "BillNo"
+	,"MemberBill"."BillDate" "BillDate"
+	,"MemberBill"."MemberID" "MemberID"
+	,"MemberInfo"."NameOfMember" "MemberInfoNameOfMember"
+	,"MemberInfo"."MemberCode" "MemberInfoMemberCode"
+	,"MemberBill"."CreatedBy" "CreatedBy"
+	,"MemberBill"."CreatedDate" "CreatedDate"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberBill"."MonthlyDue" "MonthlyDue"
+	,"MemberBill"."LockerDue" "LockerDue"
+	,"MemberBill"."TournamentDue" "TournamentDue"
+	,"MemberBill"."ServiceDue" "ServiceDue"
+	,"MemberBill"."ContributionWFdue" "ContributionWfdue"
+	,"MemberBill"."PayTypeID" "PayTypeID"
+	,"MemberBill"."BankID" "BankID"
+	,"Bank"."BankName" "BankName"
+	,"MemberBill"."ChequeNo" "ChequeNo"
+	,"MemberBill"."ChequeDT" "ChequeDT"
+	,"MemberBill"."PayAmount" "PayAmount"
+	,"MemberBill"."Voucherno" "Voucherno"
+	,"MemberBill"."SubscriptionDueDate" "SubscriptionDueDate"
+	,"MemberBill"."ContributionDT" "ContributionDT"
+	,"MemberBill"."CollectionBy" "CollectionBy"
+	,"MemberBill"."CollectionDate" "CollectionDate"
+	,"MemberBill"."ContributionDTDueOn" "ContributionDtdueOn"
+	,"MemberBill"."SubsiDueOnDate" "SubsiDueOnDate"
+	,"MemberBill"."MonthlyDuePaid" "MonthlyDuePaid"
+	,"MemberBill"."ContributionWFduePaid" "ContributionWfduePaid"
+	,"MemberBill"."LockerDuePaid" "LockerDuePaid"
+	,"MemberBill"."ServiceDuePaid" "ServiceDuePaid"
+from "dbo"."MemberBill" "MemberBill"
+	left join "dbo"."MemberInfo" "MemberInfo" on "MemberBill"."MemberID" = "MemberInfo"."MemberID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "MemberInfo"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."Bank" "Bank" on "MemberBill"."BankID" = "Bank"."BankID"
+]]></text>
+    </command>
+    <command id="MemberBillIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberBillID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberBillID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Bill ID" readOnly="true" />
+    <field name="BillNo" type="String" label="Bill No" length="50" showInSummary="true" />
+    <field name="BillDate" type="DateTime" dataFormatString="dd/MMM/yyyy" label="Bill Date" showInSummary="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true" causesCalculate="true">
+      <items style="AutoComplete" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberInfoMemberCode=MemberCode, MemberCategoryName=MemberCategoryName" />
+    </field>
+    <field name="MemberInfoNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
+    <field name="MemberInfoMemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="CreatedBy" type="String" label="Created By" length="50" showInSummary="true">
+      <items style="UserNameLookup" />
+    </field>
+    <field name="CreatedDate" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Created Date" showInSummary="true" />
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category" length="150" />
+    <field name="MonthlyDue" type="Decimal" label="Monthly Due" causesCalculate="true" contextFields="MonthlyDue" />
+    <field name="LockerDue" type="Decimal" label="Locker Due" causesCalculate="true" />
+    <field name="TournamentDue" type="Decimal" label="Tournament Due" causesCalculate="true" />
+    <field name="ServiceDue" type="Decimal" label="Service Due" causesCalculate="true" />
+    <field name="ContributionWfdue" type="Decimal" label="Contribution Wfdue" />
+    <field name="PayTypeID" type="Int32" label="Pay Type">
+      <items style="RadioButtonList">
+        <item value="1" text="Cash" />
+        <item value="2" text="Cheque" />
+        <item value="3" text="Card" />
+      </items>
+    </field>
+    <field name="BankID" type="Int32" label="Bank ID">
+      <items style="Lookup" dataController="Bank" newDataView="createForm1" dataValueField="BankID" dataTextField="BankName" dataView="grid1" />
+    </field>
+    <field name="BankName" type="String" readOnly="true" label="Bank Name" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Cheque DT" />
+    <field name="PayAmount" type="Decimal" label="Pay Amount">
+      <formula />
+    </field>
+    <field name="Voucherno" type="Int32" label="Voucherno" />
+    <field name="SubscriptionDueDate" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Subscription Due Date" />
+    <field name="ContributionDT" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Contribution DT" />
+    <field name="CollectionBy" type="String" label="Collection By" length="50">
+      <items style="UserNameLookup" />
+    </field>
+    <field name="CollectionDate" type="DateTime" dataFormatString="g" label="Collection Date" />
+    <field name="ContributionDtdueOn" type="DateTime" dataFormatString="g" label="Contribution Dtdue On" />
+    <field name="SubsiDueOnDate" type="DateTime" dataFormatString="g" label="Subsi Due On Date" />
+    <field name="MonthlyDuePaid" type="Decimal" label="Member Subscription" />
+    <field name="ContributionWfduePaid" type="Decimal" label="Cont.Wwlfare Paid" />
+    <field name="LockerDuePaid" type="Decimal" label="Locker Service Paid" />
+    <field name="ServiceDuePaid" type="Decimal" label="Service Sales" />
+    <field name="MemSubsToDate" type="DateTime" label="Subsription To Date" calculated="true" causesCalculate="true" isVirtual="true" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Bill Approval Pending" sortExpression="BillDate Desc" reportLabel="Bill Approval Pending" reportTemplate="true" filter="IsApproved=1">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="BillNo" columns="50" />
+        <dataField fieldName="BillDate" columns="20" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberInfoNameOfMember" />
+        <dataField fieldName="MemberInfoMemberCode" columns="50" />
+        <dataField fieldName="MonthlyDuePaid" columns="15" aggregate="Sum" />
+        <dataField fieldName="ContributionWfduePaid" columns="15" aggregate="Sum" />
+        <dataField fieldName="LockerDuePaid" columns="15" aggregate="Sum" />
+        <dataField fieldName="ServiceDuePaid" columns="15" aggregate="Sum" />
+        <dataField fieldName="PayAmount" columns="15" aggregate="Sum" />
+        <dataField fieldName="PayTypeID" columns="15" />
+        <dataField fieldName="BankID" aliasFieldName="BankName" />
+        <dataField fieldName="ChequeDT" columns="20" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="CollectionBy" columns="50" hidden="true" />
+        <dataField fieldName="CollectionDate" columns="20" hidden="true" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="CreatedDate" columns="20" hidden="true" />
+        <dataField fieldName="MemberCategoryName" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Bill Generate">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Member information" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="BillNo" columns="50" hidden="true" />
+            <dataField fieldName="BillDate" columns="20" textMode="Static" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberInfoNameOfMember" textMode="Static" />
+            <dataField fieldName="MemberInfoMemberCode" columns="50" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="CollectionBy" columns="50" hidden="true" />
+            <dataField fieldName="CollectionDate" columns="20" textMode="Static" />
+            <dataField fieldName="MonthlyDuePaid" columns="15" />
+            <dataField fieldName="ContributionWfduePaid" columns="15" />
+            <dataField fieldName="LockerDuePaid" columns="15" />
+            <dataField fieldName="ServiceDuePaid" columns="15" />
+            <dataField fieldName="MemSubsToDate" columns="10" />
+          </dataFields>
+        </category>
+        <category headerText="Payment" id="c4" floating="true">
+          <dataFields>
+            <dataField fieldName="ChequeDT" columns="20">
+              <visibility>
+                <expression test="[PayTypeID]==2" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="PayAmount" columns="15" />
+            <dataField fieldName="Voucherno" columns="15" hidden="true" />
+            <dataField fieldName="PayTypeID" columns="15" rows="1" />
+            <dataField fieldName="BankID" aliasFieldName="BankName">
+              <visibility>
+                <expression test="[PayTypeID]==2" type="ClientScript" />
+              </visibility>
+            </dataField>
+            <dataField fieldName="ChequeNo" columns="50">
+              <visibility>
+                <expression test="[PayTypeID]==2" type="ClientScript" />
+              </visibility>
+            </dataField>
+          </dataFields>
+        </category>
+        <category headerText="Locker Bill" id="c5">
+          <dataFields />
+          <visibility>
+            <expression test="[LockerDue]&gt;0" type="ClientScript" />
+          </visibility>
+        </category>
+        <category headerText="Summary" id="c2" floating="true" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MonthlyDue" columns="15" textMode="Static" />
+            <dataField fieldName="ContributionWfdue" columns="15" textMode="Static" />
+            <dataField fieldName="LockerDue" columns="15" textMode="Static" />
+            <dataField fieldName="TournamentDue" columns="15" textMode="Static" />
+            <dataField fieldName="ServiceDue" columns="15" textMode="Static" />
+          </dataFields>
+        </category>
+        <category headerText="Other Service" id="c3">
+          <dataFields />
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Bill">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Member information" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="BillNo" columns="50" hidden="true" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberInfoNameOfMember" />
+            <dataField fieldName="MemberInfoMemberCode" columns="50" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="BillDate" columns="20" />
+            <dataField fieldName="CreatedBy" columns="50" hidden="true" />
+            <dataField fieldName="CreatedDate" columns="20" hidden="true" />
+            <dataField fieldName="CollectionBy" columns="50" hidden="true" />
+            <dataField fieldName="CollectionDate" columns="20" hidden="true" />
+            <dataField fieldName="MonthlyDuePaid" columns="15" />
+            <dataField fieldName="ContributionWfduePaid" columns="15" />
+            <dataField fieldName="LockerDuePaid" columns="15" />
+            <dataField fieldName="ServiceDuePaid" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="Summary" id="c2" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MonthlyDue" columns="15" />
+            <dataField fieldName="ContributionWfdue" columns="15" />
+            <dataField fieldName="LockerDue" columns="15" />
+            <dataField fieldName="TournamentDue" columns="15" />
+            <dataField fieldName="ServiceDue" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" whenHRef="false:" />
+      <action id="a3" commandName="Delete" whenHRef="false:" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" whenHRef="false:" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" whenHRef="false:" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" headerText="Create Voucher" />
+      <action commandName="Custom" commandArgument="UpdateMemberContribution" headerText="Add Cont.(WF) Fee" id="a102" confirmation="_controller=MemberSubsFilter&#xD;&#xA;_title =Select Subscription Calculation Date" />
+      <action commandName="Custom" commandArgument="UpdateMemberSubsBill" headerText="Add Mem.Subs.Fee" id="a101" confirmation="_controller=MemberSubsFilter&#xD;&#xA;_title =Select Subscription Calculation Date" />
+      <action commandName="Custom" commandArgument="AddLockerBill" headerText="Add Locker Bill" confirmation="_controller=LockerBillFilter&#xD;&#xA;_title=Select Booking Date " id="a103" />
+      <action commandName="Custom" commandArgument="Validate" headerText="Update Bill" id="a100" whenHRef="false:">
+        <data />
+      </action>
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" headerText="Create Bill" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" whenHRef="false:" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+      <action commandName="Navigate" commandArgument="_blank:ClubReport.aspx?_ReportID=1&amp;_MemberBillID={MemberBillID}&amp;_MemberID={MemberID}" headerText="Print Bill" id="a100" />
+      <action commandName="SQL" commandArgument="MemberBillApproved" headerText="Bill Approved" id="a101" confirmation="Do you confirmed ?">
+        <data><![CDATA[Exec [dbo].[USP_MemberBillApproved] @MemberBillID]]></data>
+      </action>
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules />
+</dataController>

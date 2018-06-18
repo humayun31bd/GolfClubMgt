@@ -1,0 +1,193 @@
+/*Information*/
+div {
+    text-transform: uppercase;
+}
+.information-wrap .w3-table td{
+    padding: 0 0 0 10px;
+}
+
+.information-wrap table>tbody>tr{
+    border: 1px solid lightgrey;
+}
+.information-wrap table>tbody>tr>td{
+    width: 60%;
+}
+
+.information-wrap .textTransform,
+.service-wrap .textTransform,
+.account-wrap .textTransform,
+.account-wrap .textTransform{
+    text-transform: uppercase;
+}
+
+/*service*/
+
+.service-wrap table>tbody>tr>td:nth-child(1),
+.service-wrap table>tbody>tr>td:nth-child(4){
+    width: 5%;
+}
+
+.service-wrap table>tbody>tr>td:nth-child(2){
+    width: 50%;
+}
+
+.service-wrap .w3-check, .w3-radio,
+.account-wrap .w3-check, .w3-radio{
+    top: 3px;
+    left: 3px;
+}
+
+.service-wrap table>tbody>tr>td:nth-child(1),
+.service-wrap table>tbody>tr>td:nth-child(2),
+.service-wrap table>tbody>tr>td:nth-child(3),
+.service-wrap table>tbody>tr>td:nth-child(4),
+.account-wrap table>tbody>tr>td:nth-child(1),
+.account-wrap table>tbody>tr>td:nth-child(2),
+.account-wrap table>tbody>tr>td:nth-child(3),
+.account-wrap table>tbody>tr>td:nth-child(4){
+    border-right: 1px solid #ccc;
+}
+
+/*account*/
+
+.account-wrap .labelLeft,
+.account-wrap .labelLeft{
+    float: left;
+    margin-right: 15px;
+}
+
+.account-wrap .inputWidth{
+    width: 60%;
+}
+.account-wrap input,
+.service-wrap input{
+    padding: 0;
+}
+
+.tbl-header table{
+    width:100%;
+    table-layout: fixed;
+}
+.tbl-header .tbl-header{
+    background-color: rgba(255,255,255,0.3);
+}
+.tbl-header .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.tbl-header th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.tbl-header td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+.custom-container {
+    margin-top: 20px;
+    background: #fbfbfb;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.custom-container h4 {
+    padding: 15px 0px 0px 10px;;
+    font-size: 20px;
+    text-transform: uppercase; 
+}
+.bordered-div {
+    display: table-cell;
+    border: 1px solid #e0e0e0;
+    border-collapse: collapse;
+}
+.no-padding {
+    padding: 0px!important;
+}
+.st-padding {
+    padding: 5px;
+    margin: 2px;
+}
+.st-padding-cs {
+    padding: 5px;
+    margin: 1px;
+}
+.st-height {
+    /*height: 40px;*/
+    height: 4.1em;
+}
+.table-heading-cs {
+    position: relative;
+    top: 20px;
+}
+.nb-left {
+    border-left: none !important;
+}
+.nb-right {
+    border-right: none !important;
+}
+.nb-top {
+    border-top: none !important;
+}
+.nb-bottom {
+    border-bottom: none !important;
+}
+.cs-table {
+    display: table;
+}
+.cs-table tbody tr td{
+    padding: 2px!important;
+}
+.cs-table tbody tr:first-child td {
+    border-top: none!important;
+}
+.cs-input {
+    margin-top: 12px;
+}
+.st-table thead tr{
+    border-bottom: 1px solid #e0e0e0;
+}
+.st-table tbody tr td {
+    border: 1px solid #e0e0e0;
+    padding: 10px!important;
+}
+.st-table tbody tr:first-child td {
+    border-top: none!important;
+}
+.st-table input[type='checkbox'] {
+    margin-left: 10px;
+    height: 18px;
+    width: 18px;
+}
+.label-ch {
+    font-weight: 100;
+    position: relative;
+    top: -5px;
+    left: 5px;
+}
+.label-text {
+    position: relative;
+    top: 7px;
+    text-align: right;
+    font-weight: 100;
+}
+.fc-auto {
+    width: auto!important;
+}
+.mt-4 {
+    margin-top: 4px;
+}
+.mt-5 {
+    margin-top: 5px;
+}
+.btn {
+    text-transform: uppercase;
+}

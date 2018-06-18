@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameCategory" alias="GameCategory" created="2018-04-18T07:19:20" modified="2018-04-24T08:30:38" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="344" y="20">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="633" y="20">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="GameCategoryID" fieldName="GameCategoryID" label="Game Category ID" />
+    <column name="GameCategoryName" fieldName="GameCategoryName" label="Category Name" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeHoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" aliasColumnName="GenderDesc" aliasForeignKey="Gender" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender" foreignKey="Gender" />
+  </columns>
+</dataModel>

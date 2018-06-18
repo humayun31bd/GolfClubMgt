@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="BallBoy" alias="BallBoy" created="2018-04-16T17:12:20" modified="2018-04-24T09:57:32" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="311" y="20">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="BallBoyID" fieldName="BallBoyID" label="Ball Boy ID" />
+    <column name="BallBoyCode" fieldName="BallBoyCode" label="Ball Boy Code" />
+    <column name="BallBoyName" fieldName="BallBoyName" label="Ball Boy Name" />
+    <column name="Address" fieldName="Address" label="Address" />
+    <column name="Phone" fieldName="Phone" label="Phone" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" aliasColumnName="GenderDesc" aliasForeignKey="Gender" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender" foreignKey="Gender" />
+    <column name="DOB" fieldName="Dob" label="Dob" format="dd/MM/yyyy" />
+    <column name="JoiningDate" fieldName="JoiningDate" label="Joining Date" format="dd/MM/yyyy" />
+    <column name="Picture" fieldName="Picture" label="Picture" />
+    <column name="FileName" fieldName="FileName" label="File Name" />
+    <column name="ContentType" fieldName="ContentType" label="Content Type" />
+    <column name="Length" fieldName="Length" label="Length" />
+  </columns>
+</dataModel>

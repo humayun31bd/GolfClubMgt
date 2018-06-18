@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="GamePlayerGroup" conflictDetection="overwriteChanges" label="Game Player Group" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"GamePlayerGroup"."GamePlayerGroupID" "GamePlayerGroupID"
+	,"GamePlayerGroup"."GroupID" "GroupID"
+	,"GamePlayerGroup"."StartTime" "StartTime"
+	,"GamePlayerGroup"."MatchID" "MatchID"
+	,"GamePlayerGroup"."HoleTypeID" "HoleTypeID"
+	,"GamePlayerGroup"."MatchStatus" "MatchStatus"
+	,"GamePlayerGroup"."MatchEnd" "MatchEnd"
+	,"GamePlayerGroup"."ScoreStatus" "ScoreStatus"
+from "dbo"."GamePlayerGroup" "GamePlayerGroup"
+]]></text>
+    </command>
+  </commands>
+  <fields>
+    <field name="GamePlayerGroupID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Game Player Group ID" />
+    <field name="GroupID" type="Int32" label="Group ID" showInSummary="true" />
+    <field name="StartTime" type="DateTime" dataFormatString="g" label="Start Time" showInSummary="true" />
+    <field name="MatchID" type="Int32" label="Match ID" showInSummary="true" />
+    <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true" />
+    <field name="MatchStatus" type="Int32" label="Match Status" showInSummary="true" />
+    <field name="MatchEnd" type="Int32" label="Match End" />
+    <field name="ScoreStatus" type="Int32" label="Score Status" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Game Player Group">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="GamePlayerGroupID" columns="15" />
+        <dataField fieldName="GroupID" columns="15" />
+        <dataField fieldName="StartTime" columns="20" />
+        <dataField fieldName="MatchID" columns="15" />
+        <dataField fieldName="HoleTypeID" columns="15" />
+        <dataField fieldName="MatchStatus" columns="15" />
+        <dataField fieldName="MatchEnd" columns="15" />
+        <dataField fieldName="ScoreStatus" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Game Player Group">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Game Player Group" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="GamePlayerGroupID" columns="15" />
+            <dataField fieldName="GroupID" columns="15" />
+            <dataField fieldName="StartTime" columns="20" />
+            <dataField fieldName="MatchID" columns="15" />
+            <dataField fieldName="HoleTypeID" columns="15" />
+            <dataField fieldName="MatchStatus" columns="15" />
+            <dataField fieldName="MatchEnd" columns="15" />
+            <dataField fieldName="ScoreStatus" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Game Player Group">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Game Player Group" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="GamePlayerGroupID" columns="15" />
+            <dataField fieldName="GroupID" columns="15" />
+            <dataField fieldName="StartTime" columns="20" />
+            <dataField fieldName="MatchID" columns="15" />
+            <dataField fieldName="HoleTypeID" columns="15" />
+            <dataField fieldName="MatchStatus" columns="15" />
+            <dataField fieldName="MatchEnd" columns="15" />
+            <dataField fieldName="ScoreStatus" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

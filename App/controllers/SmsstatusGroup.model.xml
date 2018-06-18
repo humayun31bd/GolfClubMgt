@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSStatusGroup" alias="SMSStatusGroup" created="2018-05-20T17:56:01" modified="2018-05-20T17:56:01" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Provider" parentTableSchema="dbo" parentTableName="SMSProvider">
+      <foreignKeyColumn columnName="ProviderID" parentColumnName="ProviderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="SMSStatusGroupID" fieldName="SmsstatusGroupID" label="SMS Status Group ID" />
+    <column name="GroupName" fieldName="GroupName" label="Group Name" />
+    <column name="Description" fieldName="Description" label="Description" />
+    <column name="ProviderID" fieldName="ProviderID" label="Provider ID" aliasColumnName="ProviderName" aliasForeignKey="Provider" />
+    <column name="ProviderName" fieldName="ProviderName" label="Provider Name" foreignKey="Provider" />
+  </columns>
+</dataModel>

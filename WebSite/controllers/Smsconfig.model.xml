@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSConfig" alias="SMSConfig" created="2018-04-27T18:09:40" modified="2018-06-13T11:26:12" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SMSConfigID" fieldName="SmsconfigID" label="SMS Config ID" />
+    <column name="CardVerifiedSMS" fieldName="CardVerifiedSms" label="Card Verified SMS" />
+    <column name="PredefineSMS" fieldName="PredefineSms" label="Predefine Sms" />
+  </columns>
+</dataModel>

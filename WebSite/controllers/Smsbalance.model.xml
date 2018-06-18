@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSBalance" alias="SMSBalance" created="2018-04-27T18:09:34" modified="2018-04-27T18:09:37" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SMSBalanceID" fieldName="SmsbalanceID" label="SMS Balance ID" />
+    <column name="SMSPurchasedQty" fieldName="SmspurchasedQty" label="SMS Purchased Qty" />
+    <column name="SMSBalanceQty" fieldName="SmsbalanceQty" label="SMS Balance Qty" />
+    <column name="SMSAccountName" fieldName="SmsaccountName" label="SMS Account Name" />
+    <column name="MonthlyEligible" fieldName="MonthlyEligible" label="Monthly Eligible" />
+    <column name="NoOfSMSpermonth" fieldName="NoOfSmspermonth" label="No Of SM Spermonth" />
+    <column name="PerSmsRate" fieldName="PerSmsRate" label="Per Sms Rate" />
+  </columns>
+</dataModel>

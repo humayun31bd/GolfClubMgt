@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Homebackground.ascx.cs" Inherits="Controls_Homebackground"  %><img src="../images/GolfClubBackground.png" style="background-repeat:no-repeat;" />

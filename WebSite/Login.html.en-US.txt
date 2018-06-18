@@ -1,0 +1,20 @@
+*******************************************************************************
+Your application uses this file to locate resource strings defined
+in Login.html project item. 
+
+Replace the text between localization brackets as needed.
+*******************************************************************************
+
+^AdminDesc^Administrative account^AdminDesc^
+
+^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^
+
+^SignInPara1^Two standard user accounts are automatically created when application is initialized
+                        if membership option has been selected for this application.^SignInPara1^
+
+^SignInPara2^The administrative account <b>admin</b> is authorized to access all areas of the
+                        web site and membership manager. The standard <b>user</b> account is allowed to
+                        access all areas of the web site with the exception of membership manager.^SignInPara2^
+
+^UserDesc^Standard user account^UserDesc^
+

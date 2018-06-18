@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberSubsFilter" label="MemberSubsFilter" conflictDetection="overwriteChanges" handler="MyCompany.Rules.MemberSubsFilterBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="SubsiEndDate" type="DateTime" label="Subsi End Date" />
+  </fields>
+</dataController>

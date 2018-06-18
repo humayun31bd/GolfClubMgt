@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameFeeDay" alias="GameFeeDay" created="2018-04-09T20:38:34" modified="2018-04-09T20:48:21" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="GameFee" parentTableSchema="dbo" parentTableName="GameFee" x="260" y="20">
+      <foreignKeyColumn columnName="GameFeeID" parentColumnName="GameFeeID" />
+    </foreignKey>
+    <foreignKey id="WeekDay" parentTableSchema="dbo" parentTableName="WeekDay" x="260" y="250">
+      <foreignKeyColumn columnName="WeekDayID" parentColumnName="WeekDayID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="GameFeeID" fieldName="GameFeeID" label="Game Fee ID" aliasColumnName="CaddieSubsiBy" aliasForeignKey="GameFee" />
+    <column name="WeekDayID" fieldName="WeekDayID" label="Week Day ID" aliasColumnName="WeekDayName" aliasForeignKey="WeekDay" />
+    <column name="WeekDayName" fieldName="WeekDayName" label="Week Day Name" foreignKey="WeekDay" />
+  </columns>
+</dataModel>

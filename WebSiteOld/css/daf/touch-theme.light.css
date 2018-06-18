@@ -1,0 +1,928 @@
+﻿/*headers*/
+body:not(.app-has-sidebar-left) .app-page-header,
+.app-page-panel .app-page-header,
+.app-page-panel .app-page-header + .app-page-header-divider,
+.app-page-panel-right .app-bar-heading,
+.app-page-panel-right::before,
+.ui-panel-inner .app-list-instruction.app-logo,
+.ui-panel-inner .ui-listview > .ui-li-divider.app-list-instruction.app-logo {
+    background-color: /* @header.background */ #e9e9e9;
+}
+
+body:not(.app-has-sidebar-left) .app-bar-actions,
+body:not(.app-hosted) .ui-page > .ui-content::before,
+.app-page-modal > .ui-content:before {
+    background-color: /* @header.background*/ #e9e9e9;
+}
+
+body:not(.app-has-sidebar-left) .app-page-header,
+.app-page-modal .app-page-header,
+.app-page-panel .app-page-header,
+.app-page-modal .app-bar-actions,
+.app-page-modal .app-text,
+.app-page-panel .app-text,
+body:not(.app-has-sidebar-left) .app-page-header .app-icon,
+.app-page-modal .app-page-header .app-icon,
+.app-page-panel .app-page-header .app-icon,
+.app-page-modal.app-has-fixed-bar .app-bar-actions .ui-btn:not(:hover):not(.ui-btn-active),
+.app-bar-heading.app-bar-heading-modal .app-bar-label /*, .app-bar-heading.app-bar-heading-modal .app-view-instruction*/ {
+    color: /*@header.text.default*/ #333;
+}
+
+    .app-page-modal.app-has-fixed-bar .app-bar-actions .ui-btn:not(:hover):not(.ui-btn-active)::after {
+        border-top-color: /*@header.text.default*/ #333;
+    }
+
+    body:not(.app-has-sidebar-left) .app-page-header .app-icon.app-icon-background,
+    .app-page-modal .app-page-header .app-icon.app-icon-background,
+    .app-page-panel .app-page-header .app-icon.app-icon-background {
+        opacity: /*@header.icon.backgroundOpacity*/ 0.075;
+    }
+
+/*buttons.promo*/
+.app-btn-promo.ui-btn.app-has-icon,
+.app-btn-promo.ui-btn.app-has-icon:not(.ui-btn-active):not(.app-selected):hover, 
+.app-btn-promo.ui-btn.app-has-icon.ui-btn-active {
+    background-color: /* @buttons.promo.background*/ #adb3bc;
+}
+
+.app-has-icon.ui-btn-icon-notext.app-btn-promo:hover .app-icon,
+.app-has-icon.ui-btn-icon-notext.app-btn-promo .app-icon,
+.app-has-icon.ui-btn-icon-notext.app-btn-promo .app-icon::after,
+.app-has-icon.ui-btn-icon-notext.app-btn-promo .app-icon::before {
+    color: /* @buttons.promo.icon.default */ #fff;
+}
+
+/*buttons.menu*/
+.app-has-sidebar-left .app-bar-toolbar:not(.app-has-back) .app-btn-menu-background {
+    background-color: /*@buttons.menu.background,@sidebar.full.background*/ #f6f6f6;
+    border-right-color: /*@header.divider,@buttons.menu.border,@sidebar.full.border,@header.border*/ #ccc;
+    border-bottom-color: /*@buttons.menu.border,@sidebar.full.border*/ #ccc;
+}
+
+    .app-has-sidebar-left .app-bar-toolbar:not(.app-has-back) .app-btn-menu-background::after {
+        background-color: /*@buttons.menu.border,@header.divider,@sidebar.full.border,@header.border*/ #ccc;
+    }
+
+body.app-has-sidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars::after {
+    color: /*@buttons.menu.icon.default,@sidebar.full.icon.default*/ #333;
+}
+
+.app-desktop.app-has-sidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars:hover:not(.ui-btn-active)::after {
+    color: /*@buttons.menu.icon.hover,@sidebar.full.icon.hover*/ #000;
+}
+
+body.app-has-sidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars.ui-btn-active::after {
+    color: /*@buttons.menu.icon.active,@sidebar.full.icon.active*/ #111;
+}
+
+.app-has-minisidebar-left .app-bar-toolbar:not(.app-has-back) .app-btn-menu-background {
+    background-color: /*@buttons.menu.background,@sidebar.mini.background,@sidebar.full.background*/ #f6f6f6;
+    border-right-color: /*@header.divider,@buttons.menu.border,@sidebar.mini.border,@sidebar.full.border,@header.border*/ #ccc;
+    border-bottom-color: /*@buttons.menu.border,@sidebar.mini.border*/ #ccc;
+}
+
+    .app-has-minisidebar-left .app-bar-toolbar:not(.app-has-back) .app-btn-menu-background::after {
+        background-color: /*@buttons.menu.border,@header.divider,@sidebar.mini.border,@sidebar.full.border,@header.border*/ #ccc;
+    }
+
+body.app-has-minisidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars::after {
+    color: /*@buttons.menu.icon.default,@sidebar.mini.icon.default,@sidebar.full.icon.default*/ #333;
+}
+
+.app-desktop.app-has-minisidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars:hover:not(.ui-btn-active)::after {
+    color: /*@buttons.menu.icon.hover,@sidebar.mini.icon.hover,@sidebar.full.icon.hover*/ #000;
+}
+
+body.app-has-minisidebar-left:not(.app-has-panel-right) #app-btn-menu.ui-icon-bars.ui-btn-active::after {
+    color: /*@buttons.menu.icon.active,@sidebar.mini.icon.active,@sidebar.full.icon.active,@buttons.menu.icon.hover,@sidebar.mini.icon.hover,@sidebar.full.icon.hover*/ #000;
+}
+
+.app-has-sidebar-left .app-bar-toolbar .app-logo {
+    color: /*@buttons.menu.text.default,@header.text.logo*/ #000;
+}
+
+.app-has-sidebar-left .app-bar-toolbar .app-logo {
+    color: /*@buttons.menu.text.default,@sidebar.full.text.default*/ #000;
+}
+
+.app-has-minisidebar-left .app-bar-toolbar .app-logo {
+    color: /*@buttons.menu.text.default,@header.text.logo*/ #000;
+}
+
+.ui-panel-inner .ui-listview > .ui-li-divider.app-list-instruction.app-logo {
+    background-color: /*@buttons.menu.background,@sidebar.full.background*/ #f6f6f6;
+    border-top-color: /*@buttons.menu.background,@sidebar.full.background*/ #f6f6f6;
+    color: /*@buttons.menu.text.default,@sidebar.full.text.default*/ #000;
+}
+
+/*toolbar*/
+.app-bar-toolbar {
+    background-color: /* @header.background */ #e9e9e9;
+    border-color: /*@header.border*/ #ccc;
+}
+
+body:not(.app-has-sidebar-left) .ui-page[data-page-header='false'] .app-bar-actions,
+.app-page-modal[data-page-header='false'] .app-bar-actions {
+    border-bottom-color: /*@header.border*/ #ddd;
+}
+
+body:not(.app-has-sidebar-left):not(.app-hosted) .ui-page:not([data-page-header='false']).app-has-fixed-bar .app-bar-heading,
+.app-page-modal:not([data-page-header='false']):not(.app-has-header-bar) .app-bar-heading,
+.ui-page:not([data-page-header='false']) .app-wrapper > .app-listview:not(.app-listview-static) .app-list-instruction {
+    border-top-color: /*@header.border*/ #ddd;
+}
+
+body:not(.app-has-sidebar-left) .app-bar-toolbar,
+body:not(.app-has-minisidebar-left) .ui-header-fixed .ui-title {
+    border-color: /*@form.header.background*/ transparent;
+    background-color: /*@form.header.border*/ transparent;
+}
+
+body:not(.app-has-sidebar-left) div[data-layout="form"] > div[data-container="collapsible"]:first-of-type,
+.app-page-modal div[data-layout="form"] > div[data-container="collapsible"]:first-of-type,
+.app-page-modal div[data-layout="form"] > div[data-container="collapsible"][data-header-text="none"]:first-of-type > div:first-of-type {
+    border-top-color: /*@form.header.divider*/ #ddd;
+}
+
+body:not(.app-has-sidebar-left) .app-page-header + .app-page-header-divider,
+.app-page-modal .app-page-header + .app-page-header-divider {
+    background-color: /*@form.header.divider*/ #ddd;
+}
+
+.app-page-modal-title .app-btn,
+.app-page-modal-title .app-icon,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn:before,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn:after,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn .app-icon,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn .app-icon:before,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn .app-icon:after,
+body:not(.app-hosted) .app-back-text {
+    color: /*@header.icon.default*/ #777;
+}
+
+.app-bar-toolbar .app-avatar .app-icon-avatar {
+    border-color: /*@header.icon.default*/ #777;
+}
+
+.app-desktop .app-page-modal-title .app-btn:hover:not(.ui-btn-active),
+.app-desktop:not(.app-hosted) .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop:not(.app-hosted) .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop:not(.app-hosted) .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop:not(.app-hosted) .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop:not(.app-hosted) .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active) .app-icon:after,
+.app-desktop:not(.app-hosted) .app-bar-toolbar .app-back-text:hover:not(.ui-btn-active) {
+    color: /*@header.icon.hover*/ #000;
+}
+
+.app-desktop .app-bar-toolbar .app-avatar:hover:not(.ui-btn-active) .app-icon-avatar {
+    border-color: /*@header.icon.hover*/ #000;
+}
+
+.app-page-modal-title .app-btn.ui-btn-active,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn.ui-btn-active:before,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn.ui-btn-active:after,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn.ui-btn-active .app-icon,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn.ui-btn-active .app-icon:before,
+body:not(.app-hosted) .app-bar-toolbar .ui-btn.ui-btn-active .app-icon:after,
+body:not(.app-hosted) .app-bar-toolbar .app-back-text.ui-btn-active {
+    color: /*@header.icon.active, @header.icon.hover */ #000;
+}
+
+.app-bar-toolbar .app-avatar.ui-btn-active .app-icon-avatar {
+    border-color: /*@header.icon.active*/ #000;
+}
+
+body:not(.app-hosted) .app-bar-toolbar .app-menu-strip .ui-btn:not(.ui-btn-active) {
+    color: /*@header.text.default*/ #777;
+}
+
+body:not(.app-hosted) .app-bar-toolbar a.ui-btn.app-has-children:not(.ui-btn-active)::after {
+    color: /*@header.text.default*/ #777;
+}
+
+.app-page-panel .app-bar-header .ui-btn {
+    color: /*@header.text.default*/ #777;
+}
+
+.app-desktop:not(.app-hosted) .app-bar-toolbar .app-menu-strip .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@header.text.hover*/ #000;
+}
+
+.app-desktop .app-bar-toolbar a.ui-btn.app-has-children:hover:not(.ui-btn-active)::after {
+    color: /*@header.text.hover*/ #000;
+}
+
+.app-desktop:not(.app-has-popup-open) .app-menu-strip ul li a.ui-btn:hover:not(.ui-btn-active) {
+    background-color: /*@header.text.hoverBackground*/ rgba(255,255,255,.4);
+}
+
+.app-menu-strip ul li a.ui-btn.app-selected:not(.ui-btn-active),
+body.app-has-popup-open .app-menu-strip ul li a.ui-btn.app-selected:hover:not(.ui-btn-active) {
+    background-color: /*@header.text.selectedBackground*/ rgba(0,0,0,.05);
+}
+
+.app-desktop .app-page-panel .app-bar-header .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@header.text.hover*/ #000;
+}
+
+.app-bar-toolbar .app-menu-strip .ui-btn.ui-btn-active {
+    color: /*@header.text.active,@header.text.default*/ #111;
+}
+
+.app-bar-toolbar a.ui-btn.app-has-children.ui-btn-active::after {
+    color: /*@header.text.active,@header.text.default*/ #111;
+}
+
+.app-page-panel .app-bar-header .ui-btn.ui-btn-active {
+    color: /*@header.text.active,@header.text.default*/ #000;
+}
+
+body:not(.app-has-panel-right):not(.app-hosted) .ui-bar-a .app-menu-strip .ui-btn:hover:not(.ui-btn-active),
+body:not(.app-has-panel-right):not(.app-hosted) .ui-bar-a .app-menu-strip .ui-btn.app-selected:not(.ui-btn-active) {
+    color: /*@header.text.hover*/ #000;
+}
+
+body:not(.app-has-sidebar-left):not(.app-hosted) .app-bar-toolbar .app-logo,
+.app-has-minisidebar-left .app-bar-toolbar .app-logo,
+.app-has-panel-right .app-bar-toolbar .app-logo,
+.app-menu-strip-title {
+    color: /*@header.text.logo*/ #000;
+}
+
+/*split toolbar*/
+.app-has-panel-right .app-bar-toolbar {
+    background-color: /* @header.split.background */ #e9e9e9;
+    border-color: /*@header.split.border*/ #ccc;
+}
+
+.app-has-panel-right:not(.app-has-minisidebar-left) .ui-header-fixed .ui-title {
+    border-color: transparent;
+}
+
+.app-has-panel-right .app-bar-toolbar .ui-btn {
+    color: /*@header.split.text.default*/ #777;
+}
+
+.app-has-panel-right .app-bar-toolbar h3::after,
+.app-has-panel-right .app-bar-toolbar a.ui-btn.app-has-children:not(.ui-btn-active)::after {
+    color: /*@header.split.text.default*/ #777;
+}
+
+.app-has-panel-right .app-bar-toolbar .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@header.split.text.hover*/ #333;
+}
+
+.app-has-panel-right .app-bar-toolbar .ui-btn.ui-btn-active {
+    color: /*@header.split.text.active*/ #38c;
+}
+
+.app-has-panel-right .app-bar-toolbar .ui-btn:before,
+.app-has-panel-right .app-bar-toolbar .ui-btn:after,
+.app-has-panel-right .app-bar-toolbar .ui-btn .app-icon,
+.app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:before,
+.app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:after {
+    color: /*@header.split.icon.default*/ #333;
+}
+
+    .app-has-panel-right .app-bar-toolbar .ui-btn:before,
+    .app-has-panel-right .app-bar-toolbar .ui-btn:after,
+    .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon,
+    .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:before,
+    .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:after {
+        color: /*@header.split.icon.hover*/ #000;
+    }
+
+        .app-has-panel-right .app-bar-toolbar .ui-btn:before,
+        .app-has-panel-right .app-bar-toolbar .ui-btn:after,
+        .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon,
+        .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:before,
+        .app-has-panel-right .app-bar-toolbar .ui-btn .app-icon:after {
+            color: /*@header.split.icon.active*/ #38c;
+        }
+
+/*actionbar*/
+.app-bar-actions.ui-header,
+.ui-listview > .ui-li-divider.app-list-instruction,
+.app-presenter-instruction,
+.app-grid-header,
+.app-grid-header .app-frozen-spacer,
+.app-bar-header.ui-header {
+    background-color: /*@actionBar.background*/ #f1f1f1;
+}
+
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn {
+    color: /*@actionBar.text.default*/ #333;
+}
+
+    body:not(.app-has-panel-right) .app-bar-actions .ui-btn::after {
+        border-top-color: /*@actionBar.text.default*/ #333;
+    }
+
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@actionBar.text.hover,@actionBar.text.default*/ #000;
+}
+
+    .app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):after {
+        border-top-color: /*@actionBar.text.hover,@actionBar.text.default*/ #000;
+    }
+
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active {
+    color: /*@actionBar.text.active,@actionBar.text.default*/ #000;
+}
+
+    body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active::after {
+        border-top-color: /*@actionBar.text.active,@actionBar.text.default*/ #000;
+    }
+
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn:after,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn .app-icon,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn .app-icon:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn .app-icon:after,
+[data-layout="form"] .app-control-toolbar i,
+[data-layout="form"] .app-control-toolbar .app-has-droparrow {
+    color: /*@actionBar.icon.default*/ #777;
+}
+
+    [data-layout="form"] .app-control-toolbar .app-has-droparrow::after {
+        border-top-color: /*@actionBar.icon.default*/ #777;
+    }
+
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop:not(.app-has-panel-right) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:after,
+.app-desktop [data-layout="form"] .app-control-toolbar i:hover:not(.app-active),
+.app-desktop [data-layout="form"] .app-control-toolbar .app-has-droparrow:hover {
+    color: /*@actionBar.icon.hover*/ #000;
+}
+
+    .app-desktop [data-layout="form"] .app-control-toolbar .app-has-droparrow:hover::after,
+    [data-layout="form"] .app-control-toolbar .app-has-droparrow.app-selected::after,
+    [data-layout="form"] .app-control-toolbar .app-has-droparrow.app-active,
+    [data-layout="form"] .app-control-toolbar .app-has-droparrow.app-active::after {
+        border-top-color: /*@actionBar.icon.default*/ #000 !important;
+    }
+
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active:after,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active .app-icon,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active .app-icon:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn.ui-btn-active .app-icon:after {
+    color: /*@actionBar.text.active*/ #000;
+}
+
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn-icon-notext.ui-btn-active:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn-icon-notext.ui-btn-active:after,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon:before,
+body:not(.app-has-panel-right) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon:after,
+[data-layout="form"] .app-control-toolbar i.app-active,
+.app-desktop [data-layout="form"] .app-control-toolbar i.app-active:hover {
+    color: /*@actionBar.icon.active*/ #000;
+}
+
+[data-layout="form"] .app-control-toolbar .app-selected {
+    color: /*@actionBar.icon.selected*/ #333;
+    background-color: /*@actionBar.icon.selectedBackground*/ rgba(0,0,0,.1);
+}
+
+[data-layout="form"] .app-control-toolbar .app-disabled,
+.app-desktop [data-layout="form"] .app-control-toolbar .app-disabled:hover {
+    color: /*@actionBar.icon.disabled*/ #aaa;
+}
+
+/*modalActionBar or no sidebar action bar*/
+.app-page-modal .app-bar-actions h3,
+.ui-page.app-page-modal .app-bar-actions .ui-btn,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn,
+body:not(.app-has-sidebar-left) .app-bar-actions h3,
+body:not(.app-has-sidebar-left) .ui-page.app-has-fixed-bar .app-page-header {
+    color: /*@header.text.default*/ #333;
+}
+
+    .app-page-modal .app-bar-actions h3:after,
+    .ui-page.app-page-modal .app-bar-actions .ui-btn::after,
+    body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:after,
+    body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.app-selected:after,
+    body:not(.app-has-sidebar-left) .app-bar-actions h3:after {
+        color: /*@header.text.default*/ #333;
+    }
+
+.app-desktop .app-page-modal .app-bar-actions h3:hover:not(.ui-btn-active),
+.app-desktop .ui-page.app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active),
+body.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active),
+body.app-desktop:not(.app-has-sidebar-left) .app-bar-actions h3:hover:not(.ui-btn-active) {
+    color: /*@header.text.hover,@header.text.default*/ #000;
+}
+
+    .app-desktop .app-page-modal .app-bar-actions h3:hover:not(.ui-btn-active):after,
+    .app-desktop .ui-page.app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active)::after,
+    body.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):after,
+    body.app-desktop:not(.app-has-sidebar-left) .app-bar-actions h3:hover:not(.ui-btn-active):after {
+        color: /*@header.text.hover,@header.text.default*/ #000;
+    }
+
+.app-page-modal .app-bar-actions h3.ui-btn-active,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active,
+body:not(.app-has-sidebar-left) .app-bar-actions h3.ui-btn-active {
+    color: /*@header.text.active,@header.text.default*/ #000;
+}
+
+    .app-page-modal .app-bar-actions h3.ui-btn-active:after,
+    .ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active::after,
+    body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active:after,
+    body:not(.app-has-sidebar-left) .app-bar-actions h3.ui-btn-active:after {
+        color: /*@header.text.active,@header.text.default*/ #000;
+    }
+
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:after,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn .app-icon,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn .app-icon:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn .app-icon:after,
+.ui-page.app-page-modal .app-bar-actions .ui-btn:before,
+.ui-page.app-page-modal .app-bar-actions .ui-btn:after,
+.ui-page.app-page-modal .app-bar-actions .ui-btn .app-icon,
+.ui-page.app-page-modal .app-bar-actions .ui-btn .app-icon:before,
+.ui-page.app-page-modal .app-bar-actions .ui-btn .app-icon:after {
+    color: /*@header.icon.default*/ #777;
+}
+
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:after,
+.app-desktop .app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop .app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop .app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop .app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop .app-page-modal .app-bar-actions .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /*@header.icon.default*/ #000;
+}
+
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active:after,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active .app-icon,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active .app-icon:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn.ui-btn-active .app-icon:after,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active:before,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active:after,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active .app-icon,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active .app-icon:before,
+.ui-page.app-page-modal .app-bar-actions .ui-btn.ui-btn-active .app-icon:after {
+    color: /*@header.icon.default*/ #777;
+}
+
+
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext:hover:not(.ui-btn-active):before,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext:hover:not(.ui-btn-active):after,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext:hover:not(.ui-btn-active) .app-icon,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext:hover:not(.ui-btn-active) .app-icon:after {
+    color: /*@header.icon.hover*/ #000;
+}
+
+
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext.ui-btn-active:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext.ui-btn-active:after,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon:before,
+body:not(.app-has-sidebar-left) .app-bar-actions .ui-btn-icon-notext.ui-btn-active .app-icon:after {
+    color: /*@header.icon.active*/ #000;
+}
+
+
+/*sidebar.full*/
+
+.app-sidebar {
+    background-color: /* @sidebar.full.background */ #f6f6f6;
+    border-color: /*@sidebar.full.border*/ #ccc;
+}
+
+    .app-sidebar .ui-li-static,
+    .app-calendar-plugin {
+        background-color: /*@sidebar.full.contentBackground,@sidebar.full.background*/ #fff;
+        border-color: /*@sidebar.full.border*/ #ddd;
+    }
+
+    .app-sidebar .ui-listview > li.ui-last-child > a.ui-btn {
+        border-color: /*@sidebar.full.border*/ #ddd;
+    }
+
+    .app-sidebar .ui-li-divider:not(.app-list-instruction) {
+        background-color: /*@sidebar.full.border*/ #ccc;
+    }
+
+    .app-sidebar .ui-panel-inner .ui-btn:before,
+    .app-sidebar .ui-panel-inner .ui-btn:after,
+    .app-sidebar .ui-panel-inner .ui-btn .app-icon,
+    .app-sidebar .ui-panel-inner .ui-btn .app-icon:before,
+    .app-sidebar .ui-panel-inner .ui-btn .app-icon:after {
+        color: /*@sidebar.full.icon.default*/ #777;
+    }
+
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /*@sidebar.full.icon.hover*/ #000;
+}
+
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active:before,
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active:after,
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active .app-icon,
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active .app-icon:before,
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active .app-icon:after {
+    color: /*@sidebar.full.icon.active*/ #000;
+}
+
+
+.app-has-sidebar-left .app-bar-toolbar-bottom {
+    border-color: /* @sidebar.full.border*/ #ccc;
+    background-color: /* @sidebar.full.background*/ #f6f6f6;
+}
+
+    .app-has-sidebar-left .app-bar-toolbar-bottom.app-has-icons {
+        border-color: /* @sidebar.full.toolbar.border, @sidebar.full.border*/ #ccc;
+        background-color: /*@sidebar.full.toolbar.background, @sidebar.full.background*/ #e9e9e9;
+    }
+
+.app-sidebar .app-bar-toolbar-bottom .ui-btn.app-selected:not(.ui-btn-active)::before {
+    background-color: /*@sidebar.full.toolbar.selectedColor, @sidebar.full.selectedColor,@header.background*/ #38c;
+}
+
+.app-sidebar .app-option-selected:before {
+    background-color: /*@sidebar.full.selectedColor,@buttons.menu.background, @header.background*/ #38c;
+}
+
+.app-bar-toolbar-bottom .ui-btn.app-btn-settings,
+.app-sidebar .ui-panel-inner .ui-btn,
+.app-sidebar .ui-panel-inner .app-calendar-plugin table,
+.app-sidebar .ui-panel-inner .ui-li-static {
+    color: /*@sidebar.full.text.default*/ #333;
+}
+
+.app-sidebar .app-has-droparrow::after {
+    border-top-color: /*@sidebar.full.text.default*/ #333;
+}
+
+.app-desktop .app-sidebar .ui-panel-inner .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@sidebar.full.text.hover*/ #000;
+}
+
+.app-desktop .app-sidebar .app-has-droparrow:hover:not(.ui-btn-active)::after {
+    border-top-color: /*@sidebar.full.text.hover*/ #000;
+}
+
+.app-sidebar .ui-panel-inner .ui-btn.ui-btn-active {
+    color: /*@sidebar.full.text.active*/ #000;
+}
+
+.app-sidebar .app-has-droparrow.ui-btn-active::after {
+    border-top-color: /*@sidebar.full.text.active*/ #000;
+}
+
+.app-sidebar .app-item-desc,
+.app-sidebar .ui-panel-inner .ui-li-static.app-wrap,
+.app-sidebar .app-calendar-plugin table tr:not(.ui-btn-active) td.app-prev-month,
+.app-sidebar .app-calendar-plugin table tr:not(.ui-btn-active) td.app-next-month,
+.app-sidebar .app-calendar-plugin table tr:not(.ui-btn-active) td.app-day-unselectable {
+    color: /*@sidebar.full.text.static*/ #999;
+}
+
+.app-sidebar .ui-btn:not(.ui-btn-active) .app-icon.material-icon.material-icon-chevron-right {
+    color: /*@sidebar.full.text.static*/ #acacac !important;
+}
+
+.app-desktop .app-sidebar .ui-btn:not(.ui-btn-active):not(.app-selected):hover,
+.app-desktop .app-sidebar .app-calendar-plugin table tr:not(.ui-btn-active) td:hover:not(.ui-btn-active):not(.app-day-unselectable) {
+    background-color: /*@sidebar.full.hoverBackground*/ rgba(0,0,0,0.05);
+}
+
+.app-bar-toolbar-bottom .ui-btn:before,
+.app-bar-toolbar-bottom .ui-btn:after,
+.app-bar-toolbar-bottom .ui-btn .app-icon,
+.app-bar-toolbar-bottom .ui-btn .app-icon:before,
+.app-bar-toolbar-bottom .ui-btn .app-icon:after {
+    color: /* @sidebar.full.icon.default*/ #777;
+}
+
+.app-desktop .app-bar-toolbar-bottom .ui-btn.app-btn-settings:hover:not(.ui-btn-active),
+.app-desktop .app-bar-toolbar-bottom .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop .app-bar-toolbar-bottom .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop .app-bar-toolbar-bottom .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop .app-bar-toolbar-bottom .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop .app-bar-toolbar-bottom .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /* @sidebar.full.icon.hover*/ #000;
+}
+
+.app-bar-toolbar-bottom .ui-btn.app-btn-settings.ui-btn-active,
+.app-bar-toolbar-bottom .ui-btn.ui-btn-active:before,
+.app-bar-toolbar-bottom .ui-btn.ui-btn-active:after,
+.app-bar-toolbar-bottom .ui-btn.ui-btn-active .app-icon,
+.app-bar-toolbar-bottom .ui-btn.ui-btn-active .app-icon:before,
+.app-bar-toolbar-bottom .ui-btn.ui-btn-active .app-icon:after {
+    color: /* @sidebar.full.icon.active*/ #000;
+}
+
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.app-btn-settings,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn:before,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn:after,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn .app-icon,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn .app-icon:before,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn .app-icon:after {
+    color: /* @sidebar.full.toolbar.icon.default, @sidebar.full.icon.default*/ #333;
+}
+
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn.app-btn-settings:hover:not(.ui-btn-active),
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /* @sidebar.full.toolbar.icon.hover, @sidebar.full.icon.hover*/ #000;
+}
+
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.app-btn-settings.ui-btn-active,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active:before,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active:after,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon:before,
+.app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon:after {
+    color: /* @sidebar.full.toolbar.icon.active, @sidebar.full.icon.active*/ #000;
+}
+
+/*sidebar.mini*/
+.app-has-minisidebar-left .app-sidebar {
+    background-color: /* @sidebar.mini.background,@sidebar.full.background */ #f6f6f6;
+    border-color: /*@sidebar.mini.border,@sidebar.full.border*/ #ccc;
+}
+
+    .app-has-minisidebar-left .app-sidebar .ui-li-static {
+        background-color: /*@sidebar.mini.contentBackground,@sidebar.mini.background,@sidebar.full.contentBackground,@sidebar.full.background*/ #fff;
+        border-color: /*@sidebar.mini.border,@sidebar.full.border*/ #ddd;
+    }
+
+    .app-has-minisidebar-left .app-sidebar .ui-li-divider:not(.app-list-instruction) {
+        background-color: /*@sidebar.mini.border,@sidebar.full.border*/ #ccc;
+    }
+
+    .app-has-minisidebar-left .app-sidebar .ui-btn,
+    .app-has-minisidebar-left .app-sidebar .ui-btn:before,
+    .app-has-minisidebar-left .app-sidebar .ui-btn:after,
+    .app-has-minisidebar-left .app-sidebar .ui-btn .app-icon,
+    .app-has-minisidebar-left .app-sidebar .ui-btn .app-icon:before,
+    .app-has-minisidebar-left .app-sidebar .ui-btn .app-icon:after {
+        color: /*@sidebar.mini.icon.default,@sidebar.full.icon.default*/ #777;
+    }
+
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active),
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop.app-has-minisidebar-left .app-sidebar .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /*@sidebar.mini.icon.hover,@sidebar.full.icon.hover*/ #000;
+}
+
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active,
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active:before,
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active:after,
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active .app-icon,
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active .app-icon:before,
+.app-has-minisidebar-left .app-sidebar .ui-btn.ui-btn-active .app-icon:after {
+    color: /*@sidebar.mini.icon.active,@sidebar.full.icon.active*/ #000;
+}
+
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:not(.ui-btn-active):before,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:not(.ui-btn-active):after,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:not(.ui-btn-active) .app-icon,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:not(.ui-btn-active) .app-icon:before,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:not(.ui-btn-active) .app-icon:after {
+    color: /* @sidebar.mini.toolbar.icon.default, @sidebar.mini.icon.default,@sidebar.full.toolbar.icon.default, @sidebar.full.icon.default*/ #333;
+}
+
+.app-desktop.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /* @sidebar.mini.toolbar.icon.hover, @sidebar.mini.icon.hover,@sidebar.full.toolbar.icon.hover, @sidebar.full.icon.hover*/ #000;
+}
+
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active:before,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active:after,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon:before,
+.app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons .ui-btn.ui-btn-active .app-icon:after {
+    color: /* @sidebar.mini.toolbar.icon.active, @sidebar.mini.icon.active,@sidebar.full.toolbar.icon.active, @sidebar.full.icon.active*/ #000;
+}
+
+.app-desktop .app-has-minisidebar-left .ui-btn:not(.ui-btn-active):not(.app-selected):hover,
+.app-desktop .app-has-minisidebar-left .app-calendar-plugin table tr:not(.ui-btn-active) td:hover:not(.ui-btn-active):not(.app-day-unselectable) {
+    background-color: /*@sidebar.mini.hoverBackground,@sidebar.full.hoverBackground*/ rgba(0,0,0,0.05);
+}
+
+.app-has-minisidebar-left .app-bar-toolbar-bottom {
+    border-color: /* @sidebar.mini.border,@sidebar.full.border*/ #ccc;
+    background-color: /* @sidebar.mini.background,@sidebar.full.background*/ #f6f6f6;
+}
+
+    .app-has-minisidebar-left .app-bar-toolbar-bottom.app-has-icons {
+        border-color: /* @sidebar.mini.toolbar.border, @sidebar.mini.border,@sidebar.full.toolbar.border, @sidebar.full.border*/ #ccc;
+        background-color: /*@sidebar.mini.toolbar.background, @sidebar.mini.background,@sidebar.full.toolbar.background, @sidebar.full.background*/ #e9e9e9;
+    }
+
+    .app-has-minisidebar-left .app-bar-toolbar-bottom .ui-btn.app-selected:not(.ui-btn-active)::before {
+        background-color: /*@sidebar.mini.toolbar.selectedColor, @sidebar.mini.selectedColor,@sidebar.full.toolbar.selectedColor, @sidebar.full.selectedColor,@header.background*/ #38c;
+    }
+
+.app-has-minisidebar-left .app-sidebar .app-option-selected:before {
+    background-color: /*@sidebar.mini.selectedColor,@sidebar.full.selectedColor,@header.background*/ #38c;
+}
+
+/*panels/popups*/
+div[data-role="panel"] .ui-btn:before,
+div[data-role="panel"] .ui-btn:after,
+div[data-role="panel"] .ui-btn .app-icon,
+div[data-role="panel"] .ui-btn .app-icon:before,
+div[data-role="panel"] .ui-btn .app-icon:after,
+.ui-popup .ui-btn:before,
+.ui-popup .ui-btn:after,
+.ui-popup .ui-btn .app-icon,
+.ui-popup .ui-btn .app-icon:before,
+.ui-popup .ui-btn .app-icon:after {
+    color: /*@panel.icon.default*/ #777;
+}
+
+.ui-listview .app-avatar .app-icon-avatar {
+    border-color: /*@panel.icon.default*/ #aaa;
+}
+
+
+.app-desktop div[data-role="panel"] .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop div[data-role="panel"] .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop div[data-role="panel"] .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop div[data-role="panel"] .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop div[data-role="panel"] .ui-btn:hover:not(.ui-btn-active) .app-icon:after,
+.app-desktop .ui-popup .ui-btn:hover:not(.ui-btn-active):before,
+.app-desktop .ui-popup .ui-btn:hover:not(.ui-btn-active):after,
+.app-desktop .ui-popup .ui-btn:hover:not(.ui-btn-active) .app-icon,
+.app-desktop .ui-popup .ui-btn:hover:not(.ui-btn-active) .app-icon:before,
+.app-desktop .ui-popup .ui-btn:hover:not(.ui-btn-active) .app-icon:after {
+    color: /*@panel.icon.hover*/ #000;
+}
+
+/* tabbar (bottom tabs) */
+
+.app-bar-tabs ul li.app-selected span,
+.app-bar-tabs ul li.app-selected .app-icon {
+    color: /*@buttons.tabbar.icon.default,@panel.icon.default*/ #333;
+}
+
+
+.ui-listview .app-avatar:hover:not(.ui-btn-active) .app-icon-avatar {
+    border-color: /*@panel.icon.hover*/ #000;
+}
+
+div[data-role="panel"] .ui-btn.ui-btn-active:before,
+div[data-role="panel"] .ui-btn.ui-btn-active:after,
+div[data-role="panel"] .ui-btn.ui-btn-active .app-icon,
+div[data-role="panel"] .ui-btn.ui-btn-active .app-icon:before,
+div[data-role="panel"] .ui-btn.ui-btn-active .app-icon:after,
+.ui-popup .ui-btn.ui-btn-active:before,
+.ui-popup .ui-btn.ui-btn-active:after,
+.ui-popup .ui-btn.ui-btn-active .app-icon,
+.ui-popup .ui-btn.ui-btn-active .app-icon:before,
+.ui-popup .ui-btn.ui-btn-active .app-icon:after {
+    color: /*@panel.icon.hover*/ #333;
+}
+
+.ui-listview .app-avatar.ui-btn-active .app-icon-avatar {
+    border-color: /*@panel.icon.active*/ #fff;
+}
+
+.ui-popup .ui-btn-icon-notext.ui-btn-active:before,
+.ui-popup .ui-btn-icon-notext.ui-btn-active:after,
+.ui-popup .ui-btn-icon-notext.ui-btn-active .app-icon,
+.ui-popup .ui-btn-icon-notext.ui-btn-active .app-icon:before,
+.ui-popup .ui-btn-icon-notext.ui-btn-active .app-icon:after {
+    color: /*@panel.icon.active*/ #000;
+}
+
+div[data-role="panel"] .app-item-tile .ui-btn.app-item-selected:not(.ui-btn-active),
+div[data-role="panel"] .app-item-tile .ui-btn.app-item-selected:not(.ui-btn-active) .app-icon::after,
+div[data-role="panel"] .app-item-tile .ui-btn.app-item-selected:not(.ui-btn-active) .app-icon::before,
+div[data-role="panel"] .app-item-tile .ui-btn.app-item-selected:not(.ui-btn-active) .app-icon {
+    color: /*@panel.tile.selected*/ #000;
+}
+
+/*buttons.form*/
+.app-bar-buttons .ui-btn {
+    color: /*@buttons.form.text.default*/ #333;
+}
+
+.app-desktop .app-bar-buttons .ui-btn:hover:not(.ui-btn-active) {
+    color: /*@buttons.form.text.hover*/ #333;
+}
+
+.app-bar-buttons .ui-btn.ui-btn-active {
+    color: /*@buttons.form.text.active*/ #333;
+}
+
+[data-layout="form"] .app-icon {
+    color: /*@buttons.form.icon.default,@buttons.form.text.default*/ #555;
+}
+
+.app-desktop [data-layout="form"] .app-icon:hover:not(.ui-btn-active) {
+    color: /*@buttons.form.icon.hover,@buttons.form.text.hover*/ #000;
+}
+
+[data-layout="form"] .app-icon.ui-btn-active {
+    color: /*@buttons.form.icon.active,@buttons.form.text.active*/ #38c;
+}
+
+
+/*modal*/
+.app-page-modal-background {
+    background-color: /*@modal.background*/ rgba(0,0,0,.5);
+}
+
+.app-page-modal-title,
+.ui-page.app-page-modal .app-page-header,
+.ui-page.app-page-modal .ui-header.ui-header-fixed.app-bar-actions {
+    background-color: /*@modal.header.background, @header.background*/ /*!default*/ #e9e9e9;
+}
+
+/*system*/
+.app-has-depth .ui-btn.app-item-selected,
+.app-has-depth .ui-btn.app-item-selected:hover:not(.ui-btn-active),
+.ui-popup .app-has-depth .app-item-selected:not(:hover):not(.ui-btn-active):not(.app-checked),
+.ui-popup .app-has-depth .app-item-selected:hover:not(.ui-btn-active) {
+    background-color: /*@system.selectedBackground*/ rgba(0,0,0,.075);
+}
+
+.app-bar-toolbar .app-back-text {
+    max-width: /*@system.backTextMaxWidth*/ 50%;
+}
+
+.app-desktop .ui-btn:not(.ui-btn-active):not(.app-selected):hover,
+.app-desktop .app-btn-promo:not(.ui-btn-active):not(.app-selected):hover:after,
+.app-desktop .app-calendar-plugin table td:hover:not(.ui-btn-active):not(.app-day-unselectable),
+.app-desktop [data-layout="form"] .app-control-toolbar > i:hover:not(.app-active):not(.app-disabled),
+.app-desktop [data-layout="form"] .app-control-toolbar > .app-has-droparrow:hover {
+    background-color: /*@system.hoverBackground*/ rgba(0,0,0,0.05);
+}
+
+.dataview-busy-indicator {
+    background-color: /*@system.busyIndicator*/ #38c;
+}
+
+.app-option-selected::before,
+.app-item-selected::before,
+.app-listview .app-selected.ui-btn::before {
+    background-color: /*@system.selectBar,@buttons.menu.background,@header.background*/ #38c;
+}
+
+/* tabs */
+
+.app-desktop .app-tabs .ui-btn:not(.ui-btn-active):not(.app-selected):hover {
+    background-color: transparent;
+}
+
+.app-tabs .ui-btn.app-tab-active,
+.app-tabs .ui-btn.ui-btn-active {
+    background-color: /*@form.tabColor, @header.background*/ #38c;
+}
+
+.app-tabs .ui-btn,
+.app-tabs .ui-btn.app-tab-active,
+.app-tabs .ui-btn.ui-btn-active,
+.app-desktop .app-tabs .ui-btn:not(.ui-btn-active):not(.app-selected):hover {
+    border-color: /*@form.tabColor, @header.background*/ #38c;
+}
+
+    .app-tabs .ui-btn:not(.ui-btn-active) {
+        color: /*@form.tabColor, @header.background*/ #38c;
+        background-color: #fff;
+    }
+
+/* status bar */
+.app-status-bar .Segment.Current,
+.app-status-bar .Segment.Current span.Inner::after,
+.app-status-bar .Segment.Current span.Self {
+    border-color: /*@buttons.wizard.border,@header.border*/ #38c;
+    background-color: /*@buttons.wizard.background,@header.background*/ #38c;
+    color: /*@buttons.wizard.text.default,@header.text.default*/ #fff;
+}
+
+.app-status-bar .Segment.First.Current,
+.app-status-bar .Segment.PastToCurrent span.Inner::after {
+    border-color: /*@buttons.wizard.border,@header.border*/ #38c;
+}

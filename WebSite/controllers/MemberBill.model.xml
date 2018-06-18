@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberBill" alias="MemberBill" created="2018-04-10T22:27:37" modified="2018-05-13T21:28:28" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="309" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="653" y="20" baseForeignKey="MemberInfo">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank" x="343" y="320">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberBillID" fieldName="MemberBillID" label="Member Bill ID" />
+    <column name="BillNo" fieldName="BillNo" label="Bill No" />
+    <column name="BillDate" fieldName="BillDate" label="Bill Date" format="dd/MMM/yyyy" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="MemberInfo" />
+    <column name="NameOfMember" fieldName="MemberInfoNameOfMember" label="Member Info Name Of Member" foreignKey="MemberInfo" />
+    <column name="MemberCode" fieldName="MemberInfoMemberCode" label="Member Info Member Code" foreignKey="MemberInfo" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MonthlyDue" fieldName="MonthlyDue" label="Monthly Due" />
+    <column name="LockerDue" fieldName="LockerDue" label="Locker Due" />
+    <column name="TournamentDue" fieldName="TournamentDue" label="Tournament Due" />
+    <column name="ServiceDue" fieldName="ServiceDue" label="Service Due" />
+    <column name="ContributionWFdue" fieldName="ContributionWfdue" label="Contribution Wfdue" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDT" fieldName="ChequeDT" label="Cheque DT" format="dd-MMM-yyyy" />
+    <column name="PayAmount" fieldName="PayAmount" label="Pay Amount" />
+    <column name="Voucherno" fieldName="Voucherno" label="Voucherno" />
+    <column name="SubscriptionDueDate" fieldName="SubscriptionDueDate" label="Subscription Due Date" format="dd-MMM-yyyy" />
+    <column name="ContributionDT" fieldName="ContributionDT" label="Contribution DT" format="dd-MMM-yyyy" />
+    <column name="CollectionBy" fieldName="CollectionBy" label="Collection By" />
+    <column name="CollectionDate" fieldName="CollectionDate" label="Collection Date" format="g" />
+    <column name="ContributionDTDueOn" fieldName="ContributionDtdueOn" label="Contribution Dtdue On" format="g" />
+    <column name="SubsiDueOnDate" fieldName="SubsiDueOnDate" label="Subsi Due On Date" format="g" />
+    <column name="MonthlyDuePaid" fieldName="MonthlyDuePaid" label="Monthly Due Paid" />
+    <column name="ContributionWFduePaid" fieldName="ContributionWfduePaid" label="Contribution Wfdue Paid" />
+    <column name="LockerDuePaid" fieldName="LockerDuePaid" label="Locker Due Paid" />
+    <column name="ServiceDuePaid" fieldName="ServiceDuePaid" label="Service Due Paid" />
+  </columns>
+</dataModel>

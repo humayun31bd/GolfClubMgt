@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="HoleType" alias="HoleType" created="2018-04-09T20:38:32" modified="2018-05-20T17:59:45" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" />
+    <column name="GameNextTeeDelay" fieldName="GameNextTeeDelay" label="Next Tee Delay" />
+  </columns>
+</dataModel>

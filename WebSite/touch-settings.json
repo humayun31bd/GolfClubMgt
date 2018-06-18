@@ -1,0 +1,88 @@
+﻿{
+"appname":"Golf Club",
+"ui": {
+    "theme": {
+      "name": "Light",
+      "accent": "Aquarium",
+      "preview": null
+    },
+    "displayDensity": {
+      "mobile": "Auto",
+      "desktop": "Condensed"
+    },
+    "list": {
+      "labels": {
+        "display": "DisplayedBelow"
+      },
+      "initialMode": "SeeAll"
+    },
+    "menu": {
+      "location": null,
+      "apps": {
+        "tiles": null,
+        "location": "sidebar"
+      }
+    },
+    "actions": {
+      "promote": true,
+      "reverse": null,
+      "autoReverse":  null
+    },
+    "transitions": {
+      "style": "slide"
+    },
+    "sidebar": {
+      "when": "Landscape",
+      "mini": true,
+      "toolbar": true,
+      "icons": true,
+      "views": {
+        "styles": null,
+        "names": null,
+        "collapsed": false
+      }
+    },
+    "showSystemButtons": null,
+    "smartDates": true
+  },
+  "settings": {
+    "enabled": true,
+    "options": {
+      "displayDensity": true,
+      "theme": true,
+      "transitions": true,
+      "sidebar": true,
+      "labelsInList": true,
+      "showSystemButtons": true,
+      "promoteActions": true,
+      "smartDates": true,
+      "initialListMode": true
+    }
+  },
+  "membership": {
+    "enabled": false,
+    "profile": "view switch login logout",
+    "help": true,
+    "accountManager": {
+      "enabled": true
+    }
+  },
+  "help": {
+    "enabled": null
+  },
+  "search": {
+    "quickFind": {
+      "history": {
+        "enabled": true,
+        "depth": 25
+      }
+    }
+  },
+  "splash": {
+	"enabled":true,
+	"logo":"../images/logo-inverse.png",
+	"background":"../images/GolfClubBackground.png",
+	"duration":2500
+ }
+}
+ 

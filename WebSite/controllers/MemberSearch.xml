@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberSearch" label="MemberSearch" conflictDetection="overwriteChanges" handler="MyCompany.Rules.MemberSearchBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="MemberCode" type="String" label="Membership No" length="50" />
+    <field name="MemberDueSearch" type="DataView" label="Member Due Search">
+      <dataView controller="MemberDueSearch" view="grid1" />
+    </field>
+  </fields>
+  <views>
+    <view id="form1" type="Form" label="Search Member Due" tags="material-icon-shopping-cart">
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="MemberDueSearch" columns="15">
+              <dataView showActionBar="false" />
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+      <headerText>Please enter member code to search due</headerText>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag100" scope="Form" flat="false">
+      <action commandName="Confirm" commandArgument="MemberDueSearch" headerText="Search" cssClass="material-icon-search" whenLastCommandName="Edit" key="Enter" id="a100" />
+      <action commandName="Report" commandArgument="_blank;ProntReportDue" headerText="Print Report" id="a101" confirmation="_controller=MemberFilter&#xD;&#xA;_title=Select Member" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="confirm" type="JavaScript" phase="After"><![CDATA[$app.input.focus()]]></rule>
+    <rule id="r101" commandName="Report" commandArgument="ProntReportDue" type="Code" phase="Execute" />
+  </businessRules>
+</dataController>

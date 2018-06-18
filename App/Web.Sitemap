@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/Default.aspx">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/Pages/Home.aspx" cssClass="Wide" />
+    <siteMapNode title="Club Setup" description="" url="~/Pages/ClubSetup.aspx" roles="Administrators" cssClass="material-icon-card-travel">
+      <siteMapNode title="Member Group" description="View Member Group" url="~/Pages/MemberGroup.aspx" />
+      <siteMapNode title="Member Category" description="View Member Category" url="~/Pages/MemberCategory.aspx" />
+      <siteMapNode title="Member Status" description="View Member Status" url="~/Pages/MemberStatus.aspx" />
+      <siteMapNode title="Monthly Fee" description="View Member Fee" url="~/Pages/MemberFee.aspx" />
+      <siteMapNode title="Member Registration" description="View Member Information" url="~/Pages/MemberInfo.aspx" />
+      <siteMapNode title="Non Member Registration" description="" url="~/Pages/NonMemberRegistration.aspx" roles="*" />
+      <siteMapNode title="Card Register" description="" url="~/Pages/RegisterMemberCard.aspx" roles="Administrators,CardAdmin" />
+      <siteMapNode title="Deposit To Card" description="" url="~/Pages/DepositToCard.aspx" roles="*" />
+      <siteMapNode title="Member Service" description="View Member Service" url="~/Pages/MemberService.aspx" />
+      <siteMapNode title="Member Status Change" description="View Member Status Change" url="~/Pages/MemberStatusChange.aspx" />
+      <siteMapNode title="Member Personal Caddie Ballboy" description="View Member Personal Caddie Ballboy" url="~/Pages/MemberPersonalCaddieBallboy.aspx" />
+      <siteMapNode title="Caddie" description="View Caddie" url="~/Pages/Caddie.aspx" />
+      <siteMapNode title="Ball Boy" description="View Ball Boy" url="~/Pages/BallBoy.aspx" />
+      <siteMapNode title="Golf Cart" description="View Golf Cart" url="~/Pages/GolfCart.aspx" />
+      <siteMapNode title="Bank" description="View Bank" url="~/Pages/Bank.aspx" />
+      <siteMapNode title="Smsconfig" description="View Smsconfig" url="~/Pages/Smsconfig.aspx" />
+      <siteMapNode title="User Access" description="^MembershipDesc^User and role manager^MembershipDesc^" url="~/Pages/Membership.aspx" roles="Administrators" />
+      <siteMapNode title="Smsdelivery" description="View Smsdelivery" url="~/Pages/Smsdelivery.aspx" />
+      <siteMapNode title="Holiday" description="View Holiday" url="~/Pages/Holiday.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Game Setup" description="" url="~/Pages/GameSetup.aspx" roles="Administrators">
+      <siteMapNode title="Game Board" description="View Game Flight Schedule" url="~/Pages/GameFlightSchedule.aspx" roles="*" />
+      <siteMapNode title="Hole Setup" description="" url="~/Pages/HoleSetup.aspx" roles="*" />
+      <siteMapNode title="Game Category" description="View Game Category" url="~/Pages/GameCategory.aspx" />
+      <siteMapNode title="Game Fee" description="View Game Fee" url="~/Pages/GameFee.aspx" />
+      <siteMapNode title="Game Schedule Create" description="" url="~/Pages/GameSchedule.aspx" roles="*" />
+      <siteMapNode title="Game Registration" description="" url="~/Pages/GameRegistration.aspx" roles="Administrators" />
+      <siteMapNode title="Game Payment Approval" description="View Member Game Reg" url="~/Pages/MemberGameReg.aspx" />
+      <siteMapNode title="Game Match" description="View Game Match" url="~/Pages/GameMatch.aspx" roles="NonDelivery" />
+      <siteMapNode title="Game Player Group" description="View Game Player Group" url="~/Pages/GamePlayerGroup.aspx" roles="nondelivery" />
+      <siteMapNode title="Game Match Score" description="View Game Match Score" url="~/Pages/GameMatchScore.aspx" roles="nondelivery" />
+      <siteMapNode title="Registration Report" description="" url="~/Pages/Registration.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Tournament Setup" description="" url="~/Pages/TournamentSetup.aspx" roles="Administrators" cssClass="material-icon-perm-contact-calendar">
+      <siteMapNode title="Tournament" description="View Tournament" url="~/Pages/Tournament.aspx" />
+      <siteMapNode title="Tee Name" description="View Tee Name" url="~/Pages/TeeName.aspx" />
+      <siteMapNode title="Fees" description="View Tournament Fee" url="~/Pages/TournamentFee.aspx" />
+      <siteMapNode title="Tournament Flight Schedule" description="View Tournament Flight Sch" url="~/Pages/TournamentFlightSch.aspx" />
+      <siteMapNode title="Game Type" description="View Game Type" url="~/Pages/GameType.aspx" />
+      <siteMapNode title="Tournament Payment" description="" url="~/Pages/TournamentPayment.aspx" roles="*" />
+      <siteMapNode title="Tour Register Member" description="" url="~/Pages/TourRegisterMember.aspx" roles="*" />
+    </siteMapNode>
+    <siteMapNode title="Locker Service" description="" url="~/Pages/LockerService.aspx" roles="Administrators" cssClass="material-icon-store">
+      <siteMapNode title="Locker" description="View Locker" url="~/Pages/Locker.aspx" />
+      <siteMapNode title="Locker Booking" description="View Locker Booking" url="~/Pages/LockerBooking.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Bill Collection" description="" url="~/Pages/BillCollection.aspx" roles="Administrators" cssClass="material-icon-account-balance">
+      <siteMapNode title="Bill Approval Pending" description="View Member Bill Approval Pending" url="~/Pages/MemberBill.aspx" roles="NonDelivery,Administrators" />
+      <siteMapNode title="Bill Collection" description="Member Bill Collection - Monthly Subscription, Contribution Welfare Fund, Locker Service etc." url="~/Pages/MyExternal.aspx" roles="Administrators,BillCollectors" cssClass="metrial-icon-build" />
+      <siteMapNode title="Member SMS" description="" url="~/Pages/MemberSMS.aspx" roles="Administrators" />
+    </siteMapNode>
+    <siteMapNode title="Reports" description="" url="~/Pages/Reports.aspx" roles="Administrators">
+      <siteMapNode title="Due Statement" description="" url="~/Pages/DueStatement.aspx" roles="*" />
+      <siteMapNode title="Tournament Collection" description="" url="~/Pages/TournamentCollection.aspx" roles="*" />
+      <siteMapNode title="Member Bill Collection" description="" url="~/Pages/MemberBillCollection.aspx" roles="*" />
+      <siteMapNode title="Member Fee Report" description="" url="~/Pages/MemberFeeReport.aspx" roles="*" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

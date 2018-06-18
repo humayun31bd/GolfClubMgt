@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameFee" alias="GameFee" created="2018-04-09T20:38:34" modified="2018-05-01T08:05:47" x="20" y="36" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="579" y="20">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="342" y="243">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="342" y="383">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="GameFeeID" fieldName="GameFeeID" label="Game Fee ID" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" aliasColumnName="CategoryName" aliasForeignKey="MemberCategory" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category" foreignKey="MemberCategory" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryMemberCategoryID" label="Member Category Member Category ID" foreignKey="MemberCategory" />
+    <column name="MemberGroupID" fieldName="MemberCategoryMemberGroupID" label="Member Category Member Group ID" foreignKey="MemberCategory" />
+    <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="MemberStatus" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="MemberStatusID" fieldName="MemberStatusMemberStatusID" label="Member Status Member Status ID" foreignKey="MemberStatus" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="GreenFee" fieldName="GreenFee" label="Green Fee" />
+    <column name="GreenFeeAccountID" fieldName="GreenFeeAccountID" label="Green Fee Account ID" />
+    <column name="CaddieFee" fieldName="CaddieFee" label="Caddie Fee" />
+    <column name="CaddieFeeAccountID" fieldName="CaddieFeeAccountID" label="Caddie Fee Account ID" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="GolfCartFee" fieldName="GolfCartFee" label="Golf Cart Fee" />
+    <column name="CaddieSubsidy" fieldName="CaddieSubsidy" label="Caddie Subsidy" />
+    <column name="SpouseCaddieSubsidy" fieldName="SpouseCaddieSubsidy" label="Spouse Caddie Subsidy" />
+    <column name="CildrenCaddieSubsidy" fieldName="CildrenCaddieSubsidy" label="Cildren Caddie Subsidy" />
+    <column name="BallBoyFee" fieldName="BallBoyFee" label="Ball Boy Fee" />
+    <column name="BallBoyAccountID" fieldName="BallBoyAccountID" label="Ball Boy Account ID" />
+    <column name="BallBoySubsiDy" fieldName="BallBoySubsiDy" label="Ball Boy Subsi Dy" />
+    <column name="SpouseBallBoySubsidy" fieldName="SpouseBallBoySubsidy" label="Spouse Ball Boy Subsidy" />
+    <column name="ChildrenBallBoySubsidy" fieldName="ChildrenBallBoySubsidy" label="Children Ball Boy Subsidy" />
+    <column name="GreenSubsidy" fieldName="GreenSubsidy" label="Green Subsidy" />
+  </columns>
+</dataModel>

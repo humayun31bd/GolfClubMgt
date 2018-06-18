@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CloseBookingLocker" label="CloseBookingLocker" conflictDetection="overwriteChanges" handler="MyCompany.Rules.CloseBookingLockerBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="ClosingDate" type="DateTime" allowNulls="false" label="Closing Date" dataFormatString="dd/MM/yyyy" />
+  </fields>
+</dataController>

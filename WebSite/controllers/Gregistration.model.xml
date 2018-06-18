@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GRegistration" alias="GRegistration" created="2018-05-20T17:56:18" modified="2018-05-20T17:56:18" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="FlightSch" parentTableSchema="dbo" parentTableName="GameFlightSchedule">
+      <foreignKeyColumn columnName="FlightSchID" parentColumnName="FlightSchID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="Caddie" parentTableSchema="dbo" parentTableName="Caddie">
+      <foreignKeyColumn columnName="CaddieID" parentColumnName="CaddieID" />
+    </foreignKey>
+    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy">
+      <foreignKeyColumn columnName="BallBoyID" parentColumnName="BallBoyID" />
+    </foreignKey>
+    <foreignKey id="GolfCart" parentTableSchema="dbo" parentTableName="GolfCart">
+      <foreignKeyColumn columnName="GolfCartID" parentColumnName="GolfCartID" />
+    </foreignKey>
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="GRegisterID" fieldName="GregisterID" label="G Register ID" />
+    <column name="FlightSchID" fieldName="FlightSchID" label="Flight Sch ID" aliasColumnName="StartTime" aliasForeignKey="FlightSch" />
+    <column name="StartTime" fieldName="FlightSchStartTime" label="Flight Sch Start Time" foreignKey="FlightSch" />
+    <column name="PlayDate" fieldName="PlayDate" label="Play Date" format="g" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type Desc" foreignKey="HoleType" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="IsSinglePlayer" fieldName="IsSinglePlayer" label="Is Single Player" />
+    <column name="IsGroupPlayer" fieldName="IsGroupPlayer" label="Is Group Player" />
+    <column name="CaddiePermanent" fieldName="CaddiePermanent" label="Caddie Permanent" />
+    <column name="CaddieID" fieldName="CaddieID" label="Caddie ID" aliasColumnName="CaddieCode" aliasForeignKey="Caddie" />
+    <column name="CaddieCode" fieldName="CaddieCode" label="Caddie Code" foreignKey="Caddie" />
+    <column name="BallBoyID" fieldName="BallBoyID" label="Ball Boy ID" aliasColumnName="BallBoyCode" aliasForeignKey="BallBoy" />
+    <column name="BallBoyCode" fieldName="BallBoyCode" label="Ball Boy Code" foreignKey="BallBoy" />
+    <column name="NeedGolfCart" fieldName="NeedGolfCart" label="Need Golf Cart" />
+    <column name="GolfCartID" fieldName="GolfCartID" label="Golf Cart ID" aliasColumnName="GolfCartCode" aliasForeignKey="GolfCart" />
+    <column name="GolfCartCode" fieldName="GolfCartCode" label="Golf Cart Code" foreignKey="GolfCart" />
+    <column name="GolfCartHoleTypeID" fieldName="GolfCartHoleTypeID" label="Golf Cart Hole Type ID" />
+    <column name="MemberGroupID" fieldName="MemberGroupID" label="Member Group ID" aliasColumnName="MemberGroupName" aliasForeignKey="MemberGroup" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group Name" foreignKey="MemberGroup" />
+    <column name="MemberCategoryID" fieldName="MemberCategoryID" label="Member Category ID" aliasColumnName="CategoryName" aliasForeignKey="MemberCategory" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" aliasColumnName="MemberStatus" aliasForeignKey="MemberStatus" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="GreenFee" fieldName="GreenFee" label="Green Fee" />
+    <column name="CaddieFee" fieldName="CaddieFee" label="Caddie Fee" />
+    <column name="BallBoyFee" fieldName="BallBoyFee" label="Ball Boy Fee" />
+    <column name="GolfCartFee" fieldName="GolfCartFee" label="Golf Cart Fee" />
+    <column name="RegNo" fieldName="RegNo" label="Reg No" />
+    <column name="RegDate" fieldName="RegDate" label="Reg Date" format="g" />
+    <column name="HandiCap" fieldName="HandiCap" label="Handi Cap" />
+    <column name="EstTeeOffTime" fieldName="EstTeeOffTime" label="Est Tee Off Time" format="g" />
+    <column name="DelayTime" fieldName="DelayTime" label="Delay Time" />
+    <column name="CreatedBY" fieldName="CreatedBy" label="Created BY" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="g" />
+    <column name="IsBooking" fieldName="IsBooking" label="Is Booking" />
+    <column name="IsRegister" fieldName="IsRegister" label="Is Register" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+    <column name="ChequeDT" fieldName="ChequeDt" label="Cheque DT" format="g" />
+    <column name="CardID" fieldName="CardID" label="Card ID" />
+    <column name="CaddieSubsidy" fieldName="CaddieSubsidy" label="Caddie Subsidy" />
+    <column name="BallBoySubsidy" fieldName="BallBoySubsidy" label="Ball Boy Subsidy" />
+    <column name="GreenSubsidy" fieldName="GreenSubsidy" label="Green Subsidy" />
+    <column name="TotalBill" fieldName="TotalBill" label="Total Bill" />
+    <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
+    <column name="CollectionBy" fieldName="CollectionBy" label="Collection By" />
+    <column name="BillText" fieldName="BillText" label="Bill Text" />
+    <column name="BookingDate" fieldName="BookingDate" label="Booking Date" format="g" />
+  </columns>
+</dataModel>

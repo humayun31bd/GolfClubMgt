@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Caddie" alias="Caddie" created="2018-04-16T17:12:26" modified="2018-05-01T11:35:24" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="308" y="20">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="CaddieID" fieldName="CaddieID" label="Caddie ID" />
+    <column name="CaddieName" fieldName="CaddieName" label="Caddie Name" />
+    <column name="CaddieCode" fieldName="CaddieCode" label="Caddie Code" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="Address" fieldName="Address" label="Address" />
+    <column name="Phone" fieldName="Phone" label="Phone" />
+    <column name="DOB" fieldName="Dob" label="Dob" format="dd/MM/yyyy" />
+    <column name="JoiningDate" fieldName="JoiningDate" label="Joining Date" format="dd/MM/yyyy" />
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" aliasColumnName="GenderDesc" aliasForeignKey="Gender" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender" foreignKey="Gender" />
+    <column name="Picture" fieldName="Picture" label="Picture" />
+    <column name="ContentType" fieldName="ContentType" label="Content Type" />
+    <column name="Length" fieldName="Length" label="Length" />
+  </columns>
+</dataModel>

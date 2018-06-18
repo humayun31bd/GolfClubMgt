@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="LockerIssueFilter" label="LockerIssueFilter" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="ParamLockerPriceID" type="Int32" label="Param Locker Price ID">
+      <items style="Lookup" dataController="LockerPrice" dataView="FreeLockers" dataTextField="LockerFee" dataValueField="LockerPriceID" />
+    </field>
+  </fields>
+</dataController>

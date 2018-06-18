@@ -1,0 +1,158 @@
+﻿.app-sclr.hidden {
+    display: none!important;
+}
+
+.app-sclr table,
+.app-sclr-header-top table {
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+    .app-sclr table td,
+    .app-sclr table th {
+        border-bottom: solid 1px #ccc;
+        border-right: solid 1px transparent;
+        padding: 8px 8px;
+        line-height: 16px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: normal;
+        box-sizing: border-box;
+        vertical-align: top;
+    }
+
+    .app-echo .app-sclr-header-top,
+    .app-echo .app-sclr-data {
+        border-left: solid 1px #ddd;
+    }
+
+.app-echo .app-sclr-header-top {
+    border-top: solid 1px #ddd;
+}
+
+.app-sclr.app-sclr-grid td,
+.app-sclr.app-sclr-grid th {
+    border-right-color: #ccc;
+}
+
+.app-density-compact .app-sclr table td,
+.app-density-compact .app-sclr table th {
+    padding: 7px 8px;
+}
+
+.app-density-condensed .app-sclr table td,
+.app-density-condensed .app-sclr table th {
+    padding: 5px 8px;
+}
+
+.app-sclr-data.app-sclr-striped tr:nth-of-type(2n),
+.app-sclr-data.app-sclr-striped-alt tr:nth-of-type(2n+1) {
+    background-color: #fafafa;
+}
+
+.app-sclr-header-top table th {
+    background-color: #f1f1f1;
+    border-bottom: solid 1px #ddd;
+    color: #808080;
+    font-weight: 400;
+    text-align: left;
+    text-overflow: ellipsis;
+    padding: 5px 8px;
+    box-sizing: border-box;
+}
+
+.app-sclr-vscroller {
+    overflow-y: hidden;
+}
+
+.app-sclr-promo-padder {
+    height: 88px;
+}
+
+.app-sclr-hscroller {
+    overflow-x: scroll;
+    margin-bottom: -17px;
+}
+
+.app-sclr.app-sclr-req-padding .app-sclr-hscroller {
+    padding-bottom: 17px;
+}
+
+.app-sclr-padtop,
+.app-sclr-padbot {
+}
+
+.app-sclr-content {
+    display: inline-block;
+    position: relative;
+}
+
+.app-sclr-content,
+.app-sclr-padtop,
+.app-sclr-padbot {
+    image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges; /* Firefox                        */
+    image-rendering: -o-crisp-edges; /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+}
+
+.app-sclr-exts div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: pink;
+}
+
+.app-sclr-null,
+.app-sclr-pager-disabled {
+    color: #999!important;
+}
+
+.app-sclr-pager {
+    height: 30px;
+    padding-top: 17px;
+    border-bottom: solid 1px #ccc;
+    background-color: #f5f5f5;
+}
+
+.app-sclr-pager .app-sclr-prev, 
+.app-sclr-pager .app-sclr-next {
+    padding: 8px 12px;
+    height: 100%;
+}
+
+
+    .app-sclr-pager .app-sclr-prev:hover,
+    .app-sclr-pager .app-sclr-next:hover {
+        cursor: pointer;
+        background-color: #e5e5e5;
+    }
+
+
+    .app-sclr-pager .app-sclr-info {
+        float: right;
+        padding: 0 12px;
+    }
+
+    .app-sclr-data tr td:first-of-type {
+        position: relative;
+        padding-right:32px;
+    }
+
+    .app-sclr-menu {
+        position: absolute;
+        right: 4px;
+        margin-top: -12px;
+        top: 50%;
+    }
+
+.app-schlr-event {
+    background-color: #38c;
+    color: #fff;
+    padding: 6px;
+    border-radius: 2px;
+}

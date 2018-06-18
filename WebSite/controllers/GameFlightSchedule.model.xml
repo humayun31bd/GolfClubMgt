@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameFlightSchedule" alias="GameFlightSchedule" created="2018-04-16T17:12:37" modified="2018-05-01T03:00:19" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="304" y="20">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="FlightSchID" fieldName="FlightSchID" label="Flight Sch ID" />
+    <column name="FlightSchNo" fieldName="FlightSchNo" label="Flight Schedule No" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="StartTime" fieldName="StartTime" label="Start Time" />
+    <column name="MemberCount" fieldName="MemberCount" label="Member Count" />
+    <column name="MaxMemberCount" fieldName="MaxMemberCount" label="Max Member Count" />
+    <column name="DelayTime" fieldName="DelayTime" label="Delay Time" />
+    <column name="GameDate" fieldName="GameDate" label="Game Date" format="g" />
+  </columns>
+</dataModel>

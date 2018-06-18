@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Holiday" alias="Holiday" created="2018-05-01T23:16:44" modified="2018-05-01T23:16:47" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="HolyDayID" fieldName="HolyDayID" label="Holy Day ID" />
+    <column name="Holiday" fieldName="Holiday" label="Holiday" format="g" />
+    <column name="Description" fieldName="Description" label="Description" />
+  </columns>
+</dataModel>

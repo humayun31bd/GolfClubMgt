@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TournamentReport" label="TournamentReport" conflictDetection="overwriteChanges" handler="MyCompany.Rules.TournamentReportBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="MemberCode" type="String" label="Member Code" calculated="true" causesCalculate="true" isVirtual="true" length="50" allowNulls="false">
+      <items style="Lookup" dataController="MemberInfo" dataView="AllMembers" dataTextField="MemberCode" dataValueField="MemberID" />
+    </field>
+    <field name="rptOption" type="Int32" label="Registration" isVirtual="true" allowNulls="false">
+      <items style="RadioButtonList">
+        <item value="1" text="Registration" />
+        <item value="2" text="Caddie/Ball Boy" />
+        <item value="3" text="Subsidy" />
+      </items>
+    </field>
+    <field name="FromDate" type="DateTime" allowNulls="false" label="From Date" isVirtual="true" />
+    <field name="ToDate" type="DateTime" allowNulls="false" label="To Date" isVirtual="true" />
+  </fields>
+  <views>
+    <view id="Form1" type="Form" label="Form1">
+      <headerText>Daily Registration</headerText>
+      <categories>
+        <category id="c1" headerText="Tournament Report" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="rptOption" columns="15" rows="1" />
+            <dataField fieldName="FromDate" columns="10" />
+            <dataField fieldName="ToDate" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions />
+  <businessRules />
+</dataController>

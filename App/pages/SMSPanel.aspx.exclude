@@ -1,0 +1,7 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeFile="SMSPanel.aspx.cs" 
+    Inherits="Pages_SMSPanel"  Title="SMSPanel" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="PageTitleContentPlaceHolder" runat="Server">SMS Panel</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="PageContentPlaceHolder" runat="Server">
+  
+</asp:Content>

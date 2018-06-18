@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SMSProvider" alias="SMSProvider" created="2018-05-20T17:56:02" modified="2018-05-20T17:56:02" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ProviderID" fieldName="ProviderID" label="Provider ID" />
+    <column name="ProviderName" fieldName="ProviderName" label="Provider Name" />
+    <column name="IsMaskingActive" fieldName="IsMaskingActive" label="Is Masking Active" />
+    <column name="MaskName" fieldName="MaskName" label="Mask Name" />
+    <column name="SMSLimit" fieldName="Smslimit" label="SMS Limit" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="SenderMobileNumber" fieldName="SenderMobileNumber" label="Sender Mobile Number" />
+    <column name="SMSBalance" fieldName="Smsbalance" label="SMS Balance" />
+    <column name="SMSAccountName" fieldName="SmsaccountName" label="SMS Account Name" />
+    <column name="SMSHashTag" fieldName="SmshashTag" label="SMS Hash Tag" />
+    <column name="TotalStudent" fieldName="TotalStudent" label="Total Student" />
+    <column name="NoOfFreeSMS" fieldName="NoOfFreeSms" label="No Of Free SMS" />
+  </columns>
+</dataModel>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberService" alias="MemberService" created="2018-04-09T20:38:28" modified="2018-04-09T20:45:15" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ServiceID" fieldName="ServiceID" label="Service ID" />
+    <column name="ServiceName" fieldName="ServiceName" label="Service Name" />
+    <column name="ServiceFee" fieldName="ServiceFee" label="Service Fee" />
+  </columns>
+</dataModel>

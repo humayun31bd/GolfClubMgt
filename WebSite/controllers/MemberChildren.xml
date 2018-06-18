@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberChildren" conflictDetection="overwriteChanges" label="Member Children" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberChildren"."MemberChildID" "MemberChildID"
+	,"MemberChildren"."ChildNo" "ChildNo"
+	,"MemberChildren"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"MemberBloodGroup"."BloodGroupName" "MemberBloodGroupName"
+	,"MemberGender"."GenderDesc" "MemberGenderDesc"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberCategoryMemberGroup"."MemberGroupName" "MemberCategoryMemberGroupName"
+	,"MemberCategoryMemberType"."MemberTypeDesc" "MemberCategoryMemberTypeDesc"
+	,"MemberCategoryNonMemberCat"."NonMemCateory" "MemberCategoryNonMemberCatNonMemCateory"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberNationality"."Nationality" "MemberNationality"
+	,"MemberChildren"."Name" "Name"
+	,"MemberChildren"."MemberCode" "MemberCode"
+	,"MemberChildren"."GenderID" "GenderID"
+	,"Gender"."GenderDesc" "GenderDesc"
+	,"MemberChildren"."DOB" "Dob"
+	,"MemberChildren"."HandiCap" "HandiCap"
+	,"MemberChildren"."Pic" "Pic"
+	,"MemberChildren"."PicFileName" "PicFileName"
+	,"MemberChildren"."PicContentType" "PicContentType"
+	,"MemberChildren"."PicLength" "PicLength"
+	,"MemberChildren"."ParentMemberID" "ParentMemberID"
+	,"MemberInfo"."NameOfMember" "MemberInfoNameOfMember"
+from "dbo"."MemberChildren" "MemberChildren"
+	left join "dbo"."MemberInfo" "Member" on "MemberChildren"."MemberID" = "Member"."MemberID"
+	left join "dbo"."BloodGroup" "MemberBloodGroup" on "Member"."BloodGroupID" = "MemberBloodGroup"."BloodGroupID"
+	left join "dbo"."Gender" "MemberGender" on "Member"."GenderID" = "MemberGender"."GenderID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberGroup" "MemberCategoryMemberGroup" on "MemberCategory"."MemberGroupID" = "MemberCategoryMemberGroup"."MemberGroupID"
+	left join "dbo"."MemberType" "MemberCategoryMemberType" on "MemberCategory"."MemberTypeID" = "MemberCategoryMemberType"."MemberTypeID"
+	left join "dbo"."NonMemberCategory" "MemberCategoryNonMemberCat" on "MemberCategory"."NonMemberCatID" = "MemberCategoryNonMemberCat"."NonMemberCatID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."Nationality" "MemberNationality" on "Member"."NationalityID" = "MemberNationality"."NationalityID"
+	left join "dbo"."Gender" "Gender" on "MemberChildren"."GenderID" = "Gender"."GenderID"
+	left join "dbo"."MemberInfo" "MemberInfo" on "MemberChildren"."ParentMemberID" = "MemberInfo"."MemberID"
+]]></text>
+    </command>
+    <command id="MemberChildIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberChildID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberChildID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Child ID" readOnly="true" />
+    <field name="ChildNo" type="Int32" label="Child No" showInSummary="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" copy="MemberBloodGroupName=BloodGroupName, MemberGenderDesc=GenderDesc, MemberCategoryName=MemberCategoryName, MemberCategoryMemberGroupName=MemberGroupMemberGroupName, MemberCategoryMemberTypeDesc=MemberTypeMemberTypeDesc, MemberStatus=MemberStatus, MemberNationality=Nationality" />
+    </field>
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Member Name Of Member" length="150" />
+    <field name="MemberBloodGroupName" type="String" readOnly="true" label="Member Blood Group" length="50" />
+    <field name="MemberGenderDesc" type="String" readOnly="true" label="Member Gender" length="50" />
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category" length="150" />
+    <field name="MemberCategoryMemberGroupName" type="String" readOnly="true" label="Member Group" length="50" />
+    <field name="MemberCategoryMemberTypeDesc" type="String" readOnly="true" label="Member Category Type" length="50" />
+    <field name="MemberCategoryNonMemberCatNonMemCateory" type="String" readOnly="true" label="Non Member Cateory" length="50" />
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
+    <field name="Name" type="String" label="Name" length="50" showInSummary="true" />
+    <field name="MemberCode" type="String" label="Member Code" length="50" showInSummary="true" />
+    <field name="GenderID" type="Int32" label="Gender ID" showInSummary="true">
+      <items style="Lookup" dataController="Gender" newDataView="createForm1" dataValueField="GenderID" dataTextField="GenderDesc" />
+    </field>
+    <field name="GenderDesc" type="String" readOnly="true" label="Gender" length="50" />
+    <field name="Dob" type="DateTime" label="Date Of Birth" />
+    <field name="HandiCap" type="Int32" label="Handi Cap" />
+    <field name="Pic" type="Byte[]" onDemand="true" sourceFields="MemberChildID" onDemandHandler="MemberChildrenPic" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Pic" />
+    <field name="PicFileName" type="String" label="Pic File Name" length="50" />
+    <field name="PicContentType" type="String" label="Pic Content Type" length="50" />
+    <field name="PicLength" type="Int32" label="Pic Length" />
+    <field name="ParentMemberID" type="Int32" label="Parent Member ID">
+      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" />
+    </field>
+    <field name="MemberInfoNameOfMember" type="String" readOnly="true" label="Self Member" length="150" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Member Children">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="ChildNo" columns="15" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+        <dataField fieldName="MemberBloodGroupName" columns="50" />
+        <dataField fieldName="MemberGenderDesc" columns="50" />
+        <dataField fieldName="MemberCategoryName" />
+        <dataField fieldName="MemberCategoryMemberGroupName" columns="50" />
+        <dataField fieldName="MemberCategoryMemberTypeDesc" columns="50" />
+        <dataField fieldName="MemberCategoryNonMemberCatNonMemCateory" columns="50" />
+        <dataField fieldName="MemberStatus" columns="50" />
+        <dataField fieldName="MemberNationality" columns="50" />
+        <dataField fieldName="Name" columns="50" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
+        <dataField fieldName="Dob" columns="10" />
+        <dataField fieldName="HandiCap" columns="15" />
+        <dataField fieldName="Pic" columns="15" />
+        <dataField fieldName="PicFileName" columns="50" />
+        <dataField fieldName="PicContentType" columns="50" />
+        <dataField fieldName="PicLength" columns="15" />
+        <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Children">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Member Children" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="ChildNo" columns="15" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+            <dataField fieldName="MemberBloodGroupName" columns="50" />
+            <dataField fieldName="MemberGenderDesc" columns="50" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MemberCategoryMemberGroupName" columns="50" />
+            <dataField fieldName="MemberCategoryMemberTypeDesc" columns="50" />
+            <dataField fieldName="MemberCategoryNonMemberCatNonMemCateory" columns="50" />
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="Name" columns="50" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
+            <dataField fieldName="Dob" columns="10" />
+            <dataField fieldName="HandiCap" columns="15" />
+            <dataField fieldName="Pic" columns="15" />
+            <dataField fieldName="PicFileName" columns="50" />
+            <dataField fieldName="PicContentType" columns="50" />
+            <dataField fieldName="PicLength" columns="15" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Children">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="ChildNo" columns="15" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+            <dataField fieldName="MemberBloodGroupName" columns="50" />
+            <dataField fieldName="MemberGenderDesc" columns="50" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MemberCategoryMemberGroupName" columns="50" />
+            <dataField fieldName="MemberCategoryMemberTypeDesc" columns="50" />
+            <dataField fieldName="MemberCategoryNonMemberCatNonMemCateory" columns="50" />
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="Name" columns="50" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
+            <dataField fieldName="Dob" columns="10" />
+            <dataField fieldName="HandiCap" columns="15" />
+            <dataField fieldName="Pic" columns="15" />
+            <dataField fieldName="PicFileName" columns="50" />
+            <dataField fieldName="PicContentType" columns="50" />
+            <dataField fieldName="PicLength" columns="15" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

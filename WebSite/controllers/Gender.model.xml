@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Gender" alias="Gender" created="2018-04-09T20:38:33" modified="2018-04-09T20:38:33" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="GenderID" fieldName="GenderID" label="Gender ID" />
+    <column name="GenderDesc" fieldName="GenderDesc" label="Gender Desc" />
+  </columns>
+</dataModel>

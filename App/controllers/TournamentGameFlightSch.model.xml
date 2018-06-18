@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TournamentGameFlightSch" alias="TournamentGameFlightSch" created="2018-04-24T08:30:19" modified="2018-04-25T08:57:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament" x="351" y="20">
+      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
+    </foreignKey>
+    <foreignKey id="GameCateory" parentTableSchema="dbo" parentTableName="GameCategory" x="351" y="181">
+      <foreignKeyColumn columnName="GameCateoryID" parentColumnName="GameCategoryID" />
+    </foreignKey>
+    <foreignKey id="GameCateoryGender" parentTableSchema="dbo" parentTableName="Gender" baseForeignKey="GameCateory" x="673" y="20">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="GameCateoryHoleType" parentTableSchema="dbo" parentTableName="HoleType" baseForeignKey="GameCateory" x="673" y="161">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="351" y="368">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="Tee" parentTableSchema="dbo" parentTableName="TeeName" x="351" y="507">
+      <foreignKeyColumn columnName="TeeID" parentColumnName="TeeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TourGameFlightSchID" fieldName="TourGameFlightSchID" label="Tour Game Flight Sch ID" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="Tournament" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" foreignKey="Tournament" />
+    <column name="GameCateoryID" fieldName="GameCateoryID" label="Game Cateory ID" aliasColumnName="GameCategoryName" aliasForeignKey="GameCateory" />
+    <column name="GameCategoryName" fieldName="GameCateoryGameCategoryName" label="Game Cateory Game Category Name" foreignKey="GameCateory" />
+    <column name="GenderDesc" fieldName="GameCateoryGenderDesc" label="Game Cateory Gender Desc" foreignKey="GameCateoryGender" />
+    <column name="HoleTypeDesc" fieldName="GameCateoryHoleTypeDesc" label="Game Cateory Hole Type Desc" foreignKey="GameCateoryHoleType" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type Desc" foreignKey="HoleType" />
+    <column name="TeeID" fieldName="TeeID" label="Tee ID" aliasColumnName="TeeName" aliasForeignKey="Tee" />
+    <column name="TeeName" fieldName="TeeName" label="Tee Name" foreignKey="Tee" />
+    <column name="Date" fieldName="Date" label="Date" format="g" />
+    <column name="Delay" fieldName="Delay" label="Delay" />
+    <column name="NumberofPlay" fieldName="NumberofPlay" label="Numberof Play" />
+    <column name="FlightSchNo" fieldName="FlightSchNo" label="Flight Sch No" />
+    <column name="StartTime" fieldName="StartTime" label="Start Time" />
+  </columns>
+</dataModel>

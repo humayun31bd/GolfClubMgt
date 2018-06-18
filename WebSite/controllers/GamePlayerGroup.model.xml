@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GamePlayerGroup" alias="GamePlayerGroup" created="2018-04-23T20:33:03" modified="2018-04-23T20:33:06" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="GamePlayerGroupID" fieldName="GamePlayerGroupID" label="Game Player Group ID" />
+    <column name="StartTime" fieldName="StartTime" label="Start Time" format="g" />
+    <column name="MatchID" fieldName="MatchID" label="Match ID" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" />
+    <column name="MatchStatus" fieldName="MatchStatus" label="Match Status" />
+    <column name="MatchEnd" fieldName="MatchEnd" label="Match End" />
+    <column name="ScoreStatus" fieldName="ScoreStatus" label="Score Status" />
+  </columns>
+</dataModel>

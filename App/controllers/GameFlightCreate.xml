@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="GameFlightCreate" label="GameFlightCreate" conflictDetection="overwriteChanges" handler="MyCompany.Rules.GameFlightCreateBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="GameDate" type="DateTime" label="Game Date" dataFormatString="dd/MM/yyyy" allowNulls="false" />
+    <field name="FlightStart" type="DateTime" allowNulls="false" label="Start" dataFormatString="g" />
+    <field name="FlightEnd" type="DateTime" allowNulls="false" label="End" dataFormatString="g" />
+    <field name="IntervalInMinute" type="Int32" allowNulls="false" label="Interval In Minute" />
+  </fields>
+</dataController>

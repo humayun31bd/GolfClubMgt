@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="WeekDay" alias="WeekDay" created="2018-04-09T20:38:24" modified="2018-04-09T20:38:24" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="WeekDayID" fieldName="WeekDayID" label="Week Day ID" />
+    <column name="WeekDayName" fieldName="WeekDayName" label="Week Day Name" />
+  </columns>
+</dataModel>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CaddieBallBoyPayment" conflictDetection="overwriteChanges" label="CaddieBallBoyPayment" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="FlightSchID" type="Int32" label="Flight Sch#" showInSummary="true" />
+    <field name="PlayDate" type="DateTime" label="Play Date" showInSummary="true" />
+    <field name="MemberCode" type="String" label="Membership No" length="50" showInSummary="true" />
+    <field name="NameOfMember" type="String" label="Name Of Member" length="150" showInSummary="true" />
+    <field name="CaddieCode" type="String" label="Caddie Code" length="50" showInSummary="true" />
+    <field name="caddieName" type="String" label="caddie Name" length="50" />
+    <field name="BallBoyCode" type="String" label="Ball Boy Code" length="50" />
+    <field name="BallBoyName" type="String" label="Ball Boy Name" length="50" />
+    <field name="CaddieFee" type="Decimal" allowNulls="false" label="Caddie Fee" readOnly="true" />
+    <field name="BallBoyFee" type="Decimal" allowNulls="false" label="Ball Boy Fee" readOnly="true" />
+    <field name="TotalPayment" type="Decimal" label="Total Payment" readOnly="true" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Caddie Ball Boy Payment" reportLabel="Caddie Ball Boy Payment" reportTemplate="true">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="CaddieFee" columns="15" />
+        <dataField fieldName="FlightSchID" columns="15" />
+        <dataField fieldName="PlayDate" columns="10" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="NameOfMember" />
+        <dataField fieldName="CaddieCode" columns="50" />
+        <dataField fieldName="caddieName" columns="50" />
+        <dataField fieldName="BallBoyCode" columns="50" />
+        <dataField fieldName="BallBoyName" columns="50" />
+        <dataField fieldName="BallBoyFee" columns="15" />
+        <dataField fieldName="TotalPayment" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Caddie Ball Boy Payment">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Caddie Ball Boy Payment" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="FlightSchID" columns="15" />
+            <dataField fieldName="PlayDate" columns="10" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="NameOfMember" />
+            <dataField fieldName="CaddieCode" columns="50" />
+            <dataField fieldName="caddieName" columns="50" />
+            <dataField fieldName="BallBoyCode" columns="50" />
+            <dataField fieldName="BallBoyName" columns="50" />
+            <dataField fieldName="CaddieFee" columns="15" />
+            <dataField fieldName="BallBoyFee" columns="15" />
+            <dataField fieldName="TotalPayment" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Caddie Ball Boy Payment">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Caddie Ball Boy Payment" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="FlightSchID" columns="15" />
+            <dataField fieldName="PlayDate" columns="10" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="NameOfMember" />
+            <dataField fieldName="CaddieCode" columns="50" />
+            <dataField fieldName="caddieName" columns="50" />
+            <dataField fieldName="BallBoyCode" columns="50" />
+            <dataField fieldName="BallBoyName" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action commandName="Search" headerText="Show Report" confirmation="_controller=DateRangeSelection&#xD;&#xA;_title=Select Date" id="a100" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 
+
+if (@Parameters_FromDate is not null)
+	@Session_FromDate = @Parameters_FromDate
+	
+if (@Parameters_ToDate is not null)
+	Set @Session_ToDate = @Parameters_ToDate	
+
+if (@Parameters_ToDate is not null)
+	Set @Session_MemberID = @Parameters_ToDate
+	]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[--debug
+DECLARE @Session_FromDate Datetime,@Session_ToDate Datetime, @Session_MemberID int
+--end debug
+
+if (@Session_FromDate is null)
+	set @Session_FromDate = getdate()
+
+if (@Session_ToDate is null)
+	set @Session_ToDate = getdate()
+
+if (@Session_MemberID is null)
+	Set @Session_MemberID = 1
+	
+exec USP_CaddieBallBoyFeeReport @Session_MemberID,@Session_FromDate,@Session_ToDate]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="TournamentCollection" conflictDetection="overwriteChanges" label="TournamentCollection" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="MemberID" type="Int32" label="Member#" showInSummary="true" />
+    <field name="MemberCode" type="String" label="Member Code" length="50" showInSummary="true" />
+    <field name="BillNo" type="String" label="Bill No" length="50" showInSummary="true" />
+    <field name="CategoryName" type="String" label="Category Name" length="50" showInSummary="true" />
+    <field name="CollectionDate" type="DateTime" label="Collection Date" showInSummary="true" />
+    <field name="PayTypeID" type="Int32" label="Pay Type#" />
+    <field name="PaidBy" type="String" allowNulls="false" label="Paid By" readOnly="true" length="9" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" label="Cheque DT" />
+    <field name="PayAmount" type="Decimal" label="Pay Amount" readOnly="true" />
+    <field name="DueAmount" type="Decimal" label="Due Amount" readOnly="true" />
+    <field name="BankName" type="String" label="Bank Name" readOnly="true" length="50" />
+    <field name="CollectionBy" type="String" label="Collection By" length="50" />
+    <field name="NameOfMember" type="String" label="Name Of Member" length="150" />
+    <field name="CompanyName" type="String" label="Company Name" readOnly="true" length="150" />
+    <field name="CompanyAddress" type="String" label="Company Address" readOnly="true" length="150" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Tournament Collection">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="PaidBy" columns="9" />
+        <dataField fieldName="MemberID" columns="15" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="BillNo" columns="50" />
+        <dataField fieldName="CategoryName" columns="50" />
+        <dataField fieldName="CollectionDate" columns="10" />
+        <dataField fieldName="PayTypeID" columns="15" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="ChequeDT" columns="10" />
+        <dataField fieldName="PayAmount" columns="15" />
+        <dataField fieldName="DueAmount" columns="15" />
+        <dataField fieldName="BankName" columns="50" />
+        <dataField fieldName="CollectionBy" columns="50" />
+        <dataField fieldName="NameOfMember" />
+        <dataField fieldName="CompanyName" />
+        <dataField fieldName="CompanyAddress" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Tournament Collection">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Tournament Collection" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" columns="15" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="BillNo" columns="50" />
+            <dataField fieldName="CategoryName" columns="50" />
+            <dataField fieldName="CollectionDate" columns="10" />
+            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="PaidBy" columns="9" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="10" />
+            <dataField fieldName="PayAmount" columns="15" />
+            <dataField fieldName="DueAmount" columns="15" />
+            <dataField fieldName="BankName" columns="50" />
+            <dataField fieldName="CollectionBy" columns="50" />
+            <dataField fieldName="NameOfMember" />
+            <dataField fieldName="CompanyName" />
+            <dataField fieldName="CompanyAddress" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Tournament Collection">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Tournament Collection" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" columns="15" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="BillNo" columns="50" />
+            <dataField fieldName="CategoryName" columns="50" />
+            <dataField fieldName="CollectionDate" columns="10" />
+            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="10" />
+            <dataField fieldName="CollectionBy" columns="50" />
+            <dataField fieldName="NameOfMember" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" whenHRef="false:" />
+      <action id="a2" commandName="Delete" whenHRef="false:" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+      <action commandName="Search" commandArgument="TournamentCollection" headerText="Collection Filter" id="a100" confirmation="_controller=ReportFilter&#xD;&#xA;_title=Select Report Option" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 
+
+if (@Parameters_MemberID is not null)
+	Set @Session_MemberID=@Parameters_MemberID
+if (@Parameters_FrDate is not null)
+	Set @Session_FrDate=@Parameters_FromDate
+if (@Parameters_ToDate is not null)
+	Set @Session_ToDate=@Parameters_ToDate
+if (@Parameters_rptOption is not null)
+	Set @Session_PayTypeID=@Parameters_rptOption
+]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[-- debug
+DECLARE @Session_MemberID int,
+	@Session_FrDate datetime,
+	@Session_ToDate datetime,
+	@Session_PayTypeID int
+-- end debug
+	
+if (@Session_MemberID is null)
+	Set @Session_MemberID=0
+if (@Session_FrDate is null)
+	Set @Session_FrDate=dateadd(d,1,getdate())
+if (@Session_ToDate is null)
+	Set @Session_ToDate=getdate()
+if (@Session_PayTypeID is null)
+	Set @Session_PayTypeID=0
+
+Exec dbo.USP_TournamentCollectionStatement @Session_MemberID,@Session_FrDate,@Session_ToDate,@Session_PayTypeID]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

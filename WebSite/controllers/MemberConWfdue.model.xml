@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberConWFDue" alias="MemberConWFDue" created="2018-04-11T08:36:28" modified="2018-04-11T12:29:39" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="331" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberBloodGroup" parentTableSchema="dbo" parentTableName="BloodGroup" baseForeignKey="Member" x="655" y="20">
+      <foreignKeyColumn columnName="BloodGroupID" parentColumnName="BloodGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberGender" parentTableSchema="dbo" parentTableName="Gender" baseForeignKey="Member" x="655" y="160">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="655" y="301">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberCategoryMemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" baseForeignKey="MemberCategory" x="974" y="20">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberCategoryMemberType" parentTableSchema="dbo" parentTableName="MemberType" baseForeignKey="MemberCategory" x="974" y="176">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="655" y="507">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberNationality" parentTableSchema="dbo" parentTableName="Nationality" baseForeignKey="Member" x="655" y="648">
+      <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberCWFID" fieldName="MemberCwfid" label="Member CWFID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="BloodGroupName" fieldName="MemberBloodGroupName" label="Member Blood Group" foreignKey="MemberBloodGroup" />
+    <column name="GenderDesc" fieldName="MemberGenderDesc" label="Member Gender" foreignKey="MemberGender" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberGroupName" fieldName="MemberCategoryMemberGroupName" label="Member Group Category" foreignKey="MemberCategoryMemberGroup" />
+    <column name="MemberTypeDesc" fieldName="MemberCategoryMemberTypeDesc" label="Member Type" foreignKey="MemberCategoryMemberType" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="Nationality" fieldName="MemberNationality" label="Member Nationality" foreignKey="MemberNationality" />
+    <column name="DueOn" fieldName="DueOn" label="Due On" format="MM/yyyy" />
+    <column name="ContributionWFDue" fieldName="ContributionWfdue" label="Contribution Welfare Due" />
+    <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
+  </columns>
+</dataModel>

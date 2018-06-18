@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TourRegisterMember" alias="TourRegisterMember" created="2018-05-12T13:11:00" modified="2018-05-12T13:12:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament" x="359" y="20">
+      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
+    </foreignKey>
+    <foreignKey id="GameCategory" parentTableSchema="dbo" parentTableName="GameCategory" x="359" y="181">
+      <foreignKeyColumn columnName="GameCategoryID" parentColumnName="GameCategoryID" />
+    </foreignKey>
+    <foreignKey id="Tee" parentTableSchema="dbo" parentTableName="TeeName" x="359" y="367">
+      <foreignKeyColumn columnName="TeeID" parentColumnName="TeeID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="359" y="507">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="TournamentFlightSch" parentTableSchema="dbo" parentTableName="TournamentFlightSch" x="359" y="671">
+      <foreignKeyColumn columnName="TournamentFlightSchID" parentColumnName="TournamentFlightSchID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="359" y="924">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="PayType" parentTableSchema="dbo" parentTableName="PayType" x="759" y="20">
+      <foreignKeyColumn columnName="PayTypeID" parentColumnName="PayTypeID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank" x="759" y="183">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TourRegisterID" fieldName="TourRegisterID" label="Tour Register ID" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="Tournament" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" foreignKey="Tournament" />
+    <column name="GameCategoryID" fieldName="GameCategoryID" label="Game Category ID" aliasColumnName="GameCategoryName" aliasForeignKey="GameCategory" />
+    <column name="GameCategoryName" fieldName="GameCategoryName" label="Game Category" foreignKey="GameCategory" />
+    <column name="TeeID" fieldName="TeeID" label="Tee ID" aliasColumnName="TeeName" aliasForeignKey="Tee" />
+    <column name="TeeName" fieldName="TeeName" label="Tee Name" foreignKey="Tee" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="TournamentFlightSchID" fieldName="TournamentFlightSchID" label="Tournament Flight Sch ID" aliasColumnName="FlightSchNo" aliasForeignKey="TournamentFlightSch" />
+    <column name="FlightSchNo" fieldName="TournamentFlightSchNo" label="Flight Sch No" foreignKey="TournamentFlightSch" />
+    <column name="RegDate" fieldName="RegDate" label="Reg Date" format="dd/MM/yyyy" />
+    <column name="RegNo" fieldName="RegNo" label="Reg No" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="TournamentFeeAmount" fieldName="TournamentFeeAmount" label="Tournament Fee" />
+    <column name="DueAmount" fieldName="DueAmount" label="Due Amount" />
+    <column name="TotalAmount" fieldName="TotalAmount" label="Total Amount" />
+    <column name="VoucherID" fieldName="VoucherID" label="Voucher ID" />
+    <column name="VoucherNo" fieldName="VoucherNo" label="Voucher No" />
+    <column name="CollectedBy" fieldName="CollectedBy" label="Collected By" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" aliasColumnName="PayTypeName" aliasForeignKey="PayType" />
+    <column name="PayTypeName" fieldName="PayTypeName" label="Pay Type Name" foreignKey="PayType" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDT" fieldName="ChequeDt" label="Cheque DT" format="dd/MM/yyyy" />
+    <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
+    <column name="ApprovedBy" fieldName="ApprovedBy" label="Approved By" />
+    <column name="CreatedBY" fieldName="CreatedBy" label="Created BY" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="dd/MM/yyyy hh:mm tt" />
+    <column name="CollectionDate" fieldName="CollectionDate" label="Collection Date" format="dd/MM/yyyy" />
+  </columns>
+</dataModel>

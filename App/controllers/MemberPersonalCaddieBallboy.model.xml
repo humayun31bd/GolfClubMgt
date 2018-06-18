@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberPersonalCaddieBallboy" alias="MemberPersonalCaddieBallboy" created="2018-04-24T08:34:24" modified="2018-05-01T00:22:36" x="20" y="59" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="645" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="Caddie" parentTableSchema="dbo" parentTableName="Caddie" x="672" y="358">
+      <foreignKeyColumn columnName="CaddieID" parentColumnName="CaddieID" />
+    </foreignKey>
+    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy" x="344" y="542">
+      <foreignKeyColumn columnName="BallBoyID" parentColumnName="BallBoyID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberPersonalCBID" fieldName="MemberPersonalCbid" label="Member Personal CBID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="CaddieID" fieldName="CaddieID" label="Caddie ID" aliasColumnName="CaddieCode" aliasForeignKey="Caddie" />
+    <column name="CaddieCode" fieldName="CaddieCode" label="Caddie Code" foreignKey="Caddie" />
+    <column name="CaddieName" fieldName="CaddieName" label="Caddie Name" foreignKey="Caddie" />
+    <column name="BallBoyID" fieldName="BallBoyID" label="Ball Boy ID" aliasColumnName="BallBoyCode" aliasForeignKey="BallBoy" />
+    <column name="BallBoyCode" fieldName="BallBoyCode" label="Ball Boy Code" foreignKey="BallBoy" />
+    <column name="BallBoyName" fieldName="BallBoyBallBoyName" label="Ball Boy Name" foreignKey="BallBoy" />
+    <column name="CaddieMonthlyFee" fieldName="CaddieMonthlyFee" label="Caddie Monthly Fee" />
+    <column name="BallBoyMonthlyFee" fieldName="BallBoyMonthlyFee" label="Ball Boy Monthly Fee" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+  </columns>
+</dataModel>

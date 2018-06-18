@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SmSSetting" alias="SmSSetting" created="2018-05-20T17:56:01" modified="2018-05-20T17:56:01" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SmSSettingID" fieldName="SmSsettingID" label="Sm S Setting ID" />
+    <column name="SmsDeliveryStart" fieldName="SmsDeliveryStart" label="Sms Delivery Start" />
+    <column name="NoCyclePerDay" fieldName="NoCyclePerDay" label="No Cycle Per Day" />
+    <column name="SenderMobileNumber" fieldName="SenderMobileNumber" label="Sender Mobile Number" />
+    <column name="EnabledAdmission" fieldName="EnabledAdmission" label="Enabled Admission" />
+    <column name="EnabledExamSchedule" fieldName="EnabledExamSchedule" label="Enabled Exam Schedule" />
+    <column name="EnabledExamResult" fieldName="EnabledExamResult" label="Enabled Exam Result" />
+    <column name="EnabledEvents" fieldName="EnabledEvents" label="Enabled Events" />
+    <column name="EnabledFeeSubmission" fieldName="EnabledFeeSubmission" label="Enabled Fee Submission" />
+    <column name="EnabledSendToParents" fieldName="EnabledSendToParents" label="Enabled Send To Parents" />
+    <column name="EnabledSendToStudent" fieldName="EnabledSendToStudent" label="Enabled Send To Student" />
+    <column name="EnabledSendToTeacher" fieldName="EnabledSendToTeacher" label="Enabled Send To Teacher" />
+  </columns>
+</dataModel>

@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberSpouse" conflictDetection="overwriteChanges" label="Member Spouse" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberSpouse"."MemberSpouseID" "MemberSpouseID"
+	,"MemberSpouse"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"MemberBloodGroup"."BloodGroupName" "MemberBloodGroupName"
+	,"MemberGender"."GenderDesc" "MemberGenderDesc"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberCategoryMemberGroup"."MemberGroupName" "MemberCategoryMemberGroupName"
+	,"MemberCategoryMemberType"."MemberTypeDesc" "MemberCategoryMemberTypeDesc"
+	,"MemberCategoryNonMemberCat"."NonMemCateory" "MemberCategoryNonMemberCatNonMemCateory"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberNationality"."Nationality" "MemberNationality"
+	,"MemberSpouse"."SpouseName" "SpouseName"
+	,"MemberSpouse"."SpouseMemberCode" "SpouseMemberCode"
+	,"MemberSpouse"."SpouseGenderID" "SpouseGenderID"
+	,"Gender"."GenderDesc" "GenderDesc"
+	,"MemberSpouse"."SpouseDOB" "SpouseDob"
+	,"MemberSpouse"."SpouseHandiCap" "SpouseHandiCap"
+	,"MemberSpouse"."SpousePic" "SpousePic"
+	,"MemberSpouse"."SpousePicFileName" "SpousePicFileName"
+	,"MemberSpouse"."SpousePicContentType" "SpousePicContentType"
+	,"MemberSpouse"."SpousePicLength" "SpousePicLength"
+	,"MemberSpouse"."ParentMemberID" "ParentMemberID"
+	,"MemberInfo"."NameOfMember" "MemberInfoNameOfMember"
+from "dbo"."MemberSpouse" "MemberSpouse"
+	left join "dbo"."MemberInfo" "Member" on "MemberSpouse"."MemberID" = "Member"."MemberID"
+	left join "dbo"."BloodGroup" "MemberBloodGroup" on "Member"."BloodGroupID" = "MemberBloodGroup"."BloodGroupID"
+	left join "dbo"."Gender" "MemberGender" on "Member"."GenderID" = "MemberGender"."GenderID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberGroup" "MemberCategoryMemberGroup" on "MemberCategory"."MemberGroupID" = "MemberCategoryMemberGroup"."MemberGroupID"
+	left join "dbo"."MemberType" "MemberCategoryMemberType" on "MemberCategory"."MemberTypeID" = "MemberCategoryMemberType"."MemberTypeID"
+	left join "dbo"."NonMemberCategory" "MemberCategoryNonMemberCat" on "MemberCategory"."NonMemberCatID" = "MemberCategoryNonMemberCat"."NonMemberCatID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."Nationality" "MemberNationality" on "Member"."NationalityID" = "MemberNationality"."NationalityID"
+	left join "dbo"."Gender" "Gender" on "MemberSpouse"."SpouseGenderID" = "Gender"."GenderID"
+	left join "dbo"."MemberInfo" "MemberInfo" on "MemberSpouse"."ParentMemberID" = "MemberInfo"."MemberID"
+]]></text>
+    </command>
+    <command id="MemberSpouseIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberSpouseID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberSpouseID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Spouse ID" readOnly="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" copy="MemberBloodGroupName=BloodGroupName, MemberGenderDesc=GenderDesc, MemberCategoryName=MemberCategoryName, MemberCategoryMemberGroupName=MemberGroupMemberGroupName, MemberCategoryMemberTypeDesc=MemberTypeMemberTypeDesc, MemberStatus=MemberStatus, MemberNationality=Nationality" />
+    </field>
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Member Name Of Member" length="150" />
+    <field name="MemberBloodGroupName" type="String" readOnly="true" label="Member Blood Group" length="50" />
+    <field name="MemberGenderDesc" type="String" readOnly="true" label="Member Gender" length="50" />
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category" length="50" />
+    <field name="MemberCategoryMemberGroupName" type="String" readOnly="true" label="Member Group" length="50" />
+    <field name="MemberCategoryMemberTypeDesc" type="String" readOnly="true" label="Member Category Type" length="50" />
+    <field name="MemberCategoryNonMemberCatNonMemCateory" type="String" readOnly="true" label="Non Member Cateory" length="50" />
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
+    <field name="SpouseName" type="String" label="Spouse Name" length="50" showInSummary="true" />
+    <field name="SpouseMemberCode" type="String" label="Spouse Member Code" length="50" showInSummary="true" />
+    <field name="SpouseGenderID" type="Int32" label="Spouse Gender ID" showInSummary="true">
+      <items style="Lookup" dataController="Gender" newDataView="createForm1" dataValueField="GenderID" dataTextField="GenderDesc" />
+    </field>
+    <field name="GenderDesc" type="String" readOnly="true" label="Gender" length="50" />
+    <field name="SpouseDob" type="DateTime" label="Spouse DOB" showInSummary="true" />
+    <field name="SpouseHandiCap" type="Int32" label="Spouse Handi Cap" />
+    <field name="SpousePic" type="Byte[]" onDemand="true" sourceFields="MemberSpouseID" onDemandHandler="MemberSpouseSpousePic" onDemandStyle="Thumbnail" allowQBE="false" allowSorting="false" label="Spouse Pic" />
+    <field name="SpousePicFileName" type="String" label="Spouse Pic File Name" length="50" />
+    <field name="SpousePicContentType" type="String" label="Spouse Pic Content Type" length="50" />
+    <field name="SpousePicLength" type="Int32" label="Spouse Pic Length" />
+    <field name="ParentMemberID" type="Int32" label="Parent Member ID">
+      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" />
+    </field>
+    <field name="MemberInfoNameOfMember" type="String" readOnly="true" label="Self Member" length="150" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Member Spouse">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+        <dataField fieldName="SpousePicFileName" columns="50" />
+        <dataField fieldName="SpousePic" columns="15" />
+        <dataField fieldName="SpousePicLength" columns="15" hidden="true" />
+        <dataField fieldName="SpousePicContentType" columns="50" hidden="true" />
+        <dataField fieldName="SpouseHandiCap" columns="15" />
+        <dataField fieldName="SpouseMemberCode" columns="50" />
+        <dataField fieldName="SpouseName" columns="50" />
+        <dataField fieldName="SpouseDob" columns="10" />
+        <dataField fieldName="SpouseGenderID" aliasFieldName="GenderDesc" />
+        <dataField fieldName="MemberBloodGroupName" columns="50" />
+        <dataField fieldName="MemberGenderDesc" columns="50" />
+        <dataField fieldName="MemberCategoryName" columns="50" />
+        <dataField fieldName="MemberCategoryMemberGroupName" columns="50" />
+        <dataField fieldName="MemberCategoryMemberTypeDesc" columns="50" />
+        <dataField fieldName="MemberCategoryNonMemberCatNonMemCateory" columns="50" />
+        <dataField fieldName="MemberStatus" columns="50" />
+        <dataField fieldName="MemberNationality" columns="50" />
+        <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Spouse">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Member Spouse" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+            <dataField fieldName="SpouseName" columns="50" />
+            <dataField fieldName="SpouseMemberCode" columns="50" />
+            <dataField fieldName="SpouseGenderID" aliasFieldName="GenderDesc" />
+            <dataField fieldName="SpouseDob" columns="10" />
+            <dataField fieldName="SpouseHandiCap" columns="15" />
+            <dataField fieldName="SpousePic" columns="15" />
+            <dataField fieldName="SpousePicFileName" columns="50" hidden="true" />
+            <dataField fieldName="SpousePicContentType" columns="50" hidden="true" />
+            <dataField fieldName="SpousePicLength" columns="15" hidden="true" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Spouse">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Member Spouse" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+            <dataField fieldName="SpouseName" columns="50" />
+            <dataField fieldName="SpouseMemberCode" columns="50" />
+            <dataField fieldName="SpouseGenderID" aliasFieldName="GenderDesc" />
+            <dataField fieldName="SpouseDob" columns="10" />
+            <dataField fieldName="SpouseHandiCap" columns="15" />
+            <dataField fieldName="SpousePic" columns="15" />
+            <dataField fieldName="SpousePicFileName" columns="50" hidden="true" />
+            <dataField fieldName="SpousePicContentType" columns="50" hidden="true" />
+            <dataField fieldName="SpousePicLength" columns="15" hidden="true" />
+            <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfoNameOfMember" hidden="true" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

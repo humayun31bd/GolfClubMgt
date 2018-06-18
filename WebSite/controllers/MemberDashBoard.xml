@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberDashBoard" label="MemberDashBoard" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <views>
+    <view id="form1" type="Form" label="Performance Dashboard">
+      <categories>
+        <category id="c1" headerText="Member information" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MemberInfo" columns="15" tag="view-style-calendar ">
+              <dataView showActionBar="false" showDescription="false" showSearchBar="false" showQuickFind="false" />
+            </dataField>
+          </dataFields>
+        </category>
+        <category id="c2" headerText="Member Subscription Due">
+          <dataFields>
+            <dataField fieldName="MemberSubsDue" columns="15" tag="view-style-charts">
+              <dataView showActionBar="false" showViewSelector="false" showSearchBar="false" showQuickFind="false" />
+            </dataField>
+          </dataFields>
+        </category>
+        <category id="c3" headerText="Game Registration Chart" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="GameRegistration" columns="15">
+              <dataView showActionBar="false" showSearchBar="false" showQuickFind="false" />
+            </dataField>
+          </dataFields>
+        </category>
+        <category id="c4" headerText="Tournament Flight Schedule Chart">
+          <dataFields>
+            <dataField fieldName="TournamentFlightSch" columns="15">
+              <dataView showActionBar="false" showSearchBar="false" showQuickFind="false" />
+            </dataField>
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <fields>
+    <field name="MemberInfo" type="DataView" label="Member Information">
+      <dataView controller="MemberInfo" view="grid1" />
+    </field>
+    <field name="MemberSubsDue" type="DataView" label="Member Subscription Due chart">
+      <dataView controller="MemberSubsDue" view="grid1" />
+    </field>
+    <field name="TournamentFlightSch" type="DataView" label="Tournament Flight Schedule chart">
+      <dataView controller="TournamentFlightSch" view="grid1" />
+    </field>
+    <field name="GameRegistration" type="DataView" label="Game Registration chart">
+      <dataView controller="GameRegistration" view="grid1" />
+    </field>
+  </fields>
+</dataController>

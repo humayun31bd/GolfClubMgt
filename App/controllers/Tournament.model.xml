@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Tournament" alias="Tournament" created="2018-04-09T20:38:25" modified="2018-04-10T13:04:50" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+  </foreignKeys>
+  <columns>
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" />
+    <column name="StartFrom" fieldName="StartFrom" label="Start From" format="dd/MM/yyyy hh:mm tt" />
+    <column name="EndDate" fieldName="EndDate" label="End Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+  </columns>
+</dataModel>

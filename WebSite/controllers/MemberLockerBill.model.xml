@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberLockerBill" alias="MemberLockerBill" created="2018-04-17T18:04:57" modified="2018-04-17T18:07:01" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="326" y="203">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="LockerBook" parentTableSchema="dbo" parentTableName="LockerBooking" x="326" y="480">
+      <foreignKeyColumn columnName="LockerBookID" parentColumnName="LockerBookID" />
+    </foreignKey>
+    <foreignKey id="LockerBookLocker" parentTableSchema="dbo" parentTableName="Locker" baseForeignKey="LockerBook" x="1280" y="20">
+      <foreignKeyColumn columnName="LockerID" parentColumnName="LockerID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="LockerBillID" fieldName="LockerBillID" label="Locker Bill ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name" foreignKey="Member" />
+    <column name="LockerBookID" fieldName="LockerBookID" label="Locker Book ID" aliasColumnName="BookStatus" aliasForeignKey="LockerBook" />
+    <column name="BookStatus" fieldName="LockerBookStatus" label="Locker Book Status" foreignKey="LockerBook" />
+    <column name="LockerBillAmount" fieldName="LockerBillAmount" label="Locker Bill Amount" />
+    <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="g" />
+    <column name="LockerCode" fieldName="LockerBookLockerCode" label="Locker Book Locker Code" foreignKey="LockerBookLocker" />
+  </columns>
+</dataModel>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="GameFlightSchMember" alias="GameFlightSchMember" created="2018-04-16T17:14:53" modified="2018-04-24T08:34:10" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="324" y="526">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="324" y="802">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="Tee" parentTableSchema="dbo" parentTableName="TeeName" x="324" y="942">
+      <foreignKeyColumn columnName="TeeID" parentColumnName="TeeID" />
+    </foreignKey>
+    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy" x="642" y="20">
+      <foreignKeyColumn columnName="BallBoyID" parentColumnName="BallBoyID" />
+    </foreignKey>
+    <foreignKey id="Caddie" parentTableSchema="dbo" parentTableName="Caddie" x="371" y="220">
+      <foreignKeyColumn columnName="CaddieID" parentColumnName="CaddieID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="FlightSchMemberID" fieldName="FlightSchMemberID" label="Flight Sch Member ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="TeeID" fieldName="TeeID" label="Tee ID" aliasColumnName="TeeName" aliasForeignKey="Tee" />
+    <column name="TeeName" fieldName="TeeName" label="Tee Name" foreignKey="Tee" />
+    <column name="StartTime" fieldName="StartTime" label="Start Time" />
+    <column name="CaddieID" fieldName="CaddieID" label="Caddie ID" aliasColumnName="CaddieName" aliasForeignKey="Caddie" />
+    <column name="CaddieName" fieldName="CaddieName" label="Caddie Name" foreignKey="Caddie" />
+    <column name="CaddieCode" fieldName="CaddieCode" label="Caddie Code" foreignKey="Caddie" />
+    <column name="BallBoyID" fieldName="BallBoyID" label="Ball Boy ID" aliasColumnName="BallBoyCode" aliasForeignKey="BallBoy" />
+    <column name="BallBoyCode" fieldName="BallBoyBallBoyCode" label="Ball Boy Ball Boy Code" foreignKey="BallBoy" />
+    <column name="BallBoyName" fieldName="BallBoyBallBoyName" label="Ball Boy Ball Boy Name" foreignKey="BallBoy" />
+    <column name="GolfCartNeed" fieldName="GolfCartNeed" label="Golf Cart Need" />
+    <column name="IsPersonnelCaddieID" fieldName="IsPersonnelCaddieID" label="Is Personnel Caddie ID" />
+    <column name="BookingDate" fieldName="BookingDate" label="Booking Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="IsGroupPlayer" fieldName="IsGroupPlayer" label="Is Group Player" />
+    <column name="GroupNo" fieldName="GroupNo" label="Group No" />
+    <column name="CaddieFee" fieldName="CaddieFee" label="Caddie Fee" />
+    <column name="BallBoyFee" fieldName="BallBoyFee" label="Ball Boy Fee" />
+    <column name="FlightSchID" fieldName="FlightSchID" label="Flight Sch ID" />
+  </columns>
+</dataModel>

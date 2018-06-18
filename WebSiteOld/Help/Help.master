@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html >
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        div.Help
+        {
+            font-family: Calibri,Tahoma;
+            font-size: small;
+            padding: 4px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin: 0px; padding: 0px;">
+    <form id="form1" runat="server">
+    <div class="Help">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <br />
+            <br />
+            You can provide a dedicated help page for any <b>*.aspx</b> page of your web size.
+            Simply create a matching page in <b>~/Help</b> folder.
+            <br />
+            <br />
+            Make sure to create a matching hierarchy of folders if you are using folders to
+            organize your pages.
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

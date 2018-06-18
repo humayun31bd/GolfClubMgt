@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="FlightMember" alias="FlightMember" created="2018-04-27T19:12:28" modified="2018-05-01T02:59:50" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="FlightSch" parentTableSchema="dbo" parentTableName="GameFlightSchedule" x="320" y="20">
+      <foreignKeyColumn columnName="FlightSchID" parentColumnName="FlightSchID" />
+    </foreignKey>
+    <foreignKey id="FlightSchHoleType" parentTableSchema="dbo" parentTableName="HoleType" baseForeignKey="FlightSch" x="638" y="20">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="320" y="203">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="FlightSchID" fieldName="FlightSchID" label="Flight Sch ID" aliasColumnName="StartTime" aliasForeignKey="FlightSch" />
+    <column name="StartTime" fieldName="FlightSchStartTime" label="Flight Sch Start Time" foreignKey="FlightSch" />
+    <column name="FlightSchNo" fieldName="FlightSchFlightSchNo" label="Flight Sch Flight Sch No" foreignKey="FlightSch" />
+    <column name="HoleTypeDesc" fieldName="FlightSchHoleTypeDesc" label="Flight Sch Hole Type Desc" foreignKey="FlightSchHoleType" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+  </columns>
+</dataModel>

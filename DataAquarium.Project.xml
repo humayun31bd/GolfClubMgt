@@ -1,0 +1,65 @@
+<!-- 
+  This file is provided to store the settings for your Data Aquarium project. 
+  You can safely delete this file if no further code generation is planned.
+-->
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Premium" name="GolfClubNew" prettyName="Golf Club New" type="Web Site Factory" codeDomProvider="CSharp" targetFramework="4.5" userInterface="TouchUI" pageImplementation="aspx" sourceControl="" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+  <connectionString hostDatabaseSharing="false" sessionStateMode="Custom">Data Source=SOFTMANAGER-PC;Initial Catalog=GolfClub;Persist Security Info=True;User ID=sa;Password=ipac;</connectionString>
+  <providerName>System.Data.SqlClient</providerName>
+  <namespace>MyCompany</namespace>
+  <webServer run="true" port="32466" preview="Browser" client="">
+    <webConfig>AppendChild: /configuration/appSettings
+    &lt;add key="debugSMS" value="true"/&gt;
+    &lt;add key="SMSProvider" value="PresentIT"/&gt;
+    &lt;add key="SMSMaskName" value="IPACSOFTWAR"/&gt;
+    &lt;add key="SMSEndPoint" value="http://api.infobip.com/sms/1/text/single"/&gt;
+    &lt;add key="SMSAccountName" value="GolfClub"/&gt;
+    &lt;add key="CloudServer" value="45.35.4.235"/&gt;
+    &lt;add key="CloudServerdb" value="GolfClub"/&gt;
+    &lt;add key="IsSimulateSMS" value="false"/&gt;
+    &lt;add key="ConnectionType" value="SQLSERVER"/&gt;
+
+InsertAfter: /configuration/connectionStrings 
+ &lt;system.net&gt; 
+    &lt;mailSettings&gt; 
+      &lt;smtp deliveryMethod="Network" from="kabir31bd@gmail.com"&gt; 
+        &lt;network 
+          host="smtp.gmail.com" 
+          port="587" 
+          defaultCredentials="true" 
+        /&gt; 
+      &lt;/smtp&gt; 
+    &lt;/mailSettings&gt; 
+  &lt;/system.net&gt;
+</webConfig>
+  </webServer>
+  <features useSaveAndNew="true" pageHeader="Golf Club" copyright="GolfClub@2018" annotations="false" annotationsPath="" newColumn="true" floating="false" maxGridFields="100" multiSelect="true" batchEdit="true" advancedSearch="false" advancedLookup="false" relationshipExplorer="false" enablePermalinks="false" enableHistory="false" enableTransactions="false" showModalForms="false" tabViewSelection="5">
+    <navigation detectUnderscoreSeparatedSchema="" />
+    <blob allowUploadOnInsert="true" />
+    <framework scriptOnly="true" useExtenders="false" />
+    <grid actionColumn="false" />
+    <touch desktopDisplayDensity="Condensed" mobileDisplayDensity="Auto" transitions="" sidebar="Landscape" labelsInList="DisplayedBelow" initialListMode="SeeAll" menu="toolbar" promoteActions="true" smartDates="true" mapApiIdentifier="" mapApiIdentifierMobile="" />
+    <cms searchEngine="" analysisEngine="" analysisOnDataPages="false" />
+    <ease urlHashing="false">
+      <auditing></auditing>
+    </ease>
+    <packageProperties></packageProperties>
+    <smtp deliveryMethod="Network" deliveryFormat="" from="" clientDomain="" targetName="" host="" port="" defaultCredentials="true" enableSsl="false" username="" password="" />
+  </features>
+  <reports enabled="true" version="11" />
+  <host path="" url="" />
+  <databaseObjectFilter generate="ControllersAndPages"></databaseObjectFilter>
+  <bll normalizeModelNames="true" discoveryDepth="3" labelFormatExpression="" selectMethod="Select" selectSingleMethod="SelectSingle" insertMethod="Insert" updateMethod="Update" deleteMethod="Delete" generateSharedBusinessRules="false" includeViews="true" tabViewSelection="0">
+    <fieldMap></fieldMap>
+    <keys></keys>
+    <fieldsToIgnore></fieldsToIgnore>
+    <fieldsToHide></fieldsToHide>
+    <customLabels></customLabels>
+  </bll>
+  <membership enabled="true" providerName="System.Data.SqlClient" connectionString="" windowsAuthentication="false" activeDirectory="false" customSecurity="false" dedicatedLogin="true" displayRememberMe="true" rememberMeSet="false" displaySignUp="false" displayPasswordRecovery="true" displayMyAccount="true" displayHelp="true" idleUserDetectionTimeout="-1" tabViewSelection="2" validationKey="B060A558855FB057ECE5DDE64E9CCD4F0ADB138D3A6F370FE5A31008E4FA91786DEE109330B56EDF158FE8FE8443DF90FE552DA507D6A40F85BE2FDD06D57BA3">
+    <adConfig></adConfig>
+    <config></config>
+  </membership>
+  <globalization uiCulture="en-US" culture="en-US" enableClientBasedCulture="false" supportedCultures="en-US,en-US; " googleTranslateApiKey="" />
+  <layout name="Classic" menuStyle="MultiLevel" />
+  <theme name="Aquarium" />
+</project>
