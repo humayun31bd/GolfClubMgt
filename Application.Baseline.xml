@@ -1,0 +1,961 @@
+<application snapshot="false" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map" xmlns:dm="urn:schemas-codeontime-com:data-model">
+  <pages>
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" name="TableOfContents" container="container1" />
+      </controls>
+    </page>
+    <page name="WeekDay" title="Week Day" description="View Week Day" index="1010" path="Week Day">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="WeekDay" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows week day management.</about>
+    </page>
+    <page name="Tournament" title="Tournament" description="View Tournament" index="1020" path="Tournament">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Tournament" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament management.</about>
+    </page>
+    <page name="Nationality" title="Nationality" description="View Nationality" index="1030" path="Nationality">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Nationality" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows nationality management.</about>
+    </page>
+    <page name="TeeName" title="Tee Name" description="View Tee Name" index="1040" path="Tee Name">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TeeName" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tee name management.</about>
+    </page>
+    <page name="MemberStatus" title="Member Status" description="View Member Status" index="1050" path="Member Status">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberStatus" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member status management.</about>
+    </page>
+    <page name="MemberType" title="Member Type" description="View Member Type" index="1060" path="Member Type">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member type management.</about>
+    </page>
+    <page name="MemberInfo" title="Member Info" description="View Member Info" index="1070" path="Member Info">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberInfo" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member info management.</about>
+    </page>
+    <page name="MemberService" title="Member Service" description="View Member Service" index="1080" path="Member Service">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberService" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member service management.</about>
+    </page>
+    <page name="MemberFeeCurrent" title="Member Fee Current" description="View Member Fee Current" index="1090" path="Member Fee Current">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberFeeCurrent" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member fee current management.</about>
+    </page>
+    <page name="MemberGroup" title="Member Group" description="View Member Group" index="1100" path="Member Group">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member group management.</about>
+    </page>
+    <page name="MemberCategory" title="Member Category" description="View Member Category" index="1110" path="Member Category">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member category management.</about>
+    </page>
+    <page name="MemberFee" title="Member Fee" description="View Member Fee" index="1120" path="Member Fee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member fee management.</about>
+    </page>
+    <page name="LockerBooking" title="Locker Booking" description="View Locker Booking" index="1130" path="Locker Booking">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="LockerBooking" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows locker booking management.</about>
+    </page>
+    <page name="HoleType" title="Hole Type" description="View Hole Type" index="1140" path="Hole Type">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="HoleType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows hole type management.</about>
+    </page>
+    <page name="Locker" title="Locker" description="View Locker" index="1150" path="Locker">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Locker" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows locker management.</about>
+    </page>
+    <page name="Gender" title="Gender" description="View Gender" index="1160" path="Gender">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Gender" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows gender management.</about>
+    </page>
+    <page name="GameFee" title="Game Fee" description="View Game Fee" index="1170" path="Game Fee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game fee management.</about>
+    </page>
+    <page name="GameFeeDay" title="Game Fee Day" description="View Game Fee Day" index="1180" path="Game Fee Day">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameFeeDay" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game fee day management.</about>
+    </page>
+    <page name="BloodGroup" title="Blood Group" description="View Blood Group" index="1190" path="Blood Group">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="BloodGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows blood group management.</about>
+    </page>
+    <page name="TournamentFlightSch" title="Tournament Flight Sch" description="View Tournament Flight Sch" index="1200" path="Tournament Flight Sch">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentFlightSch" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament flight sch management.</about>
+    </page>
+    <page name="MemberCwf" title="Member Cwf" description="View Member Cwf" index="1210" path="Member Cwf">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberCwf" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member cwf management.</about>
+    </page>
+    <page name="Bank" title="Bank" description="View Bank" index="1220" path="Bank">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Bank" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows bank management.</about>
+    </page>
+    <page name="MemberAccount" title="Member Account" description="View Member Account" index="1230" path="Member Account">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberAccount" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member account management.</about>
+    </page>
+    <page name="MemberSubsDue" title="Member Subs Due" description="View Member Subs Due" index="1240" path="Member Subs Due">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberSubsDue" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member subs due management.</about>
+    </page>
+    <page name="MemberSubsDueDetail" title="Member Subs Due Detail" description="View Member Subs Due Detail" index="1250" path="Member Subs Due Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberSubsDueDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member subs due detail management.</about>
+    </page>
+    <page name="MemberBill" title="Member Bill" description="View Member Bill" index="1260" path="Member Bill">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberBill" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member bill management.</about>
+    </page>
+    <page name="MemberConWfdue" title="Member Con Wfdue" description="View Member Con Wfdue" index="1270" path="Member Con Wfdue">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberConWfdue" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member con wfdue management.</about>
+    </page>
+    <page name="MemberConWfdueDetail" title="Member Con Wfdue Detail" description="View Member Con Wfdue Detail" index="1280" path="Member Con Wfdue Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberConWfdueDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member con wfdue detail management.</about>
+    </page>
+    <page name="MemberServiceDue" title="Member Service Due" description="View Member Service Due" index="1290" path="Member Service Due">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberServiceDue" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member service due management.</about>
+    </page>
+    <page name="MemberServiceDueDetail" title="Member Service Due Detail" description="View Member Service Due Detail" index="1300" path="Member Service Due Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberServiceDueDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member service due detail management.</about>
+    </page>
+    <page name="NonMemberCategory" title="Non Member Category" description="View Non Member Category" index="1310" path="Non Member Category">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="NonMemberCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows non member category management.</about>
+    </page>
+    <page name="MemberChildren" title="Member Children" description="View Member Children" index="1320" path="Member Children">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberChildren" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member children management.</about>
+    </page>
+    <page name="MemberSpouse" title="Member Spouse" description="View Member Spouse" index="1330" path="Member Spouse">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberSpouse" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member spouse management.</about>
+    </page>
+    <page name="MemberStatusChange" title="Member Status Change" description="View Member Status Change" index="1340" path="Member Status Change">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberStatusChange" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member status change management.</about>
+    </page>
+    <page name="MemberCard" title="Member Card" description="View Member Card" index="1350" path="Member Card">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberCard" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member card management.</about>
+    </page>
+    <page name="MemberCardTransaction" title="Member Card Transaction" description="View Member Card Transaction" index="1360" path="Member Card Transaction">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberCardTransaction" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member card transaction management.</about>
+    </page>
+    <page name="TournamentFee" title="Tournament Fee" description="View Tournament Fee" index="1370" path="Tournament Fee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament fee management.</about>
+    </page>
+    <page name="BallBoy" title="Ball Boy" description="View Ball Boy" index="1380" path="Ball Boy">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="BallBoy" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows ball boy management.</about>
+    </page>
+    <page name="Caddie" title="Caddie" description="View Caddie" index="1390" path="Caddie">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Caddie" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows caddie management.</about>
+    </page>
+    <page name="GameFlightSchedule" title="Game Flight Schedule" description="View Game Flight Schedule" index="1400" path="Game Flight Schedule">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameFlightSchedule" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game flight schedule management.</about>
+    </page>
+    <page name="GameFlightSchMember" title="Game Flight Sch Member" description="View Game Flight Sch Member" index="1410" path="Game Flight Sch Member">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameFlightSchMember" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game flight sch member management.</about>
+    </page>
+    <page name="MemberLockerBill" title="Member Locker Bill" description="View Member Locker Bill" index="1420" path="Member Locker Bill">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberLockerBill" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member locker bill management.</about>
+    </page>
+    <page name="GameCategory" title="Game Category" description="View Game Category" index="1430" path="Game Category">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game category management.</about>
+    </page>
+    <page name="MemberLockerBillDetail" title="Member Locker Bill Detail" description="View Member Locker Bill Detail" index="1440" path="Member Locker Bill Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberLockerBillDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member locker bill detail management.</about>
+    </page>
+    <page name="GameMatch" title="Game Match" description="View Game Match" index="1450" path="Game Match">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameMatch" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game match management.</about>
+    </page>
+    <page name="GamePlayerGroup" title="Game Player Group" description="View Game Player Group" index="1460" path="Game Player Group">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GamePlayerGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game player group management.</about>
+    </page>
+    <page name="GameMatchScore" title="Game Match Score" description="View Game Match Score" index="1470" path="Game Match Score">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameMatchScore" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game match score management.</about>
+    </page>
+    <page name="GolfCart" title="Golf Cart" description="View Golf Cart" index="1480" path="Golf Cart">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GolfCart" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows golf cart management.</about>
+    </page>
+    <page name="TournamentGameFlightSch" title="Tournament Game Flight Sch" description="View Tournament Game Flight Sch" index="1490" path="Tournament Game Flight Sch">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGameFlightSch" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game flight sch management.</about>
+    </page>
+    <page name="MemberPersonalCaddieBallboy" title="Member Personal Caddie Ballboy" description="View Member Personal Caddie Ballboy" index="1500" path="Member Personal Caddie Ballboy">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberPersonalCaddieBallboy" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member personal caddie ballboy management.</about>
+    </page>
+    <page name="Smsbalance" title="Smsbalance" description="View Smsbalance" index="1510" path="Smsbalance">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smsbalance" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsbalance management.</about>
+    </page>
+    <page name="Smsconfig" title="Smsconfig" description="View Smsconfig" index="1520" path="Smsconfig">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smsconfig" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsconfig management.</about>
+    </page>
+    <page name="Smspurchase" title="Smspurchase" description="View Smspurchase" index="1530" path="Smspurchase">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smspurchase" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smspurchase management.</about>
+    </page>
+    <page name="FlightMember" title="Flight Member" description="View Flight Member" index="1540" path="Flight Member">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="FlightMember" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows flight member management.</about>
+    </page>
+    <page name="Smsdelivery" title="Smsdelivery" description="View Smsdelivery" index="1550" path="Smsdelivery">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smsdelivery" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsdelivery management.</about>
+    </page>
+    <page name="GameRegistration" title="Game Registration" description="View Game Registration" index="1560" path="Game Registration">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameRegistration" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game registration management.</about>
+    </page>
+    <page name="MemberGameReg" title="Member Game Reg" description="View Member Game Reg" index="1570" path="Member Game Reg">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberGameReg" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member game reg management.</about>
+    </page>
+    <page name="PayType" title="Pay Type" description="View Pay Type" index="1580" path="Pay Type">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="PayType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows pay type management.</about>
+    </page>
+    <page name="Holiday" title="Holiday" description="View Holiday" index="1590" path="Holiday">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Holiday" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows holiday management.</about>
+    </page>
+    <page name="TourRegisterMember" title="Tour Register Member" description="View Tour Register Member" index="1600" path="Tour Register Member">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TourRegisterMember" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tour register member management.</about>
+    </page>
+    <page name="TournamentRegisterMember" title="Tournament Register Member" description="View Tournament Register Member" index="1610" path="Tournament Register Member">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentRegisterMember" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament register member management.</about>
+    </page>
+    <page name="SmSsetting" title="Sm Ssetting" description="View Sm Ssetting" index="1620" path="Sm Ssetting">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="SmSsetting" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows sm ssetting management.</about>
+    </page>
+    <page name="SmsstatusGroup" title="Smsstatus Group" description="View Smsstatus Group" index="1630" path="Smsstatus Group">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="SmsstatusGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsstatus group management.</about>
+    </page>
+    <page name="SmsgsmerrorCode" title="Smsgsmerror Code" description="View Smsgsmerror Code" index="1640" path="Smsgsmerror Code">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="SmsgsmerrorCode" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsgsmerror code management.</about>
+    </page>
+    <page name="Smsprovider" title="Smsprovider" description="View Smsprovider" index="1650" path="Smsprovider">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smsprovider" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsprovider management.</about>
+    </page>
+    <page name="SmsDeliveryStatus" title="Sms Delivery Status" description="View Sms Delivery Status" index="1660" path="Sms Delivery Status">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="SmsDeliveryStatus" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows sms delivery status management.</about>
+    </page>
+    <page name="SmserrorGroup" title="Smserror Group" description="View Smserror Group" index="1670" path="Smserror Group">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="SmserrorGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows smserror group management.</about>
+    </page>
+    <page name="Gregistration" title="Gregistration" description="View Gregistration" index="1680" path="Gregistration">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Gregistration" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows gregistration management.</about>
+    </page>
+    <page name="GameType" title="Game Type" description="View Game Type" index="1690" path="Game Type">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game type management.</about>
+    </page>
+    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="^MembershipPath^Membership^MembershipPath^" style="UsersPage" index="1700">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <about>^MembershipAbout^This page allows to manage roles and users.^MembershipAbout^</about>
+      <controls>
+        <control id="control1" name="MembershipManager" container="container1" />
+      </controls>
+    </page>
+  </pages>
+  <userControls>
+    <userControl name="TableOfContents" prefix="uc" generate="Always">
+      <body>
+                
+&lt;div class="ParaInfo"&gt;
+        ^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^TocHeader^Site Map^TocHeader^
+&lt;/div&gt;
+&lt;asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" /&gt;
+&lt;asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" CssClass="TreeView"&gt;
+&lt;/asp:TreeView&gt;
+
+&lt;div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Site Map^TocHeader^"&gt;
+    &lt;p&gt;
+      &lt;span&gt;^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div data-app-role="sitemap"&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;br /&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+              </body>
+    </userControl>
+    <userControl name="Welcome" prefix="uc" generate="Always">
+      <body>
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+                  
+&lt;div class="ParaText"&gt;
+    ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+    web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+    access all areas of the web site with the exception of membership manager.^SignInPara2^&lt;/div&gt;
+                
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;</body>
+    </userControl>
+    <userControl name="MembershipManager" prefix="uc" generate="Always">
+      <body>
+                  
+&lt;aquarium:MembershipManager ID="mm" runat="server" /&gt;
+                </body>
+    </userControl>
+    <userControl name="Login" prefix="uc" generate="FirstTimeOnly">
+      <body>
+              
+&lt;div data-app-role="page" data-content-framework="bootstrap"&gt;
+        &lt;div class="navbar navbar-default navbar-static-top" role="navigation"&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="navbar-header"&gt;
+                    &lt;span class="navbar-brand"&gt;Standalone Login Page&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="navbar-collapse"&gt;
+                    &lt;div class="navbar-form navbar-right" role="form"&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;input id="login-user-name" type="text" placeholder="Username" class="form-control" autocapitalize="off"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;input id="login-password" type="password" placeholder="Password" class="form-control"&gt;
+                        &lt;/div&gt;
+                        &lt;button id="login-button" class="btn btn-success"&gt;Sign in&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!--/.navbar-collapse --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Main jumbotron for a primary marketing message or call to action --&gt;
+        &lt;div class="jumbotron"&gt;
+            &lt;div class="container"&gt;
+                &lt;h1&gt;&lt;span class="glyphicon glyphicon-globe"&gt;&lt;/span&gt;&amp;nbsp;Hello, world!&lt;/h1&gt;
+                &lt;p&gt;
+                    This is a template for a custom login screen. It includes a large callout called a jumbotron and three supporting content blocks.
+                    Edit the "~/Login.html" page in Visual Studio to create something more unique.
+                &lt;/p&gt;
+
+                &lt;p&gt;&lt;a href="#" class="btn btn-primary btn-lg" role="button"&gt;Learn more &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="container"&gt;
+
+            &lt;div class="row"&gt;
+                &lt;div class="col-sm-8"&gt;
+                    &lt;h2&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/h2&gt;
+                    &lt;p&gt;
+                        ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+                        if membership option has been selected for this application.^SignInPara1^
+                    &lt;/p&gt;
+
+                    &lt;p&gt;
+                        ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+                        web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+                        access all areas of the web site with the exception of membership manager.^SignInPara2^
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;div class="panel panel-success"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;span&gt;^AdminDesc^Administrative account^AdminDesc^&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body"&gt;
+                            User Name: &lt;b title="User Name"&gt;admin&lt;/b&gt;&lt;br /&gt;
+                            Password: &lt;b title="Password"&gt;admin123%&lt;/b&gt;&lt;br /&gt;
+                            &lt;a class="btn btn-link" href="#" id="admin-login"&gt;Login as Admin&lt;/a&gt;&lt;br /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="panel panel-default"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;span&gt;^UserDesc^Standard user account^UserDesc^&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body"&gt;
+                            User Name: &lt;b title="User Name"&gt;user&lt;/b&gt;&lt;br /&gt;
+                            Password: &lt;b title="Password"&gt;user123%&lt;/b&gt;&lt;br /&gt;
+                            &lt;a class="btn btn-link" href="#" id="user-login"&gt;Login as User&lt;/a&gt;&lt;br /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;!-- Example row of columns --&gt;
+            &lt;div class="row"&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;hr/&gt;
+        &lt;!-- /container --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+
+    &lt;script type="text/javascript"&gt;
+        (function () {
+            var resources = Web.MembershipResources.Messages;
+
+            function performLogin(username, password) {
+
+                var userNameElem = $('#login-user-name'),
+                    passwordElem = $('#login-password');
+
+                if (!username)
+                    username = userNameElem.val();
+                if (!password)
+                    password = passwordElem.val();
+
+                if (!username)
+                    $app.alert(resources.BlankUserName, function () {
+                        userNameElem.focus();
+                    });
+                else if (!password)
+                    $app.alert(resources.BlankPassword, function () {
+                        passwordElem.focus();
+                    });
+                else
+                    $app.login(username, password, true,
+                        function () {
+                            setTimeout(function() {
+                              $app._navigated = true;
+                              var returnUrl = window.location.href.match(/\?ReturnUrl=(.+)$/);
+                              window.location.replace(returnUrl &amp;&amp; decodeURIComponent(returnUrl[1]) || __baseUrl);
+                            });
+                        },
+                        function () {
+                            $app.alert(resources.InvalidUserNameAndPassword, function () {
+                                userNameElem.focus();
+                            });
+                        });
+                return false;
+            }
+
+            $(document)
+                .on('click', '#login-button', function () {
+                    performLogin();
+                })
+                .on('click', '#admin-login', function () {
+                    performLogin('admin', 'admin123%');
+                })
+                .on('click', '#user-login', function () {
+                    performLogin('user', 'user123%');
+                })
+                .on('keydown', 'input', function (event) {
+                    if (event.which == 13) {
+                        event.preventDefault();
+                        performLogin();
+                        return false;
+                    }
+                });
+        })();
+    &lt;/script&gt;
+
+            </body>
+    </userControl>
+  </userControls>
+</application>

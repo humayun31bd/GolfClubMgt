@@ -1,0 +1,704 @@
+<application snapshot="true" integrity="checked" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map" xmlns:dm="urn:schemas-codeontime-com:data-model">
+  <pages>
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls></controls>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberDashBoard" />
+      </dataViews>
+    </page>
+    <page name="ClubSetup" path="Club Setup" index="1010" title="Club Setup" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-card-travel" />
+    <page name="MemberGroup" title="Member Group" description="View Member Group" index="1020" path="Club Setup | Member Group" roles="Administrators,MemberGroup" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member group management.</about>
+    </page>
+    <page name="MemberCategory" title="Member Category" description="View Member Category" index="1030" path="Club Setup | Member Category" roles="Administrators,MemberCategory" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-never" />
+      </dataViews>
+      <controls />
+      <about>This page allows member category management.</about>
+    </page>
+    <page name="MemberStatus" title="Member Status" description="View Member Status" index="1040" path="Club Setup | Member Status" roles="Administrators,MemberStatus" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberStatus" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member status management.</about>
+    </page>
+    <page name="MemberFee" title="Monthly Fee" description="View Member Fee" index="1050" path="Club Setup | Monthly Fee" useExtenders="false" roles="Administrators,MonthlyFee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member fee management.</about>
+    </page>
+    <page name="MemberInfo" title="Member Registration" description="View Member Information" index="1060" path="Club Setup | Member Registration" useExtenders="false" roles="Administrators,MemberRegistration">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberInfo" view="grid1" container="container1" activator="Tab" text="Registrated Member" multiSelect="true" tag="modal-never" />
+        <dataView id="view3" container="container1" controller="MemberInfoSpouse" view="grid1" activator="Tab" text="Spouse " tag="modal-never,view-style-grid&#xD;&#xA;" />
+        <dataView id="view2" container="container1" controller="MemberInfoChild" activator="Tab" text="Children" tag="modal-never,view-style-grid&#xD;&#xA;" view="grid1" />
+      </dataViews>
+      <controls />
+      <about>This page allows member information management.</about>
+    </page>
+    <page name="NonMemberRegistration" path="Club Setup | Non Member Registration" index="1070" title="Non Member Registration" roles="Administrators,NonMemberRegistration" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberInfoNonMember" view="grid1" tag="modal-never" />
+      </dataViews>
+    </page>
+    <page name="RegisterMemberCard" path="Club Setup | Card Register" index="1080" title="Card Register" roles="Administrators,CardRegistrater" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberCard" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="DepositToCard" path="Club Setup | Recharge Card" index="1090" title="Recharge Card" roles="Administrators,RechargeCard" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberCardTransactionDeposit" activator="Tab" text="Recharge Card" multiSelect="true" view="grid1" />
+        <dataView id="view2" container="c101" controller="MemberCardDepositApproved" activator="Tab" text="Deposit Approved" multiSelect="true" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="MemberService" title="Member Service" description="View Member Service" index="1100" path="Club Setup | Member Service" roles="Administrators,MemberService" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberService" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member service management.</about>
+    </page>
+    <page name="MemberStatusChange" title="Member Status Change" description="View Member Status Change" index="1110" path="Club Setup | Member Status Change" roles="Administrators,MemberStatusChange" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberStatusChange" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member status change management.</about>
+    </page>
+    <page name="Holiday" title="Holiday" description="View Holiday" index="1120" path="Club Setup | Holiday" roles="Administrators,Holiday" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Holiday" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows holiday management.</about>
+    </page>
+    <page name="MemberPersonalCaddieBallboy" title="Member Personal Caddie Ballboy" description="View Member Personal Caddie Ballboy" index="1130" path="Club Setup | Member Personal Caddie Ballboy" roles="Administrators,PersonalCaddieBallBoy" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberPersonalCaddieBallboy" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member personal caddie ballboy management.</about>
+    </page>
+    <page name="Caddie" title="Caddie" description="View Caddie" index="1140" path="Club Setup | Caddie/BallBoy" roles="Administrators,CaddieBallBoy" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Caddie" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Caddie" multiSelect="true" />
+        <dataView id="view2" controller="BallBoy" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Ball Boy" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows caddie management.</about>
+    </page>
+    <page name="GolfCart" title="Golf Cart" description="View Golf Cart" index="1150" path="Club Setup | Golf Cart" roles="Administrators,GolfCart" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GolfCart" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows golf cart management.</about>
+    </page>
+    <page name="Bank" title="Bank" description="View Bank" index="1160" path="Club Setup | Bank" roles="Administrators,Bank" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Bank" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows bank management.</about>
+    </page>
+    <page name="Smsconfig" title="Smsconfig" description="View Smsconfig" index="1170" path="Club Setup | Smsconfig" roles="Administrators,SmsConfig" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Smsconfig" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Card Verification SMS" multiSelect="true" startCommandName="Edit" />
+        <dataView id="view2" controller="Smsbalance" view="grid1" showInSummary="true" container="container1" activator="Tab" text="SMS Balance" multiSelect="true" showActionBar="false" showDescription="false" showViewSelector="false" showSearchBar="false" showQuickFind="false" />
+        <dataView id="view3" controller="Smspurchase" view="grid1" showInSummary="true" container="container1" activator="Tab" text="SMS Purchased" multiSelect="true" showActionBar="false" showDescription="false" showViewSelector="false" showSearchBar="false" showQuickFind="false" />
+      </dataViews>
+      <controls />
+      <about>This page allows smsconfig management.</about>
+    </page>
+    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="Club Setup | User Access" style="UsersPage" index="1180">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <about>^MembershipAbout^This page allows to manage roles and users.^MembershipAbout^</about>
+      <controls>
+        <control id="control1" name="MembershipManager" container="container1" />
+      </controls>
+    </page>
+    <page name="GameSetup" path="Game Setup" index="1200" title="Game Setup" roles="Administrators" useExtenders="false" generate="Always">
+      <containers></containers>
+      <dataViews></dataViews>
+    </page>
+    <page name="HoleSetup" path="Game Setup | Hole Setup" index="1210" title="Hole Setup" roles="Administrators,HoleSetup" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="HoleType" />
+      </dataViews>
+    </page>
+    <page name="GameFee" title="Game Fee" description="View Game Fee" index="1230" path="Game Setup | Game Fee" roles="Administrators,GameFee" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-never" />
+      </dataViews>
+      <controls />
+      <about>This page allows game fee management.</about>
+    </page>
+    <page name="GameSchedule" path="Game Setup | Flight Schedule Create" index="1240" title="Flight Schedule Create" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="GameFlightSchedule" activator="Tab" text="Flight Schedule" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="GameRegistration" path="Game Setup | Game Registration" index="1250" title="Game Registration" roles="Administrators,GameRegistration" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews></dataViews>
+    </page>
+    <page name="MemberGameReg" title="Game Payment Approval" description="View Member Game Reg" index="1260" path="Game Setup | Game Payment Approval" useExtenders="false" roles="Administrators,GamePayApproval">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="container1" controller="MemberGameRegApproval" activator="Tab" text="Game Registration Approval" multiSelect="true" />
+        <dataView id="view2" container="container1" controller="MemberGameRegApproved" activator="Tab" text="Game Registration Approved" />
+      </dataViews>
+      <controls />
+      <about>This page allows member game reg management.</about>
+    </page>
+    <page name="GameMatch" title="Game Match" description="View Game Match" index="1270" path="Game Setup | Game Match" roles="NonDelivery" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameMatch" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game match management.</about>
+    </page>
+    <page name="GamePlayerGroup" title="Game Player Group" description="View Game Player Group" index="1280" path="Game Setup | Game Player Group" roles="nondelivery" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GamePlayerGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game player group management.</about>
+    </page>
+    <page name="GameMatchScore" title="Game Match Score" description="View Game Match Score" index="1290" path="Game Setup | Game Match Score" roles="nondelivery" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameMatchScore" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game match score management.</about>
+    </page>
+    <page name="TournamentSetup" path="Tournament Setup" index="1300" title="Tournament Setup" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-perm-contact-calendar" />
+    <page name="Tournament" title="Tournament" description="View Tournament" index="1310" path="Tournament Setup | Tournament" roles="Administrators,Tournament" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Tournament" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament management.</about>
+    </page>
+    <page name="GameCategory" title="Game Category" description="View Game Category" index="1320" path="Tournament Setup | Game Category" roles="Administrators,GameCategory" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game category management.</about>
+    </page>
+    <page name="TeeName" title="Tee Name" description="View Tee Name" index="1330" path="Tournament Setup | Tee Name" roles="Administrators,TeeName" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TeeName" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tee name management.</about>
+    </page>
+    <page name="TournamentFee" title="Fees" description="View Tournament Fee" index="1340" path="Tournament Setup | Fees" useExtenders="false" roles="Administrators,GameFee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament fee management.</about>
+    </page>
+    <page name="TournamentFlightSch" title="Flight Schedule" description="View Tournament Flight Sch" index="1350" path="Tournament Setup | Tournament Flight Schedule" useExtenders="false" roles="Administrators,TournamentFlightSchedule">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="container1" controller="TournamentFlightSch" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament flight sch management.</about>
+    </page>
+    <page name="GameType" title="Game Type" description="View Game Type" index="1360" path="Tournament Setup | Game Type" roles="Administrators,GameType" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="GameType" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows game type management.</about>
+    </page>
+    <page name="TournamentPayment" path="Tournament Setup | Tournament Payment" index="1370" title="Tournament Payment" roles="Administrators,TournamentPayment" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c101" controller="TourRegisterMemberApproval" multiSelect="true" activator="Tab" text="Tournament Payment Approval" />
+        <dataView id="view3" container="c101" controller="TourRegisterMemberApproved" activator="Tab" text="Tournament Payment Approved" />
+      </dataViews>
+    </page>
+    <page name="TourRegisterMember" path="Tournament Setup | Tour Register Member" index="1380" title="Tour Register Member" roles="Administrators,TournamentRegistration" useExtenders="false" generate="FirstTimeOnly" />
+    <page name="LockerService" path="Locker Service" index="1390" title="Locker Service" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-store" />
+    <page name="Locker" title="Locker" description="View Locker" index="1400" path="Locker Service | Locker" roles="Administrators,LockerCreate" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="Locker" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows locker management.</about>
+    </page>
+    <page name="LockerBooking" title="Locker Booking" description="View Locker Booking" index="1410" path="Locker Service | Locker Booking" roles="Administrators,LockerBooking" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="LockerBooking" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows locker booking management.</about>
+    </page>
+    <page name="BillCollection" path="Bill Collection" index="1420" title="Bill Collection" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-account-balance" />
+    <page name="MemberBill" title="Bill Approval Pending" description="View Member Bill Approval Pending" index="1430" path="Bill Collection | Bill Approval Pending" roles="Administrators,BillApproval" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberBill" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Member Bill Approval" multiSelect="true" tag="modal-never" showDescription="false" pageSize="25" />
+        <dataView id="view2" container="container1" controller="MemberBillApproved" activator="Tab" text="Member Bill Approved" view="grid1" tag="modal-never" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member bill management.</about>
+    </page>
+    <page name="MyExternal" path="Bill Collection | Bill Collection" index="1440" title="Member Bill Collection" roles="Administrators,BillCollectors" useExtenders="false" generate="FirstTimeOnly" template="Responsive Grid" description="Member Bill Collection - Monthly Subscription, Contribution Welfare Fund, Locker Service etc." customStyle="metrial-icon-build" />
+    <page name="CreateServiceDue" path="Bill Collection | Create Service Due" index="1450" title="Create Service Due" roles="Administrators,ServiceDueCreate" useExtenders="false" generate="FirstTimeOnly">
+      <containers></containers>
+      <dataViews></dataViews>
+    </page>
+    <page name="SearchMemberDues" path="Bill Collection | Search Member Dues" index="1460" title="Search Member Dues" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c104" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view4" container="c104" controller="MemberSearch" startCommandName="Edit" view="form1" />
+      </dataViews>
+    </page>
+    <page name="Reports" path="Reports" index="1470" title="Reports" roles="Administrators" useExtenders="false" generate="Always" />
+    <page name="DueStatement" path="Reports | Due Statement" index="1480" title="Due Statement" roles="Administrators,ReportDueStatement" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c101" controller="MemberList_Due" />
+      </dataViews>
+    </page>
+    <page name="TournamentCollection" path="Reports | Tournament Collection" index="1490" title="Tournament Collection" roles="Administrators,ReportTournamentCollection" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="TournamentCollection" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="MemberBillCollection" path="Reports | Member Bill Collection" index="1500" title="Member Bill Collection" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberBillCollectionSummary" activator="Tab" text="Bill Collection Summary" showQuickFind="false" refreshInterval="30" view="grid1" />
+        <dataView id="view2" container="c101" controller="MemberBillCollectionStatement" activator="Tab" text="Member Bill Collection" showQuickFind="false" refreshInterval="5" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="MemberFeeReport" path="Reports | Member Fee Report" index="1510" title="Member Fee Report" roles="Administrators,ReportMemberFee" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberFeeReport" />
+      </dataViews>
+    </page>
+    <page name="Registration" path="Reports | Registration Report" index="1520" title="Registration Report" roles="Administrators,ReportDailyRegistration" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="DailyRegistration" view="grid1" activator="Tab" text="Daily Registration" multiSelect="true" />
+      </dataViews>
+    </page>
+    <page name="GameFlightSchedule" title="Daily Registered Players" description="View Daily Registered Players" index="1530" path="Reports | Daily Registered Players" roles="Administrators,ReportDailyRegisteredPlayers" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="container1" controller="DailyRegisteredPlayerByGroup" />
+      </dataViews>
+      <controls />
+      <about>This page allows Daily Registered Players management.</about>
+    </page>
+    <page name="ClubReport" index="1540" title="Club Report" roles="*" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <controls>
+        <control id="control1" container="c101" name="ReportViewer" />
+      </controls>
+    </page>
+    <page name="SendSMS" index="1550" title="Send SMS" roles="*" useExtenders="false" generate="FirstTimeOnly" />
+    <page name="EmailSMS" path="Email/SMS" index="1560" title="Email/SMS" roles="Administrators,EmailSMS" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c101" controller="MemberServiceBillDue" activator="Tab" text="Due Member Send Email" multiSelect="true" />
+        <dataView id="view3" container="c101" controller="MemberSendSMS" multiSelect="true" activator="Tab" text="Sending SMS" view="AllMembers" />
+      </dataViews>
+    </page>
+  </pages>
+  <userControls>
+    <userControl name="TableOfContents" prefix="uc" generate="Always">
+      <body>
+                
+&lt;div class="ParaInfo"&gt;
+        ^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^TocHeader^Site Map^TocHeader^
+&lt;/div&gt;
+&lt;asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" /&gt;
+&lt;asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" CssClass="TreeView"&gt;
+&lt;/asp:TreeView&gt;
+
+&lt;div id="app-sitemap" data-app-role="page" data-activator="Button|^TocHeader^Site Map^TocHeader^"&gt;
+    &lt;p&gt;
+      &lt;span&gt;^TocInstruction^Please select a page link in the table of contents below.^TocInstruction^&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;div data-app-role="sitemap"&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;br /&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+              </body>
+    </userControl>
+    <userControl name="Welcome" prefix="uc" generate="Always">
+      <body>
+&lt;div style="padding-left:8px"&gt;&lt;div class="ParaInfo"&gt;
+        ^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/div&gt;
+&lt;div class="ParaHeader"&gt;
+    ^SignInHeader^Instructions^SignInHeader^
+&lt;/div&gt;
+&lt;div class="ParaText"&gt;
+    ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+    if membership option has been selected for this application.^SignInPara1^
+&lt;/div&gt;
+                  
+&lt;div class="ParaText"&gt;
+    ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+    web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+    access all areas of the web site with the exception of membership manager.^SignInPara2^&lt;/div&gt;
+                
+&lt;div class="ParaText"&gt;
+    &lt;div style="border: solid 1px black; background-color: InfoBackground; padding: 8px;
+        float: left;"&gt;
+        ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+        &lt;br /&gt;
+        &lt;br /&gt;
+        ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+        &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+    &lt;/div&gt;
+    &lt;div style="clear:both;margin-bottom:8px"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="app-welcome" data-app-role="page" data-activator="Button|^SignInHeader^Instructions^SignInHeader^" data-activator-description="^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^"&gt;
+      &lt;p&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/p&gt;
+      &lt;p&gt;
+          ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+  if membership option has been selected for this application.^SignInPara1^
+      &lt;/p&gt;
+
+      &lt;p&gt;
+          ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+  web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+  access all areas of the web site with the exception of membership manager.^SignInPara2^
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^AdminDesc^Administrative account^AdminDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;admin&lt;/b&gt; / &lt;b title="Password"&gt;admin123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+          ^UserDesc^Standard user account^UserDesc^:&lt;br /&gt;
+          &lt;b title="User Name"&gt;user&lt;/b&gt; / &lt;b title="Password"&gt;user123%&lt;/b&gt;
+      &lt;/p&gt;
+      &lt;p&gt;&lt;a href="#" data-role="button" data-inline="true" data-theme="b" data-app-role="loginstatus" data-icon="lock"&gt;Login Status&lt;/a&gt;&lt;/p&gt;
+
+&lt;/div&gt;</body>
+    </userControl>
+    <userControl name="MembershipManager" prefix="uc" generate="Always">
+      <body>
+                  
+&lt;aquarium:MembershipManager ID="mm" runat="server" /&gt;
+                </body>
+    </userControl>
+    <userControl name="Login" prefix="uc" generate="FirstTimeOnly">
+      <body>
+              
+&lt;div data-app-role="page" data-content-framework="bootstrap"&gt;
+        &lt;div class="navbar navbar-default navbar-static-top" role="navigation"&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="navbar-header"&gt;
+                    &lt;span class="navbar-brand"&gt;Standalone Login Page&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="navbar-collapse"&gt;
+                    &lt;div class="navbar-form navbar-right" role="form"&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;input id="login-user-name" type="text" placeholder="Username" class="form-control" autocapitalize="off"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;input id="login-password" type="password" placeholder="Password" class="form-control"&gt;
+                        &lt;/div&gt;
+                        &lt;button id="login-button" class="btn btn-success"&gt;Sign in&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;!--/.navbar-collapse --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Main jumbotron for a primary marketing message or call to action --&gt;
+        &lt;div class="jumbotron"&gt;
+            &lt;div class="container"&gt;
+                &lt;h1&gt;&lt;span class="glyphicon glyphicon-globe"&gt;&lt;/span&gt;&amp;nbsp;Hello, world!&lt;/h1&gt;
+                &lt;p&gt;
+                    This is a template for a custom login screen. It includes a large callout called a jumbotron and three supporting content blocks.
+                    Edit the "~/Login.html" page in Visual Studio to create something more unique.
+                &lt;/p&gt;
+
+                &lt;p&gt;&lt;a href="#" class="btn btn-primary btn-lg" role="button"&gt;Learn more &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="container"&gt;
+
+            &lt;div class="row"&gt;
+                &lt;div class="col-sm-8"&gt;
+                    &lt;h2&gt;^SignInInstruction^Sign in to access the protected site content.^SignInInstruction^&lt;/h2&gt;
+                    &lt;p&gt;
+                        ^SignInPara1^Two standard user accounts are automatically created when application is initialized
+                        if membership option has been selected for this application.^SignInPara1^
+                    &lt;/p&gt;
+
+                    &lt;p&gt;
+                        ^SignInPara2^The administrative account &lt;b&gt;admin&lt;/b&gt; is authorized to access all areas of the
+                        web site and membership manager. The standard &lt;b&gt;user&lt;/b&gt; account is allowed to
+                        access all areas of the web site with the exception of membership manager.^SignInPara2^
+                    &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;div class="panel panel-success"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;span&gt;^AdminDesc^Administrative account^AdminDesc^&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body"&gt;
+                            User Name: &lt;b title="User Name"&gt;admin&lt;/b&gt;&lt;br /&gt;
+                            Password: &lt;b title="Password"&gt;admin123%&lt;/b&gt;&lt;br /&gt;
+                            &lt;a class="btn btn-link" href="#" id="admin-login"&gt;Login as Admin&lt;/a&gt;&lt;br /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="panel panel-default"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;span&gt;^UserDesc^Standard user account^UserDesc^&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body"&gt;
+                            User Name: &lt;b title="User Name"&gt;user&lt;/b&gt;&lt;br /&gt;
+                            Password: &lt;b title="Password"&gt;user123%&lt;/b&gt;&lt;br /&gt;
+                            &lt;a class="btn btn-link" href="#" id="user-login"&gt;Login as User&lt;/a&gt;&lt;br /&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;hr /&gt;
+            &lt;!-- Example row of columns --&gt;
+            &lt;div class="row"&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. &lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="col-sm-4"&gt;
+                    &lt;h2&gt;Heading&lt;/h2&gt;
+                    &lt;p&gt;Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
+                    &lt;p&gt;&lt;a class="btn btn-default" href="#" role="button"&gt;View details &amp;raquo;&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;hr/&gt;
+        &lt;!-- /container --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+
+    &lt;script type="text/javascript"&gt;
+        (function () {
+            var resources = Web.MembershipResources.Messages;
+
+            function performLogin(username, password) {
+
+                var userNameElem = $('#login-user-name'),
+                    passwordElem = $('#login-password');
+
+                if (!username)
+                    username = userNameElem.val();
+                if (!password)
+                    password = passwordElem.val();
+
+                if (!username)
+                    $app.alert(resources.BlankUserName, function () {
+                        userNameElem.focus();
+                    });
+                else if (!password)
+                    $app.alert(resources.BlankPassword, function () {
+                        passwordElem.focus();
+                    });
+                else
+                    $app.login(username, password, true,
+                        function () {
+                            setTimeout(function() {
+                              $app._navigated = true;
+                              var returnUrl = window.location.href.match(/\?ReturnUrl=(.+)$/);
+                              window.location.replace(returnUrl &amp;&amp; decodeURIComponent(returnUrl[1]) || __baseUrl);
+                            });
+                        },
+                        function () {
+                            $app.alert(resources.InvalidUserNameAndPassword, function () {
+                                userNameElem.focus();
+                            });
+                        });
+                return false;
+            }
+
+            $(document)
+                .on('click', '#login-button', function () {
+                    performLogin();
+                })
+                .on('click', '#admin-login', function () {
+                    performLogin('admin', 'admin123%');
+                })
+                .on('click', '#user-login', function () {
+                    performLogin('user', 'user123%');
+                })
+                .on('keydown', 'input', function (event) {
+                    if (event.which == 13) {
+                        event.preventDefault();
+                        performLogin();
+                        return false;
+                    }
+                });
+        })();
+    &lt;/script&gt;
+
+            </body>
+    </userControl>
+    <userControl name="Homebackground" prefix="uc" generate="FirstTimeOnly">
+      <body>&lt;img src="../images/GolfClubBackground.png" style="background-repeat:no-repeat;" /&gt;</body>
+    </userControl>
+    <userControl name="ReportViewer" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="MemberBillCollect" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="MemberBillCollectionNew" prefix="uc" generate="FirstTimeOnly" />
+    <userControl name="SendSMSSender" prefix="uc" generate="FirstTimeOnly" />
+  </userControls>
+</application>

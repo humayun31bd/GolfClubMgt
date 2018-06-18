@@ -1,0 +1,4175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<log xmlns:aquarium="urn:schemas-codeontime-com:data-aquarium" xmlns:app="urn:schemas-codeontime-com:data-aquarium-application" xmlns:a="urn:schemas-codeontime-com:data-aquarium" xmlns="urn:schemas-codeontime-com:xml-builder">
+  <c y="NodeSet" t="2018-04-09T20:53:38">
+    <pages />
+    <insert type="page">
+      <Name>ClubSetup</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Club Setup</Path>
+      <Title>Club Setup</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:53:43">
+    <page name="Home" />
+    <after>
+      <page name="ClubSetup" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:53:50">
+    <page name="WeekDay" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:53:55">
+    <page name="ClubSetup" />
+    <move>
+      <page name="MemberStatus" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:53:59">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Nationality" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:07">
+    <page name="Nationality" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:29">
+    <page name="MemberType" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:35">
+    <page name="ClubSetup" />
+    <move>
+      <page name="MemberInfo" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:39">
+    <page name="MemberStatus" />
+    <after>
+      <page name="MemberGroup" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:42">
+    <page name="MemberInfo" />
+    <after>
+      <page name="MemberStatus" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:47">
+    <page name="MemberGroup" />
+    <after>
+      <page name="MemberCategory" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:53">
+    <page name="MemberInfo" />
+    <after>
+      <page name="MemberService" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:54:58">
+    <page name="MemberFeeCurrent" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:55:06">
+    <page name="BloodGroup" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:55:14">
+    <page name="Membership" />
+    <rename>User Access</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-09T20:55:17">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Membership" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-09T21:43:21">
+    <page name="MemberService" />
+    <after>
+      <page name="MemberFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T21:44:53">
+    <page name="MemberInfo" />
+    <after>
+      <page name="MemberFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-09T22:24:32">
+    <page name="MemberInfo" />
+    <rename>Member Information</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-09T22:24:46">
+    <page name="MemberInfo" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member Information</Title>
+      <Description>View Member Information</Description>
+      <About>This page allows member information management.</About>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:39">
+    <pages />
+    <insert type="page">
+      <Name>TournamentSetup</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Tournament Setup</Path>
+      <Title>Tournament Setup</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:43">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameFee" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:45">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameFeeDay" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:49">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Gender" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:53">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="Tournament" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:57:55">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameType" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:58:28">
+    <page name="Tournament" />
+    <after>
+      <page name="GameFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:58:31">
+    <page name="GameFee" />
+    <after>
+      <page name="GameFeeDay" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T12:58:36">
+    <page name="Tournament" />
+    <after>
+      <page name="TournamentFlieghtSch" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:24:29">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="TournamentFlightSch" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:24:32">
+    <page name="Tournament" />
+    <after>
+      <page name="TournamentFlightSch" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:24:35">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="HoleType" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:21">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="LockerPrice" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:31">
+    <pages />
+    <insert type="page">
+      <Name>LockerService</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Locker Service</Path>
+      <Title>Locker Service</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:34">
+    <page name="LockerService" />
+    <move>
+      <page name="LockerPrice" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:37">
+    <page name="LockerService" />
+    <move>
+      <page name="Locker" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:40">
+    <page name="LockerService" />
+    <move>
+      <page name="LockerBooking" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:42">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="TeeName" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:25:57">
+    <pages />
+    <insert type="page">
+      <Name>BillCollection</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Bill Collection</Path>
+      <Title>Bill Collection</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:26:14">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>MembersBill</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Members Bill</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:27:39">
+    <page name="MemberFee" />
+    <rename>Monthly Fee</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:27:46">
+    <page name="MemberFee" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Monthly Fee</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:32:50">
+    <page name="Locker" />
+    <after>
+      <page name="LockerPrice" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:33:12">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Bank" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:33:16">
+    <page name="ClubSetup" />
+    <move>
+      <page name="MemberCwf" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:33:34">
+    <page name="MemberCwf" />
+    <rename>Member Con.Welfare Fund</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:33:48">
+    <page name="MemberCwf" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member Con.Welfare Fund</Title>
+      <Description>View Member Con.Welfare Fund</Description>
+      <About>This page allows Member Con.Welfare Fund management.</About>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:35:07">
+    <page name="MemberStatus" />
+    <after>
+      <page name="Gender" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:35:09">
+    <page name="Gender" />
+    <after>
+      <page name="Bank" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:35:16">
+    <page name="MemberFee" />
+    <after>
+      <page name="MemberCwf" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-10T13:39:25">
+    <page name="HoleType" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-10T19:52:35">
+    <page name="LockerPrice" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-10T20:13:31">
+    <page name="Gender" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-10T20:54:55">
+    <page name="GameFeeDay" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:15">
+    <page name="MemberAccount" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:20">
+    <page name="MemberSubsDueDetail" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:20">
+    <page name="MemberSubsDue" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:29">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameRegistration" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:41">
+    <page name="BillCollection" />
+    <move>
+      <page name="MemberBill" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:10:48">
+    <page name="MembersBill" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:15">
+    <page name="TournamentSetup" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:23">
+    <page name="ClubSetup" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:33">
+    <page name="LockerService" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:40">
+    <page name="BillCollection" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:48">
+    <page name="Home" />
+    <control id="control1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:11:51">
+    <page name="Home" />
+    <container id="container1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:13:07">
+    <page name="Home" />
+    <copyRef type="controller">
+      <Controller>MemberInfo</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:13:13">
+    <page name="Home" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:14:41">
+    <page name="Home" />
+    <move>
+      <page name="Home" />
+      <container id="c101" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:14:45">
+    <page name="Home" />
+    <container id="c101" />
+    <after>
+      <page name="Home" />
+      <container id="container2" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:14:51">
+    <page name="Home" />
+    <container id="container2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:54:37">
+    <page name="ClubSetup" />
+    <update>
+      <CustomStyle>material-icon-card-travel</CustomStyle>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:54:56">
+    <page name="TournamentSetup" />
+    <update>
+      <CustomStyle>material-icon-perm-contact-calendar</CustomStyle>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:55:15">
+    <page name="LockerService" />
+    <update>
+      <CustomStyle>material-icon-store</CustomStyle>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:55:32">
+    <page name="BillCollection" />
+    <update>
+      <CustomStyle>material-icon-account-balance</CustomStyle>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T06:56:53">
+    <page name="Home" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T07:01:42">
+    <userControls />
+    <insert type="userControl">
+      <Name>Homebackground</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-11T07:04:16">
+    <userControl name="Homebackground" />
+    <update>
+      <Body>&lt;img src="../images/GolfClubBackground.png" style="background-repeat:no-repeat;" /&gt;</Body>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T07:04:23">
+    <page name="Home" />
+    <container id="c101" />
+    <copy>
+      <userControl name="Homebackground" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:31:44">
+    <pages />
+    <insert type="page">
+      <Name>MemberDashBoard</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Member Dash Board</Path>
+      <Title>Member Dash Board</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:31:53">
+    <page name="MemberDashBoard" />
+    <rename>Dash Board</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:31:58">
+    <page name="MemberDashBoard" />
+    <update>
+      <Title>Dash Board</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:41:54">
+    <page name="Home" />
+    <move>
+      <page name="MemberDashBoard" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:41:57">
+    <page name="Home" />
+    <container id="c101" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:42:12">
+    <page name="MemberDashBoard" />
+    <copyRef type="controller">
+      <Controller>MemberDashBoard</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:56:22">
+    <page name="MemberConWfdueDetail" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T08:56:22">
+    <page name="MemberConWfdue" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T09:40:56">
+    <page name="MemberServiceDueDetail" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T09:40:58">
+    <page name="MemberServiceDue" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-11T10:04:13">
+    <page name="MemberBill" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T10:05:42">
+    <page name="MemberBill" />
+    <dataView id="view1" />
+    <update>
+      <ShowDescription>false</ShowDescription>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-11T12:03:51">
+    <userControls />
+    <insert type="userControl">
+      <Name>ReportViewer</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-11T13:04:55">
+    <page name="Home" />
+    <move>
+      <page name="MemberDashBoard" />
+      <container id="c101" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-11T13:04:58">
+    <page name="MemberDashBoard" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:25:17">
+    <page name="NonMemberCategory" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:25:25">
+    <page name="MemberInfo" />
+    <move>
+      <page name="MemberChildren" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:25:30">
+    <page name="MemberInfo" />
+    <move>
+      <page name="MemberSpouse" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:25:38">
+    <page name="MemberStatus" />
+    <after>
+      <page name="MemberStatusChange" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:25:56">
+    <page name="ClubSetup" />
+    <move>
+      <page name="MemberCard" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:26:00">
+    <page name="MemberInfo" />
+    <move>
+      <page name="MemberCard" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-14T08:26:04">
+    <page name="MemberCard" />
+    <move>
+      <page name="MemberCardTransaction" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T05:49:27">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <move>
+      <page name="MemberChildren" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T05:49:34">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <move>
+      <page name="MemberSpouse" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T05:49:53">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Children</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T05:50:09">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Information</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T05:50:34">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Spouse</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:00:06">
+    <page name="MemberCardTransaction" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:00:22">
+    <page name="MemberSpouse" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:00:30">
+    <page name="MemberChildren" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:00:40">
+    <page name="MemberCard" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:02:52">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T06:02:52">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:07:46">
+    <page name="MemberInfo" />
+    <rename>Member Registration</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:07:54">
+    <page name="MemberInfo" />
+    <update>
+      <Title>Member Registration</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:08:04">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Text>Member Registration</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:08:18">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Text>Registrated Member</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:08:40">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Tag>view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:10">
+    <page name="MemberInfo" />
+    <copyRef type="controller">
+      <Controller>MemberInfoChild</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:24">
+    <page name="MemberInfo" />
+    <copyRef type="controller">
+      <Controller>MemberInfoSpouse</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:27">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <after>
+      <page name="MemberInfo" />
+      <dataView id="view3" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:31">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <after>
+      <page name="MemberInfo" />
+      <dataView id="view2" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:35">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <after>
+      <page name="MemberInfo" />
+      <dataView id="view2" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:40">
+    <page name="MemberInfo" />
+    <container id="c102" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:23:40">
+    <page name="MemberInfo" />
+    <container id="c101" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:24:08">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <View>grid1</View>
+      <Activator>Tab</Activator>
+      <Text>Spouse </Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:24:24">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Children</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:24:35">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <Tag>view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:24:41">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Tag>view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T12:24:47">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+      <Tag>view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T15:14:20">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Tag>view-style-cards
+model-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T15:21:54">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T15:27:56">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <Tag>modal-never,view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T16:06:04">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Tag>modal-never,view-style-cards
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T16:06:19">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Tag>modal-never,view-style-grid
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T16:06:25">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <Tag>modal-never,view-style-grid
+</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:16:45">
+    <page name="Tournament" />
+    <after>
+      <page name="TournamentFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:16:50">
+    <page name="ClubSetup" />
+    <move>
+      <page name="BallBoy" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:16:53">
+    <page name="BallBoy" />
+    <after>
+      <page name="Caddie" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:16:56">
+    <page name="Caddie" />
+    <after>
+      <page name="GreenCart" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:17:04">
+    <page name="GreenCart" />
+    <after>
+      <page name="GameFlightSchedule" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:19:26">
+    <page name="GameFlightSchMember" />
+    <after>
+      <page name="GameRegistration" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:19:36">
+    <page name="GameRegistration" />
+    <after>
+      <page name="GameFlightSchedule" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:19:45">
+    <page name="GameFlightSchMember" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-16T17:20:32">
+    <page name="GameFlightSchedule" />
+    <rename>Game Board</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-16T18:50:21">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameRegistration" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T18:50:24">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameFlightSchedule" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-16T18:50:40">
+    <page name="TournamentFlightSch" />
+    <after>
+      <page name="TeeName" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-17T00:26:01">
+    <page name="MemberCategory" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-17T00:44:26">
+    <page name="MemberStatusChange" />
+    <after>
+      <page name="BallBoy" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-17T00:44:26">
+    <page name="MemberStatusChange" />
+    <after>
+      <page name="Caddie" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-17T00:44:26">
+    <page name="MemberStatusChange" />
+    <after>
+      <page name="GreenCart" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-17T09:37:51">
+    <page name="MemberCategory" />
+    <after>
+      <page name="MemberFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-17T10:58:54">
+    <page name="MemberCwf" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-17T12:46:44">
+    <page name="MemberBill" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-17T15:33:09">
+    <pages />
+    <insert type="page">
+      <Name>ClubReport</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Club Report</Path>
+      <Title>Club Report</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-17T15:33:19">
+    <page name="ClubReport" />
+    <copy>
+      <userControl name="ReportViewer" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-04-17T15:58:10">
+    <page name="ClubReport" />
+    <configure type="Exclude" />
+  </c>
+  <c y="NodeSet" t="2018-04-17T17:58:02">
+    <page name="LockerPrice" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-17T18:50:23">
+    <page name="LockerBooking" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-17T20:52:15">
+    <page name="MemberLockerBill" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-17T21:13:58">
+    <page name="GameFee" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-17T22:44:17">
+    <page name="GameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-18T07:50:08">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="Gregistration" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T07:50:11">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="GameCategory" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T07:50:13">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="TournamentRegisterMember" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T07:51:30">
+    <page name="GameFee" />
+    <after>
+      <page name="Gregistration" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:01:31">
+    <page name="Gregistration" />
+    <rename>Game Registration</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:01:47">
+    <page name="Gregistration" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Game Registration</Title>
+      <Description>View Game Registration</Description>
+      <About>This page allows Game Registration management.</About>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:02:03">
+    <page name="Gregistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:21:48">
+    <page name="TournamentFlightSch" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Flight Schedule</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:22:00">
+    <page name="TournamentFlightSch" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Flight Schedule</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:45:35">
+    <page name="TournamentFlightSch" />
+    <rename>Tournament Flight Schedule</rename>
+  </c>
+  <c y="NodeSet" t="2018-04-18T08:46:06">
+    <page name="TournamentFlightSch" />
+    <after>
+      <page name="TournamentRegisterMember" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:46">
+    <pages />
+    <insert type="page">
+      <Name>GameSetup</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Game Setup</Path>
+      <Title>Game Setup</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:55">
+    <page name="GameSetup" />
+    <move>
+      <page name="GameFlightSchedule" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:55">
+    <page name="GameSetup" />
+    <move>
+      <page name="GameCategory" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:55">
+    <page name="GameSetup" />
+    <move>
+      <page name="GameFee" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:55">
+    <page name="GameSetup" />
+    <move>
+      <page name="Gregistration" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:05:58">
+    <page name="ClubSetup" />
+    <after>
+      <page name="GameSetup" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:06:04">
+    <page name="GameFee" />
+    <after>
+      <page name="GameCategory" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:06:08">
+    <page name="GameCategory" />
+    <after>
+      <page name="GameFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-18T10:06:15">
+    <page name="Tournament" />
+    <after>
+      <page name="TeeName" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-21T13:20:42">
+    <userControls />
+    <insert type="userControl">
+      <Name>MemberBillCollect</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-21T13:25:45">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>NewBillofmember</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>New Bill of member</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-21T13:25:48">
+    <page name="NewBillofmember" />
+    <copy>
+      <userControl name="MemberBillCollect" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-04-21T15:59:50">
+    <page name="NewBillofmember" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-21T16:00:22">
+    <userControls />
+    <insert type="userControl">
+      <Name>MemberBillCollectionNew</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-21T16:00:42">
+    <page name="NewBillofmember" />
+    <control id="control1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-21T16:00:48">
+    <page name="NewBillofmember" />
+    <container id="c101" />
+    <copy>
+      <userControl name="MemberBillCollectionNew" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-04-21T16:02:24">
+    <page name="NewBillofmember" />
+    <update>
+      <Generate>Always</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-21T16:53:26">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>MyExternal</Name>
+      <Template>Responsive Grid</Template>
+      <Generate>FirstTimeOnly</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>My External</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-23T17:28:24">
+    <page name="MemberBill" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>NonDelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-23T17:28:33">
+    <page name="NewBillofmember" />
+    <update>
+      <Roles>NonDelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-23T17:28:46">
+    <page name="NewBillofmember" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-23T20:13:05">
+    <pages />
+    <insert type="page" context="/page/ClubSetup">
+      <Name>NonMemberRegistration</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Non Member Registration</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-23T20:27:37">
+    <page name="GameSetup" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:02:32">
+    <page name="GameSetup" />
+    <move>
+      <page name="GameMatch" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:02:36">
+    <page name="MemberLockerBillDetail" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:02:42">
+    <page name="GameSetup" />
+    <move>
+      <page name="GamePlayerGroup" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:02:45">
+    <page name="GameSetup" />
+    <move>
+      <page name="GameMatchScore" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:04:01">
+    <page name="GameMatchScore" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-23T21:05:49">
+    <page name="MemberInfo" />
+    <after>
+      <page name="NonMemberRegistration" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-24T09:11:43">
+    <page name="GameSetup" />
+    <move>
+      <page name="GolfCart" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-24T09:11:49">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="TournamentGameFlightSch" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-24T09:11:53">
+    <page name="GameSetup" />
+    <move>
+      <page name="MemberPersonalCaddieBallboy" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-24T10:08:54">
+    <page name="MemberCategory" />
+    <after>
+      <page name="MemberStatus" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-24T10:24:07">
+    <page name="NonMemberRegistration" />
+    <copyRef type="controller">
+      <Controller>MemberInfoNonMember</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-24T10:24:15">
+    <page name="NonMemberRegistration" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-24T10:45:05">
+    <page name="NonMemberRegistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-25T08:59:44">
+    <page name="TournamentFlightSch" />
+    <dataView id="view1" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+      <ShowViewSelector>false</ShowViewSelector>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:00:05">
+    <page name="TournamentGameFlightSch" />
+    <dataView id="view1" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+      <ShowDescription>false</ShowDescription>
+      <ShowViewSelector>false</ShowViewSelector>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:01:11">
+    <page name="TournamentFlightSch" />
+    <dataView id="view1" />
+    <update>
+      <ShowActionBar>true</ShowActionBar>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:02:53">
+    <page name="TournamentRegisterMember" />
+    <container id="container1" />
+    <move>
+      <page name="TournamentGameFlightSch" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:02:57">
+    <page name="TournamentGameFlightSch" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:06:41">
+    <pages />
+    <insert type="page" context="/page/GameSetup">
+      <Name>GameSchedule</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Game Schedule</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:06:44">
+    <page name="GameSchedule" />
+    <copyRef type="controller">
+      <Controller>GameFlightSchedule</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-25T09:06:52">
+    <page name="GameFee" />
+    <after>
+      <page name="GameSchedule" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-25T12:25:44">
+    <pages />
+    <insert type="page" context="/page/ClubSetup">
+      <Name>RegisterMemberCard</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Card Register</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-25T12:25:50">
+    <page name="NonMemberRegistration" />
+    <after>
+      <page name="RegisterMemberCard" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-25T12:26:00">
+    <page name="RegisterMemberCard" />
+    <copyRef type="controller">
+      <Controller>MemberCard</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-25T12:26:09">
+    <page name="RegisterMemberCard" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:19">
+    <page name="Bank" />
+    <after>
+      <page name="Smsbalance" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:26">
+    <page name="Bank" />
+    <after>
+      <page name="Smsconfig" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:30">
+    <page name="Smsconfig" />
+    <after>
+      <page name="Smspurchase" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:42">
+    <page name="Smsconfig" />
+    <container id="container1" />
+    <move>
+      <page name="Smsbalance" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:48">
+    <page name="Smsconfig" />
+    <container id="container1" />
+    <move>
+      <page name="Smspurchase" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:51">
+    <page name="Smspurchase" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:13:53">
+    <page name="Smsbalance" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:14:12">
+    <page name="Smsconfig" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Card Verification SMS</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:14:23">
+    <page name="Smsconfig" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>SMS Balance</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:14:46">
+    <page name="Smsconfig" />
+    <dataView id="view2" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+      <ShowDescription>false</ShowDescription>
+      <ShowViewSelector>false</ShowViewSelector>
+      <ShowSearchBar>false</ShowSearchBar>
+      <ShowQuickFind>false</ShowQuickFind>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:14:59">
+    <page name="Smsconfig" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>SMS Purchased</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:15:09">
+    <page name="Smsconfig" />
+    <dataView id="view3" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+      <ShowDescription>false</ShowDescription>
+      <ShowViewSelector>false</ShowViewSelector>
+      <ShowSearchBar>false</ShowSearchBar>
+      <ShowQuickFind>false</ShowQuickFind>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-27T18:15:50">
+    <page name="Smsconfig" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName>Edit</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-30T16:20:01">
+    <page name="MemberBill" />
+    <update>
+      <Roles>NonDelivery,Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-30T19:09:02">
+    <page name="GameSchedule" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>GameFlightSchedule9Hole</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-30T19:09:10">
+    <page name="GameSchedule" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>GameFlightSchedule18Hole</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-30T19:09:27">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>9 Hole Flight Schedule</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-30T19:09:34">
+    <page name="GameSchedule" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>9 Hole Flight Schedule</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-04-30T19:09:40">
+    <page name="GameSchedule" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-04-30T23:47:40">
+    <pages />
+    <insert type="page" context="/page/ClubSetup">
+      <Name>DepositToCard</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Deposit To Card</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-04-30T23:47:43">
+    <page name="DepositToCard" />
+    <copyRef type="controller">
+      <Controller>MemberCardTransactionDeposit</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-04-30T23:47:47">
+    <page name="RegisterMemberCard" />
+    <after>
+      <page name="DepositToCard" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:06:11">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName>New</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:08:23">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:08:53">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Deposit to Card</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:46:10">
+    <page name="GameSchedule" />
+    <dataView id="view3" />
+    <update>
+      <Text>18 Hole Flight Schedule</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:55:10">
+    <page name="GameFlightSchedule" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:55:13">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:55:15">
+    <page name="GameSchedule" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:55:24">
+    <page name="GameSchedule" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>GameFlightSchedule</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:58:45">
+    <page name="GameSchedule" />
+    <copyRef type="controller">
+      <Controller>GameFlightSchedule9Hole</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:58:50">
+    <page name="GameSchedule" />
+    <dataView id="view1" />
+    <after>
+      <page name="GameSchedule" />
+      <dataView id="view2" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T00:58:54">
+    <page name="GameSchedule" />
+    <container id="c102" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:00:09">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Flight (9 Holes)</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:00:15">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:00:43">
+    <page name="GameSchedule" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>All in One</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:00:48">
+    <page name="GameSchedule" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:07:28">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:23:45">
+    <page name="GameSchedule" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>GameFlightMemberRegister9Hole</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T01:24:07">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Flight 9 Holes</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T02:03:37">
+    <page name="GameSchedule" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>GameFlightMemberRegister18Hole</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T02:03:55">
+    <page name="GameSchedule" />
+    <dataView id="view3" />
+    <update>
+      <View>grid1</View>
+      <Activator>Tab</Activator>
+      <Text>Flight (18 Holes)</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T02:31:13">
+    <page name="MemberStatusChange" />
+    <after>
+      <page name="MemberPersonalCaddieBallboy" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T03:00:58">
+    <page name="GameMatch" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>NonDelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T03:01:30">
+    <page name="ClubSetup" />
+    <after>
+      <page name="GolfCart" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T03:01:33">
+    <page name="BallBoy" />
+    <after>
+      <page name="GolfCart" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T08:12:22">
+    <page name="Gregistration" />
+    <after>
+      <page name="FlightMember" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T08:12:29">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Smsdelivery" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:21:32">
+    <page name="GameFlightSchedule" />
+    <copyRef type="controller">
+      <Controller>GameBoard</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:21:39">
+    <page name="GameFlightSchedule" />
+    <container id="container1" />
+    <move>
+      <page name="GameFlightSchedule" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:21:41">
+    <page name="GameFlightSchedule" />
+    <container id="c101" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:21:48">
+    <page name="GameFlightSchedule" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:22:00">
+    <page name="GameFlightSchedule" />
+    <dataView id="view1" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T09:48:58">
+    <page name="GameFlightSchedule" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+      <ShowActionBar>true</ShowActionBar>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T10:31:42">
+    <page name="FlightMember" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T11:22:08">
+    <page name="Gregistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T11:52:20">
+    <page name="Gregistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:17:52">
+    <pages />
+    <insert type="page" context="/page/GameSetup">
+      <Name>MemberGameRegistration</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Game Registration</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:17:55">
+    <page name="MemberGameRegistration" />
+    <copyRef type="controller">
+      <Controller>GameRegistration</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:18:02">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:18:09">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:18:13">
+    <page name="GameSchedule" />
+    <after>
+      <page name="MemberGameRegistration" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:38:14">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T12:38:31">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <ShowModalForms>true</ShowModalForms>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T13:33:31">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T15:01:17">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T18:00:10">
+    <page name="GameRegistration" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-01T18:29:14">
+    <page name="TournamentFlightSch" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>TournamentGameFlightSch</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T18:49:11">
+    <page name="TournamentRegisterMember" />
+    <container id="container1" />
+    <move>
+      <page name="TournamentFlightSch" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-01T18:49:27">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view2" />
+    <update>
+      <Text>Flight Board</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T18:49:38">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Register member</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T19:06:13">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view1" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:19:54">
+    <page name="TournamentFee" />
+    <rename>Fees</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:20:02">
+    <page name="TournamentFee" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Fees</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:22:23">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <ShowInSummary>false</ShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:28:38">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <update>
+      <ShowModalForms>false</ShowModalForms>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:47:11">
+    <pages />
+    <insert type="page" context="/page/GameSetup">
+      <Name>Registration</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Registration</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:47:14">
+    <page name="Registration" />
+    <copyRef type="controller">
+      <Controller>DailyRegistration</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:47:24">
+    <page name="Registration" />
+    <rename>Registration Report</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:47:30">
+    <page name="Registration" />
+    <update>
+      <Title>Registration Report</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-01T23:47:39">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:10">
+    <pages />
+    <insert type="page" context="/page/GameSetup">
+      <Name>CaddieBallBoyPayment</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Caddie Ball Boy Payment</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:13">
+    <page name="CaddieBallBoyPayment" />
+    <copyRef type="controller">
+      <Controller>CaddieBallBoyPayment</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:18">
+    <page name="CaddieBallBoyPayment" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:25">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <move>
+      <page name="CaddieBallBoyPayment" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:41">
+    <page name="Registration" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Caddie Ball Boy Payment</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:53">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Registration Report</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:12:57">
+    <page name="CaddieBallBoyPayment" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:13:16">
+    <page name="PayType" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:13:22">
+    <page name="ClubSetup" />
+    <move>
+      <page name="Holiday" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-02T00:13:36">
+    <page name="MemberGameRegistration" />
+    <after>
+      <page name="MemberGameReg" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:36:09">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMemberReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:03">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:12">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:12">
+    <page name="Registration" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:13">
+    <page name="Registration" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:19">
+    <page name="Registration" />
+    <dataView id="view4" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:23">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:46:38">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Daily Registration</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:48:08">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName>Edit</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:50:04">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMemberReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T17:58:13">
+    <page name="Registration" />
+    <dataView id="view2" />
+    <move>
+      <page name="Registration" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:08:55">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:11:23">
+    <page name="Registration" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMember</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:20:46">
+    <page name="Registration" />
+    <container id="c102" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:34:33">
+    <page name="Registration" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Registration Information</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:36:18">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentRegMemberCaddieBalReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T18:36:53">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Caddie/Ball Boy (Registration)</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-05T19:20:07">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TourRegMemCaddieBalboySubsidy</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-05T19:20:21">
+    <page name="Registration" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Caddie/BallBoy Subsidy</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-05T19:21:00">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <Text>Caddie/Ball Boy Payment</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:23:10">
+    <page name="GamePlayerGroup" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>nondelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:23:18">
+    <page name="GameMatchScore" />
+    <update>
+      <Roles>nondelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:23:28">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Roles>nondelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:45:26">
+    <pages />
+    <insert type="page" context="/page/TournamentSetup">
+      <Name>TournamentPayment</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Tournament Payment</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:45:41">
+    <page name="TournamentPayment" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMemberReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:46:22">
+    <page name="TournamentPayment" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:46:24">
+    <page name="TournamentPayment" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMemberApproval</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-06T11:59:37">
+    <page name="TournamentPayment" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TournamentRegisterMemberApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-06T12:00:00">
+    <page name="TournamentPayment" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Tournament Bill (Approval)</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T12:00:12">
+    <page name="TournamentPayment" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Tournament Bill (Approved)</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-06T12:46:09">
+    <pages />
+    <insert type="page" context="/page/ClubSetup">
+      <Name>MemberBillPayment</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member Bill Payment</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-06T16:33:20">
+    <page name="MemberBillPayment" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:23:50">
+    <page name="MyExternal" />
+    <rename>Bill Collection</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:25:51">
+    <page name="MyExternal" />
+    <update>
+      <Title>Member Bill Collection</Title>
+      <Description>Member Bill Collection - Monthly Subscription, Contribution Welfare Fund, Locker Service etc.</Description>
+      <CustomStyle>metrial-icon-build</CustomStyle>
+      <Roles>Administrators,BillCollectors</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:26:01">
+    <page name="MemberBill" />
+    <rename>Bill Approval</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:26:20">
+    <page name="MemberBill" />
+    <update>
+      <Title>Bill Approval</Title>
+      <Description>View Member Bill Approval</Description>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:26:50">
+    <page name="MemberBill" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Bill Approval</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:27:04">
+    <page name="MemberBill" />
+    <dataView id="view1" />
+    <update>
+      <PageSize>25</PageSize>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:32:59">
+    <page name="MemberBill" />
+    <rename>Bill Approval Pending</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:33:10">
+    <page name="MemberBill" />
+    <update>
+      <Title>Bill Approval Pending</Title>
+      <Description>View Member Bill Approval Pending</Description>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:35:24">
+    <page name="MemberBill" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberBillApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:35:50">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Approved Member Bill</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-07T15:36:25">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-10T17:36:04">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-10T17:38:07">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:05:36">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:05:39">
+    <page name="TournamentRegisterMember" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:05:43">
+    <page name="TournamentPayment" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:05:45">
+    <page name="TournamentPayment" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:31:11">
+    <page name="TournamentSetup" />
+    <move>
+      <page name="TourRegisterMember" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:31:21">
+    <page name="TournamentPayment" />
+    <container id="c101" />
+    <move>
+      <page name="TourRegisterMember" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:31:24">
+    <page name="TourRegisterMember" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:33:04">
+    <page name="TournamentPayment" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>TourRegisterMemberApproval</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:33:12">
+    <page name="TournamentPayment" />
+    <copyRef type="controller">
+      <Controller>TourRegisterMemberApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:33:15">
+    <page name="TournamentPayment" />
+    <container id="c101" />
+    <move>
+      <page name="TournamentPayment" />
+      <dataView id="view3" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:33:18">
+    <page name="TournamentPayment" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:35:45">
+    <page name="TournamentPayment" />
+    <dataView id="view2" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-12T13:35:58">
+    <page name="TournamentPayment" />
+    <container id="c102" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T14:45:50">
+    <page name="MemberInfo" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-12T15:07:53">
+    <page name="GameSchedule" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T15:07:55">
+    <page name="GameSchedule" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T16:54:27">
+    <page name="Registration" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T16:54:27">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T16:54:28">
+    <page name="Registration" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:09:02">
+    <page name="MemberGameReg" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:09:04">
+    <page name="MemberGameReg" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberGameRegApproval</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:09:04">
+    <page name="MemberGameReg" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberGameRegApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:09:22">
+    <page name="MemberGameReg" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Game Registration Approval</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:09:31">
+    <page name="MemberGameReg" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Game Registration Approved</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:12:50">
+    <page name="MemberGameReg" />
+    <rename>Game Payment Approval</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-12T17:12:58">
+    <page name="MemberGameReg" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Title>Game Payment Approval</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T15:09:10">
+    <page name="MemberGameRegistration" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-13T15:12:13">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Generate>Always</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T15:14:06">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T20:15:27">
+    <pages />
+    <insert type="page" context="/page/ClubSetup">
+      <Name>SMSPanel</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>SMSPanel</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-13T20:15:41">
+    <page name="SMSPanel" />
+    <insert type="container">
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-13T20:15:59">
+    <userControls />
+    <insert type="userControl">
+      <Name>MemberSMSPanel</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-13T20:16:02">
+    <page name="SMSPanel" />
+    <container id="c101" />
+    <insert type="control">
+      <UserControl>MemberSMSPanel</UserControl>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:36:42">
+    <pages />
+    <deleteRefs type="controller">
+      <Name>MemberBillApproved</Name>
+    </deleteRefs>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:40:23">
+    <page name="MemberBill" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberBillApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:40:38">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Bill Approved</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:40:43">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:40:55">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <Tag>modal-never</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:47:04">
+    <page name="MemberBill" />
+    <dataView id="view2" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:52:00">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-13T23:58:48">
+    <page name="DepositToCard" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberCardDepositApproved</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-14T00:02:47">
+    <page name="DepositToCard" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Deposit Approved</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T01:42:40">
+    <page name="SMSPanel" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T02:31:41">
+    <userControl name="MemberSMSPanel" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-14T02:31:53">
+    <page name="SMSPanel" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:04:43">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>MemberSMS</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member SMS</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:05:16">
+    <page name="MemberSMS" />
+    <copyRef type="controller">
+      <Controller>MemberSendSMS</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:05:22">
+    <page name="MemberSMS" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:08:03">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>Reports</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Reports</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:08:07">
+    <page name="BillCollection" />
+    <after>
+      <page name="Reports" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:08:23">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>DueStatement</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Due Statement</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:36:52">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>TournamentCollection</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Tournament Collection</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:36:57">
+    <page name="TournamentCollection" />
+    <copyRef type="controller">
+      <Controller>TournamentCollection</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-14T09:37:03">
+    <page name="TournamentCollection" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T10:13:31">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>MemberBillCollection</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member Bill Collection</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-14T10:13:34">
+    <page name="MemberBillCollection" />
+    <copyRef type="controller">
+      <Controller>DailyRegistration</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-14T10:13:42">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T11:40:57">
+    <page name="MemberGameRegistration" />
+    <update>
+      <Name>GameRegistration</Name>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T13:47:50">
+    <page name="Reports" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T16:51:25">
+    <page name="TournamentPayment" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Tournament Payment Approval</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T16:51:35">
+    <page name="TournamentPayment" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Tournament Payment Approved</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-14T22:54:16">
+    <page name="DepositToCard" />
+    <dataView id="view2" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T07:36:59">
+    <page name="DueStatement" />
+    <copyRef type="controller">
+      <Controller>MemberDueStatement</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-15T07:37:23">
+    <page name="DueStatement" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+      <Activator>Tab</Activator>
+      <Text>Due Statement</Text>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T12:38:40">
+    <pages />
+    <insert type="page" context="/page/TournamentSetup">
+      <Name>TourRegisterMember</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Tour Register Member</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-15T12:38:49">
+    <page name="TourRegisterMember" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T12:55:58">
+    <page name="TournamentFlightSch" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Tournament Game Board</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T13:19:53">
+    <page name="Registration" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>DailyRegistration</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-15T13:19:59">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T13:36:14">
+    <page name="GameFlightSchedule" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>nondelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T15:18:07">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Daily Registration</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T15:19:40">
+    <page name="Registration" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T17:05:58">
+    <page name="MemberSMS" />
+    <update>
+      <Roles />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T17:06:09">
+    <page name="MemberSMS" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T17:28:31">
+    <pages />
+    <insert type="page">
+      <Name>SendSMS</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Send SMS</Path>
+      <Title>Send SMS</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-15T17:28:38">
+    <page name="SendSMS" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-15T17:29:08">
+    <userControls />
+    <insert type="userControl">
+      <Name>SendSMSSender</Name>
+      <Prefix>uc</Prefix>
+      <Generate>FirstTimeOnly</Generate>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-17T06:06:46">
+    <page name="MemberSMS" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-18T11:23:29">
+    <page name="MemberGameReg" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-20T14:03:28">
+    <page name="GameRegistration" />
+    <update>
+      <Generate>Always</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-20T14:42:06">
+    <page name="GameRegistration" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-20T15:36:09">
+    <page name="ClubReport" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-20T17:55:02">
+    <page name="GameSetup" />
+    <copyRef type="controller">
+      <Controller>HoleType</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-20T17:55:19">
+    <pages />
+    <insert type="page" context="/page/GameSetup">
+      <Name>HoleSetup</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Hole Setup</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-20T17:55:24">
+    <page name="GameFlightSchedule" />
+    <after>
+      <page name="HoleSetup" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-20T17:55:28">
+    <page name="HoleSetup" />
+    <move>
+      <page name="GameSetup" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="SmSsetting" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="SmsstatusGroup" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="SmsgsmerrorCode" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="Smsprovider" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="SmsDeliveryStatus" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:02:50">
+    <page name="SmserrorGroup" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T18:05:29">
+    <page name="Gregistration" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-20T22:31:56">
+    <page name="SendSMS" />
+    <configure type="Exclude" />
+  </c>
+  <c y="NodeSet" t="2018-05-20T22:47:28">
+    <page name="GameSchedule" />
+    <rename>Game Schedule Create</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-20T22:47:33">
+    <page name="GameSchedule" />
+    <update>
+      <Title>Game Schedule Create</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-20T22:48:29">
+    <page name="GameSchedule" />
+    <dataView id="view1" />
+    <update>
+      <Text>Flight Schedule</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-21T09:20:29">
+    <page name="TournamentRegisterMember" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-21T09:33:16">
+    <page name="TournamentFlightSch" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>TournamentFlightSch</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-21T09:33:19">
+    <page name="TournamentFlightSch" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-21T11:48:31">
+    <page name="RegisterMemberCard" />
+    <update>
+      <Roles>Administrators,CardAdmin</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:06:41">
+    <page name="GameFlightSchedule" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:06:43">
+    <page name="GameFlightSchedule" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>DailyRegisteredPlayerByGroup</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:06:55">
+    <page name="GameFlightSchedule" />
+    <update>
+      <Roles>*</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:26:52">
+    <page name="GameSetup" />
+    <container id="c101" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:27:20">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>MemberFeeReport</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Member Fee Report</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-21T12:27:23">
+    <page name="MemberFeeReport" />
+    <copyRef type="controller">
+      <Controller>MemberFeeReport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-28T21:59:34">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-29T04:38:59">
+    <page name="MemberBillCollection" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberBillCollectionSummary</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-29T04:39:13">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Bill Collection Summary</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-29T04:42:57">
+    <page name="MemberBillCollection" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberBillCollectionStatement</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-29T04:43:11">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Bill Collection</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-29T06:41:27">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <ShowQuickFind>false</ShowQuickFind>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-29T06:41:35">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <ShowQuickFind>false</ShowQuickFind>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-30T22:26:49">
+    <page name="GameFlightSchedule" />
+    <rename>Daily Registered Players</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-30T22:27:18">
+    <page name="GameFlightSchedule" />
+    <update>
+      <Title>Daily Registered Players</Title>
+      <Description>View Daily Registered Players</Description>
+      <About>This page allows Daily Registered Players management.</About>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-30T22:27:42">
+    <page name="Reports" />
+    <after>
+      <page name="GameFlightSchedule" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-30T22:27:46">
+    <page name="MemberFeeReport" />
+    <after>
+      <page name="GameFlightSchedule" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-30T22:28:01">
+    <page name="MemberFeeReport" />
+    <after>
+      <page name="Registration" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-30T23:19:23">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>CreateServiceDue</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Create Service Due</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-30T23:19:26">
+    <page name="CreateServiceDue" />
+    <copyRef type="controller">
+      <Controller>MemberServiceDueDetail</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-05-30T23:19:45">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+      <Activator>Tab</Activator>
+      <Text>Create Service Due</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-30T23:20:11">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName>New</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:41:10">
+    <page name="DepositToCard" />
+    <rename>Recharge Card</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:41:20">
+    <page name="DepositToCard" />
+    <update>
+      <Title>Recharge Card</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:41:31">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <Text>Recharge Card</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:42:26">
+    <page name="Caddie" />
+    <rename>Caddie/BallBoy</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:42:31">
+    <page name="Caddie" />
+    <container id="container1" />
+    <move>
+      <page name="BallBoy" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:42:44">
+    <page name="Caddie" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Ball Boy</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:42:57">
+    <page name="Caddie" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Caddie</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:43:03">
+    <page name="BallBoy" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:43:23">
+    <page name="MemberStatusChange" />
+    <after>
+      <page name="Holiday" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:45:31">
+    <pages />
+    <insert type="page">
+      <Name>EmailSMS</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Path>Email/SMS</Path>
+      <Title>Email/SMS</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:45:38">
+    <page name="EmailSMS" />
+    <move>
+      <page name="MemberSMS" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:45:46">
+    <page name="EmailSMS" />
+    <move>
+      <page name="MemberSMS" />
+      <dataView id="view1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:45:49">
+    <page name="MemberSMS" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:47:19">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>PaymentStatement</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Payment Statement</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:53:36">
+    <page name="EmailSMS" />
+    <update>
+      <Roles>Administrators</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:54:01">
+    <page name="EmailSMS" />
+    <update>
+      <Roles>Administrators,Email</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:54:29">
+    <page name="MemberGroup" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,MemberGroup</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:54:40">
+    <page name="MemberCategory" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,MemberCategory</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:54:51">
+    <page name="MemberStatus" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,MemberStatus</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:55:06">
+    <page name="MemberFee" />
+    <update>
+      <Roles>Administrators,MonthlyFee</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:55:22">
+    <page name="MemberInfo" />
+    <update>
+      <Roles>Administrators,MemberRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:55:33">
+    <page name="NonMemberRegistration" />
+    <update>
+      <Roles>Administrators,NonMemberRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:55:51">
+    <page name="RegisterMemberCard" />
+    <update>
+      <Roles>Administrators,CardRegistrater</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:56:05">
+    <page name="DepositToCard" />
+    <update>
+      <Roles>Administrators,RechargeCard</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:56:16">
+    <page name="MemberService" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,MemberService</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:56:30">
+    <page name="MemberStatusChange" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,MemberStatusChange</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:56:48">
+    <page name="Holiday" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,Holiday</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:57:07">
+    <page name="MemberPersonalCaddieBallboy" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,PersonalCaddieBallBoy</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:57:23">
+    <page name="Caddie" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,CaddieBallBoy</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:57:35">
+    <page name="GolfCart" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,GolfCart</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:57:45">
+    <page name="Bank" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,Bank</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:57:58">
+    <page name="Smsconfig" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,SmsConfig</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:58:15">
+    <page name="Smsdelivery" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:58:31">
+    <page name="HoleSetup" />
+    <update>
+      <Roles>Administrators,HoleSetup</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:58:46">
+    <page name="GameCategory" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,GameCategory</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:58:56">
+    <page name="GameFee" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,GameFee</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:59:16">
+    <page name="GameSchedule" />
+    <rename>Flight Schedule Create</rename>
+  </c>
+  <c y="NodeSet" t="2018-05-31T17:59:21">
+    <page name="GameSchedule" />
+    <update>
+      <Title>Flight Schedule Create</Title>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:03:57">
+    <page name="MemberGameReg" />
+    <update>
+      <Roles>Administrators,GamePayApproval</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:04:20">
+    <page name="Tournament" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,Tournament</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:04:30">
+    <page name="TeeName" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,TeeName</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:04:40">
+    <page name="TournamentFee" />
+    <update>
+      <Roles>Administrators,Fee</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:04:51">
+    <page name="TournamentFee" />
+    <update>
+      <Roles>Administrators,GameFee</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:07:15">
+    <page name="TournamentFlightSch" />
+    <update>
+      <Roles>Administrators,TournamentFlightSchedule</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:07:30">
+    <page name="GameType" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,GameType</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:07:40">
+    <page name="TournamentPayment" />
+    <update>
+      <Roles>Administrators,TournamentPayment</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:07:59">
+    <page name="TourRegisterMember" />
+    <update>
+      <Roles>Administrators,TournamentRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:08:16">
+    <page name="Locker" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,LockerCreate</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:08:30">
+    <page name="LockerBooking" />
+    <update>
+      <UseExtenders>false</UseExtenders>
+      <Roles>Administrators,LockerBooking</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:09:31">
+    <page name="MemberBill" />
+    <update>
+      <Roles>Administrators,BillApproval</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:09:57">
+    <page name="CreateServiceDue" />
+    <update>
+      <Roles>Administrators,ServiceDueCreate</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:10:25">
+    <page name="DueStatement" />
+    <update>
+      <Roles>Administrators,ReportDueStatement</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:10:41">
+    <page name="TournamentCollection" />
+    <update>
+      <Roles>Administrators,ReportTournamentCollection</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:11:07">
+    <page name="MemberFeeReport" />
+    <update>
+      <Roles>Administrators,ReportMemberFee</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:11:22">
+    <page name="Registration" />
+    <update>
+      <Roles>Administrators,ReportDailyRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:11:45">
+    <page name="GameFlightSchedule" />
+    <update>
+      <Roles>Administrators,ReportDailyRegisteredPlayers</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:11:59">
+    <page name="PaymentStatement" />
+    <update>
+      <Roles>Administrators,PaymentStatement</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-05-31T18:12:13">
+    <page name="EmailSMS" />
+    <update>
+      <Roles>Administrators,EmailSMS</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T04:11:43">
+    <page name="CreateServiceDue" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:14:35">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:15:49">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <AutoHide />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:16:03">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberServiceDueDetailList</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:16:09">
+    <page name="CreateServiceDue" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:16:19">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <AutoHide />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:16:46">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberBillServiceBill</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:16:53">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <after>
+      <page name="CreateServiceDue" />
+      <dataView id="view1" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:17:00">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <after>
+      <page name="CreateServiceDue" />
+      <dataView id="view2" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:17:33">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Service Due Bill</Text>
+      <PageSize>2</PageSize>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:18:15">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+      <FilterSource>view3</FilterSource>
+      <FilterFields>MemberBillID</FilterFields>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:18:38">
+    <page name="CreateServiceDue" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Service Due List</Text>
+      <PageSize>20</PageSize>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:18:47">
+    <page name="CreateServiceDue" />
+    <insert type="container">
+      <Flow>NewColumn</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:19:01">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <update>
+      <Flow>NewColumn</Flow>
+      <Width>50%</Width>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:19:24">
+    <page name="CreateServiceDue" />
+    <container id="c102" />
+    <update>
+      <Width>48%</Width>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:19:27">
+    <page name="CreateServiceDue" />
+    <container id="c102" />
+    <move>
+      <page name="CreateServiceDue" />
+      <dataView id="view2" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:19:53">
+    <page name="CreateServiceDue" />
+    <update>
+      <Generate>Always</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:20:12">
+    <page name="CreateServiceDue" />
+    <dataView id="view2" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+      <ShowDescription>false</ShowDescription>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:20:23">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:20:48">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <ShowRowNumber>true</ShowRowNumber>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:20:59">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <StartCommandName>New</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:24:03">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:24:10">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <FilterFields />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:26:38">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberServiceBillDue</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:26:42">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <after>
+      <page name="CreateServiceDue" />
+      <dataView id="view1" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:26:58">
+    <page name="CreateServiceDue" />
+    <dataView id="view1" />
+    <update>
+      <FilterSource>view3</FilterSource>
+      <FilterFields>MemberID</FilterFields>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:27:13">
+    <page name="CreateServiceDue" />
+    <dataView id="view2" />
+    <update>
+      <FilterSource>view3</FilterSource>
+      <FilterFields>MemberID</FilterFields>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:27:25">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:27:33">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <View>AllMembers</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:27:45">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <PageSize>5</PageSize>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:27:53">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <ShowActionBar>false</ShowActionBar>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:28:04">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <ShowActionBar>true</ShowActionBar>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:28:24">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <ShowDescription>false</ShowDescription>
+      <ShowViewSelector>false</ShowViewSelector>
+      <ShowRowNumber>true</ShowRowNumber>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T12:28:42">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <update>
+      <Flow>NewRow</Flow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T13:54:15">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <PageSize>3</PageSize>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T13:54:33">
+    <page name="CreateServiceDue" />
+    <dataView id="view3" />
+    <update>
+      <Tag>view-style-grid</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T13:54:49">
+    <page name="CreateServiceDue" />
+    <dataView id="view2" />
+    <update>
+      <Tag>view-style-list</Tag>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:17:43">
+    <page name="CreateServiceDue" />
+    <copyRef type="controller">
+      <Controller>MemberSearch</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:17:46">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <move>
+      <page name="CreateServiceDue" />
+      <dataView id="view4" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:17:51">
+    <page name="CreateServiceDue" />
+    <insert type="container">
+      <Flow>NewRow</Flow>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:17:54">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <after>
+      <page name="CreateServiceDue" />
+      <container id="c104" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:17:57">
+    <page name="CreateServiceDue" />
+    <container id="c104" />
+    <after>
+      <page name="CreateServiceDue" />
+      <container id="c101" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:18:00">
+    <page name="CreateServiceDue" />
+    <container id="c104" />
+    <move>
+      <page name="CreateServiceDue" />
+      <dataView id="view4" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:18:23">
+    <page name="CreateServiceDue" />
+    <dataView id="view4" />
+    <update>
+      <StartCommandName>Edit</StartCommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:18:45">
+    <page name="CreateServiceDue" />
+    <dataView id="view4" />
+    <update>
+      <View>form1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:41:58">
+    <page name="CreateServiceDue" />
+    <container id="c101" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:42:04">
+    <page name="CreateServiceDue" />
+    <container id="c102" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:43:20">
+    <pages />
+    <insert type="page" context="/page/BillCollection">
+      <Name>SearchMemberDues</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Search Member Dues</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:43:25">
+    <page name="SearchMemberDues" />
+    <move>
+      <page name="CreateServiceDue" />
+      <dataView id="view4" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-06-01T14:43:35">
+    <page name="CreateServiceDue" />
+    <container id="c104" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-01T16:32:40">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <RefreshInterval>10</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T16:32:52">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <RefreshInterval>10</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T16:35:25">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <RefreshInterval>1</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T16:35:55">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <RefreshInterval>5</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T16:36:06">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <RefreshInterval>5</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T17:08:28">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T17:08:34">
+    <page name="MemberBillCollection" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T20:35:24">
+    <page name="MemberBillCollection" />
+    <dataView id="view1" />
+    <update>
+      <RefreshInterval>30</RefreshInterval>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-01T20:48:06">
+    <page name="PaymentStatement" />
+    <update>
+      <Roles>NonDelivery</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T07:17:01">
+    <page name="CreateServiceDue" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T07:17:13">
+    <page name="CreateServiceDue" />
+    <container id="c103" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-02T12:20:34">
+    <page name="DepositToCard" />
+    <dataView id="view1" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T12:20:42">
+    <page name="DepositToCard" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T20:53:13">
+    <page name="DueStatement" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberList_Due</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-02T20:53:17">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <after>
+      <page name="DueStatement" />
+      <dataView id="view1" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-02T20:53:26">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T20:56:49">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T21:06:01">
+    <pages />
+    <insert type="page" context="/page/Reports">
+      <Name>DuesReminder</Name>
+      <Generate>Always</Generate>
+      <UseExtenders>false</UseExtenders>
+      <Title>Dues Reminder</Title>
+      <Roles>*</Roles>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-06-02T21:06:22">
+    <page name="DuesReminder" />
+    <update>
+      <Generate>FirstTimeOnly</Generate>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-02T23:10:56">
+    <page name="DueStatement" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-02T23:22:24">
+    <page name="DuesReminder" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-02T23:22:32">
+    <page name="PaymentStatement" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-02T23:27:24">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Member Due Statement</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-03T00:02:24">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <update>
+      <AutoHighlightFirstRow>true</AutoHighlightFirstRow>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-03T00:31:06">
+    <page name="DueStatement" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberDueStatementreport</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-03T00:31:14">
+    <page name="DueStatement" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-03T00:36:31">
+    <page name="DueStatement" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberList_Due</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-03T00:36:35">
+    <page name="DueStatement" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-03T02:00:18">
+    <page name="EmailSMS" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberServiceBillDue</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-03T02:00:47">
+    <page name="EmailSMS" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Due Member Send Email</Text>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-03T02:00:59">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Send SMS </Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-03T14:40:55">
+    <page name="GameRegistration" />
+    <update>
+      <Roles>Administrators,GameRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-05T13:20:48">
+    <page name="TeeName" />
+    <after>
+      <page name="GameFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-05T13:21:03">
+    <page name="GameCategory" />
+    <after>
+      <page name="GameFee" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-05T13:21:07">
+    <page name="Tournament" />
+    <after>
+      <page name="GameCategory" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-06-10T02:23:51">
+    <page name="EmailSMS" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberSMS</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-10T02:23:57">
+    <page name="EmailSMS" />
+    <dataView id="view3" />
+    <update>
+      <View>grid1</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-10T02:29:32">
+    <page name="EmailSMS" />
+    <dataView id="view3" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-10T02:55:22">
+    <pages />
+    <deleteRefs type="controller">
+      <Name>MemberSMS</Name>
+    </deleteRefs>
+  </c>
+  <c y="NodeSet" t="2018-06-10T03:01:44">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-10T03:01:46">
+    <page name="EmailSMS" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberInfoSMS</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-10T03:01:55">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <update>
+      <View>AllMembers</View>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-10T03:02:07">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Sending SMS</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-10T03:06:08">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-13T10:08:06">
+    <page name="EmailSMS" />
+    <container id="c101" />
+    <copyRef type="controller">
+      <Controller>MemberSendSMS</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-06-13T10:22:13">
+    <page name="EmailSMS" />
+    <dataView id="view3" />
+    <update>
+      <MultiSelect>true</MultiSelect>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-13T10:46:02">
+    <page name="EmailSMS" />
+    <dataView id="view1" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-06-13T10:48:00">
+    <page name="EmailSMS" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Sending SMS</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-06-13T10:52:54">
+    <page name="EmailSMS" />
+    <dataView id="view3" />
+    <update>
+      <View>AllMembers</View>
+    </update>
+  </c>
+</log>
