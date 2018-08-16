@@ -175,6 +175,8 @@ from "dbo"."MemberGameReg" "MemberGameReg"
         <dataField fieldName="FlightSchFlightSchNo" columns="15" />
         <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
         <dataField fieldName="MemberNameOfMember" />
+        <dataField fieldName="RegDate" columns="20" />
+        <dataField fieldName="PlayDate" columns="20" />
         <dataField fieldName="GreenFee" columns="15" />
         <dataField fieldName="CaddieFee" columns="15" />
         <dataField fieldName="BallBoyFee" columns="15" />
@@ -185,12 +187,9 @@ from "dbo"."MemberGameReg" "MemberGameReg"
         <dataField fieldName="TotalBill" columns="15" />
         <dataField fieldName="PaidAmount" columns="15" />
         <dataField fieldName="CollectionBy" columns="50" />
-        <dataField fieldName="BillText" columns="50" />
         <dataField fieldName="BookingDate" columns="20" />
         <dataField fieldName="RegNo" columns="50" />
-        <dataField fieldName="RegDate" columns="20" />
         <dataField fieldName="ChequeNo" columns="50" />
-        <dataField fieldName="PlayDate" columns="20" />
         <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" />
         <dataField fieldName="BankID" aliasFieldName="BankName" />
         <dataField fieldName="ChequeDt" columns="20" />

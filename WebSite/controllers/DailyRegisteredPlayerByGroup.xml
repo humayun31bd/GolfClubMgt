@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataController name="DailyRegisteredPlayerByGroup" conflictDetection="overwriteChanges" label="DailyRegisteredPlayerByGroup" xmlns="urn:schemas-codeontime-com:data-aquarium">
+<dataController name="DailyRegisteredPlayerByGroup" conflictDetection="overwriteChanges" label="DailyRegisteredPlayerByGroup" handler="MyCompany.Rules.DailyRegisteredPlayerByGroupBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <commands />
   <fields>
     <field name="MemberGroupID" type="Int32" label="Member Group#" showInSummary="true" />
     <field name="MemberGroupName" type="String" label="Member Group Name" length="50" showInSummary="true" />
-    <field name="Member" type="Int32" label="Member" readOnly="true" showInSummary="true" />
-    <field name="NonMember" type="Int32" label="Non Member" readOnly="true" showInSummary="true" />
+    <field name="Member" type="Int32" label="Member" readOnly="true" showInSummary="true" causesCalculate="true" />
+    <field name="NonMember" type="Int32" label="Non Member" readOnly="true" showInSummary="true" causesCalculate="true" />
     <field name="RegDate" type="DateTime" label="Reg. Date" dataFormatString="dd-MMM-yyyy" />
     <field name="CompanyName" type="String" label="Company Name" readOnly="true" length="150" showInSummary="true" />
     <field name="CompanyAddress" type="String" label="Company Address" readOnly="true" length="150" />
+    <field name="TotalPlayers" type="Int32" label="Total Players" readOnly="true" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Daily Registered Player By Group">
@@ -16,8 +17,9 @@
       <dataFields>
         <dataField fieldName="MemberGroupID" columns="15" />
         <dataField fieldName="MemberGroupName" columns="50" />
-        <dataField fieldName="Member" columns="15" />
-        <dataField fieldName="NonMember" columns="15" />
+        <dataField fieldName="Member" columns="15" aggregate="Sum" />
+        <dataField fieldName="NonMember" columns="15" aggregate="Sum" />
+        <dataField fieldName="TotalPlayers" columns="15" hidden="true" />
         <dataField fieldName="RegDate" columns="10" />
         <dataField fieldName="CompanyName" />
         <dataField fieldName="CompanyAddress" />
@@ -128,5 +130,6 @@ Exec USP_DailyRegisteredPlayerByGroup @Session_FrDate
 -- implement update here]]></rule>
     <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
 -- implement delete here]]></rule>
+    <rule id="r100" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[Set @TotalPlayers = @Member + @NonMember]]></rule>
   </businessRules>
 </dataController>

@@ -6,7 +6,6 @@
 select
 	"TournamentFee"."TournamentFeeID" "TournamentFeeID"
 	,"TournamentFee"."TournamentID" "TournamentID"
-	,"Tournament"."TournamentName" "TournamentName"
 	,"TournamentFee"."MemberGroupID" "MemberGroupID"
 	,"MemberGroup"."MemberGroupName" "MemberGroupName"
 	,"TournamentFee"."HoleTypeID" "HoleTypeID"
@@ -15,10 +14,12 @@ select
 	,"TournamentFee"."SpouseFee" "SpouseFee"
 	,"TournamentFee"."ChildrenFee" "ChildrenFee"
 	,"TournamentFee"."IsActive" "IsActive"
+	,"TournamentFee"."TournamentGameID" "TournamentGameID"
+	,"TournamentGame"."TournamentName" "TournamentGameTournamentName"
 from "dbo"."TournamentFee" "TournamentFee"
-	left join "dbo"."Tournament" "Tournament" on "TournamentFee"."TournamentID" = "Tournament"."TournamentID"
 	left join "dbo"."MemberGroup" "MemberGroup" on "TournamentFee"."MemberGroupID" = "MemberGroup"."MemberGroupID"
 	left join "dbo"."HoleType" "HoleType" on "TournamentFee"."HoleTypeID" = "HoleType"."HoleTypeID"
+	left join "dbo"."TournamentGame" "TournamentGame" on "TournamentFee"."TournamentGameID" = "TournamentGame"."TournamentGameID"
 ]]></text>
     </command>
     <command id="TournamentFeeIDIdentityCommand" type="Text" event="Inserted">
@@ -30,14 +31,11 @@ from "dbo"."TournamentFee" "TournamentFee"
   </commands>
   <fields>
     <field name="TournamentFeeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Tournament Fee ID" readOnly="true" />
-    <field name="TournamentID" type="Int32" allowNulls="false" label="Tournament ID" showInSummary="true">
-      <items style="Lookup" dataController="Tournament" newDataView="createForm1" dataValueField="TournamentID" dataTextField="TournamentName" />
-    </field>
-    <field name="TournamentName" type="String" readOnly="true" label="Tournament Name" length="50" />
+    <field name="TournamentID" type="Int32" allowNulls="false" label="Tournament ID" showInSummary="true" />
     <field name="MemberGroupID" type="Int32" label="Member Group ID" showInSummary="true">
       <items style="Lookup" dataController="MemberGroup" newDataView="createForm1" dataValueField="MemberGroupID" dataTextField="MemberGroupName" />
     </field>
-    <field name="MemberGroupName" type="String" readOnly="true" label="Member Group Name" length="50" />
+    <field name="MemberGroupName" type="String" readOnly="true" label="Group Name" length="50" />
     <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true">
       <items style="Lookup" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" />
     </field>
@@ -48,12 +46,17 @@ from "dbo"."TournamentFee" "TournamentFee"
     <field name="IsActive" type="Boolean" default="((1))" label="Is Active" allowNulls="false">
       <items style="CheckBox" />
     </field>
+    <field name="TournamentGameID" type="Int32" label="Tournament Game ID">
+      <items style="Lookup" dataController="TournamentGame" newDataView="createForm1" dataValueField="TournamentGameID" dataTextField="TheTournamentGame" />
+    </field>
+    <field name="TournamentGameTournamentName" type="String" readOnly="true" label="Tournament Game" length="250" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Tournament Fee">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
-        <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+        <dataField fieldName="TournamentID" columns="15" hidden="true" />
+        <dataField fieldName="TournamentGameID" aliasFieldName="TournamentGameTournamentName" />
         <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
         <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
         <dataField fieldName="MemberFee" columns="15" />
@@ -68,7 +71,8 @@ from "dbo"."TournamentFee" "TournamentFee"
         <category id="c1" headerText="Tournament Fee" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
-            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="TournamentID" columns="15" hidden="true" />
+            <dataField fieldName="TournamentGameID" aliasFieldName="TournamentGameTournamentName" />
             <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
             <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
             <dataField fieldName="MemberFee" columns="15" />
@@ -85,7 +89,8 @@ from "dbo"."TournamentFee" "TournamentFee"
         <category id="c1" flow="NewColumn">
           <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
-            <dataField fieldName="TournamentID" aliasFieldName="TournamentName" />
+            <dataField fieldName="TournamentID" columns="15" hidden="true" />
+            <dataField fieldName="TournamentGameID" aliasFieldName="TournamentGameTournamentName" />
             <dataField fieldName="MemberGroupID" aliasFieldName="MemberGroupName" />
             <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeHoleTypeDesc" />
             <dataField fieldName="MemberFee" columns="15" />

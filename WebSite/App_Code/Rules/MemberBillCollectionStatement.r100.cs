@@ -20,32 +20,6 @@ namespace MyCompany.Rules
         [Rule("r100")]
         public void r100Implementation(MemberBillCollectionStatementModel instance, int Parameters_MemberID, int Parameters_PayTypeID, DateTime Parameters_FromDate, DateTime Parameters_ToDate)
         {
-            //if ((Parameters_FromDate.Date < DateTime.Now.Date) && (Parameters_FromDate.Date != Parameters_ToDate.Date))
-            //{
-            //    Parameters_FromDate = Parameters_FromDate.AddDays(1);
-            //    Parameters_ToDate = Parameters_ToDate.AddDays(1);
-            //}
-            //if ((Parameters_FromDate.Date == DateTime.Now.Date) || (Parameters_FromDate.Date == Parameters_ToDate.Date))
-            //{
-            //    if (Parameters_FromDate.Date == Parameters_ToDate.Date)
-            //    {
-            //        Parameters_FromDate = Parameters_FromDate.AddDays(1);
-            //        Parameters_ToDate = Parameters_ToDate.AddDays(1);
-            //    }
-            //}
-            //if ((Parameters_ToDate.Date == DateTime.Now.Date))
-            //{
-            //    Parameters_ToDate = Parameters_ToDate.AddDays(1);
-            //}
-            //if ((Parameters_FromDate.Date > DateTime.Now.Date))
-            //{
-            //    Parameters_FromDate = Parameters_FromDate.AddDays(-1);
-            //}
-            //if ((Parameters_ToDate.Date > DateTime.Now.Date))
-            //{
-            //    Parameters_ToDate = Parameters_ToDate.AddDays(-1);
-            //}
-
             if ((Parameters_FromDate.Date < DateTime.Now.Date) && (Parameters_FromDate.Date != Parameters_ToDate.Date))
             {
                 Parameters_FromDate = Parameters_FromDate.AddDays(1);
@@ -56,16 +30,21 @@ namespace MyCompany.Rules
                 Parameters_FromDate = Parameters_FromDate.AddDays(1);
                 Parameters_ToDate = Parameters_ToDate.AddDays(1);
             }
-            if ((Parameters_FromDate.Date == DateTime.Now.Date) || (Parameters_FromDate.Date == Parameters_ToDate.Date))
+
+            if ((Parameters_FromDate.Date == DateTime.Now.Date))
             {
                 if (Parameters_FromDate.Date == Parameters_ToDate.Date)
                 {
-                    //Parameters_FromDate = Parameters_FromDate.AddDays(1);
+                    // Parameters_FromDate = Parameters_FromDate.AddDays(1);
                     //Parameters_ToDate = Parameters_ToDate.AddDays(1);
                 }
-                else
+            }
+            if (Parameters_FromDate.Date == Parameters_ToDate.Date)
+            {
+                if ((Parameters_FromDate.Date != DateTime.Now.Date) && (Parameters_ToDate.Date != DateTime.Now.Date))
                 {
-
+                    Parameters_FromDate = Parameters_FromDate.AddDays(1);
+                    Parameters_ToDate = Parameters_ToDate.AddDays(1);
                 }
             }
             if ((Parameters_ToDate.Date == DateTime.Now.Date))
@@ -73,6 +52,10 @@ namespace MyCompany.Rules
                 //Parameters_ToDate = Parameters_ToDate.AddDays(1);
             }
             if ((Parameters_FromDate.Date < DateTime.Now.Date) && (Parameters_FromDate.Date > DateTime.Now.Date))
+            {
+                Parameters_FromDate = Parameters_FromDate.AddDays(-1);
+            }
+            if ((Parameters_FromDate.Date == DateTime.Now.Date) && (Parameters_FromDate.Date > DateTime.Now.Date))
             {
                 Parameters_FromDate = Parameters_FromDate.AddDays(-1);
             }

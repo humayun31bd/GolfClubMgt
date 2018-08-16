@@ -23,14 +23,14 @@ from "dbo"."Locker" "Locker"
     <field name="IsFree" type="Boolean" default="((1))" label="Is Free" showInSummary="true" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Locker">
+    <view id="grid1" type="Grid" commandId="command1" label="Free Lockers" filter="IsFree=1">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="LockerCode" columns="50" />
         <dataField fieldName="IsFree" />
       </dataFields>
     </view>
-    <view id="FreeLockers" type="Grid" commandId="command1" label="Locker" filter="isFree=1">
+    <view id="FreeLockers" type="Grid" commandId="command1" label="Booked Lockers" filter="isFree=0">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="LockerCode" columns="50" />
@@ -73,8 +73,8 @@ from "dbo"."Locker" "Locker"
       <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
-      <action id="a1" commandName="Edit" />
-      <action id="a2" commandName="Delete" />
+      <action id="a1" commandName="Edit" whenClientScript="[IsFree]==1" />
+      <action id="a2" commandName="Delete" whenClientScript="[IsFree]==1" />
       <action id="a3" commandName="Cancel" />
       <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
       <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
@@ -122,4 +122,13 @@ from "dbo"."Locker" "Locker"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert" type="Sql" phase="Before"><![CDATA[if exists(Select LockerCode from dbo.Locker where LockerCode=@LockerCode)
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_ShowMessage = 'Locker Code duplicate found'
+end]]></rule>
+  </businessRules>
 </dataController>

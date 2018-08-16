@@ -18,7 +18,7 @@ namespace MyCompany.Rules
             UpdateFieldValue("GameDate", DateTime.Now.Date);
             UpdateFieldValue("FlightStart", DateTime.Now);
             UpdateFieldValue("FlightEnd", DateTime.Now);
-            UpdateFieldValue("IntervalInMinute", 10);
+            UpdateFieldValue("IntervalInMinute", 8);
             UpdateFieldValue("MaxPlayer", 4);
         }
     }

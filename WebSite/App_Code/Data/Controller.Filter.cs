@@ -57,13 +57,20 @@ namespace MyCompany.Data
         
         private void AppendWhereExpressions(StringBuilder sb, DbCommand command, ViewPage page, SelectClauseDictionary expressions, FieldValue[] values)
         {
+            string[] surrogatePK = null;
+            foreach (FieldValue fv in values)
+            	if (fv.Name == "_SurrogatePK")
+                {
+                    surrogatePK = ((string[])(fv.Value));
+                    break;
+                }
             sb.AppendLine();
             sb.Append("where");
             bool firstField = true;
             foreach (FieldValue v in values)
             {
                 DataField field = page.FindField(v.Name);
-                if ((field != null) && field.IsPrimaryKey)
+                if ((field != null) && ((field.IsPrimaryKey && (surrogatePK == null)) || ((surrogatePK != null) && surrogatePK.Contains(v.Name))))
                 {
                     sb.AppendLine();
                     if (firstField)
@@ -78,20 +85,7 @@ namespace MyCompany.Data
                     command.Parameters.Add(parameter);
                 }
             }
-            bool ignorePrimaryKeyInWhere = false;
-            if (firstField)
-            {
-                foreach (FieldValue fv in values)
-                	if (fv.Name == "_IgnorePrimaryKeyInWhere")
-                    {
-                        ignorePrimaryKeyInWhere = true;
-                        break;
-                    }
-                // if the first field has not been processed then a primary key has not been provided
-                if (!(ignorePrimaryKeyInWhere))
-                	throw new Exception("A primary key field value is not provided.");
-            }
-            if (ignorePrimaryKeyInWhere || _config.ConflictDetectionEnabled)
+            if (_config.ConflictDetectionEnabled && (surrogatePK == null))
             	foreach (FieldValue v in values)
                 {
                     DataField field = page.FindField(v.Name);

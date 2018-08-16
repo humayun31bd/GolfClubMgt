@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="GameRegisterApproval" conflictDetection="overwriteChanges" label="GameRegisterApproval" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands />
+  <fields>
+    <field name="GameAccountID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Game Account#" readOnly="true" />
+    <field name="AccountCode" type="Int32" label="Account Code" showInSummary="true" />
+    <field name="AccountName" type="String" label="Account Name" length="50" showInSummary="true" />
+    <field name="PayTypeID" type="Int32" label="Pay Type#" showInSummary="true" />
+    <field name="TranDate" type="DateTime" label="Tran Date" showInSummary="true" />
+    <field name="Amount" type="Decimal" label="Amount" showInSummary="true" />
+    <field name="IsApproved" type="Boolean" label="Is Approved" />
+    <field name="ApprovedBy" type="String" label="Approved By" length="50" />
+    <field name="VoucherNo" type="String" label="Voucher No" length="50" />
+    <field name="VoucherTranID" type="Int32" label="Voucher Tran#" />
+    <field name="PayTypeName" type="String" label="Pay Type" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Game Register Approval" group="PayTypeName" filter="IsApproved=0">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccountCode" columns="15" />
+        <dataField fieldName="AccountName" columns="50" />
+        <dataField fieldName="PayTypeName" columns="50" />
+        <dataField fieldName="PayTypeID" columns="15" hidden="true" />
+        <dataField fieldName="TranDate" columns="10" />
+        <dataField fieldName="Amount" columns="15" aggregate="Sum" />
+        <dataField fieldName="IsApproved" />
+        <dataField fieldName="ApprovedBy" columns="50" hidden="true" />
+        <dataField fieldName="VoucherNo" columns="50" />
+        <dataField fieldName="VoucherTranID" columns="15" hidden="true" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Game Register Approval">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Game Register Approval" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccountCode" columns="15" />
+            <dataField fieldName="AccountName" columns="50" />
+            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="TranDate" columns="10" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsApproved" />
+            <dataField fieldName="ApprovedBy" columns="50" />
+            <dataField fieldName="VoucherNo" columns="50" />
+            <dataField fieldName="VoucherTranID" columns="15" />
+            <dataField fieldName="PayTypeName" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Game Register Approval">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Game Register Approval" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccountCode" columns="15" />
+            <dataField fieldName="AccountName" columns="50" />
+            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="TranDate" columns="10" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="IsApproved" />
+            <dataField fieldName="ApprovedBy" columns="50" />
+            <dataField fieldName="VoucherNo" columns="50" />
+            <dataField fieldName="VoucherTranID" columns="15" />
+            <dataField fieldName="PayTypeName" columns="50" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Delete" />
+      <action id="a6" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenKeySelected="true" whenClientScript="this.hasDetails()" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+      <action commandName="SQL" headerText="Search Data" confirmation="_controller = DateSelect&#xD;&#xA;_title = Select a Date&#xD;&#xA;" notify="Successfully Search Data" id="a100" roles="NonDelivery" />
+      <action commandName="SQL" headerText="Create Voucher" id="a101" confirmation="Do you confirmed ?" notify="Successfully complete the task">
+        <data><![CDATA[Exec dbo.USP_MemberGamePaymentApproved @VoucherNo
+]]></data>
+      </action>
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule type="Sql" id="enableResultSet" commandName="Select" phase="Before"><![CDATA[set @BusinessRules_EnableResultSet = 1
+-- Enable caching of the result set. Duration is specified in seconds.
+-- set @BusinessRules_ResultSetCacheDuration = 30 
+
+if (@Parameters_FromDate is not null)
+	Set @Session_TranDate = @Parameters_FromDate
+
+]]></rule>
+    <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[-- debug
+DECLARE @Session_TranDate Datetime
+-- end debug
+
+if (@Session_TranDate is null)
+	set @Session_TranDate = convert(Nvarchar(10),getdate(),101)
+
+Exec dbo.USP_GameRegPaymentApproval @Session_TranDate
+Set @Result_Refresh = 1]]></rule>
+    <rule type="Sql" id="insert" commandName="Insert" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement insert here]]></rule>
+    <rule type="Sql" id="update" commandName="Update" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement update here]]></rule>
+    <rule type="Sql" id="delete" commandName="Delete" phase="Before"><![CDATA[set @BusinessRules_PreventDefault = 1
+-- implement delete here]]></rule>
+  </businessRules>
+</dataController>

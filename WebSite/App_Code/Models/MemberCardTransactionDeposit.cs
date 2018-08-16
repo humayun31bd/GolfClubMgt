@@ -43,6 +43,9 @@ namespace MyCompany.Models
         private int? _payTypeID;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _payTypePayTypeName;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private decimal? _depositAmount;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
@@ -76,10 +79,28 @@ namespace MyCompany.Models
         private int? _bankID;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _bankName;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private string _chequeNo;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private DateTime? _chequeDT;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _particulars;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _mrno;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _refNo;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private int? _bankCardID;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _bankCardTypeName;
         
         public MemberCardTransactionDepositModel()
         {
@@ -233,6 +254,19 @@ namespace MyCompany.Models
             }
         }
         
+        public string PayTypePayTypeName
+        {
+            get
+            {
+                return _payTypePayTypeName;
+            }
+            set
+            {
+                _payTypePayTypeName = value;
+                UpdateFieldValue("PayTypePayTypeName", value);
+            }
+        }
+        
         public decimal? DepositAmount
         {
             get
@@ -376,6 +410,19 @@ namespace MyCompany.Models
             }
         }
         
+        public string BankName
+        {
+            get
+            {
+                return _bankName;
+            }
+            set
+            {
+                _bankName = value;
+                UpdateFieldValue("BankName", value);
+            }
+        }
+        
         public string ChequeNo
         {
             get
@@ -399,6 +446,71 @@ namespace MyCompany.Models
             {
                 _chequeDT = value;
                 UpdateFieldValue("ChequeDT", value);
+            }
+        }
+        
+        public string Particulars
+        {
+            get
+            {
+                return _particulars;
+            }
+            set
+            {
+                _particulars = value;
+                UpdateFieldValue("Particulars", value);
+            }
+        }
+        
+        public string Mrno
+        {
+            get
+            {
+                return _mrno;
+            }
+            set
+            {
+                _mrno = value;
+                UpdateFieldValue("Mrno", value);
+            }
+        }
+        
+        public string RefNo
+        {
+            get
+            {
+                return _refNo;
+            }
+            set
+            {
+                _refNo = value;
+                UpdateFieldValue("RefNo", value);
+            }
+        }
+        
+        public int? BankCardID
+        {
+            get
+            {
+                return _bankCardID;
+            }
+            set
+            {
+                _bankCardID = value;
+                UpdateFieldValue("BankCardID", value);
+            }
+        }
+        
+        public string BankCardTypeName
+        {
+            get
+            {
+                return _bankCardTypeName;
+            }
+            set
+            {
+                _bankCardTypeName = value;
+                UpdateFieldValue("BankCardTypeName", value);
             }
         }
     }

@@ -379,7 +379,7 @@ namespace MyCompany.Handlers
         
         private List<FieldValue> CreateActionValues(Stream stream, string contentType, string fileName, int contentLength)
         {
-            bool deleting = (((contentType == "application/octet-stream") && (contentLength == 0)) && String.IsNullOrEmpty(fileName));
+            bool deleting = (((contentType == "application/octet-stream") && (contentLength == 0)) && (String.IsNullOrEmpty(fileName) || (fileName == "_delete_")));
             List<string> keyValues = CreateKeyValues();
             int keyValueIndex = 0;
             List<FieldValue> actionValues = new List<FieldValue>();

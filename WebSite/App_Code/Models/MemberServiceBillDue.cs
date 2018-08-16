@@ -144,6 +144,33 @@ namespace MyCompany.Models
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private decimal? _contributionFee;
         
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private int? _nonMemberCatID;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _nonMemberCategoryNonMemCateory;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private int? _ocmnoOfDaysPlay;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private DateTime? _lastPaySubsDate;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private DateTime? _lastPayContDate;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _refNumber;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private string _recomendetMemberShipNo;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private int? _ocmnoOfDaysPlayed;
+        
+        [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
+        private DateTime? _welfareContributionDT;
+        
         public MemberServiceBillDueModel()
         {
         }
@@ -735,6 +762,123 @@ namespace MyCompany.Models
             {
                 _contributionFee = value;
                 UpdateFieldValue("ContributionFee", value);
+            }
+        }
+        
+        public int? NonMemberCatID
+        {
+            get
+            {
+                return _nonMemberCatID;
+            }
+            set
+            {
+                _nonMemberCatID = value;
+                UpdateFieldValue("NonMemberCatID", value);
+            }
+        }
+        
+        public string NonMemberCategoryNonMemCateory
+        {
+            get
+            {
+                return _nonMemberCategoryNonMemCateory;
+            }
+            set
+            {
+                _nonMemberCategoryNonMemCateory = value;
+                UpdateFieldValue("NonMemberCategoryNonMemCateory", value);
+            }
+        }
+        
+        public int? OcmnoOfDaysPlay
+        {
+            get
+            {
+                return _ocmnoOfDaysPlay;
+            }
+            set
+            {
+                _ocmnoOfDaysPlay = value;
+                UpdateFieldValue("OcmnoOfDaysPlay", value);
+            }
+        }
+        
+        public DateTime? LastPaySubsDate
+        {
+            get
+            {
+                return _lastPaySubsDate;
+            }
+            set
+            {
+                _lastPaySubsDate = value;
+                UpdateFieldValue("LastPaySubsDate", value);
+            }
+        }
+        
+        public DateTime? LastPayContDate
+        {
+            get
+            {
+                return _lastPayContDate;
+            }
+            set
+            {
+                _lastPayContDate = value;
+                UpdateFieldValue("LastPayContDate", value);
+            }
+        }
+        
+        public string RefNumber
+        {
+            get
+            {
+                return _refNumber;
+            }
+            set
+            {
+                _refNumber = value;
+                UpdateFieldValue("RefNumber", value);
+            }
+        }
+        
+        public string RecomendetMemberShipNo
+        {
+            get
+            {
+                return _recomendetMemberShipNo;
+            }
+            set
+            {
+                _recomendetMemberShipNo = value;
+                UpdateFieldValue("RecomendetMemberShipNo", value);
+            }
+        }
+        
+        public int? OcmnoOfDaysPlayed
+        {
+            get
+            {
+                return _ocmnoOfDaysPlayed;
+            }
+            set
+            {
+                _ocmnoOfDaysPlayed = value;
+                UpdateFieldValue("OcmnoOfDaysPlayed", value);
+            }
+        }
+        
+        public DateTime? WelfareContributionDT
+        {
+            get
+            {
+                return _welfareContributionDT;
+            }
+            set
+            {
+                _welfareContributionDT = value;
+                UpdateFieldValue("WelfareContributionDT", value);
             }
         }
     }

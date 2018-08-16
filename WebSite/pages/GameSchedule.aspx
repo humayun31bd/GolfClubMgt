@@ -3,7 +3,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="PageContentPlaceHolder" runat="Server">
   <div data-flow="row">
     <div data-activator="Tab|Flight Schedule">
-      <div id="view1" data-controller="GameFlightSchedule" data-view="grid1"></div>
+      <div id="view1" data-controller="GameFlightSchedule" data-view="grid1" data-page-size="120"></div>
     </div>
   </div>
 </asp:Content>

@@ -12,5 +12,9 @@ namespace MyCompany.Rules
         public SharedBusinessRules()
         {
         }
+
+
+
+
     }
 }

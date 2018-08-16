@@ -1,22 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberSubsDueDetail" alias="MemberSubsDueDetail" created="2018-04-10T22:25:49" modified="2018-04-11T12:29:48" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberSubsDueDetail" alias="MemberSubsDueDetail" created="2018-04-10T22:25:49" modified="2018-08-06T17:08:35" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
-    <foreignKey id="MemberSubsDue" parentTableSchema="dbo" parentTableName="MemberSubsDue" x="789" y="42">
-      <foreignKeyColumn columnName="MemberSubsDueID" parentColumnName="MemberSubsDueID" />
-    </foreignKey>
-    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="350" y="181">
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="350" y="180">
       <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
     </foreignKey>
   </foreignKeys>
   <columns>
     <column name="MemberSubsDueDetailID" fieldName="MemberSubsDueDetailID" label="Member Subs Due Detail ID" />
-    <column name="MemberSubsDueID" fieldName="MemberSubsDueID" label="Member Subs Due ID" aliasColumnName="TotalSubsiDue" aliasForeignKey="MemberSubsDue" />
-    <column name="TotalSubsiDue" fieldName="MemberSubsDueTotalSubsiDue" label="Total Subscription Due" foreignKey="MemberSubsDue" />
-    <column name="TotalAnnualDue" fieldName="MemberSubsDueTotalAnnualDue" label="Total Annual Due" foreignKey="MemberSubsDue" />
     <column name="DueDate" fieldName="DueDate" label="Due Date" format="MM/yyyy" />
     <column name="SubsiDueAmount" fieldName="SubsiDueAmount" label="Subscription Due Amount" />
     <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="NameOfMember" aliasForeignKey="Member" />
     <column name="NameOfMember" fieldName="MemberNameOfMember" label="Name Of Member" foreignKey="Member" />
-    <column name="MemberBillID" fieldName="MemberBillID" label="Member Bill ID" />
+    <column name="MemberCode" fieldName="MemberCode" label="Membership No" foreignKey="Member" />
+    <column name="MemberBillPaidID" fieldName="MemberBillPaidID" label="Member Bill Paid ID" />
+    <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
   </columns>
 </dataModel>

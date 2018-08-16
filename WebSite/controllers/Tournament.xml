@@ -6,9 +6,6 @@
 select
 	"Tournament"."TournamentID" "TournamentID"
 	,"Tournament"."TournamentName" "TournamentName"
-	,"Tournament"."StartFrom" "StartFrom"
-	,"Tournament"."EndDate" "EndDate"
-	,"Tournament"."IsActive" "IsActive"
 from "dbo"."Tournament" "Tournament"
 ]]></text>
     </command>
@@ -22,9 +19,6 @@ from "dbo"."Tournament" "Tournament"
   <fields>
     <field name="TournamentID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Tournament ID" readOnly="true" />
     <field name="TournamentName" type="String" label="Tournament Name" length="50" showInSummary="true" />
-    <field name="StartFrom" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="Start From" showInSummary="true" />
-    <field name="EndDate" type="DateTime" dataFormatString="dd/MM/yyyy hh:mm tt" label="End Date" showInSummary="true" />
-    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" showInSummary="true" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Tournament">

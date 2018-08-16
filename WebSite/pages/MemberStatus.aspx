@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="PageTitleContentPlaceHolder" runat="Server">Member Status</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PageContentPlaceHolder" runat="Server">
   <div data-flow="row">
-    <div id="view1" data-controller="MemberStatus" data-view="grid1" data-show-in-summary="true" data-selection-mode="multiple"></div>
+    <div id="view1" data-controller="MemberStatus" data-view="grid1" data-show-in-summary="true" data-selection-mode="multiple" data-tags="modal-fullscreen"></div>
   </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="SideBarPlaceHolder" runat="Server">

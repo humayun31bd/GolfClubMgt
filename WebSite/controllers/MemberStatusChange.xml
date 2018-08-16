@@ -15,6 +15,7 @@ select
 	,"MemberStatusChange"."TransferDate" "TransferDate"
 	,"MemberStatusChange"."IsAbsentee" "IsAbsentee"
 	,"MemberStatusChange"."NoOfDaysPlay" "NoOfDaysPlay"
+	,"MemberStatusChange"."ExpireDate" "ExpireDate"
 	,"MemberStatusChange"."NoOfDaysPlayed" "NoOfDaysPlayed"
 from "dbo"."MemberStatusChange" "MemberStatusChange"
 	left join "dbo"."MemberStatus" "OldMemberStatus" on "MemberStatusChange"."OldMemberStatusID" = "OldMemberStatus"."MemberStatusID"
@@ -40,14 +41,20 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
       <items style="Lookup" dataController="MemberStatus" newDataView="createForm1" dataValueField="MemberStatusID" dataTextField="MemberStatus" />
     </field>
     <field name="OldMemberStatus" type="String" readOnly="true" label="Old Member Status" length="50" />
-    <field name="NewMemberStatusID" type="Int32" label="New Member Status ID" showInSummary="true">
+    <field name="NewMemberStatusID" type="Int32" label="New Member Status ID" showInSummary="true" causesCalculate="true">
       <items style="Lookup" dataController="MemberStatus" newDataView="createForm1" dataValueField="MemberStatusID" dataTextField="MemberStatus" />
     </field>
-    <field name="MemberStatusMemberStatus" type="String" readOnly="true" label="Member Status Member Status" length="50" />
-    <field name="TransferDate" type="DateTime" dataFormatString="dd/MM/yyyy" label="Transfer Date" showInSummary="true" />
-    <field name="IsAbsentee" type="Boolean" default="((0))" label="Is Absentee" showInSummary="true" />
+    <field name="MemberStatusMemberStatus" type="String" readOnly="true" label="Member Status " length="50" />
+    <field name="TransferDate" type="DateTime" dataFormatString="dd/MM/yyyy" label="Transfer Date" showInSummary="true" causesCalculate="true" allowNulls="false" />
+    <field name="IsAbsentee" type="Boolean" default="((0))" label="Is Absentee" showInSummary="true" allowNulls="false">
+      <items style="CheckBox" />
+    </field>
     <field name="NoOfDaysPlay" type="Int32" label="No Of Days Play" />
+    <field name="ExpireDate" type="DateTime" dataFormatString="g" label="Expire Date" />
     <field name="NoOfDaysPlayed" type="Int32" label="No Of Days Played" />
+    <field name="AbsenteeMemberFeeAdjust" type="DataView" label="Absentee Member Fee Adjust">
+      <dataView controller="AbsenteeMemberFeeAdjust" view="grid1" filterFields="MemberID" />
+    </field>
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Member Status Change">
@@ -59,14 +66,15 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
         <dataField fieldName="NewMemberStatusID" aliasFieldName="MemberStatusMemberStatus" />
         <dataField fieldName="TransferDate" columns="20" />
         <dataField fieldName="IsAbsentee" />
-        <dataField fieldName="NoOfDaysPlay" columns="15" />
-        <dataField fieldName="NoOfDaysPlayed" columns="15" />
+        <dataField fieldName="NoOfDaysPlay" columns="15" hidden="true" />
+        <dataField fieldName="ExpireDate" columns="20" />
+        <dataField fieldName="NoOfDaysPlayed" columns="15" hidden="true" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Status Change">
       <headerText>$DefaultEditViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="Member Status Change" flow="NewColumn">
+        <category id="c1" headerText="Member Status Change" wrap="true" floating="true" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberID" aliasFieldName="MemberShipNo" />
@@ -76,7 +84,13 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
             <dataField fieldName="TransferDate" columns="20" />
             <dataField fieldName="IsAbsentee" />
             <dataField fieldName="NoOfDaysPlay" columns="15" />
+            <dataField fieldName="ExpireDate" columns="20" />
             <dataField fieldName="NoOfDaysPlayed" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="To be Adjusted Amount" id="c2">
+          <dataFields>
+            <dataField fieldName="AbsenteeMemberFeeAdjust" columns="15" />
           </dataFields>
         </category>
       </categories>
@@ -94,7 +108,13 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
             <dataField fieldName="NewMemberStatusID" aliasFieldName="MemberStatusMemberStatus" />
             <dataField fieldName="IsAbsentee" />
             <dataField fieldName="NoOfDaysPlay" columns="15" />
+            <dataField fieldName="ExpireDate" columns="20" />
             <dataField fieldName="NoOfDaysPlayed" columns="15" />
+          </dataFields>
+        </category>
+        <category headerText="To be Adjusted Amount" id="c2">
+          <dataFields>
+            <dataField fieldName="AbsenteeMemberFeeAdjust" columns="15" />
           </dataFields>
         </category>
       </categories>
@@ -161,4 +181,22 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="New" type="Sql" phase="Before"><![CDATA[Set @TransferDate = getdate()
+set @ExpireDate = DateAdd(month,12,@TransferDate)
+]]></rule>
+    <rule id="r102" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[--debug
+DECLARE @Session_FromDate Datetime
+--end debug
+
+if (@Session_FromDate is null)
+	set @Session_FromDate = getdate()
+	
+Exec dbo.MemberStatusChanged @MemberStatusChangeID,@Session_FromDate
+]]></rule>
+    <rule id="r103" commandName="Delete" type="Sql" phase="Before"><![CDATA[Exec dbo.MemberStatusChangedCanceled @MemberStatusChangeID]]></rule>
+    <rule id="r104" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[Exec USP_MemberAbsenteeGoesNew @MemberCode, @NewMemberStatusID
+set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
+]]></rule>
+  </businessRules>
 </dataController>

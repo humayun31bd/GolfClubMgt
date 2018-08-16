@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberLockerBillDetail" alias="MemberLockerBillDetail" created="2018-04-23T20:32:05" modified="2018-04-23T20:32:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberLockerBillDetail" alias="MemberLockerBillDetail" created="2018-04-23T20:32:05" modified="2018-08-06T16:27:18" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="354" y="20">
       <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
@@ -11,9 +11,15 @@
   <columns>
     <column name="MemberLockerBillDetID" fieldName="MemberLockerBillDetID" label="Member Locker Bill Det ID" />
     <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
-    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
-    <column name="LockerBookID" fieldName="LockerBookID" label="Locker Book ID" aliasColumnName="BookStatus" aliasForeignKey="LockerBook" />
+    <column name="MemberCode" fieldName="MemberCode" label="Membership No" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Name Of Member" foreignKey="Member" />
+    <column name="LockerBookID" fieldName="LockerBookID" label="Locker Book ID" aliasColumnName="LockerID" aliasForeignKey="LockerBook" />
+    <column name="LockerID" fieldName="LockerBookLockerID" label="Locker Book Locker ID" foreignKey="LockerBook" />
+    <column name="MemberID" fieldName="LockerBookMemberID" label="Locker Book Member ID" foreignKey="LockerBook" />
+    <column name="LockerBillAmount" fieldName="LockerBookLockerBillAmount" label="Locker Book Locker Bill Amount" foreignKey="LockerBook" />
     <column name="BookStatus" fieldName="LockerBookStatus" label="Locker Book Status" foreignKey="LockerBook" />
+    <column name="BookStart" fieldName="LockerBookStart" label="Locker Book Start" foreignKey="LockerBook" format="g" />
+    <column name="BookEnd" fieldName="LockerBookEnd" label="Locker Book End" foreignKey="LockerBook" format="g" />
     <column name="LockerServiceMonth" fieldName="LockerServiceMonth" label="Locker Service Month" format="g" />
     <column name="LockerfeeAmount" fieldName="LockerfeeAmount" label="Lockerfee Amount" />
     <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />

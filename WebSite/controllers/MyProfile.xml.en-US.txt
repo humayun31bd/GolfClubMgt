@@ -29,6 +29,8 @@ Replace the text between localization brackets as needed.
 
 ^LoginLink^Login^LoginLink^
 
+^LoginWithCloudIdentity^Login With Cloud Identity^LoginWithCloudIdentity^
+
 ^LoginWithDNN^Login With DotNetNuke^LoginWithDNN^
 
 ^LoginWithFacebook^Login With Facebook^LoginWithFacebook^

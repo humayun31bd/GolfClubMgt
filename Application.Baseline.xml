@@ -698,7 +698,147 @@
       <controls />
       <about>This page allows game type management.</about>
     </page>
-    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="^MembershipPath^Membership^MembershipPath^" style="UsersPage" index="1700">
+    <page name="MemberBillPaid" title="Member Bill Paid" description="View Member Bill Paid" index="1700" path="Member Bill Paid">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberBillPaid" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member bill paid management.</about>
+    </page>
+    <page name="MemberRestBarBill" title="Member Rest Bar Bill" description="View Member Rest Bar Bill" index="1710" path="Member Rest Bar Bill">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberRestBarBill" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member rest bar bill management.</about>
+    </page>
+    <page name="MemberRestBarBillCollection" title="Member Rest Bar Bill Collection" description="View Member Rest Bar Bill Collection" index="1720" path="Member Rest Bar Bill Collection">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberRestBarBillCollection" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member rest bar bill collection management.</about>
+    </page>
+    <page name="TournamentGame" title="Tournament Game" description="View Tournament Game" index="1730" path="Tournament Game">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGame" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game management.</about>
+    </page>
+    <page name="TournamentGameFilter" title="Tournament Game Filter" description="View Tournament Game Filter" index="1740" path="Tournament Game Filter">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGameFilter" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game filter management.</about>
+    </page>
+    <page name="TournamentGameLimit" title="Tournament Game Limit" description="View Tournament Game Limit" index="1750" path="Tournament Game Limit">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGameLimit" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game limit management.</about>
+    </page>
+    <page name="CoaDetail" title="Coa Detail" description="View Coa Detail" index="1760" path="Coa Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoaDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows coa detail management.</about>
+    </page>
+    <page name="MemberSmssended" title="Member Smssended" description="View Member Smssended" index="1770" path="Member Smssended">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberSmssended" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member smssended management.</about>
+    </page>
+    <page name="MemberSmssendDetail" title="Member Smssend Detail" description="View Member Smssend Detail" index="1780" path="Member Smssend Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberSmssendDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member smssend detail management.</about>
+    </page>
+    <page name="BankCard" title="Bank Card" description="View Bank Card" index="1790" path="Bank Card">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="BankCard" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows bank card management.</about>
+    </page>
+    <page name="ClubName" title="Club Name" description="View Club Name" index="1800" path="Club Name">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ClubName" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows club name management.</about>
+    </page>
+    <page name="MemberAnnualBillDetail" title="Member Annual Bill Detail" description="View Member Annual Bill Detail" index="1810" path="Member Annual Bill Detail">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberAnnualBillDetail" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member annual bill detail management.</about>
+    </page>
+    <page name="CoachFee" title="Coach Fee" description="View Coach Fee" index="1820" path="Coach Fee">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoachFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows coach fee management.</about>
+    </page>
+    <page name="AbsenteeMemberFeeAdjust" title="Absentee Member Fee Adjust" description="View Absentee Member Fee Adjust" index="1830" path="Absentee Member Fee Adjust">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="AbsenteeMemberFeeAdjust" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows absentee member fee adjust management.</about>
+    </page>
+    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="^MembershipPath^Membership^MembershipPath^" style="UsersPage" index="1840">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>

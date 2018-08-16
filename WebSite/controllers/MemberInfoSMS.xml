@@ -50,6 +50,15 @@ select
 	,"MemberInfo"."BillingAddress" "BillingAddress"
 	,"MemberInfo"."ClubName" "ClubName"
 	,"MemberInfo"."ContributionFee" "ContributionFee"
+	,"MemberInfo"."NonMemberCatID" "NonMemberCatID"
+	,"NonMemberCategory"."NonMemCateory" "NonMemberCategoryNonMemCateory"
+	,"MemberInfo"."OCMNoOfDaysPlay" "OcmnoOfDaysPlay"
+	,"MemberInfo"."LastPaySubsDate" "LastPaySubsDate"
+	,"MemberInfo"."LastPayContDate" "LastPayContDate"
+	,"MemberInfo"."refNumber" "RefNumber"
+	,"MemberInfo"."RecomendetMemberShipNo" "RecomendetMemberShipNo"
+	,"MemberInfo"."OCMNoOfDaysPlayed" "OcmnoOfDaysPlayed"
+	,"MemberInfo"."WelfareContributionDT" "WelfareContributionDT"
 from "dbo"."MemberInfo" "MemberInfo"
 	left join "dbo"."MemberCategory" "MemberCategory" on "MemberInfo"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
 	left join "dbo"."MemberGroup" "MemberGroup" on "MemberCategory"."MemberGroupID" = "MemberGroup"."MemberGroupID"
@@ -59,6 +68,7 @@ from "dbo"."MemberInfo" "MemberInfo"
 	left join "dbo"."BloodGroup" "BloodGroup" on "MemberInfo"."BloodGroupID" = "BloodGroup"."BloodGroupID"
 	left join "dbo"."MemberInfo" "MemberInfo1" on "MemberInfo"."ParentMemberID" = "MemberInfo1"."MemberID"
 	left join "dbo"."MemberType" "MemberType" on "MemberInfo"."MemberTypeID" = "MemberType"."MemberTypeID"
+	left join "dbo"."NonMemberCategory" "NonMemberCategory" on "MemberInfo"."NonMemberCatID" = "NonMemberCategory"."NonMemberCatID"
 ]]></text>
     </command>
     <command id="MemberIDIdentityCommand" type="Text" event="Inserted">
@@ -131,6 +141,17 @@ from "dbo"."MemberInfo" "MemberInfo"
     <field name="BillingAddress" type="String" label="Billing Address" length="150" />
     <field name="ClubName" type="String" label="Club Name" length="150" />
     <field name="ContributionFee" type="Decimal" label="Contribution Fee" />
+    <field name="NonMemberCatID" type="Int32" label="Non Member Cat ID">
+      <items style="Lookup" dataController="NonMemberCategory" newDataView="createForm1" dataValueField="NonMemberCatID" dataTextField="NonMemCateory" />
+    </field>
+    <field name="NonMemberCategoryNonMemCateory" type="String" readOnly="true" label="Non Member Category Non Mem Cateory" length="50" />
+    <field name="OcmnoOfDaysPlay" type="Int32" label="Number Of Days Could Play" />
+    <field name="LastPaySubsDate" type="DateTime" dataFormatString="g" label="Last Pay Subs Date" />
+    <field name="LastPayContDate" type="DateTime" dataFormatString="g" label="Last Pay Cont Date" />
+    <field name="RefNumber" type="String" label="Ref Number" length="50" />
+    <field name="RecomendetMemberShipNo" type="String" label="Recomendet Member Ship No" length="50" />
+    <field name="OcmnoOfDaysPlayed" type="Int32" label="Ocmno Of Days Played" />
+    <field name="WelfareContributionDT" type="DateTime" dataFormatString="g" label="Welfare Contribution DT" />
     <field name="MemberCard" type="DataView" label="Member Card">
       <dataView controller="MemberCard" view="AllMembers" filterFields="MemberID" />
     </field>
@@ -142,17 +163,15 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataField fieldName="Photo" columns="15" />
         <dataField fieldName="MemberCode" columns="50" />
         <dataField fieldName="NameOfMember" />
+        <dataField fieldName="CellPhone" hidden="true" />
         <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
         <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
-        <dataField fieldName="SubsriptionDate" columns="20" />
-        <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
-        <dataField fieldName="CellPhone" hidden="true" />
-        <dataField fieldName="Email" columns="50" hidden="true" />
-        <dataField fieldName="IsActive" hidden="true" />
-        <dataField fieldName="MemberOfType" columns="50" />
-        <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
-        <dataField fieldName="MemberTypeID" aliasFieldName="MemberTypeMemberTypeDesc" hidden="true" />
-        <dataField fieldName="ContributionFee" columns="15" />
+        <dataField fieldName="LastPaySubsDate" columns="20" />
+        <dataField fieldName="LastPayContDate" columns="20" />
+        <dataField fieldName="RefNumber" columns="50" />
+        <dataField fieldName="RecomendetMemberShipNo" columns="50" />
+        <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
+        <dataField fieldName="WelfareContributionDT" columns="20" />
       </dataFields>
     </view>
     <view id="AllMembers" type="Grid" commandId="command1" label="Members" access="Public">
@@ -181,6 +200,14 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataField fieldName="BillingAddress" />
         <dataField fieldName="ClubName" />
         <dataField fieldName="ContributionFee" columns="15" />
+        <dataField fieldName="NonMemberCatID" aliasFieldName="NonMemberCategoryNonMemCateory" />
+        <dataField fieldName="OcmnoOfDaysPlay" columns="15" />
+        <dataField fieldName="LastPaySubsDate" columns="20" />
+        <dataField fieldName="LastPayContDate" columns="20" />
+        <dataField fieldName="RefNumber" columns="50" />
+        <dataField fieldName="RecomendetMemberShipNo" columns="50" />
+        <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
+        <dataField fieldName="WelfareContributionDT" columns="20" />
         <dataField fieldName="NameOfMember" />
       </dataFields>
     </view>
@@ -210,6 +237,14 @@ from "dbo"."MemberInfo" "MemberInfo"
             <dataField fieldName="BillingAddress" />
             <dataField fieldName="ClubName" />
             <dataField fieldName="ContributionFee" columns="15" />
+            <dataField fieldName="NonMemberCatID" aliasFieldName="NonMemberCategoryNonMemCateory" />
+            <dataField fieldName="OcmnoOfDaysPlay" columns="15" />
+            <dataField fieldName="LastPaySubsDate" columns="20" />
+            <dataField fieldName="LastPayContDate" columns="20" />
+            <dataField fieldName="RefNumber" columns="50" />
+            <dataField fieldName="RecomendetMemberShipNo" columns="50" />
+            <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
+            <dataField fieldName="WelfareContributionDT" columns="20" />
           </dataFields>
         </category>
         <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -265,6 +300,14 @@ from "dbo"."MemberInfo" "MemberInfo"
             <dataField fieldName="BillingAddress" />
             <dataField fieldName="ClubName" />
             <dataField fieldName="ContributionFee" columns="15" />
+            <dataField fieldName="NonMemberCatID" aliasFieldName="NonMemberCategoryNonMemCateory" />
+            <dataField fieldName="OcmnoOfDaysPlay" columns="15" />
+            <dataField fieldName="LastPaySubsDate" columns="20" />
+            <dataField fieldName="LastPayContDate" columns="20" />
+            <dataField fieldName="RefNumber" columns="50" />
+            <dataField fieldName="RecomendetMemberShipNo" columns="50" />
+            <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
+            <dataField fieldName="WelfareContributionDT" columns="20" />
           </dataFields>
         </category>
         <category headerText="Personnel" id="c3" flow="NewColumn">

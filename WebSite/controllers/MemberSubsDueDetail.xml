@@ -5,16 +5,14 @@
       <text><![CDATA[
 select
 	"MemberSubsDueDetail"."MemberSubsDueDetailID" "MemberSubsDueDetailID"
-	,"MemberSubsDueDetail"."MemberSubsDueID" "MemberSubsDueID"
-	,"MemberSubsDue"."TotalSubsiDue" "MemberSubsDueTotalSubsiDue"
-	,"MemberSubsDue"."TotalAnnualDue" "MemberSubsDueTotalAnnualDue"
 	,"MemberSubsDueDetail"."DueDate" "DueDate"
 	,"MemberSubsDueDetail"."SubsiDueAmount" "SubsiDueAmount"
 	,"MemberSubsDueDetail"."MemberID" "MemberID"
 	,"Member"."NameOfMember" "MemberNameOfMember"
-	,"MemberSubsDueDetail"."MemberBillID" "MemberBillID"
+	,"Member"."MemberCode" "MemberCode"
+	,"MemberSubsDueDetail"."MemberBillPaidID" "MemberBillPaidID"
+	,"MemberSubsDueDetail"."PaidAmount" "PaidAmount"
 from "dbo"."MemberSubsDueDetail" "MemberSubsDueDetail"
-	left join "dbo"."MemberSubsDue" "MemberSubsDue" on "MemberSubsDueDetail"."MemberSubsDueID" = "MemberSubsDue"."MemberSubsDueID"
 	left join "dbo"."MemberInfo" "Member" on "MemberSubsDueDetail"."MemberID" = "Member"."MemberID"
 ]]></text>
     </command>
@@ -27,29 +25,26 @@ from "dbo"."MemberSubsDueDetail" "MemberSubsDueDetail"
   </commands>
   <fields>
     <field name="MemberSubsDueDetailID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Subs Due Detail ID" readOnly="true" />
-    <field name="MemberSubsDueID" type="Int32" label="Member Subs Due ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberSubsDue" newDataView="createForm1" dataValueField="MemberSubsDueID" dataTextField="TotalSubsiDue" copy="MemberSubsDueTotalAnnualDue=TotalAnnualDue" />
-    </field>
-    <field name="MemberSubsDueTotalSubsiDue" type="Decimal" readOnly="true" label="Total Subscription Due" />
-    <field name="MemberSubsDueTotalAnnualDue" type="Decimal" readOnly="true" label="Total Annual Due" />
     <field name="DueDate" type="DateTime" dataFormatString="MM/yyyy" label="Due Date" showInSummary="true" />
-    <field name="SubsiDueAmount" type="Decimal" label="Subscription Due Amount" showInSummary="true" />
+    <field name="SubsiDueAmount" type="Decimal" label="Due Amount" showInSummary="true" />
     <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" />
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberCode=MemberCode" dataView="AllMembers" />
     </field>
     <field name="MemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
-    <field name="MemberBillID" type="Int32" label="Member Bill ID" showInSummary="true" />
+    <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="MemberBillPaidID" type="Int32" label="Member Bill Paid ID" showInSummary="true" />
+    <field name="PaidAmount" type="Decimal" label="Paid Amount" showInSummary="true" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Member Subs Due Detail">
+    <view id="grid1" type="Grid" commandId="command1" label="Subscription Due" filter="MemberBillPaidID is null or MemberBillPaidID = 0">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
-        <dataField fieldName="MemberSubsDueID" aliasFieldName="MemberSubsDueTotalSubsiDue" />
-        <dataField fieldName="MemberSubsDueTotalAnnualDue" columns="15" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
         <dataField fieldName="DueDate" columns="20" />
         <dataField fieldName="SubsiDueAmount" columns="15" />
-        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-        <dataField fieldName="MemberBillID" columns="15" />
+        <dataField fieldName="MemberBillPaidID" columns="15" hidden="true" />
+        <dataField fieldName="PaidAmount" columns="15" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Subs Due Detail">
@@ -58,12 +53,12 @@ from "dbo"."MemberSubsDueDetail" "MemberSubsDueDetail"
         <category id="c1" headerText="Member Subs Due Detail" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
-            <dataField fieldName="MemberSubsDueID" aliasFieldName="MemberSubsDueTotalSubsiDue" />
-            <dataField fieldName="MemberSubsDueTotalAnnualDue" columns="15" />
             <dataField fieldName="DueDate" columns="20" />
             <dataField fieldName="SubsiDueAmount" columns="15" />
             <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-            <dataField fieldName="MemberBillID" columns="15" />
+            <dataField fieldName="MemberCode" columns="50" />
+            <dataField fieldName="MemberBillPaidID" columns="15" />
+            <dataField fieldName="PaidAmount" columns="15" textMode="Static" />
           </dataFields>
         </category>
       </categories>
@@ -74,12 +69,12 @@ from "dbo"."MemberSubsDueDetail" "MemberSubsDueDetail"
         <category id="c1" flow="NewColumn">
           <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
-            <dataField fieldName="MemberSubsDueID" aliasFieldName="MemberSubsDueTotalSubsiDue" />
-            <dataField fieldName="MemberSubsDueTotalAnnualDue" columns="15" />
             <dataField fieldName="DueDate" columns="20" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
             <dataField fieldName="SubsiDueAmount" columns="15" />
-            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-            <dataField fieldName="MemberBillID" columns="15" />
+            <dataField fieldName="MemberCode" columns="50" hidden="true" />
+            <dataField fieldName="MemberBillPaidID" columns="15" hidden="true" />
+            <dataField fieldName="PaidAmount" columns="15" textMode="Static" hidden="true" />
           </dataFields>
         </category>
       </categories>
@@ -146,4 +141,14 @@ from "dbo"."MemberSubsDueDetail" "MemberSubsDueDetail"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Delete" type="Sql" phase="Before"><![CDATA[if @PaidAmount is not null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_ShowMessage = 'Already paid these due.  Cannot delete these due.'
+end
+]]></rule>
+  </businessRules>
 </dataController>

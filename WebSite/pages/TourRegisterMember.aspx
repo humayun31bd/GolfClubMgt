@@ -77,9 +77,10 @@
                                 <th class="text-center">Slots</th>
                             </thead>
                             <tbody class="border-right">
+                                
                                 <tr ng-repeat="plist in playerList">
                                     <td>
-                                        <a ng-click="open(regDate,plist.TournamentFlightSchID,plist.TournamentID,plist.GameCateoryID,plist.TeeID,plist.StartTime)">{{plist.StartTime}}-{{plist.EndTime}}</a>
+                                        <a ng-click="open(regDate,plist.TournamentFlightSchID,plist.TournamentID,plist.GameCateoryID,plist.TeeID,plist.StartTime,plist.NumberOfPlayer,plist.MaxPlayer)">{{plist.StartTime}}-{{plist.EndTime}}</a>
                                     </td>
                                     <td class="text-center" colspan="2">
                                         <table class="table table-bordered">
@@ -327,7 +328,7 @@
 
                 ///$scope.regDate = new format(Date(), 'MM/dd/yyyy').toString();
                 ///@scopre.teeId = 1;
-                $http.get('http://192.168.9.239:2997/api/Game/GetTees').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/Game/GetTees').then(function (response) {
 
                     if (response.data) {
                         $scope.teeList = response.data;
@@ -338,7 +339,7 @@
                     $scope.status = response.status;
                 });
 
-                $http.get('http://192.168.9.239:2997/api/Game/GeTournaments').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/Game/GeTournaments').then(function (response) {
 
                     if (response.data) {
                         $scope.tournamentList = response.data;
@@ -349,7 +350,7 @@
                     $scope.status = response.status;
                 });
 
-                $http.get('http://192.168.9.239:2997/api/Game/GetGameCategory').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/Game/GetGameCategory').then(function (response) {
 
                     if (response.data) {
                         $scope.categoryList = response.data;
@@ -371,14 +372,14 @@
                 var a = GameCateoryID;
                 var aTeeID = TeeID;
 
-                $http.get('http://192.168.9.239:2997/api/Game/TournamentFlightSch?pTournamentID=' + b +
+                $http.get('http://api.kgc-bd.com/api/Game/TournamentFlightSch?pTournamentID=' + b +
                     '&pGameCateoryID=' + a + '&pTeeID=' + aTeeID +
                     '&pTodate=' + "'" + pdate + "'" + '&pTodate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
 
                         if (response.data) {
                             $scope.playerList = response.data;
                         }
-
+                        console.log("GGGGGGGGGGGG", $scope.playerList);
                     }, function (response) {
                         $scope.data = response.data || 'Request failed';
                         $scope.status = response.status;
@@ -386,8 +387,14 @@
 
             };
 
-            $scope.open = function (regDate, TournamentFlightSchID, TournamentID, GameCateoryID, TeeID, StartTime) {
+            $scope.open = function (regDate, TournamentFlightSchID, TournamentID, GameCateoryID, TeeID, StartTime, pNumberOfPlayer, pMaxMemberCount) {
 
+                if (pNumberOfPlayer > 0 && pMaxMemberCount > 0) {
+                    if (pNumberOfPlayer >= pMaxMemberCount) {
+                        alert('Maximum Player registration is complete....');
+                        return;
+                    }
+                }
 
                 var modalInstance = $uibModal.open({
                     animation: $scope.animationsEnabled,
@@ -418,10 +425,10 @@
                 });
 
                 modalInstance.result.then(function (selectedItem) {
+                    console.log("PPPPPPPPPPPPPPPPPP", selectedItem);
                     $scope.playerList = selectedItem;
-                    console.log($scope.playerList);
+                    
                 }, function () {
-                    $scope.playerList = selectedItem;
                     $log.info('Modal dismissed at: ' + new Date());
                 });
 
@@ -453,7 +460,7 @@
 
                     };
                     $scope.isValidate = function () {
-                        $http.get('http://192.168.9.239:2997/api/Member/GetMemberCardIsActive?sCardNumber=' +
+                        $http.get('http://api.kgc-bd.com/api/Member/GetMemberCardIsActive?sCardNumber=' +
                             $scope.paymentType
                             .checkNumber + '&spin=' + $scope.paymentType.pincode + '&pamount=' + $scope
                             .grandTotal).then(
@@ -528,7 +535,7 @@
                     }
 
 
-                    $http.get('http://192.168.9.239:2997/api/Game/GetHoleTypes').then(function (response) {
+                    $http.get('http://api.kgc-bd.com/api/Game/GetHoleTypes').then(function (response) {
 
                         if (response.data) {
                             $scope.holeList = response.data;
@@ -545,7 +552,7 @@
 
                     $scope.memberinfo = function () {
 
-                        $http.get('http://192.168.9.239:2997/api/Member/bycode/' + $scope.info).then(function (
+                        $http.get('http://api.kgc-bd.com/api/Member/bycode/' + $scope.info).then(function (
                             response) {
 
                             if (response.data) {
@@ -557,7 +564,7 @@
                             self.status = response.status;
                         });
 
-                        $http.get('http://192.168.9.239:2997/api/MemberBill/GetBanks').then(function (
+                        $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (
                             response) {
 
                             if (response.data) {
@@ -577,7 +584,7 @@
                     $scope.tournamnetFee = function (holeId) {
 
                         console.log($scope.minfo.MemberGroupID, holeId, tId)
-                        $http.get('http://192.168.9.239:2997/api/Game/GeTournamentFees?pTournamentID=' + tId +
+                        $http.get('http://api.kgc-bd.com/api/Game/GeTournamentFees?pTournamentID=' + tId +
                             '&pMemberGroupID=' + $scope.minfo.MemberGroupID + '&pHoleTypeID=' + holeId
                         ).then(
                             function (response) {
@@ -637,12 +644,13 @@
 
                         $http({
                             method: "POST",
-                            url: "http://192.168.9.239:2997/api/Game/CreateMemberTournamentPay",
+                            url: "http://api.kgc-bd.com/api/Game/CreateMemberTournamentPay",
                             data: obj
                         }).then(function (response) {
-
-
-                            $http.get('http://192.168.9.239:2997/api/Game/TournamentFlightSch?pTournamentID=' + tId +
+                           
+                            rDate = format(new Date($scope.regDate), "MM/dd/yyyy").toString();
+                            console.log(rDate);
+                            $http.get('http://api.kgc-bd.com/api/Game/TournamentFlightSch?pTournamentID=' + tId +
                                 '&pGameCateoryID=' + gameCat + '&pTeeID=' + TeeID +
                                 '&pTodate=' + "'" + rDate + "'" + '&pTodate1=' + "'" + rDate + ' 23:59:59' + "'").then(function (response) {
 
@@ -650,6 +658,7 @@
                                         $scope.playerList = response.data;
                                     }
 
+                                    console.log("GGGGGGGGGGGG", $scope.playerList);
                                     $uibModalInstance.close($scope.playerList);
 
                                 }, function (response) {
@@ -669,7 +678,7 @@
                         $uibModalInstance.close();
                     };
                     $scope.close = function () {
-                        $uibModalInstance.dismiss('cancel');
+                        $uibModalInstance.dismiss();
                     };
                 }
 

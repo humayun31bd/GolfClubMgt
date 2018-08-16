@@ -6,11 +6,11 @@
       <div id="view1" data-controller="MemberInfo" data-view="grid1" data-selection-mode="multiple" data-tags="modal-never"></div>
     </div>
     <div data-activator="Tab|Spouse ">
-      <div id="view3" data-controller="MemberInfoSpouse" data-view="grid1" data-tags="modal-never,view-style-grid
+      <div id="view3" data-controller="MemberInfoSpouse" data-view="grid1" data-tags="modal-never
 "></div>
     </div>
     <div data-activator="Tab|Children">
-      <div id="view2" data-controller="MemberInfoChild" data-view="grid1" data-tags="modal-never,view-style-grid
+      <div id="view2" data-controller="MemberInfoChild" data-view="grid1" data-tags="modal-never
 "></div>
     </div>
   </div>

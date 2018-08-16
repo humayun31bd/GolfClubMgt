@@ -5,28 +5,15 @@
       <text><![CDATA[
 select
 	"MemberConWFDueDetail"."MemberCWFDetailID" "MemberCwfdetailID"
-	,"MemberConWFDueDetail"."MemberCWFID" "MemberCwfid"
-	,"MemberCWF"."MemberID" "MemberCwfmemberID"
-	,"MemberCWFMember"."NameOfMember" "MemberCwfmemberNameOfMember"
 	,"MemberConWFDueDetail"."MemberID" "MemberID"
-	,"Member"."NameOfMember" "MemberNameOfMember"
-	,"MemberBloodGroup"."BloodGroupName" "MemberBloodGroupName"
-	,"MemberGender"."GenderDesc" "MemberGenderDesc"
-	,"MemberCategory"."CategoryName" "MemberCategoryName"
-	,"MemberStatus"."MemberStatus" "MemberStatus"
-	,"MemberNationality"."Nationality" "MemberNationality"
+	,"MemberCWFMember"."NameOfMember" "MemberCwfmemberNameOfMember"
+	,"MemberCWFMember"."MemberCode" "MemberCwfmemberMemberCode"
 	,"MemberConWFDueDetail"."DueDate" "DueDate"
 	,"MemberConWFDueDetail"."ContributionWFDue" "ContributionWfdue"
-	,"MemberConWFDueDetail"."MemberBillID" "MemberBillID"
+	,"MemberConWFDueDetail"."MemberBillPaidID" "MemberBillPaidID"
+	,"MemberConWFDueDetail"."PaidAmount" "PaidAmount"
 from "dbo"."MemberConWFDueDetail" "MemberConWFDueDetail"
-	left join "dbo"."MemberConWFDue" "MemberCWF" on "MemberConWFDueDetail"."MemberCWFID" = "MemberCWF"."MemberCWFID"
-	left join "dbo"."MemberInfo" "MemberCWFMember" on "MemberCWF"."MemberID" = "MemberCWFMember"."MemberID"
-	left join "dbo"."MemberInfo" "Member" on "MemberConWFDueDetail"."MemberID" = "Member"."MemberID"
-	left join "dbo"."BloodGroup" "MemberBloodGroup" on "Member"."BloodGroupID" = "MemberBloodGroup"."BloodGroupID"
-	left join "dbo"."Gender" "MemberGender" on "Member"."GenderID" = "MemberGender"."GenderID"
-	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
-	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
-	left join "dbo"."Nationality" "MemberNationality" on "Member"."NationalityID" = "MemberNationality"."NationalityID"
+	left join "dbo"."MemberInfo" "MemberCWFMember" on "MemberConWFDueDetail"."MemberID" = "MemberCWFMember"."MemberID"
 ]]></text>
     </command>
     <command id="MemberCWFDetailIDIdentityCommand" type="Text" event="Inserted">
@@ -38,40 +25,26 @@ from "dbo"."MemberConWFDueDetail" "MemberConWFDueDetail"
   </commands>
   <fields>
     <field name="MemberCwfdetailID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member CWF Detail ID" readOnly="true" />
-    <field name="MemberCwfid" type="Int32" label="Member CWFID" showInSummary="true">
-      <items style="Lookup" dataController="MemberConWfdue" newDataView="createForm1" dataValueField="MemberCwfid" dataTextField="MemberCwfid" copy="MemberCwfmemberID=MemberID, MemberCwfmemberNameOfMember=MemberNameOfMember" />
-    </field>
-    <field name="MemberCwfmemberID" type="Int32" readOnly="true" label="Member CWF Member ID" />
-    <field name="MemberCwfmemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
     <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" copy="MemberBloodGroupName=BloodGroupName, MemberGenderDesc=GenderDesc, MemberCategoryName=MemberCategoryName, MemberStatus=MemberStatus, MemberNationality=Nationality" />
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberCwfmemberMemberCode=MemberCode" dataView="AllMembers" />
     </field>
-    <field name="MemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
-    <field name="MemberBloodGroupName" type="String" readOnly="true" label="Blood Group" length="50" />
-    <field name="MemberGenderDesc" type="String" readOnly="true" label="Gender" length="50" />
-    <field name="MemberCategoryName" type="String" readOnly="true" label="Category Name" length="150" />
-    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
-    <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
+    <field name="MemberCwfmemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
+    <field name="MemberCwfmemberMemberCode" type="String" readOnly="true" label="MemberShip NO" length="50" />
     <field name="DueDate" type="DateTime" dataFormatString="MM/yyyy" label="Due Date" showInSummary="true" />
     <field name="ContributionWfdue" type="Decimal" label="Contribution WelFare Due" showInSummary="true" />
-    <field name="MemberBillID" type="Int32" label="Member Bill ID" showInSummary="true" />
+    <field name="MemberBillPaidID" type="Int32" label="Member Bill Paid ID" showInSummary="true" />
+    <field name="PaidAmount" type="Decimal" label="Paid Amount" showInSummary="true" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Member Con Wfdue Detail">
+    <view id="grid1" type="Grid" commandId="command1" label="Member Contribution Wf Due" filter="MemberBillPaidID is null or MemberBillPaidID = 0">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
-        <dataField fieldName="MemberCwfid" columns="15" />
-        <dataField fieldName="MemberCwfmemberID" columns="15" />
-        <dataField fieldName="MemberCwfmemberNameOfMember" />
-        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-        <dataField fieldName="MemberBloodGroupName" columns="50" />
-        <dataField fieldName="MemberGenderDesc" columns="50" />
-        <dataField fieldName="MemberCategoryName" />
-        <dataField fieldName="MemberStatus" columns="50" />
-        <dataField fieldName="MemberNationality" columns="50" />
+        <dataField fieldName="MemberCwfmemberMemberCode" columns="50" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberCwfmemberNameOfMember" />
         <dataField fieldName="DueDate" columns="20" />
         <dataField fieldName="ContributionWfdue" columns="15" />
-        <dataField fieldName="MemberBillID" columns="15" />
+        <dataField fieldName="MemberBillPaidID" columns="15" hidden="true" />
+        <dataField fieldName="PaidAmount" columns="15" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Con Wfdue Detail">
@@ -80,18 +53,12 @@ from "dbo"."MemberConWFDueDetail" "MemberConWFDueDetail"
         <category id="c1" headerText="Member Con Wfdue Detail" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
-            <dataField fieldName="MemberCwfid" columns="15" />
-            <dataField fieldName="MemberCwfmemberID" columns="15" />
-            <dataField fieldName="MemberCwfmemberNameOfMember" />
-            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-            <dataField fieldName="MemberBloodGroupName" columns="50" />
-            <dataField fieldName="MemberGenderDesc" columns="50" />
-            <dataField fieldName="MemberCategoryName" />
-            <dataField fieldName="MemberStatus" columns="50" />
-            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCwfmemberNameOfMember" />
+            <dataField fieldName="MemberCwfmemberMemberCode" columns="50" />
             <dataField fieldName="DueDate" columns="20" />
             <dataField fieldName="ContributionWfdue" columns="15" />
-            <dataField fieldName="MemberBillID" columns="15" />
+            <dataField fieldName="MemberBillPaidID" columns="15" />
+            <dataField fieldName="PaidAmount" columns="15" textMode="Static" />
           </dataFields>
         </category>
       </categories>
@@ -102,18 +69,12 @@ from "dbo"."MemberConWFDueDetail" "MemberConWFDueDetail"
         <category id="c1" flow="NewColumn">
           <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
-            <dataField fieldName="MemberCwfid" columns="15" />
-            <dataField fieldName="MemberCwfmemberID" columns="15" />
-            <dataField fieldName="MemberCwfmemberNameOfMember" />
-            <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
-            <dataField fieldName="MemberBloodGroupName" columns="50" />
-            <dataField fieldName="MemberGenderDesc" columns="50" />
-            <dataField fieldName="MemberCategoryName" />
-            <dataField fieldName="MemberStatus" columns="50" />
-            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCwfmemberMemberCode" />
+            <dataField fieldName="MemberCwfmemberMemberCode" columns="50" />
             <dataField fieldName="DueDate" columns="20" />
             <dataField fieldName="ContributionWfdue" columns="15" />
-            <dataField fieldName="MemberBillID" columns="15" />
+            <dataField fieldName="MemberBillPaidID" columns="15" hidden="true" />
+            <dataField fieldName="PaidAmount" columns="15" hidden="true" />
           </dataFields>
         </category>
       </categories>
@@ -180,4 +141,14 @@ from "dbo"."MemberConWFDueDetail" "MemberConWFDueDetail"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Delete" type="Sql" phase="Before"><![CDATA[if @PaidAmount is not null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_ShowMessage = 'Already paid these due.  Cannot delete these due.'
+end
+]]></rule>
+  </businessRules>
 </dataController>

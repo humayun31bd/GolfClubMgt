@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberAnnualBillDetail" alias="MemberAnnualBillDetail" created="2018-08-03T09:31:07" modified="2018-08-03T09:33:58" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="366" y="205">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="1009" y="301">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" baseForeignKey="Member" x="1009" y="531">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="1009" y="692">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberAnnualBillDetID" fieldName="MemberAnnualBillDetID" label="Member Annual Bill Det ID" />
+    <column name="MemberAnnualBillID" fieldName="MemberAnnualBillID" label="Member Annual Bill ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group Name" foreignKey="MemberGroup" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="AnnualFeeAmount" fieldName="AnnualFeeAmount" label="Annual Fee Amount" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="AnnualFrDate" fieldName="AnnualFrDate" label="Annual Fr Date" format="dd/MMM/yyyy" />
+    <column name="AnnualToDate" fieldName="AnnualToDate" label="Annual To Date" format="dd/MMM/yyyy" />
+  </columns>
+</dataModel>

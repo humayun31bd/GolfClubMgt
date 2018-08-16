@@ -14,7 +14,7 @@ public partial class Pages_GameSetup : MyCompany.Web.PageBase
     {
         get
         {
-            return "";
+            return "material-icon-golf_course";
         }
     }
     

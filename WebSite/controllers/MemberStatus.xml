@@ -6,8 +6,6 @@
 select
 	"MemberStatus"."MemberStatusID" "MemberStatusID"
 	,"MemberStatus"."MemberStatus" "MemberStatus"
-	,"MemberStatus"."IsTerminate" "IsTerminate"
-	,"MemberStatus"."IsExpired" "IsExpired"
 from "dbo"."MemberStatus" "MemberStatus"
 ]]></text>
     </command>
@@ -21,16 +19,12 @@ from "dbo"."MemberStatus" "MemberStatus"
   <fields>
     <field name="MemberStatusID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Status ID" readOnly="true" />
     <field name="MemberStatus" type="String" label="Member Status" length="50" showInSummary="true" />
-    <field name="IsTerminate" type="Boolean" label="Is Terminate" showInSummary="true" />
-    <field name="IsExpired" type="Boolean" label="Is Expired" showInSummary="true" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Member Status">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="MemberStatus" columns="50" />
-        <dataField fieldName="IsTerminate" />
-        <dataField fieldName="IsExpired" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Status">
@@ -40,8 +34,6 @@ from "dbo"."MemberStatus" "MemberStatus"
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberStatus" columns="50" />
-            <dataField fieldName="IsTerminate" />
-            <dataField fieldName="IsExpired" />
           </dataFields>
         </category>
       </categories>
@@ -53,8 +45,6 @@ from "dbo"."MemberStatus" "MemberStatus"
           <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberStatus" columns="50" />
-            <dataField fieldName="IsTerminate" />
-            <dataField fieldName="IsExpired" />
           </dataFields>
         </category>
       </categories>

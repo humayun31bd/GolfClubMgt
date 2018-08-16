@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CoachFeeReport" label="CoachFeeReport" conflictDetection="overwriteChanges" handler="MyCompany.Rules.CoachFeeReportBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"CoachFee"."CoachFeeID" "CoachFeeID"
+	,"CoachFee"."MRNO" "Mrno"
+	,"CoachFee"."MRDate" "Mrdate"
+	,"CoachFee"."MemberID" "MemberID"
+	,"Member"."MemberCode" "MemberCode"
+	,"CoachFee"."MemberGuestName" "MemberGuestName"
+	,"CoachFee"."MemberProID" "MemberProID"
+	,"MemberInfo"."NameOfMember" "MemberInfoNameOfMember"
+	,"CoachFee"."ServiceID" "ServiceID"
+	,"Service"."ServiceName" "ServiceName"
+	,"CoachFee"."MTimefrom" "Mtimefrom"
+	,"CoachFee"."MTimeTo" "MtimeTo"
+	,"CoachFee"."HoleTypeID" "HoleTypeID"
+	,"HoleType"."HoleTypeDesc" "HoleTypeDesc"
+	,"CoachFee"."Amount" "Amount"
+	,"CoachFee"."PaytypeID" "PaytypeID"
+	,"PayType"."PayTypeName" "PayTypePayTypeName"
+	,"CoachFee"."ChequeNo" "ChequeNo"
+	,"CoachFee"."ChequeDT" "ChequeDT"
+	,"CoachFee"."BankID" "BankID"
+	,"Bank"."BankName" "BankName"
+	,"CoachFee"."DT" "DT"
+	,"CoachFee"."FT" "FT"
+from "dbo"."CoachFee" "CoachFee"
+	left join "dbo"."MemberInfo" "Member" on "CoachFee"."MemberID" = "Member"."MemberID"
+ and "CoachFee"."PaytypeID" = "Member"."ProfessionId"
+	left join "dbo"."MemberService" "Service" on "CoachFee"."ServiceID" = "Service"."ServiceID"
+	left join "dbo"."HoleType" "HoleType" on "CoachFee"."HoleTypeID" = "HoleType"."HoleTypeID"
+	left join "dbo"."MemberInfo" "MemberInfo" on "CoachFee"."MemberProID" = "MemberInfo"."MemberID"
+	left join "dbo"."PayType" "PayType" on "CoachFee"."PaytypeID" = "PayType"."PayTypeID"
+	left join "dbo"."Bank" "Bank" on "CoachFee"."BankID" = "Bank"."BankID"
+]]></text>
+    </command>
+    <command id="CoachFeeIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CoachFeeID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CoachFeeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Coach Fee ID" readOnly="true" />
+    <field name="Mrno" type="String" label="Mrno" length="50" showInSummary="true" />
+    <field name="Mrdate" type="DateTime" dataFormatString="g" label="Date" showInSummary="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="PaytypeID=PaytypeID" dataView="AllMembers" />
+    </field>
+    <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="MemberGuestName" type="String" label="Member Guest Name" length="50" showInSummary="true" />
+    <field name="MemberProID" type="Int32" label="Member Pro" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" dataView="AllMembers" />
+    </field>
+    <field name="MemberInfoNameOfMember" type="String" readOnly="true" label="Pro Member" length="150" />
+    <field name="ServiceID" type="Int32" label="Service ID">
+      <items style="Lookup" dataController="MemberService" newDataView="createForm1" dataValueField="ServiceID" dataTextField="ServiceName" dataView="grid1" />
+    </field>
+    <field name="ServiceName" type="String" readOnly="true" label="Service Name" length="50" />
+    <field name="Mtimefrom" type="DateTime" dataFormatString="t" label="Time from" />
+    <field name="MtimeTo" type="DateTime" dataFormatString="t" label="Time To" />
+    <field name="HoleTypeID" type="Int32" label="Hole Type">
+      <items style="Lookup" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" dataView="grid1" />
+    </field>
+    <field name="HoleTypeDesc" type="String" readOnly="true" label="Hole Type" length="50" />
+    <field name="Amount" type="Decimal" label="Amount" />
+    <field name="PaytypeID" type="Int32" label="Pay Type">
+      <items style="Lookup" dataController="PayType" dataView="grid1" dataTextField="PayTypeName" dataValueField="PayTypeID" />
+    </field>
+    <field name="PayTypePayTypeName" type="String" readOnly="true" label="Pay Type" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" dataFormatString="g" label="Cheque DT" />
+    <field name="BankID" type="Int32" label="Bank ID">
+      <items style="Lookup" dataController="Bank" newDataView="createForm1" dataValueField="BankID" dataTextField="BankName" dataView="grid1" />
+    </field>
+    <field name="BankName" type="String" readOnly="true" label="Bank Name" length="50" />
+    <field name="DT" type="Boolean" label="DT" />
+    <field name="FT" type="Boolean" label="FT" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Coaching Fee Collection">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="Mrno" columns="50" />
+        <dataField fieldName="Mrdate" columns="20" />
+        <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+        <dataField fieldName="MemberGuestName" columns="50" />
+        <dataField fieldName="MemberProID" aliasFieldName="MemberInfoNameOfMember" />
+        <dataField fieldName="ServiceID" aliasFieldName="ServiceName" />
+        <dataField fieldName="HoleTypeID" aliasFieldName="HoleTypeDesc" />
+        <dataField fieldName="Mtimefrom" columns="10" />
+        <dataField fieldName="MtimeTo" columns="10" />
+        <dataField fieldName="Amount" columns="15" aggregate="Sum" />
+        <dataField fieldName="PaytypeID" textMode="Static" aliasFieldName="PayTypePayTypeName" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="ChequeDT" columns="20" />
+        <dataField fieldName="BankID" aliasFieldName="BankName" />
+        <dataField fieldName="DT" />
+        <dataField fieldName="FT" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Coach Fee">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Coach Fee" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="Mrno" columns="50" textMode="Static" />
+            <dataField fieldName="Mrdate" columns="20" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberGuestName" columns="50" />
+            <dataField fieldName="MemberProID" aliasFieldName="MemberInfoNameOfMember" />
+            <dataField fieldName="ServiceID" aliasFieldName="ServiceName" />
+            <dataField fieldName="Mtimefrom" columns="10" />
+            <dataField fieldName="MtimeTo" columns="10" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="PaytypeID" textMode="Static" aliasFieldName="PayTypePayTypeName" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="DT" />
+            <dataField fieldName="FT" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Coach Fee">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="Mrdate" columns="20" />
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberGuestName" columns="50" watermark="Guest name" />
+            <dataField fieldName="MemberProID" aliasFieldName="MemberInfoNameOfMember" />
+            <dataField fieldName="ServiceID" aliasFieldName="ServiceName" />
+            <dataField fieldName="Mtimefrom" columns="10" dataFormatString="hh:mm tt" />
+            <dataField fieldName="MtimeTo" columns="10" dataFormatString="hh:mm tt" />
+            <dataField fieldName="Amount" columns="15" />
+            <dataField fieldName="PaytypeID" textMode="Static" aliasFieldName="PayTypePayTypeName" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="DT" />
+            <dataField fieldName="FT" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+      <action commandName="Report" commandArgument="PrintCoachFeeStatement" headerText="Print Statement" confirmation="_controller=DateRangeSelection&#xD;&#xA;_title=Select Date Range&#xD;&#xA;" id="a100" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Report" commandArgument="PrintCoachFeeStatement" type="Code" phase="Execute" />
+  </businessRules>
+</dataController>

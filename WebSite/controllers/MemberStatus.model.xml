@@ -4,7 +4,5 @@
   <columns>
     <column name="MemberStatusID" fieldName="MemberStatusID" label="Member Status ID" />
     <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" />
-    <column name="IsTerminate" fieldName="IsTerminate" label="Is Terminate" />
-    <column name="IsExpired" fieldName="IsExpired" label="Is Expired" />
   </columns>
 </dataModel>

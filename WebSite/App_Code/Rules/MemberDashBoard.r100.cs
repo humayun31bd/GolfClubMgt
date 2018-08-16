@@ -1,0 +1,26 @@
+﻿using System;
+using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Security;
+using MyCompany.Data;
+using MyCompany.Models;
+
+namespace MyCompany.Rules
+{
+	public partial class MemberDashBoardBusinessRules : MyCompany.Data.BusinessRules
+    {
+        
+        /// <summary>
+        /// This method will execute in any view before an action
+        /// with a command name that matches "Select" and argument that matches "DailyFlightCreate".
+        /// </summary>
+        [Rule("r100")]
+        public void r100Implementation(MemberDashBoardModel instance)
+        {
+            // This is the placeholder for method implementation.
+        }
+    }
+}

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberSMSSendDetail" alias="MemberSMSSendDetail" created="2018-07-14T10:16:06" modified="2018-07-14T10:17:15" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberSMSSend" parentTableSchema="dbo" parentTableName="MemberSMSSended" x="352" y="20">
+      <foreignKeyColumn columnName="MemberSMSSendID" parentColumnName="MemberSMSSendID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="352" y="181">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberSMSSendDetID" fieldName="MemberSmssendDetID" label="Member SMS Send Det ID" />
+    <column name="MemberSMSSendID" fieldName="MemberSmssendID" label="Member SMS Send ID" aliasColumnName="SendingText" aliasForeignKey="MemberSMSSend" />
+    <column name="SendingText" fieldName="MemberSmssendSendingText" label="Member SMS Send Sending Text" foreignKey="MemberSMSSend" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="CellPhone" fieldName="MemberCellPhone" label="Member Cell Phone" foreignKey="Member" />
+  </columns>
+</dataModel>

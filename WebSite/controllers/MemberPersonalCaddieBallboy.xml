@@ -33,7 +33,7 @@ from "dbo"."MemberPersonalCaddieBallboy" "MemberPersonalCaddieBallboy"
   <fields>
     <field name="MemberPersonalCbid" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Personal CBID" readOnly="true" />
     <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberNameOfMember=NameOfMember" dataView="grid1" />
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberNameOfMember=NameOfMember" dataView="AllMembers" />
     </field>
     <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
     <field name="MemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />

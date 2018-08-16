@@ -5,8 +5,5 @@
   <columns>
     <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" />
     <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" />
-    <column name="StartFrom" fieldName="StartFrom" label="Start From" format="dd/MM/yyyy hh:mm tt" />
-    <column name="EndDate" fieldName="EndDate" label="End Date" format="dd/MM/yyyy hh:mm tt" />
-    <column name="IsActive" fieldName="IsActive" label="Is Active" />
   </columns>
 </dataModel>

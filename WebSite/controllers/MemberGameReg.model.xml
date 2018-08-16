@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberGameReg" alias="MemberGameReg" created="2018-05-01T13:55:06" modified="2018-05-01T17:33:24" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberGameReg" alias="MemberGameReg" created="2018-05-01T13:55:06" modified="2018-08-05T09:43:13" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="FlightSch" parentTableSchema="dbo" parentTableName="GameFlightSchedule" x="344" y="20">
       <foreignKeyColumn columnName="FlightSchID" parentColumnName="FlightSchID" />
     </foreignKey>
-    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="344" y="204">
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="344" y="203">
       <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
     </foreignKey>
     <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="344" y="344">
@@ -13,7 +13,7 @@
     <foreignKey id="Caddie" parentTableSchema="dbo" parentTableName="Caddie" x="344" y="666">
       <foreignKeyColumn columnName="CaddieID" parentColumnName="CaddieID" />
     </foreignKey>
-    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy" x="344" y="827">
+    <foreignKey id="BallBoy" parentTableSchema="dbo" parentTableName="BallBoy" x="344" y="826">
       <foreignKeyColumn columnName="BallBoyID" parentColumnName="BallBoyID" />
     </foreignKey>
     <foreignKey id="GolfCart" parentTableSchema="dbo" parentTableName="GolfCart" x="344" y="988">

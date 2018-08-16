@@ -130,12 +130,15 @@ set @BusinessRules_ResultSetCacheDuration = 5
 
 if (@Parameters_MemberID is not null)
 	Set @Session_MemberID=@Parameters_MemberID
+	
 if (@Parameters_FromDate is not null)
 	Set @Session_FrDate=@Parameters_FromDate
+	
 if (@Parameters_ToDate is not null)
 	Set @Session_ToDate=@Parameters_ToDate
-if (@Parameters_PaymentTypeID is not null)
-	Set @Session_PayTypeID=@Parameters_PaymentTypeID
+	
+if (@Parameters_PayTypeID is not null)
+	Set @Session_PayTypeID=@Parameters_PayTypeID
 ]]></rule>
     <rule type="Sql" id="getData" commandName="Select" phase="Before"><![CDATA[-- debug
 DECLARE @Session_MemberID int,
@@ -152,7 +155,7 @@ if (@Session_FrDate is null)
 if (@Session_ToDate is null)
 	Set @Session_ToDate=Convert(Nvarchar(10),getdate(),101)
 if (@Session_PayTypeID is null)
-	Set @Session_PayTypeID=1
+	Set @Session_PayTypeID=0
 
 
 Exec dbo.USP_Member_CollectionSummary @Session_MemberID,@Session_FrDate,@Session_ToDate,@Session_PayTypeID

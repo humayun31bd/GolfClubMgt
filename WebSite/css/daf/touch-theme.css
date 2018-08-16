@@ -308,7 +308,9 @@ html head + body .ui-btn.ui-btn-a:visited {
         }
 
         .app-data-input-popup ul li.app-selected,
-        .app-bar-search + .app-bar-history li.app-selected {
+        .app-bar-search + .app-bar-history li.app-selected,
+        [data-input] .app-control-helper ul li.ui-btn-active,
+        [data-input].app-has-focus .app-control-helper ul li.app-focus {
             background-color: /*@theme.background.active*/ rgba(0,0,0,0.08);
         }
 

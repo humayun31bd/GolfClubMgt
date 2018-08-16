@@ -8125,8 +8125,8 @@ app-onecolumnview .app-field-data-rtf {
         display: inline-block;
         margin: 0 0 .5em .5em;
         border: solid 1px #ddd;
-        padding: .25em 15px .25em 12px;
-        border-radius: .31em;
+        padding: .25em 16px .25em 1em;
+        border-radius: 1em;
         cursor: pointer;
         position: relative;
     }
@@ -8138,9 +8138,8 @@ app-onecolumnview .app-field-data-rtf {
         [data-input] .app-control-helper ul li.app-focus::after {
             left: auto;
             content: 'arrow_drop_down';
-            right: -1px;
+            right: 1px;
         }
-
 
 
         [data-input] .app-control-helper ul li .app-muted {
@@ -8161,17 +8160,6 @@ app-onecolumnview .app-field-data-rtf {
 
 
 
-.app-density-compact [data-input] .app-control-helper ul li {
-    padding: 4px 1em 4px 11px;
-}
-
-
-[data-input] .app-control-helper ul li.ui-btn-active,
-[data-input].app-has-focus .app-control-helper ul li.app-focus {
-    border-color: #38c;
-    background-color: #38c;
-    color: #fff;
-}
 
 
 .app-desktop [data-input] .app-control-helper ul li:not(.ui-btn-active):not(.app-focus):hover,
@@ -11714,4 +11702,13 @@ iframe.app-data-input {
 .app-page-modal.app-page-reading-pane {
     box-shadow: none !important;
     border-left: solid 1px #1f1f1f !important;
+}
+
+.app-page-inlineeditor .app-has-helper {
+    margin-top: .25em;
+}
+
+.app-has-footer .app-icon-checkbox {
+    margin-top: 0px !important;
+    top: -1px !important;
 }

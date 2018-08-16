@@ -15,6 +15,7 @@ select
 	,"MemberCardTransaction"."MemberCardID" "MemberCardID"
 	,"MemberCard"."CardNumber" "MemberCardNumber"
 	,"MemberCardTransaction"."PayTypeID" "PayTypeID"
+	,"PayType"."PayTypeName" "PayTypePayTypeName"
 	,"MemberCardTransaction"."DepositAmount" "DepositAmount"
 	,"MemberCardTransaction"."PaidAmount" "PaidAmount"
 	,"MemberCardTransaction"."TranDate" "TranDate"
@@ -26,14 +27,23 @@ select
 	,"MemberCardTransaction"."IsApproved" "IsApproved"
 	,"MemberCardTransaction"."ApprovedBy" "ApprovedBy"
 	,"MemberCardTransaction"."BankID" "BankID"
+	,"Bank"."BankName" "BankName"
 	,"MemberCardTransaction"."ChequeNo" "ChequeNo"
 	,"MemberCardTransaction"."ChequeDT" "ChequeDT"
+	,"MemberCardTransaction"."Particulars" "Particulars"
+	,"MemberCardTransaction"."MRNO" "Mrno"
+	,"MemberCardTransaction"."RefNo" "RefNo"
+	,"MemberCardTransaction"."BankCardID" "BankCardID"
+	,"BankCard"."CardTypeName" "BankCardTypeName"
 from "dbo"."MemberCardTransaction" "MemberCardTransaction"
 	left join "dbo"."MemberInfo" "Member" on "MemberCardTransaction"."MemberID" = "Member"."MemberID"
 	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
 	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
 	left join "dbo"."Nationality" "MemberNationality" on "Member"."NationalityID" = "MemberNationality"."NationalityID"
 	left join "dbo"."MemberCard" "MemberCard" on "MemberCardTransaction"."MemberCardID" = "MemberCard"."MemberCardID"
+	left join "dbo"."Bank" "Bank" on "MemberCardTransaction"."BankID" = "Bank"."BankID"
+	left join "dbo"."BankCard" "BankCard" on "MemberCardTransaction"."BankCardID" = "BankCard"."BankCardID"
+	left join "dbo"."PayType" "PayType" on "MemberCardTransaction"."PayTypeID" = "PayType"."PayTypeID"
 ]]></text>
     </command>
     <command id="MemberCardTranIDIdentityCommand" type="Text" event="Inserted">
@@ -58,20 +68,33 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
       <items style="Lookup" dataController="MemberCard" newDataView="createForm1" dataValueField="MemberCardID" dataTextField="MemberCardID" copy="MemberCardNumber=CardNumber" />
     </field>
     <field name="MemberCardNumber" type="String" readOnly="true" label="Member Card Number" length="50" />
-    <field name="PayTypeID" type="Int32" label="Pay Type ID" showInSummary="true" />
-    <field name="DepositAmount" type="Decimal" label="Deposit Amount" showInSummary="true" />
-    <field name="PaidAmount" type="Decimal" label="Paid Amount" showInSummary="true" />
-    <field name="TranDate" type="DateTime" dataFormatString="g" label="Transaction Date" />
+    <field name="PayTypeID" type="Int32" default="((1))" label="Pay Type ID" showInSummary="true">
+      <items style="Lookup" dataController="PayType" newDataView="createForm1" dataValueField="PayTypeID" dataTextField="PayTypeName" />
+    </field>
+    <field name="PayTypePayTypeName" type="String" readOnly="true" label="Pay Type Pay Type Name" length="50" />
+    <field name="DepositAmount" type="Decimal" default="((0))" label="Deposit Amount" showInSummary="true" />
+    <field name="PaidAmount" type="Decimal" default="((0))" label="Paid Amount" showInSummary="true" />
+    <field name="TranDate" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Transaction Date" />
     <field name="CreatedBy" type="String" label="Created By" length="50" />
-    <field name="CreatedDt" type="DateTime" dataFormatString="g" label="Created DT" />
+    <field name="CreatedDt" type="DateTime" dataFormatString="g" default="(getdate())" label="Created DT" />
     <field name="IsPosted" type="Boolean" default="((0))" label="Is Posted" />
-    <field name="IsSmsSend" type="Boolean" label="Is Sms Send" />
+    <field name="IsSmsSend" type="Boolean" default="((0))" label="Is Sms Send" />
     <field name="SendTime" type="DateTime" dataFormatString="g" label="Send Time" />
     <field name="IsApproved" type="Boolean" default="((0))" label="Is Approved" />
     <field name="ApprovedBy" type="String" label="Approved By" length="50" />
-    <field name="BankID" type="Int32" label="Bank ID" />
-    <field name="ChequeNo" type="String" label="Cheque No" length="5" />
-    <field name="ChequeDT" type="DateTime" dataFormatString="g" label="Cheque DT" />
+    <field name="BankID" type="Int32" label="Bank ID">
+      <items style="Lookup" dataController="Bank" newDataView="createForm1" dataValueField="BankID" dataTextField="BankName" />
+    </field>
+    <field name="BankName" type="String" readOnly="true" label="Bank Name" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Cheque Date" />
+    <field name="Particulars" type="String" label="Particulars" length="250" />
+    <field name="Mrno" type="String" label="Mrno" length="50" />
+    <field name="RefNo" type="String" label="Ref No" length="500" />
+    <field name="BankCardID" type="Int32" label="Bank Card ID">
+      <items style="Lookup" dataController="BankCard" newDataView="createForm1" dataValueField="BankCardID" dataTextField="CardTypeName" />
+    </field>
+    <field name="BankCardTypeName" type="String" readOnly="true" label="Bank Card Type Name" length="50" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Member Card Transaction">
@@ -85,7 +108,7 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
         <dataField fieldName="MemberNationality" columns="50" />
         <dataField fieldName="MemberCardID" columns="15" />
         <dataField fieldName="MemberCardNumber" columns="50" />
-        <dataField fieldName="PayTypeID" columns="15" />
+        <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" />
         <dataField fieldName="DepositAmount" columns="15" />
         <dataField fieldName="PaidAmount" columns="15" />
         <dataField fieldName="TranDate" columns="20" />
@@ -96,9 +119,13 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
         <dataField fieldName="SendTime" columns="20" />
         <dataField fieldName="IsApproved" />
         <dataField fieldName="ApprovedBy" columns="50" />
-        <dataField fieldName="BankID" columns="15" />
-        <dataField fieldName="ChequeNo" columns="5" />
+        <dataField fieldName="BankID" aliasFieldName="BankName" />
+        <dataField fieldName="ChequeNo" columns="50" />
         <dataField fieldName="ChequeDT" columns="20" />
+        <dataField fieldName="Particulars" />
+        <dataField fieldName="Mrno" columns="50" />
+        <dataField fieldName="RefNo" />
+        <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Card Transaction">
@@ -114,7 +141,7 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
             <dataField fieldName="MemberNationality" columns="50" />
             <dataField fieldName="MemberCardID" columns="15" />
             <dataField fieldName="MemberCardNumber" columns="50" />
-            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" />
             <dataField fieldName="DepositAmount" columns="15" />
             <dataField fieldName="PaidAmount" columns="15" />
             <dataField fieldName="TranDate" columns="20" />
@@ -125,9 +152,13 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
             <dataField fieldName="SendTime" columns="20" />
             <dataField fieldName="IsApproved" />
             <dataField fieldName="ApprovedBy" columns="50" />
-            <dataField fieldName="BankID" columns="15" />
-            <dataField fieldName="ChequeNo" columns="5" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="ChequeNo" columns="50" />
             <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="Particulars" />
+            <dataField fieldName="Mrno" columns="50" />
+            <dataField fieldName="RefNo" />
+            <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
           </dataFields>
         </category>
       </categories>
@@ -146,7 +177,7 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
             <dataField fieldName="MemberNationality" columns="50" />
             <dataField fieldName="MemberCardID" columns="15" />
             <dataField fieldName="MemberCardNumber" columns="50" />
-            <dataField fieldName="PayTypeID" columns="15" />
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" />
             <dataField fieldName="DepositAmount" columns="15" />
             <dataField fieldName="PaidAmount" columns="15" />
             <dataField fieldName="TranDate" columns="20" />
@@ -157,9 +188,13 @@ from "dbo"."MemberCardTransaction" "MemberCardTransaction"
             <dataField fieldName="SendTime" columns="20" />
             <dataField fieldName="IsApproved" />
             <dataField fieldName="ApprovedBy" columns="50" />
-            <dataField fieldName="BankID" columns="15" />
-            <dataField fieldName="ChequeNo" columns="5" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="ChequeNo" columns="50" />
             <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="Particulars" />
+            <dataField fieldName="Mrno" columns="50" />
+            <dataField fieldName="RefNo" />
+            <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
           </dataFields>
         </category>
       </categories>

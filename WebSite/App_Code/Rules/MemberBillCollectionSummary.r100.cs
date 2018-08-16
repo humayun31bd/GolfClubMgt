@@ -30,19 +30,32 @@ namespace MyCompany.Rules
                 Parameters_FromDate = Parameters_FromDate.AddDays(1);
                 Parameters_ToDate = Parameters_ToDate.AddDays(1);
             }
-            if ((Parameters_FromDate.Date == DateTime.Now.Date) || (Parameters_FromDate.Date == Parameters_ToDate.Date))
+
+            if ((Parameters_FromDate.Date == DateTime.Now.Date))
             {
-                //if (Parameters_FromDate.Date == Parameters_ToDate.Date)
-                //{
-                //    Parameters_FromDate = Parameters_FromDate.AddDays(1);
-                //    Parameters_ToDate = Parameters_ToDate.AddDays(1);
-                //}
+                if (Parameters_FromDate.Date == Parameters_ToDate.Date)
+                {
+                    // Parameters_FromDate = Parameters_FromDate.AddDays(1);
+                    //Parameters_ToDate = Parameters_ToDate.AddDays(1);
+                }
+            }
+            if (Parameters_FromDate.Date == Parameters_ToDate.Date)
+            {
+                if ((Parameters_FromDate.Date != DateTime.Now.Date) && (Parameters_ToDate.Date != DateTime.Now.Date))
+                {
+                    Parameters_FromDate = Parameters_FromDate.AddDays(1);
+                    Parameters_ToDate = Parameters_ToDate.AddDays(1);
+                }
             }
             if ((Parameters_ToDate.Date == DateTime.Now.Date))
             {
                 //Parameters_ToDate = Parameters_ToDate.AddDays(1);
             }
             if ((Parameters_FromDate.Date < DateTime.Now.Date) && (Parameters_FromDate.Date > DateTime.Now.Date))
+            {
+                Parameters_FromDate = Parameters_FromDate.AddDays(-1);
+            }
+            if ((Parameters_FromDate.Date == DateTime.Now.Date) && (Parameters_FromDate.Date > DateTime.Now.Date))
             {
                 Parameters_FromDate = Parameters_FromDate.AddDays(-1);
             }

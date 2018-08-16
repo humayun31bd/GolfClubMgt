@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberStatusChange" alias="MemberStatusChange" created="2018-04-14T08:02:25" modified="2018-06-15T01:48:55" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberStatusChange" alias="MemberStatusChange" created="2018-04-14T08:02:25" modified="2018-07-27T06:36:48" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
-    <foreignKey id="OldMemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="366" y="20">
+    <foreignKey id="OldMemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="365" y="20">
       <foreignKeyColumn columnName="OldMemberStatusID" parentColumnName="MemberStatusID" />
     </foreignKey>
-    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="672" y="20">
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="671" y="20">
       <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
     </foreignKey>
     <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="376" y="146">
@@ -23,6 +23,7 @@
     <column name="TransferDate" fieldName="TransferDate" label="Transfer Date" format="dd/MM/yyyy" />
     <column name="IsAbsentee" fieldName="IsAbsentee" label="Is Absentee" />
     <column name="NoOfDaysPlay" fieldName="NoOfDaysPlay" label="No Of Days Play" />
+    <column name="ExpireDate" fieldName="ExpireDate" label="Expire Date" format="g" />
     <column name="NoOfDaysPlayed" fieldName="NoOfDaysPlayed" label="No Of Days Played" />
   </columns>
 </dataModel>

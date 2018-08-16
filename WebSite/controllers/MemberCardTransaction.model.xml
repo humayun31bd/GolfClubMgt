@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberCardTransaction" alias="MemberCardTransaction" created="2018-04-14T08:03:02" modified="2018-06-02T12:16:17" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberCardTransaction" alias="MemberCardTransaction" created="2018-04-14T08:03:02" modified="2018-08-09T11:05:11" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="1015" y="31">
       <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
@@ -7,7 +7,7 @@
     <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="664" y="299">
       <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
     </foreignKey>
-    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="664" y="529">
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="664" y="530">
       <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
     </foreignKey>
     <foreignKey id="MemberNationality" parentTableSchema="dbo" parentTableName="Nationality" baseForeignKey="Member" x="664" y="669">
@@ -15,6 +15,15 @@
     </foreignKey>
     <foreignKey id="MemberCard" parentTableSchema="dbo" parentTableName="MemberCard" x="340" y="295">
       <foreignKeyColumn columnName="MemberCardID" parentColumnName="MemberCardID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank" x="347" y="140">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+    <foreignKey id="BankCard" parentTableSchema="dbo" parentTableName="BankCard" x="349" y="579">
+      <foreignKeyColumn columnName="BankCardID" parentColumnName="BankCardID" />
+    </foreignKey>
+    <foreignKey id="PayType" parentTableSchema="dbo" parentTableName="PayType" x="322" y="44">
+      <foreignKeyColumn columnName="PayTypeID" parentColumnName="PayTypeID" />
     </foreignKey>
   </foreignKeys>
   <columns>
@@ -28,10 +37,11 @@
     <column name="Nationality" fieldName="MemberNationality" label="Member Nationality" foreignKey="MemberNationality" />
     <column name="MemberCardID" fieldName="MemberCardID" label="Member Card ID" />
     <column name="CardNumber" fieldName="MemberCardNumber" label="Member Card Number" foreignKey="MemberCard" />
-    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" aliasColumnName="PayTypeName" aliasForeignKey="PayType" />
+    <column name="PayTypeName" fieldName="PayTypePayTypeName" label="Pay Type Pay Type Name" foreignKey="PayType" />
     <column name="DepositAmount" fieldName="DepositAmount" label="Deposit Amount" />
     <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
-    <column name="TranDate" fieldName="TranDate" label="Transaction Date" format="g" />
+    <column name="TranDate" fieldName="TranDate" label="Transaction Date" format="dd-MMM-yyyy" />
     <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
     <column name="CreatedDT" fieldName="CreatedDt" label="Created DT" format="g" />
     <column name="IsPosted" fieldName="IsPosted" label="Is Posted" />
@@ -39,8 +49,14 @@
     <column name="SendTime" fieldName="SendTime" label="Send Time" format="g" />
     <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
     <column name="ApprovedBy" fieldName="ApprovedBy" label="Approved By" />
-    <column name="BankID" fieldName="BankID" label="Bank ID" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
     <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
-    <column name="ChequeDT" fieldName="ChequeDT" label="Cheque DT" format="g" />
+    <column name="ChequeDT" fieldName="ChequeDT" label="Cheque Date" format="dd-MMM-yyyy" />
+    <column name="Particulars" fieldName="Particulars" label="Particulars" />
+    <column name="MRNO" fieldName="Mrno" label="Mrno" />
+    <column name="RefNo" fieldName="RefNo" label="Ref No" />
+    <column name="BankCardID" fieldName="BankCardID" label="Bank Card ID" aliasColumnName="CardTypeName" aliasForeignKey="BankCard" />
+    <column name="CardTypeName" fieldName="BankCardTypeName" label="Bank Card Type Name" foreignKey="BankCard" />
   </columns>
 </dataModel>

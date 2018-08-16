@@ -51,7 +51,7 @@ from "dbo"."MemberSpouse" "MemberSpouse"
   <fields>
     <field name="MemberSpouseID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Spouse ID" readOnly="true" />
     <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" copy="MemberBloodGroupName=BloodGroupName, MemberGenderDesc=GenderDesc, MemberCategoryName=MemberCategoryName, MemberCategoryMemberGroupName=MemberGroupMemberGroupName, MemberCategoryMemberTypeDesc=MemberTypeMemberTypeDesc, MemberStatus=MemberStatus, MemberNationality=Nationality" />
+      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberInfo1NameOfMember" copy="MemberBloodGroupName=BloodGroupName, MemberGenderDesc=GenderDesc, MemberCategoryName=MemberCategoryName, MemberCategoryMemberGroupName=MemberGroupMemberGroupName, MemberCategoryMemberTypeDesc=MemberTypeMemberTypeDesc, MemberCategoryNonMemberCatNonMemCateory=NonMemberCategoryNonMemCateory, MemberStatus=MemberStatus, MemberNationality=Nationality" />
     </field>
     <field name="MemberNameOfMember" type="String" readOnly="true" label="Member Name Of Member" length="150" />
     <field name="MemberBloodGroupName" type="String" readOnly="true" label="Member Blood Group" length="50" />

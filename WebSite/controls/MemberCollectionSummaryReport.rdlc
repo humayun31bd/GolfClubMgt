@@ -104,9 +104,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox39</rd:DefaultName>
             <Top>0.06944in</Top>
-            <Left>0.13667in</Left>
+            <Left>0.01167in</Left>
             <Height>0.25in</Height>
-            <Width>7.45485in</Width>
+            <Width>7.28223in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -135,7 +135,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox40</rd:DefaultName>
             <Top>0.37722in</Top>
-            <Left>2.66542in</Left>
+            <Left>2.54042in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>1</ZIndex>
@@ -167,7 +167,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
             <Top>0.37722in</Top>
-            <Left>3.73486in</Left>
+            <Left>3.60986in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>2</ZIndex>
@@ -185,25 +185,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.82292in</Width>
+                  <Width>0.66791in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.03125in</Width>
+                  <Width>2.20932in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73611in</Width>
+                  <Width>0.63194in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.875in</Width>
+                  <Width>0.77432in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.76042in</Width>
+                  <Width>0.67709in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.78125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8125in</Width>
+                  <Width>0.75in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.77083in</Width>
@@ -224,8 +224,7 @@
                                 <TextRun>
                                   <Value>Collection Date</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -259,8 +258,7 @@
                                 <TextRun>
                                   <Value>Account</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -292,8 +290,7 @@
                                 <TextRun>
                                   <Value>Cash Amount</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -327,8 +324,7 @@
                                 <TextRun>
                                   <Value>Cheque Amount</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -360,10 +356,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Card Amount</Value>
+                                  <Value>Member Card Amount</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -397,8 +392,7 @@
                                 <TextRun>
                                   <Value>Bank Card Amount</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -430,10 +424,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Credit</Value>
+                                  <Value>Due</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -467,8 +460,7 @@
                                 <TextRun>
                                   <Value>Total Amount</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -507,8 +499,7 @@
                                 <TextRun>
                                   <Value>=Fields!CollectionDate.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>dd-MMM-yyyy</Format>
                                   </Style>
                                 </TextRun>
@@ -543,8 +534,7 @@
                                 <TextRun>
                                   <Value>=Fields!Account.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -576,8 +566,7 @@
                                 <TextRun>
                                   <Value>=Fields!CashAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -612,8 +601,7 @@
                                 <TextRun>
                                   <Value>=Fields!ChequeAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -646,10 +634,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!CardAmount.Value</Value>
+                                  <Value>=Fields!MemberCardAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -684,8 +671,7 @@
                                 <TextRun>
                                   <Value>=Fields!BankCardAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -720,8 +706,7 @@
                                 <TextRun>
                                   <Value>=Fields!DueAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -756,8 +741,7 @@
                                 <TextRun>
                                   <Value>=Fields!TotalAmount.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>Arial Narrow</FontFamily>
                                     <Format>n0</Format>
                                   </Style>
                                 </TextRun>
@@ -768,296 +752,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>TotalAmount</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.25in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox13">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox13</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox14">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Total :</Value>
-                                  <Style>
-                                    <FontFamily>Arial Unicode MS</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox14</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="CashAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!CashAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>CashAmount1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="ChequeAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!ChequeAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>ChequeAmount1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="CardAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!MemberCardAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>CardAmount1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="BankCardAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!BankCardAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>BankCardAmount1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="MemberCardAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!DueAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>MemberCardAmount1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="TotalAmount1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!TotalAmount.Value)</Value>
-                                  <Style>
-                                    <FontFamily>Arial Narrow</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <Format>0;(0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>TotalAmount1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1392,8 +1086,7 @@
                               <TextRun>
                                 <Value />
                                 <Style>
-                                  <FontFamily>Arial Unicode MS</FontFamily>
-                                  <FontSize>9pt</FontSize>
+                                  <FontFamily>Arial Narrow</FontFamily>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1444,8 +1137,7 @@
                               <TextRun>
                                 <Value />
                                 <Style>
-                                  <FontFamily>Arial Unicode MS</FontFamily>
-                                  <FontSize>9pt</FontSize>
+                                  <FontFamily>Arial Narrow</FontFamily>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1471,9 +1163,6 @@
                   <TablixMembers>
                     <TablixMember>
                       <Group Name="Details" />
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
@@ -1523,9 +1212,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.66889in</Top>
-            <Left>0.11333in</Left>
-            <Height>1.36458in</Height>
-            <Width>7.62153in</Width>
+            <Height>1.11458in</Height>
+            <Width>7.29391in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1534,10 +1222,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.03347in</Height>
+        <Height>2.20014in</Height>
         <Style />
       </Body>
-      <Width>7.79736in</Width>
+      <Width>7.35986in</Width>
       <Page>
         <PageHeader>
           <Height>0.875in</Height>
@@ -1628,7 +1316,8 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>5.5in</PageHeight>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>

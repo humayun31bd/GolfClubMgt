@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberCategory" alias="MemberCategory" created="2018-04-09T20:38:30" modified="2018-06-15T01:56:54" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberCategory" alias="MemberCategory" created="2018-04-09T20:38:30" modified="2018-07-28T17:21:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="345" y="20">
       <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />

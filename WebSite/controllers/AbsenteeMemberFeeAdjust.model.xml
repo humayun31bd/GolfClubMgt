@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="AbsenteeMemberFeeAdjust" alias="AbsenteeMemberFeeAdjust" created="2018-08-16T09:12:46" modified="2018-08-16T09:13:58" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="365" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="MemberGender" parentTableSchema="dbo" parentTableName="Gender" baseForeignKey="Member" x="682" y="160">
+      <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="682" y="300">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" baseForeignKey="Member" x="682" y="530">
+      <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="682" y="691">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" baseForeignKey="Member" x="682" y="853">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberNationality" parentTableSchema="dbo" parentTableName="Nationality" baseForeignKey="Member" x="682" y="992">
+      <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="AbsenteeMemberTempID" fieldName="AbsenteeMemberTempID" label="Absentee Member Temp ID" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="CellPhone" fieldName="MemberCellPhone" label="Member Cell Phone" foreignKey="Member" />
+    <column name="GenderDesc" fieldName="MemberGenderDesc" label="Member Gender Desc" foreignKey="MemberGender" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group Name" foreignKey="MemberGroup" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="MemberTypeDesc" fieldName="MemberTypeDesc" label="Member Type Desc" foreignKey="MemberType" />
+    <column name="Nationality" fieldName="MemberNationality" label="Member Nationality" foreignKey="MemberNationality" />
+    <column name="DueMonth" fieldName="DueMonth" label="Due Month" format="g" />
+    <column name="FeeAmount" fieldName="FeeAmount" label="Fee Amount" />
+    <column name="AdjustedAmount" fieldName="AdjustedAmount" label="Adjusted Amount" />
+    <column name="BalanceAmount" fieldName="BalanceAmount" label="Balance Amount" />
+    <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
+  </columns>
+</dataModel>

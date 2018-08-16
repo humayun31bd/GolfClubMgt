@@ -143,6 +143,7 @@
       <action id="aWindowsLive" commandName="Navigate" commandArgument="~/appservices/saas/windowslive" headerText="^LoginWithWindowsLive^Login With Windows Live^LoginWithWindowsLive^" whenLastCommandName="New" whenLastCommandArgument="loginForm" whenTag="show-windows-live-login" />
       <action id="aSharePoint" commandName="Navigate" commandArgument="~/appservices/saas/sharepoint" headerText="^LoginWithSharePoint^Login With SharePoint^LoginWithSharePoint^" whenLastCommandName="New" whenLastCommandArgument="loginForm" whenTag="show-sharepoint-login" />
       <action id="aDnn" commandName="Navigate" commandArgument="~/appservices/saas/dnn" headerText="^LoginWithDNN^Login With DotNetNuke^LoginWithDNN^" whenLastCommandName="New" whenLastCommandArgument="loginForm" whenTag="show-dnn-login" />
+      <action id="aCloudIdentity" commandName="Navigate" commandArgument="~/appservices/saas/cloudidentity" headerText="^LoginWithCloudIdentity^Login With Cloud Identity^LoginWithCloudIdentity^" whenLastCommandName="New" whenLastCommandArgument="loginForm" whenTag="show-cloudidentity-login" />
     </actionGroup>
   </actions>
   <businessRules>

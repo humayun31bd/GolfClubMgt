@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberRestBarBill" conflictDetection="overwriteChanges" label="Member Rest Bar Bill" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberRestBarBill"."MemberRestaurentBillID" "MemberRestaurentBillID"
+	,"MemberRestBarBill"."MemberID" "MemberID"
+	,"Member"."MemberCode" "MemberCode"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberGroup"."MemberGroupName" "MemberGroupName"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberType"."MemberTypeDesc" "MemberTypeDesc"
+	,"MemberRestBarBill"."AccFundID" "AccFundID"
+	,"MemberRestBarBill"."SaleDate" "SaleDate"
+	,"MemberRestBarBill"."FeeAmount" "FeeAmount"
+	,"MemberRestBarBill"."PaidAmount" "PaidAmount"
+	,"MemberRestBarBill"."Comments" "Comments"
+	,"MemberRestBarBill"."CreatedDate" "CreatedDate"
+	,"MemberRestBarBill"."CreatedBy" "CreatedBy"
+	,"MemberRestBarBill"."IsRestaurent" "IsRestaurent"
+	,"MemberRestBarBill"."IsBar" "IsBar"
+from "dbo"."MemberRestBarBill" "MemberRestBarBill"
+	left join "dbo"."MemberInfo" "Member" on "MemberRestBarBill"."MemberID" = "Member"."MemberID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberGroup" "MemberGroup" on "Member"."MemberGroupID" = "MemberGroup"."MemberGroupID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."MemberType" "MemberType" on "Member"."MemberTypeID" = "MemberType"."MemberTypeID"
+]]></text>
+    </command>
+    <command id="MemberRestaurentBillIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberRestaurentBillID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberRestaurentBillID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Restaurent Bill ID" readOnly="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberCategoryName=MemberCategoryName, MemberGroupName=MemberGroupMemberGroupName, MemberStatus=MemberStatus, MemberTypeDesc=MemberTypeMemberTypeDesc" dataView="grid1" />
+    </field>
+    <field name="MemberCode" type="String" readOnly="true" label="Member Code" length="50" />
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category Name" length="150" />
+    <field name="MemberGroupName" type="String" readOnly="true" label="Member Group Name" length="50" />
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="MemberTypeDesc" type="String" readOnly="true" label="Member Type Desc" length="50" />
+    <field name="AccFundID" type="Int32" label="Acc Fund ID" showInSummary="true" />
+    <field name="SaleDate" type="DateTime" dataFormatString="g" label="Sale Date" showInSummary="true" />
+    <field name="FeeAmount" type="Decimal" label="Amount" showInSummary="true" />
+    <field name="PaidAmount" type="Decimal" label="Paid Amount" showInSummary="true" />
+    <field name="Comments" type="String" label="Comments" length="150" />
+    <field name="CreatedDate" type="DateTime" dataFormatString="g" default="(getdate())" label="Created Date" />
+    <field name="CreatedBy" type="String" label="Created By" length="50" />
+    <field name="IsRestaurent" type="Boolean" default="((0))" label="Is Restaurent" />
+    <field name="IsBar" type="Boolean" default="((0))" label="Is Bar" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Restaurent Due Bills" filter="IsRestaurent=1 and (FeeAmount-paidAmount) &gt; 0">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+        <dataField fieldName="MemberCategoryName" />
+        <dataField fieldName="MemberGroupName" columns="50" />
+        <dataField fieldName="MemberStatus" columns="50" />
+        <dataField fieldName="MemberTypeDesc" columns="50" />
+        <dataField fieldName="AccFundID" columns="15" hidden="true" />
+        <dataField fieldName="SaleDate" columns="20" />
+        <dataField fieldName="FeeAmount" columns="15" />
+        <dataField fieldName="PaidAmount" columns="15" />
+        <dataField fieldName="Comments" />
+        <dataField fieldName="CreatedDate" columns="20" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="IsRestaurent" />
+        <dataField fieldName="IsBar" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Restaurent Due Bills">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Member Restaurent Bill" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MemberGroupName" columns="50" />
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberTypeDesc" columns="50" />
+            <dataField fieldName="AccFundID" columns="15" hidden="true" />
+            <dataField fieldName="CreatedDate" columns="20" hidden="true" />
+            <dataField fieldName="CreatedBy" columns="50" hidden="true" />
+            <dataField fieldName="IsRestaurent" hidden="true" />
+            <dataField fieldName="IsBar" hidden="true" />
+          </dataFields>
+        </category>
+        <category headerText="Dues Bill" id="c2">
+          <dataFields>
+            <dataField fieldName="SaleDate" columns="20" />
+            <dataField fieldName="FeeAmount" columns="15" />
+            <dataField fieldName="PaidAmount" columns="15" />
+            <dataField fieldName="Comments" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Rest Bar Bill">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberCategoryName" />
+            <dataField fieldName="MemberGroupName" columns="50" />
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberTypeDesc" columns="50" />
+            <dataField fieldName="AccFundID" columns="15" />
+            <dataField fieldName="SaleDate" columns="20" />
+            <dataField fieldName="FeeAmount" columns="15" />
+            <dataField fieldName="PaidAmount" columns="15" />
+            <dataField fieldName="Comments" />
+            <dataField fieldName="CreatedDate" columns="20" />
+            <dataField fieldName="CreatedBy" columns="50" />
+            <dataField fieldName="IsRestaurent" />
+            <dataField fieldName="IsBar" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" whenHRef="false:" />
+      <action id="a3" commandName="Delete" whenHRef="false:" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" whenHRef="false:" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" whenHRef="false:" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" whenHRef="false:" />
+      <action commandName="SQL" commandArgument="CollectDues" headerText="Due Payment" id="a100" confirmation="_controller=DueCollectionPayment&#xD;&#xA;_title=Enter Collection">
+        <data><![CDATA[Exec USP_MemberDueCollectionRestBar @MemberRestaurentBillID,
+	@Parameters_CollectAmount,@Parameters_Comments,@BusinessRules_UserName,
+	@Parameters_PayTypeID,@Parameters_ChequeNo,
+	@Parameters_ChequeDate
+]]></data>
+      </action>
+      <action id="a2" commandName="Delete" whenHRef="false:" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

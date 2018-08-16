@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="CoaDetail" alias="CoaDetail" created="2018-07-07T14:35:02" modified="2018-07-07T14:35:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="CoaDetailID" fieldName="CoaDetailID" label="Coa Detail ID" />
+    <column name="AccFundID" fieldName="AccFundID" label="Acc Fund ID" />
+    <column name="AccFundCode" fieldName="AccFundCode" label="Acc Fund Code" />
+    <column name="Acccode" fieldName="Acccode" label="Acccode" />
+    <column name="AccName" fieldName="AccName" label="Acc Name" />
+    <column name="AccDesc" fieldName="AccDesc" label="Acc Desc" />
+    <column name="AccTypeID" fieldName="AccTypeID" label="Acc Type ID" />
+    <column name="AccDestID" fieldName="AccDestID" label="Acc Dest ID" />
+    <column name="AccBalTypeID" fieldName="AccBalTypeID" label="Acc Bal Type ID" />
+    <column name="AccCurrency" fieldName="AccCurrency" label="Acc Currency" />
+    <column name="ConsTranCode" fieldName="ConsTranCode" label="Cons Tran Code" />
+    <column name="CoaControlID" fieldName="CoaControlID" label="Coa Control ID" />
+    <column name="CoaSubID" fieldName="CoaSubID" label="Coa Sub ID" />
+    <column name="CoaMainID" fieldName="CoaMainID" label="Coa Main ID" />
+    <column name="TranCode" fieldName="TranCode" label="Tran Code" />
+    <column name="SubsYN" fieldName="SubsYn" label="Subs YN" />
+    <column name="AccSubTypeID" fieldName="AccSubTypeID" label="Acc Sub Type ID" />
+    <column name="OpenDate" fieldName="OpenDate" label="Open Date" format="g" />
+    <column name="OpenDebit" fieldName="OpenDebit" label="Open Debit" />
+    <column name="OpenCredit" fieldName="OpenCredit" label="Open Credit" />
+    <column name="AccCurrencyRate" fieldName="AccCurrencyRate" label="Acc Currency Rate" />
+    <column name="Revenue" fieldName="Revenue" label="Revenue" />
+    <column name="VariableCost" fieldName="VariableCost" label="Variable Cost" format="c" />
+    <column name="MonthlyExp" fieldName="MonthlyExp" label="Monthly Exp" />
+    <column name="Budget" fieldName="Budget" label="Budget" />
+    <column name="Annex" fieldName="Annex" label="Annex" />
+    <column name="Dlt" fieldName="Dlt" label="Dlt" />
+    <column name="IsCashNature" fieldName="IsCashNature" label="Is Cash Nature" />
+    <column name="IsBankNature" fieldName="IsBankNature" label="Is Bank Nature" />
+    <column name="AccSubTypeID1" fieldName="AccSubTypeID1" label="Acc Sub Type ID1" />
+    <column name="AccSubTypeID2" fieldName="AccSubTypeID2" label="Acc Sub Type ID2" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" />
+    <column name="BankAccNum" fieldName="BankAccNum" label="Bank Acc Num" />
+    <column name="BranchName" fieldName="BranchName" label="Branch Name" />
+    <column name="BankAccType" fieldName="BankAccType" label="Bank Acc Type" />
+    <column name="AccTypeSetupID" fieldName="AccTypeSetupID" label="Acc Type Setup ID" />
+    <column name="AccNameBG" fieldName="AccNameBg" label="Acc Name BG" />
+    <column name="ColumnSerail" fieldName="ColumnSerail" label="Column Serail" />
+    <column name="SLNO" fieldName="Slno" label="Slno" />
+  </columns>
+</dataModel>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="ClubName" alias="ClubName" created="2018-07-27T06:36:09" modified="2018-07-27T06:36:11" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ClubID" fieldName="ClubID" label="Club ID" />
+    <column name="ClubName" fieldName="ClubName" label="Club Name" />
+    <column name="ClubDescription" fieldName="ClubDescription" label="Club Description" />
+    <column name="Active" fieldName="Active" label="Active" />
+  </columns>
+</dataModel>

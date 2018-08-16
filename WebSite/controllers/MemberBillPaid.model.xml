@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberBillPaid" alias="MemberBillPaid" created="2018-06-20T09:20:53" modified="2018-07-27T06:38:27" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="373" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberBillPaidID" fieldName="MemberBillPaidID" label="Member Bill Paid ID" />
+    <column name="MemberBillID" fieldName="MemberBillID" label="Member Bill ID" />
+    <column name="BillNo" fieldName="BillNo" label="Bill No" />
+    <column name="BillDate" fieldName="BillDate" label="Bill Date" format="g" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="NameOfMember" fieldName="MemberNameOfMember" label="Member Name Of Member" foreignKey="Member" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+    <column name="SubsiDueOnDate" fieldName="SubsiDueOnDate" label="Subsi Due On Date" format="g" />
+    <column name="SubscriptionDueDate" fieldName="SubscriptionDueDate" label="Subscription Due Date" format="g" />
+    <column name="ContributionDTDueOn" fieldName="ContributionDtdueOn" label="Contribution DT Due On" format="g" />
+    <column name="ContributionDT" fieldName="ContributionDt" label="Contribution DT" format="g" />
+    <column name="MonthlyDue" fieldName="MonthlyDue" label="Monthly Due" />
+    <column name="ContributionWFdue" fieldName="ContributionWfdue" label="Contribution W Fdue" />
+    <column name="LockerDue" fieldName="LockerDue" label="Locker Due" />
+    <column name="TournamentDue" fieldName="TournamentDue" label="Tournament Due" />
+    <column name="ServiceDue" fieldName="ServiceDue" label="Service Due" />
+    <column name="MonthlyDuePaid" fieldName="MonthlyDuePaid" label="Monthly Due Paid" />
+    <column name="ContributionWFduePaid" fieldName="ContributionWfduePaid" label="Contribution W Fdue Paid" />
+    <column name="LockerDuePaid" fieldName="LockerDuePaid" label="Locker Due Paid" />
+    <column name="TournamentDuePaid" fieldName="TournamentDuePaid" label="Tournament Due Paid" />
+    <column name="ServiceDuePaid" fieldName="ServiceDuePaid" label="Service Due Paid" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDT" fieldName="ChequeDt" label="Cheque DT" format="g" />
+    <column name="PayAmount" fieldName="PayAmount" label="Pay Amount" />
+    <column name="Voucherno" fieldName="Voucherno" label="Voucherno" />
+    <column name="CollectionBy" fieldName="CollectionBy" label="Collection By" />
+    <column name="CollectionDate" fieldName="CollectionDate" label="Collection Date" format="g" />
+    <column name="BillText" fieldName="BillText" label="Bill Text" />
+    <column name="IsAddAnualBill" fieldName="IsAddAnualBill" label="Is Add Anual Bill" />
+    <column name="LockerServiceFromDate" fieldName="LockerServiceFromDate" label="Locker Service From Date" format="g" />
+    <column name="LockerServiceToDate" fieldName="LockerServiceToDate" label="Locker Service To Date" format="g" />
+    <column name="AnnualBill" fieldName="AnnualBill" label="Annual Bill" />
+    <column name="IsApproved" fieldName="IsApproved" label="Is Approved" />
+    <column name="ApprovedBy" fieldName="ApprovedBy" label="Approved By" />
+    <column name="TourRegisterID" fieldName="TourRegisterID" label="Tour Register ID" />
+    <column name="PaidMRNo" fieldName="PaidMrno" label="Paid Mrno" />
+  </columns>
+</dataModel>

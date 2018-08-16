@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TournamentGame" alias="TournamentGame" created="2018-07-06T22:33:27" modified="2018-07-07T10:04:38" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheTournamentGame" parentTableSchema="dbo" parentTableName="Tournament" x="371" y="20">
+      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TournamentGameID" fieldName="TournamentGameID" label="Tournament Game ID" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="TheTournamentGame" />
+    <column name="TournamentName" fieldName="TheTournamentGame" label="Tournament Game Name" foreignKey="TheTournamentGame" />
+    <column name="StartFrom" fieldName="StartFrom" label="Start From" format="dd/MM/yyyy" />
+    <column name="EndDate" fieldName="EndDate" label="End Date" format="dd/MM/yyyy" />
+    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" />
+    <column name="CancellationLastDate" fieldName="CancellationLastDate" label="Cancellation Last Date" format="dd/MM/yyyy hh:mm tt" />
+    <column name="Remarks" fieldName="Remarks" label="Remarks" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="IsCompleted" fieldName="IsCompleted" label="Is Completed" />
+    <column name="GameStatus" fieldName="GameStatus" label="Game Status" />
+  </columns>
+</dataModel>

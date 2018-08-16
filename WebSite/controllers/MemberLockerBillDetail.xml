@@ -7,8 +7,14 @@ select
 	"MemberLockerBillDetail"."MemberLockerBillDetID" "MemberLockerBillDetID"
 	,"MemberLockerBillDetail"."MemberID" "MemberID"
 	,"Member"."MemberCode" "MemberCode"
+	,"Member"."NameOfMember" "MemberNameOfMember"
 	,"MemberLockerBillDetail"."LockerBookID" "LockerBookID"
+	,"LockerBook"."LockerID" "LockerBookLockerID"
+	,"LockerBook"."MemberID" "LockerBookMemberID"
+	,"LockerBook"."LockerBillAmount" "LockerBookLockerBillAmount"
 	,"LockerBook"."BookStatus" "LockerBookStatus"
+	,"LockerBook"."BookStart" "LockerBookStart"
+	,"LockerBook"."BookEnd" "LockerBookEnd"
 	,"MemberLockerBillDetail"."LockerServiceMonth" "LockerServiceMonth"
 	,"MemberLockerBillDetail"."LockerfeeAmount" "LockerfeeAmount"
 	,"MemberLockerBillDetail"."PaidAmount" "PaidAmount"
@@ -27,26 +33,38 @@ from "dbo"."MemberLockerBillDetail" "MemberLockerBillDetail"
   <fields>
     <field name="MemberLockerBillDetID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Locker Bill Det ID" readOnly="true" />
     <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
-      <items style="Lookup" dataController="MemberInfo" newDataView="createForm1" dataValueField="MemberID" dataTextField="MemberCode" />
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberNameOfMember=MemberInfo1NameOfMember" dataView="AllMembers" />
     </field>
     <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
-    <field name="LockerBookID" type="Int32" label="Locker Book ID" showInSummary="true">
-      <items style="Lookup" dataController="LockerBooking" newDataView="createForm1" dataValueField="LockerBookID" dataTextField="BookStatus" />
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
+    <field name="LockerBookID" type="Int32" label="Locker Book ID" showInSummary="true" contextFields="MemberID=MemberID">
+      <items style="Lookup" dataController="LockerBooking" newDataView="createForm1" dataValueField="LockerBookID" dataTextField="LockerID" copy="LockerBookMemberID=MemberID, LockerBookLockerBillAmount=LockerBillAmount, LockerBookStatus=BookStatus, LockerBookStart=BookStart, LockerBookEnd=BookEnd" />
     </field>
+    <field name="LockerBookLockerID" type="Int32" readOnly="true" label="Locker Book Locker ID" />
+    <field name="LockerBookMemberID" type="Int32" readOnly="true" label="Locker Book Member ID" />
+    <field name="LockerBookLockerBillAmount" type="Decimal" readOnly="true" label="Locker Book Locker Bill Amount" />
     <field name="LockerBookStatus" type="String" readOnly="true" label="Locker Book Status" length="50" />
+    <field name="LockerBookStart" type="DateTime" readOnly="true" dataFormatString="g" label="Locker Book Start" />
+    <field name="LockerBookEnd" type="DateTime" readOnly="true" dataFormatString="g" label="Locker Book End" />
     <field name="LockerServiceMonth" type="DateTime" dataFormatString="g" label="Locker Service Month" showInSummary="true" />
     <field name="LockerfeeAmount" type="Decimal" label="Lockerfee Amount" showInSummary="true" />
     <field name="PaidAmount" type="Decimal" label="Paid Amount" showInSummary="true" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Member Locker Bill Detail">
+    <view id="grid1" type="Grid" commandId="command1" label="Member Locker Bill Due">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
-        <dataField fieldName="LockerBookID" aliasFieldName="LockerBookStatus" />
+        <dataField fieldName="MemberNameOfMember" />
+        <dataField fieldName="LockerBookID" aliasFieldName="LockerBookLockerID" />
         <dataField fieldName="LockerServiceMonth" columns="20" />
         <dataField fieldName="LockerfeeAmount" columns="15" />
         <dataField fieldName="PaidAmount" columns="15" />
+        <dataField fieldName="LockerBookMemberID" columns="15" />
+        <dataField fieldName="LockerBookLockerBillAmount" columns="15" />
+        <dataField fieldName="LockerBookStatus" columns="50" />
+        <dataField fieldName="LockerBookStart" columns="20" />
+        <dataField fieldName="LockerBookEnd" columns="20" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Locker Bill Detail">
@@ -56,7 +74,13 @@ from "dbo"."MemberLockerBillDetail" "MemberLockerBillDetail"
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
-            <dataField fieldName="LockerBookID" aliasFieldName="LockerBookStatus" />
+            <dataField fieldName="MemberNameOfMember" />
+            <dataField fieldName="LockerBookID" aliasFieldName="LockerBookLockerID" />
+            <dataField fieldName="LockerBookMemberID" columns="15" />
+            <dataField fieldName="LockerBookLockerBillAmount" columns="15" />
+            <dataField fieldName="LockerBookStatus" columns="50" />
+            <dataField fieldName="LockerBookStart" columns="20" />
+            <dataField fieldName="LockerBookEnd" columns="20" />
             <dataField fieldName="LockerServiceMonth" columns="20" />
             <dataField fieldName="LockerfeeAmount" columns="15" />
             <dataField fieldName="PaidAmount" columns="15" />
@@ -71,7 +95,13 @@ from "dbo"."MemberLockerBillDetail" "MemberLockerBillDetail"
           <description><![CDATA[$DefaultNewDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
-            <dataField fieldName="LockerBookID" aliasFieldName="LockerBookStatus" />
+            <dataField fieldName="MemberNameOfMember" />
+            <dataField fieldName="LockerBookID" aliasFieldName="LockerBookLockerID" />
+            <dataField fieldName="LockerBookMemberID" columns="15" />
+            <dataField fieldName="LockerBookLockerBillAmount" columns="15" />
+            <dataField fieldName="LockerBookStatus" columns="50" />
+            <dataField fieldName="LockerBookStart" columns="20" />
+            <dataField fieldName="LockerBookEnd" columns="20" />
             <dataField fieldName="LockerServiceMonth" columns="20" />
             <dataField fieldName="LockerfeeAmount" columns="15" />
             <dataField fieldName="PaidAmount" columns="15" />
@@ -141,4 +171,14 @@ from "dbo"."MemberLockerBillDetail" "MemberLockerBillDetail"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Delete" type="Sql" phase="Before"><![CDATA[if @PaidAmount is not null
+begin
+    /* prevent the default action processing */
+    set @BusinessRules_PreventDefault = 1
+    /* set the focus on the field and display an error */
+    set @Result_ShowMessage = 'Already paid these due.  Cannot delete these due.'
+end
+]]></rule>
+  </businessRules>
 </dataController>

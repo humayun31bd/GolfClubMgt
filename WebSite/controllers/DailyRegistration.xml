@@ -29,17 +29,18 @@
     <view id="grid1" type="Grid" commandId="command1" label="Daily Registration">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
-        <dataField fieldName="PaidBy" columns="9" />
         <dataField fieldName="MemberID" columns="15" hidden="true" />
         <dataField fieldName="MemberCode" columns="50" />
-        <dataField fieldName="BillNo" columns="50" />
+        <dataField fieldName="NameOfMember" />
         <dataField fieldName="CategoryName" columns="50" />
+        <dataField fieldName="BillNo" columns="50" />
         <dataField fieldName="CollectionDate" columns="10" />
         <dataField fieldName="GreenFee" columns="15" aggregate="Sum" />
         <dataField fieldName="CaddieFee" columns="15" aggregate="Sum" />
         <dataField fieldName="BallBoyFee" columns="15" aggregate="Sum" />
         <dataField fieldName="GolfCartFee" columns="15" aggregate="Sum" />
         <dataField fieldName="TotalBill" columns="15" aggregate="Sum" />
+        <dataField fieldName="PaidBy" columns="9" />
         <dataField fieldName="PaidAmount" columns="15" aggregate="Sum" />
         <dataField fieldName="PayTypeID" columns="15" hidden="true" />
         <dataField fieldName="ChequeNo" columns="50" hidden="true" />
@@ -48,7 +49,6 @@
         <dataField fieldName="DueAmount" columns="15" />
         <dataField fieldName="BankName" columns="50" hidden="true" />
         <dataField fieldName="CollectionBy" columns="50" />
-        <dataField fieldName="NameOfMember" />
         <dataField fieldName="CompanyName" />
         <dataField fieldName="CompanyAddress" />
       </dataFields>
@@ -144,12 +144,6 @@
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
       <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
     </actionGroup>
-    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
-      <action id="a1" commandName="ExportCsv" />
-      <action id="a2" />
-      <action id="a3" commandName="ExportRowset" />
-      <action id="a4" commandName="ExportRss" />
-    </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />
       <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
@@ -176,7 +170,7 @@ set @BusinessRules_ResultSetCacheDuration = 5
 
 if (@Parameters_MemberID is not null)
 	Set @Session_MemberID=@Parameters_MemberID
-if (@Parameters_FrDate is not null)
+if (@Parameters_FromDate is not null)
 	Set @Session_FrDate=@Parameters_FromDate
 if (@Parameters_ToDate is not null)
 	Set @Session_ToDate=@Parameters_ToDate
@@ -194,9 +188,9 @@ DECLARE @Session_MemberID int,
 if (@Session_MemberID is null)
 	Set @Session_MemberID=0
 if (@Session_FrDate is null)
-	Set @Session_FrDate='2018'
+	Set @Session_FrDate=Convert(Nvarchar(10),getdate(),101)
 if (@Session_ToDate is null)
-	Set @Session_ToDate='2018'
+	Set @Session_ToDate=Convert(Nvarchar(10),getdate(),101)
 if (@Session_PayTypeID is null)
 	Set @Session_PayTypeID=1
 

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DueCollectionPayment" label="DueCollectionPayment" conflictDetection="overwriteChanges" handler="MyCompany.Rules.DueCollectionPaymentBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="PayTypeID" type="Int32" label="Pay Type">
+      <items style="DropDownList">
+        <item value="1" text="Cash" />
+        <item value="2" text="ChequeNo" />
+        <item value="3" text="Bank Card" />
+        <item value="4" text="Member Card" />
+      </items>
+    </field>
+    <field name="CollectAmount" type="Decimal" label="Amount" allowNulls="false" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDate" type="DateTime" label="Cheque Date" />
+    <field name="Comments" type="String" label="Comments" length="50" />
+  </fields>
+</dataController>

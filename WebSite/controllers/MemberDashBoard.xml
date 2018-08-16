@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataController name="MemberDashBoard" label="MemberDashBoard" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+<dataController name="MemberDashBoard" label="MemberDashBoard" conflictDetection="overwriteChanges" handler="MyCompany.Rules.MemberDashBoardBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <views>
     <view id="form1" type="Form" label="Performance Dashboard">
       <categories>
@@ -48,4 +48,7 @@
       <dataView controller="GameRegistration" view="grid1" />
     </field>
   </fields>
+  <businessRules>
+    <rule id="r100" commandName="Select" commandArgument="DailyFlightCreate" type="Code" phase="Before" />
+  </businessRules>
 </dataController>

@@ -16,6 +16,7 @@ namespace MyCompany.Rules
         public void BuildNewMemberFee()
         {
             UpdateFieldValue("IsActive", 1);
+            UpdateFieldValue("EffectFrom", DateTime.Now);
         }
     }
 }

@@ -344,7 +344,7 @@
             return m ? m[1] : '';
         },
         resolveClientUrl: function (url) {
-            return url ? url.replace(/~\x2f/g, this.get_baseUrl()) : null;
+            return _app.resolveClientUrl(url, this.get_baseUrl());
         },
         get_hideExternalFilterFields: function () {
             return this._hideExternalFilterFields != false;
@@ -3887,19 +3887,25 @@
         },
         _navigate: function (location, features) {
             _app._navigated = true;
-            var m = location.match(_app.LocationRegex);
+            var m = location.match(_app.LocationRegex),
+                loc = m ? m[2] : location;
             if (typeof __dauh != 'undefined')
                 if (m)
                     this.encodePermalink(m[2], m[1], features)
                 else
                     this.encodePermalink(location);
-            else
-                if (m) {
+            else {
+                if (_touch && loc.indexOf('http') != -1 && (!m || m[1] == '_internal')) {
+                    _app._navigated = false;
+                    _touch.openExternalUrl(loc, false)();
+                }
+                else if (m) {
                     _app._navigated = false;
                     open(m[2], m[1], features ? features : '');
                 }
                 else
                     window.location.href = location;
+            }
         },
         get_contextFilter: function (field, values) {
             var contextFilter = [];
@@ -8574,7 +8580,12 @@
         _invoke: function (methodName, params, onSuccess, userContext, onFailure) {
             var that = this,
                 servicePath = that.get_servicePath(),
-                ensureJSONCompatibility = _app.ensureJSONCompatibility;
+                ensureJSONCompatibility = _app.ensureJSONCompatibility,
+                user = _app.AccountManager.current(),
+                headers = {};
+
+            if (user && user.access_token && methodName != 'Login')
+                headers['Authorization'] = 'Bearer ' + user.access_token;
 
             function retry(error, response, method) {
                 if (_app._navigated) return;
@@ -8588,6 +8599,23 @@
                         function () {
                             that._onMethodFailed(error, response, method);
                         });
+                }
+                else if (statusCode == 401 && methodName != 'Login') {
+                    function continueLogout() {
+                        _app.logout(function () {
+                            _app.alert(Web.MembershipResources.Bar.UserIdle, function () {
+                                location.reload();
+                            });
+                        });
+                    }
+
+                    if (!user || !user.refresh_token)
+                        continueLogout();
+                    else
+                        _app.refreshUserToken(user, function () {
+                            that._invoke(methodName, params, onSuccess, userContext, onFailure);
+                            //that._wsRequest = Sys.Net.WebServiceProxy.invoke(servicePath, methodName, false, params, onSuccess, retry, userContext);
+                        }, continueLogout);
                 }
                 else if (statusCode > 0) {
                     // report error only if the status code is real (greater than zero) 
@@ -8639,6 +8667,7 @@
                     method: 'POST',
                     cache: false,
                     dataType: 'text',
+                    headers: headers,
                     data: params
                 }).done(function (result) {
                     var resultIsString = typeof result === 'string';
@@ -9317,7 +9346,7 @@
                                     }
                                     action.HeaderText = at.HeaderText;
                                     action._autoHeaderText = true;
-                                    if (!isNullOrEmpty(at.HeaderText) && at.HeaderText.indexOf('{') >= 0) 
+                                    if (!isNullOrEmpty(at.HeaderText) && at.HeaderText.indexOf('{') >= 0)
                                         action.HeaderText = at.VarMaxLen != null && result.Views[0].Label.length > at.VarMaxLen ? at.HeaderText2 : this._formatViewText(at.HeaderText);
                                     if (isNullOrEmpty(action.Description))
                                         action.Description = this._formatViewText(at.Description);
@@ -10757,7 +10786,7 @@
             for (var i = 0; i < list.length; i++) {
                 var fv = list[i];
                 if (keyField.Name == fv.Name)
-                    return fv.NewValue;
+                    return fv.Modified ? fv.NewValue : fv.OldValue;
             }
             return null;
         },
@@ -12352,15 +12381,28 @@
     _app._delayedLoadingViews = [];
 
     _app._performDelayedLoading = function () {
-        var i = 0;
-        while (i < _app._delayedLoadingViews.length) {
-            var v = _app._delayedLoadingViews[i];
+        var i = 0,
+            delayedLoadingViews = _app._delayedLoadingViews;
+        while (i < delayedLoadingViews.length) {
+            var v = delayedLoadingViews[i],
+                filterSource = v._filterSource, skipLoad, master;
             if (v.get_isDisplayed()) {
-                Array.remove(_app._delayedLoadingViews, v);
-                if (v._delayedLoading)
-                    v._loadPage();
+                Array.remove(delayedLoadingViews, v);
+                if (v._delayedLoading) {
+                    if (filterSource) {
+                        master = _app.find(filterSource);
+                        if (master && master._busy())
+                            skipLoad = true;
+                    }
+                    if (!skipLoad)
+                        v._loadPage();
+                }
             }
             else i++;
+        }
+        if (!delayedLoadingViews.length) {
+            clearInterval(_app._delayedLoadingTimer);
+            _app._delayedLoadingTimer = null;
         }
     }
 
@@ -12498,6 +12540,21 @@
             return data;
         }
     };
+
+    _app.addon = function (type, method, args) {
+        return $.ajax({
+            url: __servicePath + '/Addon',
+            data: JSON.stringify({ type: type, method: method, args: args }),
+            method: 'POST',
+            cache: false
+        });
+    }
+
+    _app.resolveClientUrl = function (url, baseUrl) {
+        if (!baseUrl)
+            baseUrl = this._baseUrl || (typeof __baseUrl == 'string' ? __baseUrl : '');
+        return url ? url.replace(/~\x2f/g, baseUrl) : null
+    }
 
     _app.execute = function (args) {
         if (args.done)
@@ -13173,7 +13230,7 @@
             if (result && result != 'false') {
                 if (result != "true") {
                     if (!createPersistentCookie)
-                        result.Token = null;
+                        result.refresh_token = null;
                     _app.AccountManager.set(result);
                     //if (createPersistentCookie)
                     //    _app.AccountManager.set(result);
@@ -13192,7 +13249,27 @@
     _app.switchUser = function (user, success, error) {
         _app._invoke(
             'Login',
-            { username: user.UserName, password: 'token:' + user.Token, createPersistentCookie: false },
+            { username: user.name, password: 'token:' + user.refresh_token, createPersistentCookie: false },
+            function (result) {
+                if (result) {
+                    if (result != "true") {
+                        if (user.Handler)
+                            result.Handler = user.Handler;
+                        _app.AccountManager.set(result);
+                    }
+                    if (success)
+                        success(result);
+                }
+                else
+                    if (error)
+                        error();
+            });
+    }
+
+    _app.refreshUserToken = function (user, success, error) {
+        _app._invoke(
+            'Login',
+            { username: user.name, password: 'token:' + user.refresh_token, createPersistentCookie: false },
             function (result) {
                 if (result) {
                     if (result != "true") {
@@ -13830,7 +13907,7 @@
         if (_app._delayedLoadingViews.length > 0 && !_app._delayedLoadingTimer)
             _app._delayedLoadingTimer = setInterval(function () {
                 _app._performDelayedLoading();
-            }, 1000);
+            }, 500);
     }
 
     _app._updateBatchSelectStatus = function (cb, isForm) {
@@ -15235,36 +15312,40 @@
         });
         if (!found && files)
             pendingUploads.push({ fieldName: fieldName, files: files });
+        var name = null, type = null, size = null;
         if (files) {
             file = files[0];
             if (file) {
-
-                function findField(name, prefixWithFieldName) {
-                    return dataView.findField((prefixWithFieldName && fieldName || '') + name);
-                }
-                // file name
-                field = findField('FileName', true) || findField('FILENAME', true) || findField('FILE_NAME', true) || findField('filename', true) || findField('file_name', true)
-                    || findField('FileName') || findField('FILENAME') || findField('FILE_NAME') || findField('filename') || findField('file_name');
-                if (field)
-                    fileResult.Values.push({ Name: field.Name, NewValue: file.name });
-                // content type
-                field = findField('ContentType', true) || findField('CONTENTTYPE', true) || findField('CONTENT_TYPE', true) || findField('contenttype', true) || findField('conent_type', true)
-                    || findField('ContentType') || findField('CONTENTTYPE') || findField('CONTENT_TYPE') || findField('contenttype') || findField('content_type');
-                if (field)
-                    fileResult.Values.push({ Name: field.Name, NewValue: file.type });
-                // content length
-                field = findField('Length', true) || findField('LENGTH', true) || findField('length', true)
-                    || findField('Length') || findField('LENGTH') || findField('length');
-                if (field)
-                    fileResult.Values.push({ Name: field.Name, NewValue: file.size });
-                if (fileResult.Values.length)
-                    if (_touch)
-                        //dataView.extension().afterCalculate(fileResult.Values);
-                        _app.input.execute({ dataView: dataView, values: fileResult.Values });
-                    else
-                        dataView._updateCalculatedFields(fileResult);
+                name = file.name;
+                type = file.type;
+                size = file.size;
             }
         }
+
+        function findField(name, prefixWithFieldName) {
+            return dataView.findField((prefixWithFieldName && fieldName || '') + name);
+        }
+        // file name
+        field = findField('FileName', true) || findField('FILENAME', true) || findField('FILE_NAME', true) || findField('filename', true) || findField('file_name', true)
+            || findField('FileName') || findField('FILENAME') || findField('FILE_NAME') || findField('filename') || findField('file_name');
+        if (field)
+            fileResult.Values.push({ Name: field.Name, NewValue: name });
+        // content type
+        field = findField('ContentType', true) || findField('CONTENTTYPE', true) || findField('CONTENT_TYPE', true) || findField('contenttype', true) || findField('conent_type', true)
+            || findField('ContentType') || findField('CONTENTTYPE') || findField('CONTENT_TYPE') || findField('contenttype') || findField('content_type');
+        if (field)
+            fileResult.Values.push({ Name: field.Name, NewValue: type });
+        // content length
+        field = findField('Length', true) || findField('LENGTH', true) || findField('length', true)
+            || findField('Length') || findField('LENGTH') || findField('length');
+        if (field)
+            fileResult.Values.push({ Name: field.Name, NewValue: size });
+        if (fileResult.Values.length)
+            if (_touch)
+                //dataView.extension().afterCalculate(fileResult.Values);
+                _app.input.execute({ dataView: dataView, values: fileResult.Values });
+            else
+                dataView._updateCalculatedFields(fileResult);
     }
 
     _app.dataUrlToBlob = function (url) {
@@ -15397,6 +15478,16 @@
             else
                 container.text(_touch ? (multiple ? resourcesFiles.TapMany : resourcesFiles.Tap) : (multiple ? resourcesFiles.ClickMany : resourcesFiles.Click));
             container.attr('title', _touch ? (multiple ? resourcesFiles.TapMany : resourcesFiles.Tap) : (multiple ? resourcesFiles.ClickMany : resourcesFiles.Click));
+
+        }
+
+        function configureClear(hasValue) {
+            if (container.is('.app-had-blob'))
+                container.addClass('app-had-file');
+            if (container.is('.app-clearing'))
+                container.empty().append('<div>Value will be cleared on save. Click here to upload file.</div>');
+            else if (hasValue)
+                $('<a class="app-clear ui-btn ui-btn-icon-notext ui-icon-trash  ui-corner-all"/>').appendTo(container).text(resourcesFiles.Clear).attr('title', resourcesFiles.Clear);
         }
 
         function initialize() {
@@ -15404,7 +15495,10 @@
                 configureEmpty();
 
                 var dataView = findDataView(options.dataViewId),
-                    field = dataView.findField(options.fieldName);
+                    field = dataView.findField(options.fieldName),
+                    row = dataView.editRow(),
+                    value = row[field.Index],
+                    hadValue = value && !value.match(/null\|/);
 
                 if (field.OnDemandStyle == 2) {
                     container.empty().attr('title', resourcesFiles.Sign);
@@ -15437,6 +15531,10 @@
                         resizeSignature();
                 }
                 else {
+                    if (hadValue) {
+                        container.addClass('app-had-blob');
+                        configureClear(hadValue);
+                    }
                     var input = $('<input type="file"/>').insertAfter(container).hide().on('change', function (e) {
                         var files = this.files;
                         if (files.length > 0)
@@ -15467,11 +15565,18 @@
                                     configureEmpty();
                                     container.next().val('');
                                     if (options.dataViewId) {
-                                        var dataView = findDataView(options.dataViewId);
-                                        filesSelected(dataView, options.fieldName, null);
+                                        var dataView = findDataView(options.dataViewId),
+                                            files = null;
+                                        if (hadValue) {
+                                            files = [new Blob()];
+                                            container.addClass('app-clearing');
+                                        }
+                                        filesSelected(dataView, options.fieldName, files);
                                     }
                                     if (options.change)
                                         options.change();
+                                    if (hadValue)
+                                        configureClear(hadValue);
                                     return false;
                                 },
                                     function () {
@@ -15542,7 +15647,8 @@
                         options.change();
                 }
             });
-            $('<a class="app-clear ui-btn ui-btn-icon-notext ui-icon-trash  ui-corner-all"/>').appendTo(container).text(resourcesFiles.Clear).attr('title', resourcesFiles.Clear);
+            container.removeClass('app-clearing');
+            configureClear(true);
             if (dv)
                 filesSelected(dv, options.fieldName, files);
         }
@@ -15576,7 +15682,10 @@
     _app.uploadFileAjax = function (options) {
         var formData = new FormData();
         $(options.files).each(function () {
-            formData.append('file', this);
+            if (this instanceof File)
+                formData.append('file', this);
+            else
+                formData.append('file', this, '_delete_');
         });
         return $.ajax({
             url: options.url,
@@ -17110,6 +17219,12 @@
         enabled: function () {
             return _touch && _touch.settings('membership.enabled') != false && _touch.settings('membership.accountManager.enabled') != false;
         },
+        current: function () {
+            if (this.enabled()) {
+                var ids = this.list();
+                return ids[$app.userName()];
+            }
+        },
         set: function (user) {
             // debug
             //if (user.UserName.toLowerCase() == 'user3')
@@ -17121,20 +17236,20 @@
             // end debug
             if (this.enabled()) {
                 var identities = this.list();
-                identities[user.UserName] = user;
-                identities._lastUser = user.UserName;
+                identities[user.name] = user;
+                identities._lastUser = user.name;
                 //_window.localStorage.setItem('identities', JSON.stringify(identities));
                 _app.storage.set('identities', JSON.stringify(identities));
             }
             else {
-                if (user.Picture) {
+                if (user.picture) {
                     var pictureMap = _app.storage.get('userProfilePictures');//storage['userProfilePictures'];
                     if (pictureMap)
                         pictureMap = JSON.parse(pictureMap);
                     else
                         pictureMap = {};
                     this._pictureMap = pictureMap;
-                    pictureMap[user.UserName] = user.Picture;
+                    pictureMap[user.name] = user.picture;
                     //storage['userProfilePictures'] = JSON.stringify(pictureMap);
                     _app.storage.set('userProfilePictures', JSON.stringify(pictureMap));
                 }
@@ -17166,8 +17281,10 @@
                 if (identities.hasOwnProperty(username))
                     if (forget)
                         delete identities[username];
-                    else
-                        identities[username].Token = null;
+                    else {
+                        identities[username].access_token = null;
+                        identities[username].refresh_token = null;
+                    }
                 delete identities._lastUser;
                 //_window.localStorage.setItem('identities', JSON.stringify(identities));
                 _app.storage.set('identities', JSON.stringify(identities));
@@ -17180,8 +17297,8 @@
                     identity,
                     picture;
                 if (identities) {
-                    identity = identities[user],
-                        picture = identity && identity.Picture;
+                    identity = identities[user];
+                    picture = identity && identity.picture;
                 }
             }
             else {
@@ -17198,4 +17315,3 @@
         }
     };
 })();
-/* test */

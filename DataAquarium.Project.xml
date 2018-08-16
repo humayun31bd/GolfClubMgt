@@ -2,18 +2,21 @@
   This file is provided to store the settings for your Data Aquarium project. 
   You can safely delete this file if no further code generation is planned.
 -->
-<project compatibility="20111118" dataModel="required" subscriptionLevel="Premium" name="GolfClubNew" prettyName="Golf Club New" type="Web Site Factory" codeDomProvider="CSharp" targetFramework="4.5" userInterface="TouchUI" pageImplementation="aspx" sourceControl="" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
+<project compatibility="20111118" dataModel="required" subscriptionLevel="Premium" name="GolfClubNew" prettyName="Golf Club New" type="Web Site Factory" codeDomProvider="CSharp" targetFramework="4.5" userInterface="TouchUI" pageImplementation="aspx" sourceControl="" displayName="" group="" xmlns="urn:schemas-codeontime-com:data-aquarium-project">
   <connectionString hostDatabaseSharing="false" sessionStateMode="Custom">Data Source=SOFTMANAGER-PC;Initial Catalog=GolfClub;Persist Security Info=True;User ID=sa;Password=ipac;</connectionString>
   <providerName>System.Data.SqlClient</providerName>
   <namespace>MyCompany</namespace>
   <webServer run="true" port="32466" preview="Browser" client="">
-    <webConfig>AppendChild: /configuration/appSettings
+    <webConfig>AppendChild: /configuration/connectionStrings 
+&lt;add name="GalfClub" connectionString="Data Source=SOFTMANAGER-PC;Initial Catalog=GalfClub;Persist Security Info=True;User ID=sa;Password=ipac;" providerName="System.Data.SqlClient" /&gt;
+
+AppendChild: /configuration/appSettings
     &lt;add key="debugSMS" value="true"/&gt;
     &lt;add key="SMSProvider" value="PresentIT"/&gt;
     &lt;add key="SMSMaskName" value="IPACSOFTWAR"/&gt;
     &lt;add key="SMSEndPoint" value="http://api.infobip.com/sms/1/text/single"/&gt;
     &lt;add key="SMSAccountName" value="GolfClub"/&gt;
-    &lt;add key="CloudServer" value="45.35.4.235"/&gt;
+    &lt;add key="CloudServer" value="SOFTMANAGER-PC"/&gt;
     &lt;add key="CloudServerdb" value="GolfClub"/&gt;
     &lt;add key="IsSimulateSMS" value="false"/&gt;
     &lt;add key="ConnectionType" value="SQLSERVER"/&gt;

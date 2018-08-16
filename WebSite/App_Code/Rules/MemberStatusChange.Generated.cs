@@ -16,6 +16,7 @@ namespace MyCompany.Rules
         public void BuildNewMemberStatusChange()
         {
             UpdateFieldValue("TransferDate", DateTime.Now);
+            UpdateFieldValue("NoOfDaysPlay", 30);
         }
     }
 }

@@ -77,15 +77,15 @@
                                         <input type="checkbox" ng-model="ctrl.serviceItem.id[$index]" ng-true-value="{{s.ServiceID}}" ng-false-value="0" ng-change="ctrl.setTotalServiceAmount()">
                                     </td>
                                     <td width="400">{{s.ServiceName}}</td>
-                                    <td>{{s.ServiceFee}}
-                                        <input type="hidden" ng-model="ctrl.serviceItem.price[$index]" ng-init="ctrl.serviceItem.price[$index] = s.ServiceFee" ng-value="s.ServiceFee">
+                                    <td><!-- {{s.ServiceFee}} -->
+                                        <input class="form-control" type="number" string-to-number ng-model="ctrl.serviceItem.price[$index]"ng-init="ctrl.serviceItem.price[$index] = s.ServiceFee" ng-value="s.ServiceFee" ng-change="ctrl.setTotalServiceAmount()">
                                     </td>
                                     <td>
-                                        <input class="form-control" type="number" ng-init="ctrl.serviceItem.qty[$index] = 1" ng-model="ctrl.serviceItem.qty[$index]"
-                                            min="1" ng-change="ctrl.setTotalServiceAmount()">
+                                        <input class="form-control" type="number" ng-init="ctrl.serviceItem.qty[$index] = 1.00" string-to-number ng-model="ctrl.serviceItem.qty[$index]"
+                                            min=".00" ng-change="ctrl.setTotalServiceAmount()">
                                     </td>
                                     <td>
-                                        <input class="form-control" type="number" ng-model="ctrl.serviceItem.amountTotal[$index]" min="0" value="{{ctrl.serviceItem.qty[$index] * s.ServiceFee}}"
+                                        <input class="form-control" type="number" string-to-number ng-model="ctrl.serviceItem.amountTotal[$index]" min="0" value="{{ctrl.serviceItem.qty[$index] * ctrl.serviceItem.price[$index]}}"
                                             disabled>
                                     </td>
                                 </tr>
@@ -130,6 +130,19 @@
 
 <script>
     angular.module('payNow', [])
+    .directive('stringToNumber', function() {
+          return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+              ngModel.$parsers.push(function(value) {
+                return '' + value;
+              });
+              ngModel.$formatters.push(function(value) {
+                return parseFloat(value);
+              });
+            }
+          };
+        })
         .controller('PayNowCtrl', function ($http, $templateCache) {
             var self = this;
             self.member = {
@@ -152,7 +165,7 @@
                 //console.log("yyy", self.member.memberId, mID);
                 $http({
                     method: "GET",
-                    url: "http://192.168.9.239:2997/api/MemberCurrentDue/bymembercode/" + mID,
+                    url: "http://api.kgc-bd.com/api/MemberCurrentDue/bymembercode/" + mID,
                     //cache: $templateCache
                 }).then(function (response) {
                    //self.status = response.status;
@@ -196,7 +209,7 @@
             /*For First Time Load*/
             self.getInitialData = function () {
 
-                $http.get('http://192.168.9.239:2997/api/Service/All').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/Service/All').then(function (response) {
                     if (response.data) {
                         self.services = response.data;
                     }
@@ -255,7 +268,7 @@
 
                 $http({
                     method: "POST",
-                    url: "http://192.168.9.239:2997/api/Service/CreateMemberServiceDue",
+                    url: "http://api.kgc-bd.com/api/Service/CreateMemberServiceDue",
                     data: obj
                 }).then(function (response) {
                     ////self.member.memberId means membercode

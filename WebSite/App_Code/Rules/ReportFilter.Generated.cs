@@ -18,6 +18,7 @@ namespace MyCompany.Rules
             UpdateFieldValue("MemberID", 0);
             UpdateFieldValue("FromDate", DateTime.Now);
             UpdateFieldValue("ToDate", DateTime.Now);
+            UpdateFieldValue("PayTypeID", 0);
         }
     }
 }

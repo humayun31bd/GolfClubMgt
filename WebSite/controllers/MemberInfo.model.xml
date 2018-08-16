@@ -1,29 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberInfo" alias="MemberInfo" created="2018-04-09T20:38:28" modified="2018-06-15T02:33:17" x="20" y="69" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="MemberInfo" alias="MemberInfo" created="2018-04-09T20:38:28" modified="2018-08-12T05:42:12" x="20" y="70" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" x="410" y="20">
       <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
     </foreignKey>
-    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="363" y="301">
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" x="363" y="302">
       <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
     </foreignKey>
-    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="363" y="440">
+    <foreignKey id="Gender" parentTableSchema="dbo" parentTableName="Gender" x="363" y="441">
       <foreignKeyColumn columnName="GenderID" parentColumnName="GenderID" />
     </foreignKey>
-    <foreignKey id="Nationality" parentTableSchema="dbo" parentTableName="Nationality" x="363" y="580">
+    <foreignKey id="Nationality" parentTableSchema="dbo" parentTableName="Nationality" x="363" y="581">
       <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
     </foreignKey>
-    <foreignKey id="BloodGroup" parentTableSchema="dbo" parentTableName="BloodGroup" x="363" y="720">
+    <foreignKey id="BloodGroup" parentTableSchema="dbo" parentTableName="BloodGroup" x="363" y="721">
       <foreignKeyColumn columnName="BloodGroupID" parentColumnName="BloodGroupID" />
     </foreignKey>
-    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="1056" y="69" baseForeignKey="MemberCategory">
+    <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="1056" y="70" baseForeignKey="MemberCategory">
       <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
     </foreignKey>
     <foreignKey id="MemberInfo1" parentTableSchema="dbo" parentTableName="MemberInfo" x="363" y="861">
       <foreignKeyColumn columnName="ParentMemberID" parentColumnName="MemberID" />
     </foreignKey>
-    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" x="746" y="69">
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" x="746" y="70">
       <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="NonMemberCategory" parentTableSchema="dbo" parentTableName="NonMemberCategory" x="649" y="771">
+      <foreignKeyColumn columnName="NonMemberCatID" parentColumnName="NonMemberCatID" />
     </foreignKey>
   </foreignKeys>
   <columns>
@@ -73,5 +76,14 @@
     <column name="BillingAddress" fieldName="BillingAddress" label="Billing Address" />
     <column name="ClubName" fieldName="ClubName" label="Club Name" />
     <column name="ContributionFee" fieldName="ContributionFee" label="Contribution Fee" />
+    <column name="NonMemberCatID" fieldName="NonMemberCatID" label="Non Member Cat ID" aliasColumnName="NonMemCateory" aliasForeignKey="NonMemberCategory" />
+    <column name="NonMemCateory" fieldName="NonMemberCategoryNonMemCateory" label="Non Member Category Non Mem Cateory" foreignKey="NonMemberCategory" />
+    <column name="OCMNoOfDaysPlay" fieldName="OcmnoOfDaysPlay" label="Number Of Days Could Play" />
+    <column name="LastPaySubsDate" fieldName="LastPaySubsDate" label="Last Pay Subs Date" format="g" />
+    <column name="LastPayContDate" fieldName="LastPayContDate" label="Last Pay Cont Date" format="g" />
+    <column name="refNumber" fieldName="RefNumber" label="Ref Number" />
+    <column name="RecomendetMemberShipNo" fieldName="RecomendetMemberShipNo" label="Recomendet Member Ship No" />
+    <column name="OCMNoOfDaysPlayed" fieldName="OcmnoOfDaysPlayed" label="Ocmno Of Days Played" />
+    <column name="WelfareContributionDT" fieldName="WelfareContributionDT" label="Welfare Contribution DT" format="g" />
   </columns>
 </dataModel>

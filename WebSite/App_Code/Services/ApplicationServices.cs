@@ -257,6 +257,30 @@ namespace MyCompany.Services
         }
     }
     
+    public class AddonServiceRequestHandler : ServiceRequestHandler
+    {
+        
+        public override object HandleRequest(DataControllerService service, JObject args)
+        {
+            string type = ((string)(args["type"]));
+            string method = ((string)(args["method"]));
+            object result = null;
+            foreach (object addon in ApplicationServices.Addons)
+            {
+                Type t = addon.GetType();
+                if (t.Name == type)
+                {
+                    result = t.GetMethod("Invoke").Invoke(addon, new object[] {
+                                service,
+                                method,
+                                args["args"]});
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+    
     public class ThemesServiceRequestHandler : ServiceRequestHandler
     {
         
@@ -1274,10 +1298,24 @@ namespace MyCompany.Services
                     appFrameworkConfigTypeName = t.FullName;
                     break;
                 }
-            // initialize the external components of the framework
+            // initialize external components of the framework
             object frameworkConfig = CreateInstance(appFrameworkConfigTypeName);
             if (frameworkConfig != null)
             	frameworkConfig.GetType().InvokeMember("Initialize", (BindingFlags.InvokeMethod | (BindingFlags.Instance | BindingFlags.Public)), null, frameworkConfig, null);
+            foreach (string className in new string[] {
+                    "OfflineSync",
+                    "Survey",
+                    "FormBuilder"})
+            	try
+                {
+                    Type addonType = Type.GetType(String.Format("CodeOnTime.Addons.{0},addon.{0}", className));
+                    if (addonType != null)
+                    	Addons.Add(Activator.CreateInstance(addonType));
+                }
+                catch (Exception )
+                {
+                }
+            // register service routes and map handlers
             Create().RegisterServices();
         }
         
@@ -1302,8 +1340,22 @@ namespace MyCompany.Services
         }
     }
     
+    public class AddonRouteIgnoreConstraint
+    {
+        
+        public string PathInfo
+        {
+            get
+            {
+                return "^(?!daf\\/add\\.min\\.(js|css)$).+";
+            }
+        }
+    }
+    
     public class ApplicationServicesBase
     {
+        
+        public static List<object> Addons = new List<object>();
         
         public static bool EnableMobileClient = true;
         
@@ -1320,6 +1372,8 @@ namespace MyCompany.Services
         public static Regex NameValueListRegex = new Regex("^\\s*(?\'Name\'\\w+)\\s*=\\s*(?\'Value\'[\\S\\s]+?)\\s*$", RegexOptions.Multiline);
         
         public static Regex SystemResourceRegex = new Regex("~/((sys/)|(views/)|(controllers/)|(site\\b))", RegexOptions.IgnoreCase);
+        
+        public static string FrameworkAppName = null;
         
         private string _userTheme;
         
@@ -1370,7 +1424,7 @@ namespace MyCompany.Services
                     if (File.Exists(filePath))
                     	json = File.ReadAllText(filePath);
                     _defaultSettings = JObject.Parse(json);
-                    EnsureJsonProperty(_defaultSettings, "appName", "Golf Club");
+                    EnsureJsonProperty(_defaultSettings, "appName", ApplicationServices.Current.Name);
                     EnsureJsonProperty(_defaultSettings, "map.apiKey", MapsApiIdentifier);
                     EnsureJsonProperty(_defaultSettings, "charts.maxPivotRowCount", MaxPivotRowCount);
                     EnsureJsonProperty(_defaultSettings, "ui.theme.name", "Light");
@@ -1502,7 +1556,7 @@ namespace MyCompany.Services
         {
             get
             {
-                return "Golf Club New";
+                return FrameworkAppName;
             }
         }
         
@@ -1606,7 +1660,7 @@ namespace MyCompany.Services
             CreateStandardMembershipAccounts();
             RouteCollection routes = RouteTable.Routes;
             RegisterIgnoredRoutes(routes);
-            RegisterContentServices(RouteTable.Routes);
+            RegisterContentServices(routes);
             // Register service request handlers
             RequestHandlers.Add("getpage", new GetPageServiceRequestHandler());
             RequestHandlers.Add("getpagelist", new GetPageListServiceRequestHandler());
@@ -1623,8 +1677,10 @@ namespace MyCompany.Services
             RequestHandlers.Add("encodepermalink", new EncodePermalinkServiceRequestHandler());
             RequestHandlers.Add("listallpermalinks", new ListAllPermalinksServiceRequestHandler());
             RequestHandlers.Add("getsurvey", new GetSurveyServiceRequestHandler());
+            RequestHandlers.Add("addon", new AddonServiceRequestHandler());
             RequestHandlers.Add("saas/dnn", new DnnOAuthServiceRequestHandler());
             OAuthHandlerFactory.Handlers.Add("dnn", typeof(DnnOAuthHandler));
+            OAuthHandlerFactory.Handlers.Add("cloudidentity", typeof(CloudIdentityOAuthHandler));
             RequestHandlers.Add("getcontrollerlist", new GetControllerListServiceRequestHandler());
             RequestHandlers.Add("commit", new CommitServiceRequestHandler());
             // Find designer port
@@ -1711,7 +1767,7 @@ namespace MyCompany.Services
         
         public virtual void RegisterContentServices(RouteCollection routes)
         {
-            GenericRoute.Map(RouteTable.Routes, new PlaceholderHandler(), "placeholder/{FileName}");
+            GenericRoute.Map(routes, new PlaceholderHandler(), "placeholder/{FileName}");
         }
         
         public virtual void RegisterIgnoredRoutes(RouteCollection routes)
@@ -2213,10 +2269,60 @@ namespace MyCompany.Services
             return SystemResourceRegex.IsMatch(request.AppRelativeCurrentExecutionFilePath);
         }
         
+        public virtual string AddScripts()
+        {
+            if (Addons.Count == 0)
+            	return String.Empty;
+            StringBuilder sb = new StringBuilder();
+            foreach (object addon in Addons)
+            	sb.Append(((string)(addon.GetType().GetMethod("Script").Invoke(addon, null))));
+            return sb.ToString();
+        }
+        
+        public virtual string AddStyleSheets()
+        {
+            if (Addons.Count == 0)
+            	return String.Empty;
+            StringBuilder sb = new StringBuilder();
+            foreach (object addon in Addons)
+            	sb.Append(((string)(addon.GetType().GetMethod("StyleSheet").Invoke(addon, null))));
+            return sb.ToString();
+        }
+        
         public virtual void LoadContent(HttpRequest request, HttpResponse response, SortedDictionary<string, string> content)
         {
             if (IsSystemResource(request))
             	return;
+            if (request.Url.LocalPath == "/js/daf/add.min.js")
+            {
+                response.Cache.SetExpires(DateTime.Now.AddMonths(1));
+                response.Cache.SetCacheability(HttpCacheability.Public);
+                response.ContentType = "text/javascript";
+                response.Write(AddScripts());
+                try
+                {
+                    response.Flush();
+                }
+                catch (Exception )
+                {
+                }
+                response.End();
+            }
+            if (request.Url.LocalPath == "/css/daf/add.min.css")
+            {
+                response.Cache.SetExpires(DateTime.Now.AddMonths(1));
+                response.Cache.SetCacheability(HttpCacheability.Public);
+                response.ContentType = "text/css";
+                response.Write(AddStyleSheets());
+                try
+                {
+                    response.Flush();
+                }
+                catch (Exception )
+                {
+                }
+                response.End();
+            }
             string text = null;
             bool tryFileSystem = true;
             if (IsSiteContentEnabled)
@@ -2357,7 +2463,7 @@ namespace MyCompany.Services
                 {
                     string key = password.Substring(6);
                     FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(key);
-                    if (ValidateTicket(ticket))
+                    if (ValidateTicket(ticket) && (!(String.IsNullOrEmpty(ticket.UserData)) && Regex.IsMatch(ticket.UserData, "^(REFRESHONLY$|OAUTH:)")))
                     {
                         MembershipUser user = Membership.GetUser(ticket.Name);
                         if (user != null)
@@ -2370,13 +2476,13 @@ namespace MyCompany.Services
                                 if (handler != null)
                                 {
                                     cookie.Value = handler.GetHandlerName();
-                                    if (!(handler.AuthenticateTicket(user)))
+                                    if (!(handler.ValidateRefreshToken(user, key)))
                                     	return false;
                                 }
                             }
                             HttpContext.Current.Response.SetCookie(cookie);
                             FormsAuthentication.SetAuthCookie(user.UserName, createPersistentCookie);
-                            return CreateTicket(user);
+                            return CreateTicket(user, key);
                         }
                     }
                 }
@@ -2389,27 +2495,37 @@ namespace MyCompany.Services
                 // login user
                 if (UserLogin(username, password, createPersistentCookie))
                 {
+                    FormsAuthentication.SetAuthCookie(username, createPersistentCookie);
                     MembershipUser user = Membership.GetUser(username);
                     if (user != null)
-                    	return CreateTicket(user);
+                    	return CreateTicket(user, null);
                 }
             }
             return false;
         }
         
-        public virtual UserTicket CreateTicket(MembershipUser user)
+        public virtual UserTicket CreateTicket(MembershipUser user, string refreshToken)
         {
-            int timeout = (60 
+            int accessTimeout = 15;
+            int refreshTimeout = (60 
                         * (24 * 7));
-            JToken jTimeout = DefaultSettings["TokenExpiration"];
+            JToken jTimeout = TryGetJsonProperty(DefaultSettings, "membership.accountManager.accessTokenDuration");
             if (jTimeout != null)
-            	timeout = (((int)(jTimeout)) * 60);
+            	accessTimeout = ((int)(jTimeout));
+            jTimeout = TryGetJsonProperty(DefaultSettings, "membership.accountManager.refreshTokenDuration");
+            if (jTimeout != null)
+            	refreshTimeout = ((int)(jTimeout));
             string userData = String.Empty;
             OAuthHandler handler = OAuthHandlerFactory.GetActiveHandler();
             if (handler != null)
             	userData = ("OAUTH:" + handler.GetHandlerName());
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddMinutes(timeout), false, userData);
-            return new UserTicket(user, FormsAuthentication.Encrypt(ticket));
+            FormsAuthenticationTicket accessTicket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddMinutes(accessTimeout), false, userData);
+            if (String.IsNullOrEmpty(refreshToken))
+            {
+                FormsAuthenticationTicket refreshTicket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddMinutes(refreshTimeout), false, "REFRESHONLY");
+                refreshToken = FormsAuthentication.Encrypt(refreshTicket);
+            }
+            return new UserTicket(user, FormsAuthentication.Encrypt(accessTicket), refreshToken);
         }
         
         public virtual bool ValidateTicket(FormsAuthenticationTicket ticket)
@@ -2421,13 +2537,21 @@ namespace MyCompany.Services
         {
         }
         
+        public virtual bool ValidateToken(string accessToken)
+        {
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(accessToken);
+            if (ValidateTicket(ticket))
+            {
+                HttpContext.Current.User = new RolePrincipal(new FormsIdentity(new FormsAuthenticationTicket(ticket.Name, false, 10)));
+                return true;
+            }
+            return false;
+        }
+        
         public virtual bool UserLogin(string username, string password, bool createPersistentCookie)
         {
             if (Membership.ValidateUser(username, password))
-            {
-                FormsAuthentication.SetAuthCookie(username, createPersistentCookie);
-                return true;
-            }
+            	return true;
             else
             	return false;
         }
@@ -2753,6 +2877,8 @@ namespace MyCompany.Services
             stylesheets.Add(("~\\css\\daf\\touch-charts" + ext));
             stylesheets.Add(("~\\css\\sys\\bootstrap" + ext));
             stylesheets.Add(String.Format("~\\appservices\\touch-theme.{0}.{1}.css", UserTheme, UserAccent));
+            if (!(String.IsNullOrEmpty(AddStyleSheets())))
+            	stylesheets.Add("~\\css\\daf\\add.min.css");
             // enumerate custom css files
             List<string> customCss = ((List<string>)(HttpRuntime.Cache["IncludedCss"]));
             if (customCss == null)
@@ -2827,7 +2953,11 @@ namespace MyCompany.Services
                     	sb.AppendLine(StylesheetGenerator.Compile(cssName));
                     else
                     {
-                        string data = File.ReadAllText(HttpContext.Current.Server.MapPath(stylesheet));
+                        string data = null;
+                        if (stylesheet == "~\\css\\daf\\add.min.css")
+                        	data = ApplicationServices.Current.AddStyleSheets();
+                        else
+                        	data = File.ReadAllText(HttpContext.Current.Server.MapPath(stylesheet));
                         data = CssUrlRegex.Replace(data, DoReplaceCssUrl);
                         if (!(data.Contains("@import url")))
                         	sb.AppendLine(data);
@@ -3735,7 +3865,7 @@ namespace MyCompany.Services
         private SaasConfiguration _config = null;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
-        private string[] _tokens;
+        private JObject _tokens;
         
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private bool _storeToken;
@@ -3762,7 +3892,7 @@ namespace MyCompany.Services
             }
         }
         
-        protected virtual string[] Tokens
+        protected virtual JObject Tokens
         {
             get
             {
@@ -3817,27 +3947,17 @@ namespace MyCompany.Services
                         if (!(String.IsNullOrEmpty(error)))
                         	throw new Exception(error);
                         else
-                        	RequestAuthorizationCode();
+                        	context.Response.Redirect(GetAuthorizationUrl());
                     }
                     else
-                    {
-                        Tokens = GetAccessTokens(code, false);
-                        if (Tokens == null)
+                    	if (!(GetAccessTokens(code, false)))
                         	context.Response.StatusCode = 401;
                         else
                         {
-                            if (StoreToken)
-                            	StoreTokens(Tokens);
-                            else
-                            {
-                                MembershipUser user = SyncUser();
-                                if (user == null)
-                                	throw new Exception("No user found.");
-                                SetSession(context, user);
-                            }
+                            StoreTokens(Tokens, StoreToken);
+                            SetSession(context);
                             RedirectToStartPage(context);
                         }
-                    }
                 }
             }
             catch (Exception ex)
@@ -3846,33 +3966,39 @@ namespace MyCompany.Services
             }
         }
         
-        public virtual void SetSession(HttpContext context, MembershipUser user)
+        public virtual void SetSession(HttpContext context)
         {
-            ApplicationServices services = ApplicationServices.Current;
-            // logout current user
-            HttpCookie auth = context.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (auth != null)
+            if (!(StoreToken))
             {
-                FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(auth.Value);
-                if (oldTicket.Name != user.UserName)
-                	services.UserLogout();
+                MembershipUser user = SyncUser();
+                if (user == null)
+                	throw new Exception("No user found.");
+                ApplicationServices services = ApplicationServices.Current;
+                // logout current user
+                HttpCookie auth = context.Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (auth != null)
+                {
+                    FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(auth.Value);
+                    if (oldTicket.Name != user.UserName)
+                    	services.UserLogout();
+                }
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, user.UserName, DateTime.Now, DateTime.Now.AddHours(12), false, ("OAUTH:" + GetHandlerName()));
+                string encrypted = FormsAuthentication.Encrypt(ticket);
+                JToken accountManagerEnabled = ApplicationServices.TryGetJsonProperty(services.DefaultSettings, "membership.accountManager.enabled");
+                if ((accountManagerEnabled == null) || accountManagerEnabled.Value<bool>())
+                {
+                    // client token login
+                    HttpCookie cookie = new HttpCookie(".TOKEN", encrypted);
+                    cookie.Expires = System.DateTime.Now.AddMinutes(5);
+                    context.Response.SetCookie(cookie);
+                }
+                else
+                {
+                    // server login
+                    services.AuthenticateUser(user.UserName, ("token:" + encrypted), false);
+                }
+                context.Response.Cookies.Set(new HttpCookie(".PROVIDER", GetHandlerName()));
             }
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, user.UserName, DateTime.Now, DateTime.Now.AddHours(12), false, ("OAUTH:" + GetHandlerName()));
-            string encrypted = FormsAuthentication.Encrypt(ticket);
-            JToken accountManagerEnabled = ApplicationServices.TryGetJsonProperty(services.DefaultSettings, "membership.accountManager.enabled");
-            if ((accountManagerEnabled == null) || accountManagerEnabled.Value<bool>())
-            {
-                // client token login
-                HttpCookie cookie = new HttpCookie(".TOKEN", encrypted);
-                cookie.Expires = System.DateTime.Now.AddMinutes(5);
-                context.Response.SetCookie(cookie);
-            }
-            else
-            {
-                // server login
-                services.AuthenticateUser(user.UserName, ("token:" + encrypted), false);
-            }
-            context.Response.Cookies.Set(new HttpCookie(".PROVIDER", GetHandlerName()));
         }
         
         public virtual void RestoreSession(HttpContext context)
@@ -3881,7 +4007,7 @@ namespace MyCompany.Services
             	StoreToken = true;
         }
         
-        protected virtual string[] GetAccessTokens(string code, bool refresh)
+        protected virtual bool GetAccessTokens(string code, bool refresh)
         {
             WebRequest request = GetAccessTokenRequest(code, refresh);
             WebResponse response = request.GetResponse();
@@ -3894,13 +4020,17 @@ namespace MyCompany.Services
             string error = ((string)(responseObj["error"]));
             if (!(String.IsNullOrEmpty(error)))
             	throw new Exception(error);
-            return new string[] {
-                    ((string)(responseObj["access_token"])),
-                    ((string)(responseObj["refresh_token"]))};
+            Tokens = responseObj;
+            return (responseObj["access_token"] != null);
         }
         
-        protected virtual void StoreTokens(string[] tokens)
+        protected virtual void StoreTokens(JObject tokens, bool storeSystem)
         {
+        }
+        
+        public virtual bool LoadTokens(string userName)
+        {
+            return false;
         }
         
         protected virtual string GetAuthCode(HttpRequest request)
@@ -3913,7 +4043,7 @@ namespace MyCompany.Services
             JObject result = null;
             try
             {
-                string token = Tokens[0];
+                string token = ((string)(Tokens["access_token"]));
                 if (useSystemToken)
                 	token = Config.AccessToken;
                 if (String.IsNullOrEmpty(token))
@@ -3946,16 +4076,15 @@ namespace MyCompany.Services
         
         protected virtual bool RefreshTokens(bool useSystemToken)
         {
-            string refresh = Tokens[1];
+            string refresh = ((string)(Tokens["refresh_token"]));
             if (useSystemToken)
             	refresh = Config.RefreshToken;
             if (!(String.IsNullOrEmpty(refresh)))
             {
-                Tokens = GetAccessTokens(refresh, true);
-                if (Tokens != null)
+                if (GetAccessTokens(refresh, true))
                 {
                     if (useSystemToken)
-                    	StoreTokens(Tokens);
+                    	StoreTokens(Tokens, true);
                     return true;
                 }
             }
@@ -4065,7 +4194,7 @@ namespace MyCompany.Services
         
         public virtual void RedirectToLoginPage()
         {
-            RequestAuthorizationCode();
+            HttpContext.Current.Response.Redirect(GetAuthorizationUrl());
         }
         
         public virtual void RedirectToStartPage(HttpContext context)
@@ -4077,7 +4206,7 @@ namespace MyCompany.Services
                                 + HttpUtility.UrlEncode(ApplicationServices.ResolveClientUrl(StartPage))));
         }
         
-        public virtual bool AuthenticateTicket(MembershipUser user)
+        public virtual bool ValidateRefreshToken(MembershipUser user, string token)
         {
             return true;
         }
@@ -4104,7 +4233,7 @@ namespace MyCompany.Services
         
         public abstract string GetHandlerName();
         
-        public abstract void RequestAuthorizationCode();
+        public abstract string GetAuthorizationUrl();
         
         protected abstract WebRequest GetAccessTokenRequest(string code, bool refresh);
         
@@ -4152,6 +4281,69 @@ namespace MyCompany.Services
         }
     }
     
+    public partial class CloudIdentityOAuthHandler : CloudIdentityOAuthHandlerBase
+    {
+    }
+    
+    public partial class CloudIdentityOAuthHandlerBase : OAuthHandler
+    {
+        
+        private JObject _userObj;
+        
+        protected override string Scope
+        {
+            get
+            {
+                string scopes = Config["Scope"];
+                if (String.IsNullOrEmpty(scopes))
+                	scopes = "profile email";
+                return scopes;
+            }
+        }
+        
+        public override string GetHandlerName()
+        {
+            return "CloudIdentity";
+        }
+        
+        public override string GetAuthorizationUrl()
+        {
+            return String.Format("{0}/oauth/auth?response_type=code&client_id={1}&redirect_uri={2}&scope={3}&state=" +
+                    "{4}", ClientUri, Config.ClientId, Uri.EscapeDataString(Config.RedirectUri), Uri.EscapeDataString(Scope), Uri.EscapeDataString(GetState()));
+        }
+        
+        protected override WebRequest GetAccessTokenRequest(string code, bool refresh)
+        {
+            WebRequest request = WebRequest.Create((ClientUri + "/oauth/token"));
+            request.Method = "POST";
+            string codeType = "code";
+            if (refresh)
+            	codeType = "access_token";
+            string body = String.Format("{0}={1}&client_id={2}&client_secret={3}&redirect_uri={4}&grant_type=authorization" +
+                    "_code", codeType, code, Config.ClientId, Config.ClientSecret, Config.RedirectUri);
+            byte[] bodyBytes = Encoding.UTF8.GetBytes(body);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = bodyBytes.Length;
+            using (Stream stream = request.GetRequestStream())
+            	stream.Write(bodyBytes, 0, bodyBytes.Length);
+            return request;
+        }
+        
+        protected override WebRequest GetQueryRequest(string method, string token)
+        {
+            WebRequest request = WebRequest.Create((ClientUri 
+                            + ("/oauth/" + method)));
+            request.Headers[HttpRequestHeader.Authorization] = ("Bearer " + token);
+            return request;
+        }
+        
+        public override string GetUserName()
+        {
+            _userObj = Query("user", false);
+            return ((string)(_userObj["name"]));
+        }
+    }
+    
     public partial class DnnOAuthHandler : DnnOAuthHandlerBase
     {
     }
@@ -4181,7 +4373,7 @@ namespace MyCompany.Services
             return "DNN";
         }
         
-        public override void RequestAuthorizationCode()
+        public override string GetAuthorizationUrl()
         {
             string authUrl = String.Format("{0}?response_type=code&client_id={1}&redirect_uri={2}&state={3}", ClientUri, Config.ClientId, Config.RedirectUri, Uri.EscapeDataString(GetState()));
             if (!(String.IsNullOrEmpty(Scope)))
@@ -4191,7 +4383,7 @@ namespace MyCompany.Services
             if (!(String.IsNullOrEmpty(username)))
             	authUrl = (authUrl 
                             + ("&username=" + username));
-            HttpContext.Current.Response.Redirect(authUrl);
+            return authUrl;
         }
         
         protected override WebRequest GetAccessTokenRequest(string code, bool refresh)
@@ -4303,14 +4495,22 @@ namespace MyCompany.Services
     public class UserTicket
     {
         
+        [JsonProperty("name")]
         public string UserName;
         
+        [JsonProperty("email")]
         public string Email;
         
-        public string Token;
+        [JsonProperty("access_token")]
+        public string AccessToken;
         
+        [JsonProperty("refresh_token")]
+        public string RefreshToken;
+        
+        [JsonProperty("picture")]
         public string Picture;
         
+        [JsonProperty("claims")]
         public Dictionary<string, string> Claims = new Dictionary<string, string>();
         
         public UserTicket()
@@ -4324,10 +4524,11 @@ namespace MyCompany.Services
             Picture = ApplicationServices.Create().UserPictureString(user);
         }
         
-        public UserTicket(MembershipUser user, string token) : 
+        public UserTicket(MembershipUser user, string accessToken, string refreshToken) : 
                 this(user)
         {
-            this.Token = token;
+            this.AccessToken = accessToken;
+            this.RefreshToken = refreshToken;
         }
     }
     
@@ -4401,7 +4602,14 @@ namespace MyCompany.Services
             	relativePath = relativePath.Substring(0, relativePath.IndexOf("?"));
             f.Path = relativePath.Replace('\\', '/').Replace("~/", String.Empty);
             f.Name = System.IO.Path.GetFileName(f.Path);
-            byte[] fileBytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath(("~/" + f.Path)));
+            byte[] fileBytes = null;
+            if (f.Path == "js/daf/add.min.js")
+            	fileBytes = Encoding.UTF8.GetBytes(ApplicationServices.Current.AddScripts());
+            else
+            	if (f.Path == "css/daf/add.min.css")
+                	fileBytes = Encoding.UTF8.GetBytes(ApplicationServices.Current.AddStyleSheets());
+                else
+                	fileBytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath(("~/" + f.Path)));
             f.MD5 = ComputeHash(fileBytes);
             f.Length = fileBytes.Length;
             return f;

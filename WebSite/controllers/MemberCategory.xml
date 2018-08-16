@@ -49,7 +49,6 @@ from "dbo"."MemberCategory" "MemberCategory"
       <items style="RadioButtonList">
         <item value="1" text="Life Time" />
         <item value="2" text="Years" />
-        <item value="3" text="Days" />
       </items>
     </field>
     <field name="ExpireNumberCount" type="Int32" label="Expire Number Count" showInSummary="true" />

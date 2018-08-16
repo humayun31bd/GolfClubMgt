@@ -17,6 +17,7 @@ select
 	,"MemberFee"."LockerFee" "LockerFee"
 	,"MemberFee"."EntranceFee" "EntranceFee"
 	,"MemberFee"."AnnualFee" "AnnualFee"
+	,"MemberFee"."AnnualFeeEffective" "AnnualFeeEffective"
 from "dbo"."MemberFee" "MemberFee"
 	left join "dbo"."MemberStatus" "MemberStatus" on "MemberFee"."MemberStatusID" = "MemberStatus"."MemberStatusID"
 	left join "dbo"."MemberCategory" "MemberCategory" on "MemberFee"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
@@ -39,7 +40,7 @@ from "dbo"."MemberFee" "MemberFee"
     <field name="IsActive" type="Boolean" default="((1))" label="Is Active" showInSummary="true" allowNulls="false">
       <items style="CheckBox" />
     </field>
-    <field name="EffectFrom" type="DateTime" dataFormatString="dd/MM/yyyy" label="Effective From" showInSummary="true" />
+    <field name="EffectFrom" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Effective From" showInSummary="true" allowLEV="true" />
     <field name="MemberCategoryID" type="Int32" label="Member Category ID" showInSummary="true">
       <items style="Lookup" dataController="MemberCategory" newDataView="createForm1" dataValueField="MemberCategoryID" dataTextField="CategoryName" copy="MemberCategoryMemberTypeID=MemberTypeID" />
     </field>
@@ -49,6 +50,7 @@ from "dbo"."MemberFee" "MemberFee"
     <field name="LockerFee" type="Decimal" label="Locker Fee" />
     <field name="EntranceFee" type="Decimal" label="Entrance Fee" />
     <field name="AnnualFee" type="Decimal" label="Annual Fee" />
+    <field name="AnnualFeeEffective" type="DateTime" dataFormatString="g" label="Annual Fee Effective" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Member Fee">
@@ -59,11 +61,11 @@ from "dbo"."MemberFee" "MemberFee"
         <dataField fieldName="MonthlyFee" columns="15" />
         <dataField fieldName="ContributionFee" columns="15" />
         <dataField fieldName="IsActive" />
-        <dataField fieldName="EffectFrom" columns="20" />
-        <dataField fieldName="MemberCategoryMemberTypeID" columns="15" />
         <dataField fieldName="LockerFee" columns="15" />
         <dataField fieldName="EntranceFee" columns="15" />
         <dataField fieldName="AnnualFee" columns="15" />
+        <dataField fieldName="EffectFrom" columns="20" />
+        <dataField fieldName="AnnualFeeEffective" columns="20" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Fee">
@@ -78,10 +80,10 @@ from "dbo"."MemberFee" "MemberFee"
             <dataField fieldName="ContributionFee" columns="15" />
             <dataField fieldName="IsActive" />
             <dataField fieldName="EffectFrom" columns="20" />
-            <dataField fieldName="MemberCategoryMemberTypeID" columns="15" />
             <dataField fieldName="LockerFee" columns="15" />
             <dataField fieldName="EntranceFee" columns="15" />
             <dataField fieldName="AnnualFee" columns="15" />
+            <dataField fieldName="AnnualFeeEffective" columns="20" />
           </dataFields>
         </category>
       </categories>
@@ -96,11 +98,11 @@ from "dbo"."MemberFee" "MemberFee"
             <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
             <dataField fieldName="MonthlyFee" columns="15" />
             <dataField fieldName="EffectFrom" columns="20" />
-            <dataField fieldName="MemberCategoryMemberTypeID" columns="15" />
             <dataField fieldName="ContributionFee" columns="15" />
             <dataField fieldName="LockerFee" columns="15" />
             <dataField fieldName="EntranceFee" columns="15" />
             <dataField fieldName="AnnualFee" columns="15" />
+            <dataField fieldName="AnnualFeeEffective" columns="20" />
           </dataFields>
         </category>
       </categories>
@@ -133,11 +135,11 @@ from "dbo"."MemberFee" "MemberFee"
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,AddMemberFee" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
-      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberFee" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" roles="DeleteMemberFee" />
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
       <action id="a1" commandName="ExportCsv" />
@@ -168,4 +170,7 @@ from "dbo"."MemberFee" "MemberFee"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert|Update" type="Sql" phase="Execute"><![CDATA[Exec dbo.MemberCategoryFeeChanged @MemberCategoryID,@BusinessRules_UserName]]></rule>
+  </businessRules>
 </dataController>

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="CoaDetail" conflictDetection="overwriteChanges" label="Coa Detail" connectionStringName="GalfClub" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"CoaDetail"."CoaDetailID" "CoaDetailID"
+	,"CoaDetail"."AccFundID" "AccFundID"
+	,"CoaDetail"."AccFundCode" "AccFundCode"
+	,"CoaDetail"."Acccode" "Acccode"
+	,"CoaDetail"."AccName" "AccName"
+	,"CoaDetail"."AccDesc" "AccDesc"
+	,"CoaDetail"."AccTypeID" "AccTypeID"
+	,"CoaDetail"."AccDestID" "AccDestID"
+	,"CoaDetail"."AccBalTypeID" "AccBalTypeID"
+	,"CoaDetail"."AccCurrency" "AccCurrency"
+	,"CoaDetail"."ConsTranCode" "ConsTranCode"
+	,"CoaDetail"."CoaControlID" "CoaControlID"
+	,"CoaDetail"."CoaSubID" "CoaSubID"
+	,"CoaDetail"."CoaMainID" "CoaMainID"
+	,"CoaDetail"."TranCode" "TranCode"
+	,"CoaDetail"."SubsYN" "SubsYn"
+	,"CoaDetail"."AccSubTypeID" "AccSubTypeID"
+	,"CoaDetail"."OpenDate" "OpenDate"
+	,"CoaDetail"."OpenDebit" "OpenDebit"
+	,"CoaDetail"."OpenCredit" "OpenCredit"
+	,"CoaDetail"."AccCurrencyRate" "AccCurrencyRate"
+	,"CoaDetail"."Revenue" "Revenue"
+	,"CoaDetail"."VariableCost" "VariableCost"
+	,"CoaDetail"."MonthlyExp" "MonthlyExp"
+	,"CoaDetail"."Budget" "Budget"
+	,"CoaDetail"."Annex" "Annex"
+	,"CoaDetail"."Dlt" "Dlt"
+	,"CoaDetail"."IsCashNature" "IsCashNature"
+	,"CoaDetail"."IsBankNature" "IsBankNature"
+	,"CoaDetail"."AccSubTypeID1" "AccSubTypeID1"
+	,"CoaDetail"."AccSubTypeID2" "AccSubTypeID2"
+	,"CoaDetail"."BankName" "BankName"
+	,"CoaDetail"."BankAccNum" "BankAccNum"
+	,"CoaDetail"."BranchName" "BranchName"
+	,"CoaDetail"."BankAccType" "BankAccType"
+	,"CoaDetail"."AccTypeSetupID" "AccTypeSetupID"
+	,"CoaDetail"."AccNameBG" "AccNameBg"
+	,"CoaDetail"."ColumnSerail" "ColumnSerail"
+	,"CoaDetail"."SLNO" "Slno"
+from "dbo"."CoaDetail" "CoaDetail"
+]]></text>
+    </command>
+    <command id="CoaDetailIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="CoaDetailID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="CoaDetailID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Coa Detail ID" readOnly="true" />
+    <field name="AccFundID" type="Int32" label="Acc Fund ID" showInSummary="true" />
+    <field name="AccFundCode" type="String" label="Acc Fund Code" length="4" showInSummary="true" />
+    <field name="Acccode" type="String" label="Acccode" length="50" showInSummary="true" />
+    <field name="AccName" type="String" allowNulls="false" label="Acc Name" length="150" showInSummary="true" />
+    <field name="AccDesc" type="String" label="Acc Desc" length="50" showInSummary="true" />
+    <field name="AccTypeID" type="Int32" label="Acc Type ID" />
+    <field name="AccDestID" type="Int32" label="Acc Dest ID" />
+    <field name="AccBalTypeID" type="Int32" label="Acc Bal Type ID" />
+    <field name="AccCurrency" type="Int32" label="Acc Currency" />
+    <field name="ConsTranCode" type="String" label="Cons Tran Code" length="10" />
+    <field name="CoaControlID" type="Int32" label="Coa Control ID" />
+    <field name="CoaSubID" type="Int32" label="Coa Sub ID" />
+    <field name="CoaMainID" type="Int32" label="Coa Main ID" />
+    <field name="TranCode" type="String" label="Tran Code" length="10" />
+    <field name="SubsYn" type="Boolean" label="Subs YN" />
+    <field name="AccSubTypeID" type="Int32" label="Acc Sub Type ID" />
+    <field name="OpenDate" type="DateTime" dataFormatString="g" label="Open Date" />
+    <field name="OpenDebit" type="Decimal" label="Open Debit" />
+    <field name="OpenCredit" type="Decimal" label="Open Credit" />
+    <field name="AccCurrencyRate" type="Decimal" label="Acc Currency Rate" />
+    <field name="Revenue" type="Byte" label="Revenue" />
+    <field name="VariableCost" type="Boolean" dataFormatString="c" label="Variable Cost" />
+    <field name="MonthlyExp" type="Boolean" label="Monthly Exp" />
+    <field name="Budget" type="Decimal" label="Budget" />
+    <field name="Annex" type="String" label="Annex" length="50" />
+    <field name="Dlt" type="String" label="Dlt" length="1" />
+    <field name="IsCashNature" type="Boolean" label="Is Cash Nature" />
+    <field name="IsBankNature" type="Boolean" label="Is Bank Nature" />
+    <field name="AccSubTypeID1" type="Int32" label="Acc Sub Type ID1" />
+    <field name="AccSubTypeID2" type="Int32" label="Acc Sub Type ID2" />
+    <field name="BankName" type="String" label="Bank Name" length="50" />
+    <field name="BankAccNum" type="String" label="Bank Acc Num" length="50" />
+    <field name="BranchName" type="String" label="Branch Name" length="50" />
+    <field name="BankAccType" type="String" label="Bank Acc Type" length="50" />
+    <field name="AccTypeSetupID" type="Int32" label="Acc Type Setup ID" />
+    <field name="AccNameBg" type="String" label="Acc Name BG" length="150" />
+    <field name="ColumnSerail" type="Int32" label="Column Serail" />
+    <field name="Slno" type="Int32" label="Slno" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Coa Detail">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="AccFundID" columns="15" />
+        <dataField fieldName="AccFundCode" columns="4" />
+        <dataField fieldName="Acccode" columns="50" />
+        <dataField fieldName="AccName" />
+        <dataField fieldName="AccDesc" columns="50" />
+        <dataField fieldName="AccTypeID" columns="15" />
+        <dataField fieldName="AccDestID" columns="15" />
+        <dataField fieldName="AccBalTypeID" columns="15" />
+        <dataField fieldName="AccCurrency" columns="15" />
+        <dataField fieldName="ConsTranCode" columns="10" />
+        <dataField fieldName="CoaControlID" columns="15" />
+        <dataField fieldName="CoaSubID" columns="15" />
+        <dataField fieldName="CoaMainID" columns="15" />
+        <dataField fieldName="TranCode" columns="10" />
+        <dataField fieldName="SubsYn" />
+        <dataField fieldName="AccSubTypeID" columns="15" />
+        <dataField fieldName="OpenDate" columns="20" />
+        <dataField fieldName="OpenDebit" columns="15" />
+        <dataField fieldName="OpenCredit" columns="15" />
+        <dataField fieldName="AccCurrencyRate" columns="15" />
+        <dataField fieldName="Revenue" columns="15" />
+        <dataField fieldName="VariableCost" />
+        <dataField fieldName="MonthlyExp" />
+        <dataField fieldName="Budget" columns="15" />
+        <dataField fieldName="Annex" columns="50" />
+        <dataField fieldName="Dlt" columns="1" />
+        <dataField fieldName="IsCashNature" />
+        <dataField fieldName="IsBankNature" />
+        <dataField fieldName="AccSubTypeID1" columns="15" />
+        <dataField fieldName="AccSubTypeID2" columns="15" />
+        <dataField fieldName="BankName" columns="50" />
+        <dataField fieldName="BankAccNum" columns="50" />
+        <dataField fieldName="BranchName" columns="50" />
+        <dataField fieldName="BankAccType" columns="50" />
+        <dataField fieldName="AccTypeSetupID" columns="15" />
+        <dataField fieldName="AccNameBg" />
+        <dataField fieldName="ColumnSerail" columns="15" />
+        <dataField fieldName="Slno" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Coa Detail">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Coa Detail" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" />
+            <dataField fieldName="AccFundCode" columns="4" />
+            <dataField fieldName="Acccode" columns="50" />
+            <dataField fieldName="AccName" />
+            <dataField fieldName="AccDesc" columns="50" />
+            <dataField fieldName="AccTypeID" columns="15" />
+            <dataField fieldName="AccDestID" columns="15" />
+            <dataField fieldName="AccBalTypeID" columns="15" />
+            <dataField fieldName="AccCurrency" columns="15" />
+            <dataField fieldName="ConsTranCode" columns="10" />
+            <dataField fieldName="CoaControlID" columns="15" />
+            <dataField fieldName="CoaSubID" columns="15" />
+            <dataField fieldName="CoaMainID" columns="15" />
+            <dataField fieldName="TranCode" columns="10" />
+            <dataField fieldName="SubsYn" />
+            <dataField fieldName="AccSubTypeID" columns="15" />
+            <dataField fieldName="OpenDate" columns="20" />
+            <dataField fieldName="OpenDebit" columns="15" />
+            <dataField fieldName="OpenCredit" columns="15" />
+            <dataField fieldName="AccCurrencyRate" columns="15" />
+            <dataField fieldName="Revenue" columns="15" />
+            <dataField fieldName="VariableCost" />
+            <dataField fieldName="MonthlyExp" />
+            <dataField fieldName="Budget" columns="15" />
+            <dataField fieldName="Annex" columns="50" />
+            <dataField fieldName="Dlt" columns="1" />
+            <dataField fieldName="IsCashNature" />
+            <dataField fieldName="IsBankNature" />
+            <dataField fieldName="AccSubTypeID1" columns="15" />
+            <dataField fieldName="AccSubTypeID2" columns="15" />
+            <dataField fieldName="BankName" columns="50" />
+            <dataField fieldName="BankAccNum" columns="50" />
+            <dataField fieldName="BranchName" columns="50" />
+            <dataField fieldName="BankAccType" columns="50" />
+            <dataField fieldName="AccTypeSetupID" columns="15" />
+            <dataField fieldName="AccNameBg" />
+            <dataField fieldName="ColumnSerail" columns="15" />
+            <dataField fieldName="Slno" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Coa Detail">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="AccFundID" columns="15" />
+            <dataField fieldName="AccFundCode" columns="4" />
+            <dataField fieldName="Acccode" columns="50" />
+            <dataField fieldName="AccName" />
+            <dataField fieldName="AccDesc" columns="50" />
+            <dataField fieldName="AccTypeID" columns="15" />
+            <dataField fieldName="AccDestID" columns="15" />
+            <dataField fieldName="AccBalTypeID" columns="15" />
+            <dataField fieldName="AccCurrency" columns="15" />
+            <dataField fieldName="ConsTranCode" columns="10" />
+            <dataField fieldName="CoaControlID" columns="15" />
+            <dataField fieldName="CoaSubID" columns="15" />
+            <dataField fieldName="CoaMainID" columns="15" />
+            <dataField fieldName="TranCode" columns="10" />
+            <dataField fieldName="SubsYn" />
+            <dataField fieldName="AccSubTypeID" columns="15" />
+            <dataField fieldName="OpenDate" columns="20" />
+            <dataField fieldName="OpenDebit" columns="15" />
+            <dataField fieldName="OpenCredit" columns="15" />
+            <dataField fieldName="AccCurrencyRate" columns="15" />
+            <dataField fieldName="Revenue" columns="15" />
+            <dataField fieldName="VariableCost" />
+            <dataField fieldName="MonthlyExp" />
+            <dataField fieldName="Budget" columns="15" />
+            <dataField fieldName="Annex" columns="50" />
+            <dataField fieldName="Dlt" columns="1" />
+            <dataField fieldName="IsCashNature" />
+            <dataField fieldName="IsBankNature" />
+            <dataField fieldName="AccSubTypeID1" columns="15" />
+            <dataField fieldName="AccSubTypeID2" columns="15" />
+            <dataField fieldName="BankName" columns="50" />
+            <dataField fieldName="BankAccNum" columns="50" />
+            <dataField fieldName="BranchName" columns="50" />
+            <dataField fieldName="BankAccType" columns="50" />
+            <dataField fieldName="AccTypeSetupID" columns="15" />
+            <dataField fieldName="AccNameBg" />
+            <dataField fieldName="ColumnSerail" columns="15" />
+            <dataField fieldName="Slno" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

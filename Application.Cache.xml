@@ -1,21 +1,29 @@
 <application snapshot="true" integrity="checked" xmlns="urn:schemas-codeontime-com:data-aquarium-application" xmlns:m="urn:codeontime:data-map" xmlns:dm="urn:schemas-codeontime-com:data-model">
   <pages>
-    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000">
+    <page name="Home" title="^HomeTitle^Start^HomeTitle^" description="^HomeDesc^Application home page^HomeDesc^" path="^HomePath^Home^HomePath^" style="HomePage" customStyle="Wide" index="1000" useExtenders="false">
       <containers>
         <container id="c101" flow="NewRow" />
+        <container id="c102" flow="NewRow" />
       </containers>
-      <controls></controls>
+      <controls>
+      </controls>
       <dataViews>
-        <dataView id="view1" container="c101" controller="MemberDashBoard" />
+        <dataView id="view1" container="c101" controller="MemberDashBoard" roles="Administrators,Users" />
+        <dataView id="view2" container="c102" controller="MemberInfoProfileUpdate" view="grid1" roles="Members" />
       </dataViews>
     </page>
-    <page name="ClubSetup" path="Club Setup" index="1010" title="Club Setup" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-card-travel" />
+    <page name="ClubSetup" path="Club Setup" index="1010" title="Club Setup" roles="Administrators,ClubSetup" useExtenders="false" generate="Always" customStyle="material-icon-card-travel">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
     <page name="MemberGroup" title="Member Group" description="View Member Group" index="1020" path="Club Setup | Member Group" roles="Administrators,MemberGroup" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="MemberGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+        <dataView id="view1" controller="MemberGroup" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-fullscreen" />
       </dataViews>
       <controls />
       <about>This page allows member group management.</about>
@@ -25,7 +33,7 @@
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="MemberCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-never" />
+        <dataView id="view1" controller="MemberCategory" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-fullscreen" />
       </dataViews>
       <controls />
       <about>This page allows member category management.</about>
@@ -35,7 +43,7 @@
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="MemberStatus" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+        <dataView id="view1" controller="MemberStatus" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-fullscreen" />
       </dataViews>
       <controls />
       <about>This page allows member status management.</about>
@@ -45,7 +53,7 @@
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="MemberFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+        <dataView id="view1" controller="MemberFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" tag="modal-fullscreen" />
       </dataViews>
       <controls />
       <about>This page allows member fee management.</about>
@@ -56,8 +64,8 @@
       </containers>
       <dataViews>
         <dataView id="view1" controller="MemberInfo" view="grid1" container="container1" activator="Tab" text="Registrated Member" multiSelect="true" tag="modal-never" />
-        <dataView id="view3" container="container1" controller="MemberInfoSpouse" view="grid1" activator="Tab" text="Spouse " tag="modal-never,view-style-grid&#xD;&#xA;" />
-        <dataView id="view2" container="container1" controller="MemberInfoChild" activator="Tab" text="Children" tag="modal-never,view-style-grid&#xD;&#xA;" view="grid1" />
+        <dataView id="view3" container="container1" controller="MemberInfoSpouse" view="grid1" activator="Tab" text="Spouse " tag="modal-never&#xD;&#xA;" />
+        <dataView id="view2" container="container1" controller="MemberInfoChild" activator="Tab" text="Children" tag="modal-never&#xD;&#xA;" view="grid1" />
       </dataViews>
       <controls />
       <about>This page allows member information management.</about>
@@ -67,10 +75,19 @@
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" container="c101" controller="MemberInfoNonMember" view="grid1" tag="modal-never" />
+        <dataView id="view1" container="c101" controller="MemberInfoNonMember" view="grid1" tag="modal-never" activator="Tab" text="Non-Member" />
+        <dataView id="view2" container="c101" controller="MemberInfoNonMemberOCM" activator="Tab" text="OCM Member" />
       </dataViews>
     </page>
-    <page name="RegisterMemberCard" path="Club Setup | Card Register" index="1080" title="Card Register" roles="Administrators,CardRegistrater" useExtenders="false" generate="Always">
+    <page name="MemberView" path="Club Setup | Member View" index="1080" title="Member View" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberInfoView" view="grid1" activator="Tab" text="All Member View" pageSize="150" multiSelect="true" showPager="TopAndBottom" />
+      </dataViews>
+    </page>
+    <page name="RegisterMemberCard" path="Club Setup | Card Issue" index="1090" title="Card Register" roles="Administrators,CardRegistrater" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -78,16 +95,15 @@
         <dataView id="view1" container="c101" controller="MemberCard" view="grid1" />
       </dataViews>
     </page>
-    <page name="DepositToCard" path="Club Setup | Recharge Card" index="1090" title="Recharge Card" roles="Administrators,RechargeCard" useExtenders="false" generate="Always">
+    <page name="DepositToCard" path="Club Setup | Recharge Card" index="1100" title="Recharge Card" roles="Administrators,RechargeCard" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
         <dataView id="view1" container="c101" controller="MemberCardTransactionDeposit" activator="Tab" text="Recharge Card" multiSelect="true" view="grid1" />
-        <dataView id="view2" container="c101" controller="MemberCardDepositApproved" activator="Tab" text="Deposit Approved" multiSelect="true" view="grid1" />
       </dataViews>
     </page>
-    <page name="MemberService" title="Member Service" description="View Member Service" index="1100" path="Club Setup | Member Service" roles="Administrators,MemberService" useExtenders="false">
+    <page name="MemberService" title="Member Service" description="View Member Service" index="1110" path="Club Setup | Member Service" roles="Administrators,MemberService" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -97,7 +113,7 @@
       <controls />
       <about>This page allows member service management.</about>
     </page>
-    <page name="MemberStatusChange" title="Member Status Change" description="View Member Status Change" index="1110" path="Club Setup | Member Status Change" roles="Administrators,MemberStatusChange" useExtenders="false">
+    <page name="MemberStatusChange" title="Member Status Change" description="View Member Status Change" index="1120" path="Club Setup | Member Status Change" roles="Administrators,MemberStatusChange" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -107,7 +123,7 @@
       <controls />
       <about>This page allows member status change management.</about>
     </page>
-    <page name="Holiday" title="Holiday" description="View Holiday" index="1120" path="Club Setup | Holiday" roles="Administrators,Holiday" useExtenders="false">
+    <page name="Holiday" title="Holiday" description="View Holiday" index="1130" path="Club Setup | Holiday" roles="Administrators,Holiday" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -117,7 +133,7 @@
       <controls />
       <about>This page allows holiday management.</about>
     </page>
-    <page name="MemberPersonalCaddieBallboy" title="Member Personal Caddie Ballboy" description="View Member Personal Caddie Ballboy" index="1130" path="Club Setup | Member Personal Caddie Ballboy" roles="Administrators,PersonalCaddieBallBoy" useExtenders="false">
+    <page name="MemberPersonalCaddieBallboy" title="Member Personal Caddie Ballboy" description="View Member Personal Caddie Ballboy" index="1140" path="Club Setup | Member Personal Caddie Ballboy" roles="Administrators,PersonalCaddieBallBoy" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -127,7 +143,7 @@
       <controls />
       <about>This page allows member personal caddie ballboy management.</about>
     </page>
-    <page name="Caddie" title="Caddie" description="View Caddie" index="1140" path="Club Setup | Caddie/BallBoy" roles="Administrators,CaddieBallBoy" useExtenders="false">
+    <page name="Caddie" title="Caddie" description="View Caddie" index="1150" path="Club Setup | Caddie/BallBoy" roles="Administrators,CaddieBallBoy" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -138,7 +154,17 @@
       <controls />
       <about>This page allows caddie management.</about>
     </page>
-    <page name="GolfCart" title="Golf Cart" description="View Golf Cart" index="1150" path="Club Setup | Golf Cart" roles="Administrators,GolfCart" useExtenders="false">
+    <page name="ClubName" title="Club Name" description="View Club Name" index="1160" path="Club Setup | Club Name">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="ClubName" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows club name management.</about>
+    </page>
+    <page name="GolfCart" title="Golf Cart" description="View Golf Cart" index="1170" path="Club Setup | Golf Cart" roles="Administrators,GolfCart" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -148,7 +174,7 @@
       <controls />
       <about>This page allows golf cart management.</about>
     </page>
-    <page name="Bank" title="Bank" description="View Bank" index="1160" path="Club Setup | Bank" roles="Administrators,Bank" useExtenders="false">
+    <page name="Bank" title="Bank" description="View Bank" index="1180" path="Club Setup | Bank" roles="Administrators,Bank" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -158,7 +184,7 @@
       <controls />
       <about>This page allows bank management.</about>
     </page>
-    <page name="Smsconfig" title="Smsconfig" description="View Smsconfig" index="1170" path="Club Setup | Smsconfig" roles="Administrators,SmsConfig" useExtenders="false">
+    <page name="Smsconfig" title="Smsconfig" description="View Smsconfig" index="1190" path="Club Setup | Smsconfig" roles="Administrators,SmsConfig" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -170,7 +196,7 @@
       <controls />
       <about>This page allows smsconfig management.</about>
     </page>
-    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="Club Setup | User Access" style="UsersPage" index="1180">
+    <page name="Membership" title="^MembershipTitle^Membership Manager^MembershipTitle^" description="^MembershipDesc^User and role manager^MembershipDesc^" roles="Administrators" path="Club Setup | User Access" style="UsersPage" index="1200">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -179,11 +205,13 @@
         <control id="control1" name="MembershipManager" container="container1" />
       </controls>
     </page>
-    <page name="GameSetup" path="Game Setup" index="1200" title="Game Setup" roles="Administrators" useExtenders="false" generate="Always">
-      <containers></containers>
-      <dataViews></dataViews>
+    <page name="GameSetup" path="Game Setup" index="1210" title="Game Setup" roles="Administrators,GameSetup" useExtenders="false" generate="Always" customStyle="material-icon-golf_course">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
     </page>
-    <page name="HoleSetup" path="Game Setup | Hole Setup" index="1210" title="Hole Setup" roles="Administrators,HoleSetup" useExtenders="false" generate="Always">
+    <page name="HoleSetup" path="Game Setup | Hole Setup" index="1220" title="Hole Setup" roles="Administrators,HoleSetup" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -201,30 +229,30 @@
       <controls />
       <about>This page allows game fee management.</about>
     </page>
-    <page name="GameSchedule" path="Game Setup | Flight Schedule Create" index="1240" title="Flight Schedule Create" roles="*" useExtenders="false" generate="Always">
+    <page name="GameSchedule" path="Game Setup | Flight Schedule Create" index="1240" title="Flight Schedule Create" roles="Administrators,FlightCreate" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" container="c101" controller="GameFlightSchedule" activator="Tab" text="Flight Schedule" view="grid1" />
+        <dataView id="view1" container="c101" controller="GameFlightSchedule" activator="Tab" text="Flight Schedule" view="grid1" pageSize="120" />
       </dataViews>
     </page>
     <page name="GameRegistration" path="Game Setup | Game Registration" index="1250" title="Game Registration" roles="Administrators,GameRegistration" useExtenders="false" generate="FirstTimeOnly">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
-      <dataViews></dataViews>
+      <dataViews>
+      </dataViews>
     </page>
-    <page name="MemberGameReg" title="Game Payment Approval" description="View Member Game Reg" index="1260" path="Game Setup | Game Payment Approval" useExtenders="false" roles="Administrators,GamePayApproval">
+    <page name="MemberGameReg" title="Game Registration Payment" description="View Member Game Reg" index="1260" path="Game Setup | Game Registration Payment" useExtenders="false" roles="Administrators,GamePayment">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
       <dataViews>
         <dataView id="view1" container="container1" controller="MemberGameRegApproval" activator="Tab" text="Game Registration Approval" multiSelect="true" />
-        <dataView id="view2" container="container1" controller="MemberGameRegApproved" activator="Tab" text="Game Registration Approved" />
       </dataViews>
       <controls />
-      <about>This page allows member game reg management.</about>
+      <about>This page allows member Game Registration Payment management.</about>
     </page>
     <page name="GameMatch" title="Game Match" description="View Game Match" index="1270" path="Game Setup | Game Match" roles="NonDelivery" useExtenders="false">
       <containers>
@@ -256,8 +284,8 @@
       <controls />
       <about>This page allows game match score management.</about>
     </page>
-    <page name="TournamentSetup" path="Tournament Setup" index="1300" title="Tournament Setup" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-perm-contact-calendar" />
-    <page name="Tournament" title="Tournament" description="View Tournament" index="1310" path="Tournament Setup | Tournament" roles="Administrators,Tournament" useExtenders="false">
+    <page name="TournamentSetup" path="Tournament Setup" index="1330" title="Tournament Setup" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-perm-contact-calendar" />
+    <page name="Tournament" title="Tournament" description="View Tournament" index="1340" path="Tournament Setup | Tournament" roles="Administrators,Tournament" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -267,7 +295,7 @@
       <controls />
       <about>This page allows tournament management.</about>
     </page>
-    <page name="GameCategory" title="Game Category" description="View Game Category" index="1320" path="Tournament Setup | Game Category" roles="Administrators,GameCategory" useExtenders="false">
+    <page name="GameCategory" title="Game Category" description="View Game Category" index="1350" path="Tournament Setup | Game Category" roles="Administrators,GameCategory" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -277,7 +305,27 @@
       <controls />
       <about>This page allows game category management.</about>
     </page>
-    <page name="TeeName" title="Tee Name" description="View Tee Name" index="1330" path="Tournament Setup | Tee Name" roles="Administrators,TeeName" useExtenders="false">
+    <page name="TournamentGameLimit" title="Game Setup" description="View Tournament Game Setup" index="1360" path="Tournament Setup | Tournament Game Setup" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGameLimit" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game setup management.</about>
+    </page>
+    <page name="TournamentGame" title="Tournament Game" description="View Tournament Game" index="1370" path="Tournament Setup | Tournament Game">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="TournamentGame" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows tournament game management.</about>
+    </page>
+    <page name="TeeName" title="Tee Name" description="View Tee Name" index="1380" path="Tournament Setup | Tee Name" roles="Administrators,TeeName" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -287,7 +335,7 @@
       <controls />
       <about>This page allows tee name management.</about>
     </page>
-    <page name="TournamentFee" title="Fees" description="View Tournament Fee" index="1340" path="Tournament Setup | Fees" useExtenders="false" roles="Administrators,GameFee">
+    <page name="TournamentFee" title="Tournament Game Fees" description="View Tournament Game Fee" index="1390" path="Tournament Setup | Tournament Game Fees" useExtenders="false" roles="Administrators,GameFee">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -297,7 +345,7 @@
       <controls />
       <about>This page allows tournament fee management.</about>
     </page>
-    <page name="TournamentFlightSch" title="Flight Schedule" description="View Tournament Flight Sch" index="1350" path="Tournament Setup | Tournament Flight Schedule" useExtenders="false" roles="Administrators,TournamentFlightSchedule">
+    <page name="TournamentFlightSch" title="Flight Schedule" description="View Tournament Flight Sch" index="1400" path="Tournament Setup | Tournament Flight Schedule" useExtenders="false" roles="Administrators,TournamentFlightSchedule">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -307,7 +355,7 @@
       <controls />
       <about>This page allows tournament flight sch management.</about>
     </page>
-    <page name="GameType" title="Game Type" description="View Game Type" index="1360" path="Tournament Setup | Game Type" roles="Administrators,GameType" useExtenders="false">
+    <page name="GameType" title="Game Type" description="View Game Type" index="1410" path="Tournament Setup | Game Type" roles="NonDelivery" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -317,18 +365,17 @@
       <controls />
       <about>This page allows game type management.</about>
     </page>
-    <page name="TournamentPayment" path="Tournament Setup | Tournament Payment" index="1370" title="Tournament Payment" roles="Administrators,TournamentPayment" useExtenders="false" generate="Always">
+    <page name="TournamentPayment" path="Tournament Setup | Tournament Payment" index="1420" title="Tournament Payment" roles="NonDelivery" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
         <dataView id="view2" container="c101" controller="TourRegisterMemberApproval" multiSelect="true" activator="Tab" text="Tournament Payment Approval" />
-        <dataView id="view3" container="c101" controller="TourRegisterMemberApproved" activator="Tab" text="Tournament Payment Approved" />
       </dataViews>
     </page>
-    <page name="TourRegisterMember" path="Tournament Setup | Tour Register Member" index="1380" title="Tour Register Member" roles="Administrators,TournamentRegistration" useExtenders="false" generate="FirstTimeOnly" />
-    <page name="LockerService" path="Locker Service" index="1390" title="Locker Service" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-store" />
-    <page name="Locker" title="Locker" description="View Locker" index="1400" path="Locker Service | Locker" roles="Administrators,LockerCreate" useExtenders="false">
+    <page name="TourRegisterMember" path="Tournament Setup | Tour Register Member" index="1430" title="Tour Register Member" roles="Administrators,TournamentRegistration" useExtenders="false" generate="FirstTimeOnly" />
+    <page name="LockerService" path="Locker Service" index="1440" title="Locker Service" roles="Administrators,LockerService" useExtenders="false" generate="Always" customStyle="material-icon-store" />
+    <page name="Locker" title="Locker" description="View Locker" index="1450" path="Locker Service | Locker" roles="Administrators,LockerCreate" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -338,7 +385,7 @@
       <controls />
       <about>This page allows locker management.</about>
     </page>
-    <page name="LockerBooking" title="Locker Booking" description="View Locker Booking" index="1410" path="Locker Service | Locker Booking" roles="Administrators,LockerBooking" useExtenders="false">
+    <page name="LockerBooking" title="Locker Booking" description="View Locker Booking" index="1460" path="Locker Service | Locker Booking" roles="Administrators,LockerBooking" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -348,24 +395,49 @@
       <controls />
       <about>This page allows locker booking management.</about>
     </page>
-    <page name="BillCollection" path="Bill Collection" index="1420" title="Bill Collection" roles="Administrators" useExtenders="false" generate="Always" customStyle="material-icon-account-balance" />
-    <page name="MemberBill" title="Bill Approval Pending" description="View Member Bill Approval Pending" index="1430" path="Bill Collection | Bill Approval Pending" roles="Administrators,BillApproval" useExtenders="false">
+    <page name="BillCollection" path="Bill Collection" index="1470" title="Bill Collection" roles="Administrators,BillCollection" useExtenders="false" generate="Always" customStyle="material-icon-account-balance" />
+    <page name="MemberBill" title="Bill Approval Pending" description="View Member Bill Approval Pending" index="1480" path="Bill Collection | Bill Approval Pending" roles="Administrators,BillApproval" useExtenders="false">
       <containers>
-        <container id="container1" flow="NewRow" />
+        <container id="c101" flow="NewRow" style="padding-top:8px" />
       </containers>
       <dataViews>
-        <dataView id="view1" controller="MemberBill" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Member Bill Approval" multiSelect="true" tag="modal-never" showDescription="false" pageSize="25" />
-        <dataView id="view2" container="container1" controller="MemberBillApproved" activator="Tab" text="Member Bill Approved" view="grid1" tag="modal-never" multiSelect="true" />
+        <dataView id="view2" container="c101" controller="MemberBillApproval" view="grid1" activator="Tab" text="Member Payments Approval List" showQuickFind="false" multiSelect="true" />
+        <dataView id="view1" container="c101" controller="GameRegisterApproval" view="grid1" activator="Tab" text="Game Registration Payment Approval List" multiSelect="true" showQuickFind="false" />
       </dataViews>
       <controls />
       <about>This page allows member bill management.</about>
     </page>
-    <page name="MyExternal" path="Bill Collection | Bill Collection" index="1440" title="Member Bill Collection" roles="Administrators,BillCollectors" useExtenders="false" generate="FirstTimeOnly" template="Responsive Grid" description="Member Bill Collection - Monthly Subscription, Contribution Welfare Fund, Locker Service etc." customStyle="metrial-icon-build" />
-    <page name="CreateServiceDue" path="Bill Collection | Create Service Due" index="1450" title="Create Service Due" roles="Administrators,ServiceDueCreate" useExtenders="false" generate="FirstTimeOnly">
-      <containers></containers>
-      <dataViews></dataViews>
+    <page name="MyExternal" path="Bill Collection | Bill Collection" index="1490" title="Member Bill Collection" roles="Administrators,BillCollection" useExtenders="false" generate="FirstTimeOnly" template="Responsive Grid" description="Member Bill Collection - Monthly Subscription, Contribution Welfare Fund, Locker Service etc." customStyle="metrial-icon-build" />
+    <page name="CoachFee" title="Coaching Fee Collection" description="View Coach Fee" index="1500" path="Bill Collection | Coaching Fee Collection" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="CoachFee" view="grid1" showInSummary="true" container="container1" activator="None" text="" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows coach fee management.</about>
     </page>
-    <page name="SearchMemberDues" path="Bill Collection | Search Member Dues" index="1460" title="Search Member Dues" roles="*" useExtenders="false" generate="Always">
+    <page name="CreateServiceDue" path="Bill Collection | Create Service Due" index="1510" title="Create Service Due" roles="Administrators,CreateServiceDue" useExtenders="false" generate="FirstTimeOnly">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="MemberAnnualBillDetail" title="Annual Due Create" description="View Member Annual Bill Detail" index="1520" path="Bill Collection | Due Management" useExtenders="false">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="container1" controller="MemberSubsDueDetail" view="grid1" activator="Tab" text="Subscription Due Create" roles="Administrators,DueAdmin" />
+        <dataView id="view3" container="container1" controller="MemberConWfdueDetail" view="grid1" activator="Tab" text="Member Contricution Due Create" roles="Administrators,DueAdmin" />
+        <dataView id="view4" container="container1" controller="MemberLockerBillDetail" view="grid1" activator="Tab" text="Locker Due Bill Create" roles="Administrators,DueAdmin" />
+        <dataView id="view1" controller="MemberAnnualBillDetail" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Annual Due Manage" multiSelect="true" />
+      </dataViews>
+      <controls />
+      <about>This page allows member annual bill detail management.</about>
+    </page>
+    <page name="SearchMemberDues" path="Bill Collection | Search Member Dues" index="1530" title="Search Member Dues" roles="*" useExtenders="false" generate="Always">
       <containers>
         <container id="c104" flow="NewRow" />
       </containers>
@@ -373,16 +445,45 @@
         <dataView id="view4" container="c104" controller="MemberSearch" startCommandName="Edit" view="form1" />
       </dataViews>
     </page>
-    <page name="Reports" path="Reports" index="1470" title="Reports" roles="Administrators" useExtenders="false" generate="Always" />
-    <page name="DueStatement" path="Reports | Due Statement" index="1480" title="Due Statement" roles="Administrators,ReportDueStatement" useExtenders="false" generate="Always">
+    <page name="MemberRestBarBill" title="Restaurent/Bar Due Bills" description="View Restaurent/Bar Due Bills" index="1540" path="Bill Collection | Restaurent Due Bills" useExtenders="false" roles="Administrators,RestaurentDueBills">
+      <containers>
+        <container id="container1" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" controller="MemberRestBarBill" view="grid1" showInSummary="true" container="container1" activator="Tab" text="Dues" multiSelect="false" />
+        <dataView id="view2" container="container1" controller="MemberRestBarBillCollection" activator="Tab" text="Collections" />
+      </dataViews>
+      <controls />
+      <about>This page allows member rest bar bill management.</about>
+    </page>
+    <page name="BarDueBills" path="Bill Collection | Bar Due Bills" index="1550" title="Bar Due Bills" roles="Administrators,BarDueBills" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view2" container="c101" controller="MemberList_Due" />
+        <dataView id="view1" container="c101" controller="MemberRestBarBillBaronly" activator="Tab" text="Due Bills" />
+        <dataView id="view2" container="c101" controller="MemberRestBarBillCollectionBar" activator="Tab" text="Collections" refreshInterval="30" />
       </dataViews>
     </page>
-    <page name="TournamentCollection" path="Reports | Tournament Collection" index="1490" title="Tournament Collection" roles="Administrators,ReportTournamentCollection" useExtenders="false" generate="Always">
+    <page name="MemberBillPrint" path="Bill Collection | Member Bill Print" index="1560" title="Member Bill Print" roles="Administrators,MemberBillPrint" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view4" container="c101" controller="MemberBillPaidApproved" view="grid1" activator="Tab" text="Member Bill Print" multiSelect="true" />
+      </dataViews>
+    </page>
+    <page name="Reports" path="Reports" index="1570" title="Reports" roles="Administrators,Reports" useExtenders="false" generate="Always" />
+    <page name="DueStatement" path="Reports | Due Statement" index="1580" title="Due Statement" roles="Administrators,ReportDueStatement" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c101" controller="MemberList_Due" multiSelect="true" activator="Tab" text="Due Statement Detailed" />
+        <dataView id="view1" container="c101" controller="MemberAll_DueStatementAsOn" view="grid1" activator="Tab" text="Member Dues Summary" />
+      </dataViews>
+    </page>
+    <page name="TournamentCollection" path="Reports | Tournament Collection" index="1590" title="Tournament Collection" roles="Administrators,ReportTournamentCollection" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -390,7 +491,7 @@
         <dataView id="view1" container="c101" controller="TournamentCollection" view="grid1" />
       </dataViews>
     </page>
-    <page name="MemberBillCollection" path="Reports | Member Bill Collection" index="1500" title="Member Bill Collection" roles="*" useExtenders="false" generate="Always">
+    <page name="MemberBillCollection" path="Reports | Member Bill Collection" index="1600" title="Member Bill Collection" roles="Administrators,ReportMemberBillCollection" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -399,15 +500,17 @@
         <dataView id="view2" container="c101" controller="MemberBillCollectionStatement" activator="Tab" text="Member Bill Collection" showQuickFind="false" refreshInterval="5" view="grid1" />
       </dataViews>
     </page>
-    <page name="MemberFeeReport" path="Reports | Member Fee Report" index="1510" title="Member Fee Report" roles="Administrators,ReportMemberFee" useExtenders="false" generate="Always">
+    <page name="MemberFeeReport" path="Reports | Member Fee Report" index="1610" title="Member Fee Report" roles="Administrators,ReportMemberFee" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" container="c101" controller="MemberFeeReport" />
+        <dataView id="view1" container="c101" controller="MemberFeeReport" activator="Tab" text="Member Fees" multiSelect="true" />
+        <dataView id="view2" container="c101" controller="AbsenteeMemberReport" activator="Tab" text="Absentee Members" multiSelect="true" />
+        <dataView id="view3" container="c101" controller="MemberInformationReport" activator="Tab" text="Member Information" multiSelect="true" />
       </dataViews>
     </page>
-    <page name="Registration" path="Reports | Registration Report" index="1520" title="Registration Report" roles="Administrators,ReportDailyRegistration" useExtenders="false" generate="Always">
+    <page name="Registration" path="Reports | Registration Report" index="1620" title="Registration Report" roles="Administrators,ReportDailyRegistration" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -415,7 +518,7 @@
         <dataView id="view1" container="c101" controller="DailyRegistration" view="grid1" activator="Tab" text="Daily Registration" multiSelect="true" />
       </dataViews>
     </page>
-    <page name="GameFlightSchedule" title="Daily Registered Players" description="View Daily Registered Players" index="1530" path="Reports | Daily Registered Players" roles="Administrators,ReportDailyRegisteredPlayers" useExtenders="false">
+    <page name="GameFlightSchedule" title="Daily Registered Players" description="View Daily Registered Players" index="1630" path="Reports | Daily Registered Players" roles="Administrators,ReportDailyRegisteredPlayers" useExtenders="false">
       <containers>
         <container id="container1" flow="NewRow" />
       </containers>
@@ -425,7 +528,32 @@
       <controls />
       <about>This page allows Daily Registered Players management.</about>
     </page>
-    <page name="ClubReport" index="1540" title="Club Report" roles="*" useExtenders="false" generate="FirstTimeOnly">
+    <page name="CardRechargeReport" path="Reports | Card Recharge Report" index="1640" title="Card Recharge Report" roles="Administrators,ReportCardRecharge" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c101" controller="MemberCardRechargeReport" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="CardTransactions" path="Reports | Card Transactions" index="1650" title="Card Transactions" roles="Administrators,ReportCardTransaction" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c102" flow="NewRow" style="padding-top:8px" />
+      </containers>
+      <dataViews>
+        <dataView id="view2" container="c102" controller="MemberCardTransactionReport" activator="Tab" text="Daily Transactions" />
+        <dataView id="view1" container="c102" controller="MemberCardStatementReport" multiSelect="true" activator="Tab" text="Card Statement Print" />
+      </dataViews>
+    </page>
+    <page name="CoachingFeeStatement" path="Reports | Coaching Fee Statement" index="1660" title="Coaching Fee Statement" roles="*" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="CoachFeeReport" view="grid1" activator="Tab" />
+      </dataViews>
+    </page>
+    <page name="ClubReport" index="1670" title="Club Report" roles="*" useExtenders="false" generate="FirstTimeOnly">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
@@ -433,16 +561,51 @@
         <control id="control1" container="c101" name="ReportViewer" />
       </controls>
     </page>
-    <page name="SendSMS" index="1550" title="Send SMS" roles="*" useExtenders="false" generate="FirstTimeOnly" />
-    <page name="EmailSMS" path="Email/SMS" index="1560" title="Email/SMS" roles="Administrators,EmailSMS" useExtenders="false" generate="Always">
+    <page name="SendSMS" index="1680" title="Send SMS" roles="*" useExtenders="false" generate="FirstTimeOnly" />
+    <page name="EmailSMS" path="Email/SMS" index="1690" title="Email/SMS" roles="Administrators,EmailSMS" useExtenders="false" generate="Always">
       <containers>
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
         <dataView id="view2" container="c101" controller="MemberServiceBillDue" activator="Tab" text="Due Member Send Email" multiSelect="true" />
-        <dataView id="view3" container="c101" controller="MemberSendSMS" multiSelect="true" activator="Tab" text="Sending SMS" view="AllMembers" />
+        <dataView id="view3" container="c101" controller="MemberSendSMS" multiSelect="true" activator="Tab" text="Sending SMS" view="AllMembers" showInSummary="true" />
+        <dataView id="view1" container="c101" controller="MemberAll_DueStatementAsOnSendSMS" view="grid1" multiSelect="true" activator="Tab" text="Send Due SMS" showInSummary="true" />
       </dataViews>
     </page>
+    <page name="MemberPanel" path="Member Panel" index="1700" title="Member Panel" roles="Members" useExtenders="false" generate="Always" customStyle="material-icon-contacts">
+      <containers>
+      </containers>
+      <dataViews>
+      </dataViews>
+    </page>
+    <page name="MyProfile" path="Member Panel | My Profile" index="1710" title="My Profile" roles="*" useExtenders="false" generate="Always" customStyle="material-icon-accessibility_new">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberInfoProfileUpdate" view="grid1" />
+      </dataViews>
+    </page>
+    <page name="MemberCardTransactions" path="Member Panel | My Card" index="1720" title="My Card" roles="Members" useExtenders="false" generate="Always" customStyle="material-icon-card_membership">
+      <containers>
+        <container id="c101" flow="NewColumn" style="padding-top:8px" width="49%" />
+        <container id="c102" flow="NewColumn" width="50%" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberCardByMember" />
+        <dataView id="view2" container="c102" controller="MemberCardTransactionReportByMember" activator="Tab" text="Card Deposited" />
+      </dataViews>
+    </page>
+    <page name="MemberBillStatus" path="Member Panel | Member Bill Status" index="1730" title="Member Bill Status" roles="NonDelivery" useExtenders="false" generate="Always">
+      <containers>
+        <container id="c101" flow="NewRow" />
+      </containers>
+      <dataViews>
+        <dataView id="view1" container="c101" controller="MemberList_DueByMember" />
+      </dataViews>
+    </page>
+    <page name="MemberDailyRegistration" path="Member Game Registration" index="1740" title="Member Game Registration" roles="?" useExtenders="false" generate="FirstTimeOnly" />
+    <page name="MemberGameRegistration" path="Tournament Registration" index="1750" title="Tournament Registration" roles="NonDelivery" useExtenders="false" generate="FirstTimeOnly" customStyle="material-icon-perm-contact-calendar" />
   </pages>
   <userControls>
     <userControl name="TableOfContents" prefix="uc" generate="Always">

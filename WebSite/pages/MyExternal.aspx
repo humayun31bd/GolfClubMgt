@@ -30,10 +30,17 @@
 </style>
 
 <body class="container-fluid" ng-controller="PayNowCtrl as ctrl">
+
+
     <section class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
             <div class="container-fluid custom-container">
-                <h4>Collection Information</h4>
+                <div class="col-sm-11 text-center p0">
+                    <h4>Collection Information</h4>
+                </div>
+                <div class="col-sm-1 text-right">
+                    <a class="btn btn-sm btn-primary" href="/pages/Home.aspx">Back Home</a>
+                </div>
                 <div class="col-sm-12 no-padding">
                     <div class="col-sm-8 col-md-8 bordered-div no-padding nb-right">
                         <div class="bordered-div col-sm-12 no-padding nb-left nb-top nb-right">
@@ -55,8 +62,8 @@
                             <div class="col-sm-5 bordered-div st-height nb-left nb-top nb-bottom">
                                 <span class="st-padding table-heading-cs">Received With Thanks From</span>
                             </div>
-                            <div class="col-sm-7 bordered-div st-height nb-left nb-top nb-bottom nb-right">
-                                <span class="st-padding table-heading-cs">{{ctrl.member.fullName}}</span>
+                            <div class="col-sm-7 bordered-div st-height nb-left nb-top nb-bottom nb-right">                                
+                                <span class="st-padding table-heading-cs">{{ctrl.member.fullName}}: {{ctrl.member.MemberStatus}}</span>
                             </div>
                         </div>
                         <div class="bordered-div col-sm-12 no-padding nb-left nb-top nb-bottom nb-right">
@@ -98,6 +105,14 @@
                                 <td>Service Due</td>
                                 <td>: {{ctrl.member.serviceDue}}</td>
                             </tr>
+                            <tr>
+                                <td>Restaurant Due</td>
+                                <td>: {{ctrl.member.RestDueAmount}}</td>
+                            </tr>
+                            <tr style="border-bottom: none !important;">
+                                <td>Bar Due</td>
+                                <td>: {{ctrl.member.BarDueAmount}}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -125,7 +140,7 @@
                                     <td>
                                         <input type="checkbox" ng-model="ctrl.serviceItem.id[$index]" ng-true-value="{{s.ServiceID}}" ng-false-value="0" ng-change="ctrl.setTotalServiceAmount()">
                                     </td>
-                                    <td width="400">{{s.ServiceName}}</td>
+                                    <td width="200">{{s.ServiceName}}</td>
                                     <td>{{s.ServiceFee}}
                                         <input type="hidden" ng-model="ctrl.serviceItem.price[$index]" ng-init="ctrl.serviceItem.price[$index] = s.ServiceFee" ng-value="s.ServiceFee">
                                     </td>
@@ -159,14 +174,14 @@
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">From</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.subscriptionFrom" disabled>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.subscriptionFrom" >
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">TO</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.subscriptionTo">
-                                    <button class="col-sm-6 btn btn-sm btn-success mt-4 text-center" ng-click="ctrl.subscriptionFeeTotal = ctrl.subscriptionFee * ctrl.getTotalMonth(ctrl.subscriptionFrom, ctrl.subscriptionTo)">Add</button>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.subscriptionTo" ng-change="ctrl.subscriptionFeeTotal = ctrl.getsubsidueAmount(ctrl.subscriptionFrom, ctrl.subscriptionTo)">
                                 </td>
                                 <td>
+                                    <label class="label-text col-sm-12 text-center">Total</label>
                                     <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.subscriptionFeeTotal" disabled>
                                 </td>
                             </tr>
@@ -177,35 +192,34 @@
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">From</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.welFareFrom" disabled>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.welFareFrom">
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">TO</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.welFareTo">
-                                    <button class="col-sm-6 btn btn-sm btn-success mt-4 text-center" ng-click="ctrl.welFareContributionTotal = ctrl.welFareContribution * ctrl.getTotalMonth(ctrl.welFareFrom, ctrl.welFareTo)">Add</button>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.welFareTo" ng-change="ctrl.welFareContributionTotal = ctrl.getcontrwfdueAmount(ctrl.welFareFrom, ctrl.welFareTo)">
+                                    <%--<button class="col-sm-6 btn btn-sm btn-success mt-4 text-center" >Add</button>--%>
                                 </td>
                                 <td>
-                                    <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.welFareContributionTotal" disabled>
+                                    <label class="label-text col-sm-12 text-center">Total</label>
+                                    <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.welFareContributionTotal">
                                 </td>
                             </tr>
                             <tr class="text-center">
                                 <td>
                                     <input type="checkbox" ng-model="ctrl.isAddLockerFee" ng-true-value="true" ng-false-value="false" ng-change="ctrl.calculateTotalAmount()">
                                     <label class="label-ch">Locker</label>
-
-
-
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">From</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.lockerFeeFrom" disabled>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.lockerFeeFrom" 
                                 </td>
                                 <td>
                                     <label class="label-text col-sm-12 text-center">To</label>
-                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.lockerFeeTo">
-                                    <button class="col-sm-6 btn btn-sm btn-success mt-4" ng-hide="ctrl.hidelocaker" ng-click="ctrl.lockerFeeTotal = ctrl.lockerFee * ctrl.getTotalMonth(ctrl.lockerFeeFrom, ctrl.lockerFeeTo)">Add</button>
+                                    <input class="st-padding form-control fc-auto col-sm-12 text-center p0" type="date" ng-model="ctrl.lockerFeeTo" ng-change="ctrl.lockerFeeTotal = ctrl.getlockerdueAmount(ctrl.lockerFeeFrom, ctrl.lockerFeeTo)">
+                                    <%--<button class="col-sm-6 btn btn-sm btn-success mt-4" ng-click="ctrl.lockerFeeTotal = ctrl.getlockerdueAmount(ctrl.lockerFeeFrom, ctrl.lockerFeeTo)">Add</button>--%>
                                 </td>
                                 <td>
+                                    <label class="label-text col-sm-12 text-center">Total</label>
                                     <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.lockerFeeTotal" disabled>
                                 </td>
                             </tr>
@@ -217,7 +231,7 @@
                                 <td style="border-right: none !important;"></td>
                                 <td></td>
                                 <td>
-                                    <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.annualFee" disabled>
+                                    <input class="st-padding form-control fc-auto fc-110" type="text" ng-model="ctrl.annualFee">
                                 </td>
                             </tr>
                         </table>
@@ -281,22 +295,28 @@
                                 <th>Quantity</th>
                                 <th>Total Amount</th>
                             </thead>
-                            
-                            <tr style="border-top: none !important;" ng-repeat="sd in ctrl.member.sDue">
+
+                            <tr style="border-top: none !important;" ng-repeat="sd in ctrl.member.sDue track by $index">
+
                                 <td>
-                                    <input type="checkbox" ng-model="ctrl.isAddSubscription" ng-true-value="true" ng-false-value="false" ng-click="ctrl.calculateTotalAmount()" disabled>
+
+                                    <input type="checkbox" ng-model="ctrl.serviceItemdue.id[$index]" ng-true-value="{{sd.ServiceID}}" ng-false-value="0">
+                                    <input type="hidden" ng-model="ctrl.serviceItemdue.MemberBillID[$index]" ng-init="ctrl.serviceItemdue.MemberBillID[$index] = sd.MemberBillID" ng-value="sd.MemberBillID">
                                 </td>
                                 <td>
                                     <span>{{sd.ServiceName}}</span>
                                 </td>
                                 <td>
                                     <span>{{sd.Price}}</span>
+
                                 </td>
                                 <td>
                                     <span>{{sd.Quantity}}</span>
+
                                 </td>
                                 <td>
                                     <span>{{sd.TotalAmount}}</span>
+
                                 </td>
                             </tr>
                         </table>
@@ -320,7 +340,7 @@
                                 <td>
 
                                     <input type="radio" name="ctrl.paymentType" ng-model="ctrl.payment" ng-value="2" ng-change="ctrl.clickvalue()">
-                                    <label class="label-ch">Check</label>
+                                    <label class="label-ch">Checque</label>
                                 </td>
                                 <td>
 
@@ -330,7 +350,7 @@
                                 <td>
 
                                     <input type="radio" name="ctrl.paymentType" ng-model="ctrl.payment" ng-value="3" ng-change="ctrl.clickvalue()">
-                                    <label class="label-ch">Card</label>
+                                    <label class="label-ch">Member Card</label>
                                 </td>
                                 <td ng-show="ctrl.paymentType.check">
                                     <div class="col-sm-12">
@@ -353,22 +373,32 @@
                                 <td ng-show="ctrl.paymentType.bcard">
                                     <div class="col-sm-12">
                                         <label class="label-text col-sm-4">Number</label>
-                                        <input class="st-padding form-control fc-auto col-sm-8" type="text" ng-model="paymentType.checkNumber">
+                                        <input class="st-padding form-control fc-auto col-sm-8" type="text" ng-model="ctrl.paymentType.checkNumber">
                                     </div>
                                     <div class="col-sm-12">
-                                        <label class="label-text col-sm-4">Bank</label>
-                                        <select n class="st-padding form-control fc-auto col-sm-8" ng-model="bankId">
-                                            <option value="" selected disabled>- Choose One -</option>
-                                            <option ng-repeat="b in banks" value="{{b.BankID}}">{{b.BankName}}</option>
-
+                                        <label class="label-text col-sm-4">Bank Card</label>
+                                        <select n class="st-padding form-control fc-auto col-sm-8" ng-model="ctrl.paymentType.BankCard">
+                                            <option value="0" selected disabled>- Choose One -</option>
+                                            <option value="1">Debit Card</option>
+                                            <option value="2">Visa Card</option>
+                                            <option value="3">Master Card</option>
+                                            <option value="4">Amex Card</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-12">
+                                        <label class="label-text col-sm-4">Bank</label>
+                                        <select class="st-padding form-control fc-auto col-sm-8" ng-model="ctrl.bankId">
+                                            <option value="" selected disabled>- Choose One -</option>
+                                            <option ng-repeat="b in ctrl.banks" value="{{b.BankID}}">{{b.BankName}}</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12" style="visibility: hidden">
                                         <label class="label-text col-sm-4">Date</label>
-                                        <input type="date" class="st-padding form-control fc-auto col-sm-8" ng-model="paymentType.date">
+                                        <input type="date" class="st-padding form-control fc-auto col-sm-8" ng-model="ctrl.paymentType.date">
                                     </div>
                                 </td>
-                                
+
                                 <td style="vertical-align: middle">
                                     <input type="checkbox" ng-model="ctrl.paymentType.paidFromAddAmount">
                                     <label class="label-ch">Paid From additional amount</label>
@@ -379,10 +409,10 @@
                             <tr>
                                 <td colspan="4">
                                     <button class="btn btn-sm btn-primary" ng-click="ctrl.payNow();">Pay Now</button>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-sm btn-primary" href="/pages/Home.aspx">Back Home</a>
                                 </td>
-                                <td colspan="4"></td>
+                                <td colspan="4">
+                                    <a class="btn btn-sm btn-primary" href="/pages/Home.aspx">Back Home</a>
+				</td>
                                 <td style="padding-top: 17px;">
                                     <label>Total = {{ctrl.grandTotal}}</label>
                                 </td>
@@ -401,6 +431,8 @@
 <script src="../scripts/bootstrap.min.js"></script>
 <script src="../scripts/angular.min.js"></script>
 
+
+
 <script>
     angular.module('payNow', [])
         .controller('PayNowCtrl', function ($http, $templateCache) {
@@ -416,7 +448,10 @@
                 "contributionDue": 0,
                 "lockerDue": 0,
                 "tournamentDue": 0,
-                "serviceDue": 0
+                "serviceDue": 0,
+                "RestDueAmount": 0,
+                "MemberStatus":"",
+                "BarDueAmount": 0
             };
 
             self.hidelocaker = false;
@@ -430,34 +465,44 @@
 
             self.lockerFeeFrom = new Date();
             self.lockerFeeTo = new Date();
-
+            self.BankCard = "0";
             self.services = [];
             self.bank = {};
             self.serviceItem = {};
+            self.serviceItemdue = {};
             self.paymentType = {
                 "cash": true,
                 "check": "",
                 "card": "",
                 "bcard": "",
                 "checkNumber": "",
+		"BankCard":"",
                 "date": "",
                 "paidFromAddAmount": ""
             };
+            var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)UserSettings\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
+            /*console.log("KKKKKKKKKK", cookieValue.substr(5, cookieValue.length));*/
+            /*console.log("user Name", cookieValue);*/
+
+            /*var ssUserName = cookieValue.substr(5, cookieValue.length);*/
+            var ssUserName = cookieValue;
 
             self.getMemberInfo = function (mID) {
 
-                //console.log("yyy", self.member.memberId, mID);
+                //console.log("yyy", self.member.memberIde, mID);
                 $http({
                     method: "GET",
-                    url: "http://192.168.9.239:2997/api/MemberCurrentDue/bymembercode/" + mID,
+                    url: "http://api.kgc-bd.com/api/MemberCurrentDue/bymembercode/" + mID,
                     //cache: $templateCache
                 }).then(function (response) {
+
 
 
                     //self.status = response.status;
                     if (response.data) {
 
+                        self.serviceItemdue = response.data.ServicesDue;
                         self.member = {
                             id: response.data.MemberID,
                             "memberId": response.data.MemberCode,
@@ -474,11 +519,19 @@
                             "serviceDue": response.data.ServiceValue,
                             "tDue": response.data.ToursDue,
                             "sDue": response.data.ServicesDue,
+                            "RestDueAmount": response.data.RestDueAmount,
+                            "BarDueAmount": response.data.BarDueAmount,
+                            "MemberStatus": response.data.MemberStatus
+
                         }
 
+
+
+                        self.hidetournament = false;
                         if (response.data.TournamentValue > 0) {
                             self.hidetournament = true;
                         }
+                        self.hideservicedue = false;
                         if (response.data.ServiceValue > 0) {
                             self.hideservicedue = true;
                         }
@@ -488,15 +541,15 @@
 
                         self.subscriptionFrom = new Date(response.data.LastPaySubsDate);
                         self.welFareFrom = new Date(response.data.LastPayContDate);
-                        self.subscriptionTo = new Date(response.data.LastPaySubsDate);
-                        self.welFareTo = new Date(response.data.LastPayContDate);
+                        //*self.subscriptionTo = new Date(response.data.LastPaySubsDate);*/
+                        /*self.welFareTo = new Date(response.data.LastPayContDate);*/
                         self.lockerFeeFrom = response.data.LastPayLockerDate ? new Date(response.data.LastPayLockerDate) :
                             new Date();
                         if (response.data.LastPayLockerDate === null) {
                             self.hidelocaker = true;
                         }
 
-
+                        /*self.BankCard = response.data;*/
 
                         self.subscriptionFee = response.data.MonthlySubcriptionFee;
                         self.welFareContribution = response.data.MonthlyContributionFee;
@@ -548,7 +601,7 @@
             /*For First Time Load*/
             self.getInitialData = function () {
 
-                $http.get('http://192.168.9.239:2997/api/Service/All').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/Service/All').then(function (response) {
 
                     if (response.data) {
                         self.services = response.data;
@@ -560,7 +613,7 @@
                     self.status = response.status;
                 });
 
-                $http.get('http://192.168.9.239:2997/api/MemberBill/GetBanks').then(function (response) {
+                $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (response) {
 
                     if (response.data) {
                         self.banks = response.data;
@@ -572,17 +625,13 @@
                 });
             };
             self.getInitialData();
-
             self.serviceAmount = 0;
             self.setTotalServiceAmount = function () {
 
                 self.serviceAmount = 0;
                 angular.forEach(self.serviceItem['id'], function (item, key) {
-
                     if (item !== 0) {
-                        self.serviceAmount += self.serviceItem['price'][key] * self.serviceItem['qty'][
-                            key
-                        ];
+                        self.serviceAmount += self.serviceItem['price'][key] * self.serviceItem['qty'][key];
                     }
                 });
                 self.calculateTotalAmount();
@@ -592,7 +641,8 @@
             self.subscriptionFeeTotal = 0;
             self.lockerFeeTotal = 0;
             self.welFareContributionTotal = 0;
-
+            self.annualFee = 0;
+            self.BankCard = "";
             self.isAddSubscription = false;
             self.isAddWelFareFee = false;
             self.isAddLockerFee = false;
@@ -600,55 +650,89 @@
 
             self.calculateTotalAmount = function () {
 
-                self.grandTotal = self.member.additionalAmount + self.member.annualDue + self.member.monthlyDue +
-                    self.member.contributionDue + self.member.lockerDue + self.member.tournamentDue + self.member
-                    .serviceDue + self.serviceAmount;
+                self.grandTotal = self.member.serviceDue + self.member.tournamentDue + self.serviceAmount;
                 if (self.isAddSubscription) {
                     if (self.subscriptionFeeTotal > 0) {
                         self.grandTotal += self.subscriptionFeeTotal;
                     } else {
+                        self.grandTotal += 0;
                         self.isAddSubscription = false;
-                        alert("Please give date first")
+                        /*alert("Please give date first")*/
                     }
-                }
-                else {
-                    self.subscriptionFeeTotal = 0;
                 }
                 if (self.isAddWelFareFee) {
                     if (self.welFareContributionTotal > 0) {
                         self.grandTotal += self.welFareContributionTotal;
                     } else {
+                        self.grandTotal += 0;
                         self.isAddWelFareFee = false;
-                        alert("Please give date first")
+                        /*alert("Please give date first")*/
                     }
-                } else {
-                    self.welFareContributionTotal = 0;
                 }
 
                 if (self.isAddLockerFee) {
                     if (self.lockerFeeTotal > 0) {
                         self.grandTotal += self.lockerFeeTotal;
                     } else {
+                        self.grandTotal += 0;
                         self.isAddLockerFee = false;
-                        alert("Please give date first")
+                        /*alert("Please give date first")*/
                     }
-                } else {
-                    self.lockerFeeTotal = 0;
                 }
                 if (self.isAddAnnualFee) {
-                    self.grandTotal += self.annualFee;
-                } else {
-                    self.annualFee = 0
+                    if (self.annualFee > 0) {
+                        self.grandTotal += self.annualFee;
+                    }
+                    else {
+                        self.grandTotal += 0;
+                    }
                 }
             };
 
-            self.getTotalMonth = function (from, to) {
+            self.getsubsidueAmount = function (from, to) {
                 if (from && to) {
-                    var months;
-                    months = (to.getFullYear() - from.getFullYear()) * 12;
-                    months -= from.getMonth() + 1;
-                    months += to.getMonth() + 1;
-                    return months <= 0 ? 1 : months + 1;
+
+                    var subsidueamount = 0;
+                    /*api.kgc-bd.com*/
+                    $http.get('http://api.kgc-bd.com/api/MemberBill/GetSubscriptionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                        subsidueamount = response.data.MemberSubscriptionFeeDue;
+                        self.subscriptionFeeTotal = subsidueamount;
+                        self.calculateTotalAmount();
+                    })
+
+                    return subsidueamount;
+                }
+                return 0;
+            };
+
+            self.getcontrwfdueAmount = function (from, to) {
+                if (from && to) {
+                    var subsidueamount = 0;
+                    /*api.kgc-bd.com*/
+                    $http.get('http://api.kgc-bd.com/api/MemberBill/GetContributionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                        subsidueamount = response.data.MemberContributionFeeDue;
+                        self.welFareContributionTotal = subsidueamount;
+                        self.calculateTotalAmount();
+                    })
+
+                    return subsidueamount;
+                }
+                return 0;
+            };
+
+            self.getlockerdueAmount = function (from, to) {
+                if (from && to) {
+
+                    var subsidueamount = 0;
+                    /*api.kgc-bd.com*/
+                    $http.get('http://api.kgc-bd.com/api/MemberBill/getMemberLockerBillDue?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                        console.log('MemberLockerFeeDue', response.data);
+                        subsidueamount = response.data.MemberLockerFeeDue;
+                        self.lockerFeeTotal = subsidueamount;
+                        self.calculateTotalAmount();
+                    })
+
+                    return subsidueamount;
                 }
                 return 0;
             };
@@ -661,6 +745,21 @@
                             "id": self.serviceItem['id'][key],
                             "qty": self.serviceItem['qty'][key],
                             "unitprice": self.serviceItem['price'][key]
+                        });
+                    }
+                });
+
+                var serviceItemdue = [];
+                console.log("bulbu", self.serviceItemdue, self.member.sDue);
+                // console.log(self.serviceItemdue);
+                angular.forEach(self.member.sDue, function (item, key) {
+                    console.log(item, key);
+                    if (item !== 0) {
+                        serviceItemdue.push({
+                            "id": self.member.sDue[key]['ServiceID'],
+                            "qty": self.member.sDue[key]['Quantity'],
+                            "unitprice": self.member.sDue[key]['Price'],
+                            "memberbillid": self.member.sDue[key]['MemberBillID']
                         });
                     }
                 });
@@ -686,36 +785,66 @@
                             "MM/dd/yyyy").toString() : '',
                         "lockertodate": self.lockerFeeTo ? format(new Date(self.lockerFeeTo), "MM/dd/yyyy")
                             .toString() : '',
-                        "annual": self.annualFee ? self.annualFee : 0,
+                        "annual": self.isAddAnnualFee ? self.annualFee : 0,
                         "cash": self.paymentType.cash ? self.paymentType.cash : "",
                         "check": self.paymentType.check ? self.paymentType.check : "",
                         "card": self.paymentType.card ? self.paymentType.card : "",
                         "bcard": self.paymentType.bcard ? self.paymentType.bcard : "",
                         "chequeNo": self.paymentType.checkNumber ? self.paymentType.checkNumber : "",
+                        "ChequeDT": self.paymentType.date ? format(new Date(self.paymentType.date),
+                            "MM/dd/yyyy").toString() : '',
                         "date": self.paymentType.date ? format(new Date(self.paymentType.date),
                             "MM/dd/yyyy").toString() : '',
                         "bankid": self.bankId ? self.bankId : 0,
-                        "tournamentDue": 0
-
+                        "tournamentDue": self.member.tDue[0].TotalDue ? self.member.tDue[0].TotalDue : 0,
+                        "tourRegisterID": self.member.tDue[0].TournamentRegisterID ? self.member.tDue[0].TournamentRegisterID : 0,
+                        "CreatedBy": ssUserName,
+                        "BankCard": self.paymentType.BankCard ? self.paymentType.BankCard : 0,
+                        "PaidAmount": self.grandTotal
                     },
                     "ServiceItems": serviceItem,
+                    "ServiceItemsDue": serviceItemdue,
 
                 };
 
+                console.log('Pay now', obj);
 
                 $http({
                     method: "POST",
-                    url: "http://192.168.9.239:2997/api/MemberBill/CreateMemberPay",
+                    url: "http://api.kgc-bd.com/api/MemberBill/CreateMemberPayNew",
                     data: obj
                 }).then(function (response) {
                     ////self.member.memberId means membercode
+			
+                    console.log('submit response', response.data);
+                    
+                    var error = response.data.ErrorCode;
+                    console.log('ErrorCode', error);
+                    if (error > 0) {
+                        /*console.log('response..error > 0', response.data);*/
+                        alert("Bill Collection failed." + response.data.ErrorMessage);
+                    }
+                    var pBillNo = response.data.BillNo;
+
+                    console.log('BillNo', pBillNo);
+
+			/*self.paymentType.checkNumber = "";
+			self.BankCard = 0;*/
+			
+                    alert("Successfully Saved Data.")
+                    
                     window.location =
                         '/Pages/ClubReport.aspx?_ReportID=1&_MemberBillID=' +
-                        response.data + '&_MemberCode=' + self.member.memberId;
+                        pBillNo + '&_MemberCode=' + self.kaisar;
+                        
+
 
                 }, function (response) {
+                    console.log(response.data);
                     self.data = response.data || 'Request failed';
                     self.status = response.status;
+                    console.log('submit response Failed..', response.data);
+                    alert(response.data.ErrorMessage);
                 });
             };
         });

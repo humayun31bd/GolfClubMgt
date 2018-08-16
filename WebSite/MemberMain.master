@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Main" %>
+
+<!DOCTYPE html >
+<html xml:lang="<%= System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag %>" lang="<%= System.Globalization.CultureInfo.CurrentUICulture.IetfLanguageTag %>"><head runat="server">
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Main</title>
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge">
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+  </head>
+  <body runat="server">
+    <form id="form1" runat="server">
+      <div>
+        <asp:ScriptManager ID="sm" runat="server" ScriptMode="Release" AjaxFrameworkMode="Disabled" />
+        <aquarium:MembershipBar ID="mb" runat="server" DisplaySignUp="False" DisplayLogin="False" DisplayPasswordRecovery ="true"  />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />
+        <div id="PageHeader">
+          <div id="PageHeaderBar">
+            <asp:ContentPlaceHolder ID="PageHeaderContentPlaceHolder" runat="server">Golf Club</asp:ContentPlaceHolder>
+          </div>
+          <div id="PageMenuBar" runat="server" class="PageMenuBar"></div>
+        </div>
+        <aquarium:MenuExtender ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" TargetControlID="PageMenuBar" HoverStyle="Auto" PopupPosition="Left" ShowSiteActions="true" />
+        <table id="PageBody">
+          <tr>
+            <td id="PageHeaderSideBar">
+              <asp:Image ID="Image5" runat="server" SkinID="PageLogo" CssClass="PageLogo" />
+            </td>
+            <td id="PageHeaderLeftSide"><span class="placeholder"> </span></td>
+            <td id="PageHeaderContent">
+              <div class="Header">
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" SkinID="SiteMapPath" />
+                <div class="Title">
+                  <asp:ContentPlaceHolder ID="PageTitleContentPlaceHolder" runat="server">Page Title</asp:ContentPlaceHolder>
+                </div>
+              </div>
+            </td>
+            <td id="PageHeaderRightSide"><span class="placeholder"> </span></td>
+          </tr>
+          <tr>
+            <td id="PageContentSideBar">
+              <div class="SideBarBody">
+                <asp:ContentPlaceHolder ID="SideBarPlaceHolder" runat="server" /><span class="placeholder"> </span></div>
+            </td>
+            <td id="PageContentLeftSide"><span class="placeholder"> </span></td>
+            <td id="PageContent">
+              <asp:ContentPlaceHolder ID="PageContentPlaceHolder" runat="server" />
+            </td>
+            <td id="PageContentRightSide"><span class="placeholder"> </span></td>
+          </tr>
+          <tr>
+            <td id="PageFooterSideBar"><span class="placeholder"> </span></td>
+            <td id="PageFooterLeftSide"><span class="placeholder"> </span></td>
+            <td id="PageFooterContent"><span class="placeholder"> </span></td>
+            <td id="PageFooterRightSide"><span class="placeholder"> </span></td>
+          </tr>
+        </table>
+        <div id="PageFooterBar">
+          <asp:ContentPlaceHolder ID="PageFooterContentPlaceHolder" runat="server">Golf Club - Member Portal@2018</asp:ContentPlaceHolder>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

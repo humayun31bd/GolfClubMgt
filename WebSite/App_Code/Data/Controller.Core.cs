@@ -1071,7 +1071,7 @@ namespace MyCompany.Data
         public void ProcessManyToManyField(string controllerName, DataField field, FieldValue fieldValue, object primaryKey)
         {
             List<string> oldValues = BusinessRulesBase.ValueToList(((string)(fieldValue.OldValue)));
-            List<string> newValues = BusinessRulesBase.ValueToList(((string)(fieldValue.NewValue)));
+            List<string> newValues = BusinessRulesBase.ValueToList(((string)(fieldValue.Value)));
             if (!(BusinessRulesBase.ListsAreEqual(oldValues, newValues)))
             {
                 string targetForeignKey1 = null;
@@ -1088,7 +1088,9 @@ namespace MyCompany.Data
                         deleteArgs.Values = new FieldValue[] {
                                 new FieldValue(targetForeignKey1, primaryKey, primaryKey),
                                 new FieldValue(targetForeignKey2, s, s),
-                                new FieldValue("_IgnorePrimaryKeyInWhere", true)};
+                                new FieldValue("_SurrogatePK", new string[] {
+                                            targetForeignKey1,
+                                            targetForeignKey2})};
                         ActionResult result = controller.Execute(field.ItemsTargetController, null, deleteArgs);
                         result.RaiseExceptionIfErrors();
                     }

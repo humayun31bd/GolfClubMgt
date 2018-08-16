@@ -1,27 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="TournamentFee" alias="TournamentFee" created="2018-04-14T08:57:17" modified="2018-04-18T06:55:24" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="TournamentFee" alias="TournamentFee" created="2018-04-14T08:57:17" modified="2018-07-28T06:25:20" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
-    <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament" x="322" y="20">
-      <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />
-    </foreignKey>
     <foreignKey id="MemberGroup" parentTableSchema="dbo" parentTableName="MemberGroup" x="322" y="181">
       <foreignKeyColumn columnName="MemberGroupID" parentColumnName="MemberGroupID" />
     </foreignKey>
     <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="646" y="20">
       <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
     </foreignKey>
+    <foreignKey id="TournamentGame" parentTableSchema="dbo" parentTableName="TournamentGame" x="334" y="302">
+      <foreignKeyColumn columnName="TournamentGameID" parentColumnName="TournamentGameID" />
+    </foreignKey>
   </foreignKeys>
   <columns>
     <column name="TournamentFeeID" fieldName="TournamentFeeID" label="Tournament Fee ID" />
-    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" aliasColumnName="TournamentName" aliasForeignKey="Tournament" />
-    <column name="TournamentName" fieldName="TournamentName" label="Tournament Name" foreignKey="Tournament" />
+    <column name="TournamentID" fieldName="TournamentID" label="Tournament ID" />
     <column name="MemberGroupID" fieldName="MemberGroupID" label="Member Group ID" aliasColumnName="MemberGroupName" aliasForeignKey="MemberGroup" />
-    <column name="MemberGroupName" fieldName="MemberGroupName" label="Member Group Name" foreignKey="MemberGroup" />
+    <column name="MemberGroupName" fieldName="MemberGroupName" label="Group Name" foreignKey="MemberGroup" />
     <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
-    <column name="HoleTypeDesc" fieldName="HoleTypeHoleTypeDesc" label="Hole Type Hole Type Desc" foreignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeHoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
     <column name="MemberFee" fieldName="MemberFee" label="Member Fee" />
     <column name="SpouseFee" fieldName="SpouseFee" label="Spouse Fee" />
     <column name="ChildrenFee" fieldName="ChildrenFee" label="Children Fee" />
     <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="TournamentGameID" fieldName="TournamentGameID" label="Tournament Game ID" aliasColumnName="TournamentName" aliasForeignKey="TournamentGame" />
+    <column name="TournamentName" fieldName="TournamentGameTournamentName" label="Tournament Game Name" foreignKey="TournamentGame" />
   </columns>
 </dataModel>

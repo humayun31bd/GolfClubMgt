@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="MemberCardTransactionReport" label="MemberCardTransactionReport" conflictDetection="overwriteChanges" handler="MyCompany.Rules.MemberCardTransactionReportBusinessRules" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"MemberCardTransaction"."MemberCardTranID" "MemberCardTranID"
+	,"MemberCardTransaction"."MemberID" "MemberID"
+	,"Member"."NameOfMember" "MemberNameOfMember"
+	,"Member"."MemberCode" "MemberCode"
+	,"Member"."CellPhone" "MemberCellPhone"
+	,"MemberCategory"."CategoryName" "MemberCategoryName"
+	,"MemberStatus"."MemberStatus" "MemberStatus"
+	,"MemberNationality"."Nationality" "MemberNationality"
+	,"MemberCardTransaction"."MemberCardID" "MemberCardID"
+	,"MemberCard"."CardNumber" "MemberCardNumber"
+	,"MemberCardTransaction"."PayTypeID" "PayTypeID"
+	,"PayType"."PayTypeName" "PayTypePayTypeName"
+	,"MemberCardTransaction"."DepositAmount" "DepositAmount"
+	,"MemberCardTransaction"."PaidAmount" "PaidAmount"
+	,"MemberCardTransaction"."TranDate" "TranDate"
+	,"MemberCardTransaction"."CreatedBy" "CreatedBy"
+	,"MemberCardTransaction"."CreatedDT" "CreatedDt"
+	,"MemberCardTransaction"."IsPosted" "IsPosted"
+	,"MemberCardTransaction"."IsSmsSend" "IsSmsSend"
+	,"MemberCardTransaction"."SendTime" "SendTime"
+	,"MemberCardTransaction"."IsApproved" "IsApproved"
+	,"MemberCardTransaction"."ApprovedBy" "ApprovedBy"
+	,"MemberCardTransaction"."BankID" "BankID"
+	,"Bank"."BankName" "BankName"
+	,"MemberCardTransaction"."ChequeNo" "ChequeNo"
+	,"MemberCardTransaction"."ChequeDT" "ChequeDT"
+	,"MemberCardTransaction"."Particulars" "Particulars"
+	,"MemberCardTransaction"."MRNO" "Mrno"
+	,"MemberCardTransaction"."RefNo" "RefNo"
+	,"MemberCardTransaction"."BankCardID" "BankCardID"
+	,"BankCard"."CardTypeName" "BankCardTypeName"
+from "dbo"."MemberCardTransaction" "MemberCardTransaction"
+	left join "dbo"."MemberInfo" "Member" on "MemberCardTransaction"."MemberID" = "Member"."MemberID"
+	left join "dbo"."MemberCategory" "MemberCategory" on "Member"."MemberCategoryID" = "MemberCategory"."MemberCategoryID"
+	left join "dbo"."MemberStatus" "MemberStatus" on "Member"."MemberStatusID" = "MemberStatus"."MemberStatusID"
+	left join "dbo"."Nationality" "MemberNationality" on "Member"."NationalityID" = "MemberNationality"."NationalityID"
+	left join "dbo"."MemberCard" "MemberCard" on "MemberCardTransaction"."MemberCardID" = "MemberCard"."MemberCardID"
+	left join "dbo"."Bank" "Bank" on "MemberCardTransaction"."BankID" = "Bank"."BankID"
+	left join "dbo"."BankCard" "BankCard" on "MemberCardTransaction"."BankCardID" = "BankCard"."BankCardID"
+	left join "dbo"."PayType" "PayType" on "MemberCardTransaction"."PayTypeID" = "PayType"."PayTypeID"
+]]></text>
+    </command>
+    <command id="MemberCardTranIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="MemberCardTranID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="MemberCardTranID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Member Card Tran ID" readOnly="true" />
+    <field name="MemberID" type="Int32" label="Member ID" showInSummary="true">
+      <items style="Lookup" dataController="MemberInfo" dataValueField="MemberID" dataTextField="MemberCode" copy="MemberCode=MemberCode,MemberNameOfMember=NameOfMember, MemberCategoryName=MemberCategoryName, MemberStatus=MemberStatus, MemberNationality=Nationality" dataView="AllMembers" />
+    </field>
+    <field name="MemberNameOfMember" type="String" readOnly="true" label="Name Of Member" length="150" />
+    <field name="MemberCode" type="String" readOnly="true" label="Membership No" length="50" />
+    <field name="MemberCellPhone" type="String" readOnly="true" label="Member Cell Phone" length="100" />
+    <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category Name" length="150" />
+    <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
+    <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
+    <field name="MemberCardID" type="Int32" label="Member Card ID" showInSummary="true" contextFields="MemberID=MemberID">
+      <items style="Lookup" dataController="MemberCard" newDataView="createForm1" dataValueField="MemberCardID" dataTextField="CardNumber" copy="MemberCardNumber=CardNumber" dataView="grid1" />
+    </field>
+    <field name="MemberCardNumber" type="String" readOnly="true" label="Member Card Number" length="50" />
+    <field name="PayTypeID" type="Int32" default="((1))" label="Pay Type" showInSummary="true">
+      <items style="DropDownList">
+        <item value="1" text="Cash" />
+        <item value="2" text="Cheque" />
+        <item value="4" text="Bank Card" />
+      </items>
+    </field>
+    <field name="PayTypePayTypeName" type="String" readOnly="true" label="Pay Type Pay Type Name" length="50" />
+    <field name="DepositAmount" type="Decimal" default="((0))" label="Deposit Amount" showInSummary="true" />
+    <field name="PaidAmount" type="Decimal" default="((0))" label="Paid Amount" showInSummary="true" />
+    <field name="TranDate" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Transaction Date" />
+    <field name="CreatedBy" type="String" label="Created By" length="50">
+      <items style="UserNameLookup" />
+    </field>
+    <field name="CreatedDt" type="DateTime" dataFormatString="g" default="(getdate())" label="Created DT" />
+    <field name="IsPosted" type="Boolean" default="((0))" label="Is Posted" />
+    <field name="IsSmsSend" type="Boolean" default="((0))" label="Is Sms Send" />
+    <field name="SendTime" type="DateTime" dataFormatString="g" label="Send Time" />
+    <field name="IsApproved" type="Boolean" default="((0))" label="Is Approved" />
+    <field name="ApprovedBy" type="String" label="Approved By" length="50">
+      <items style="UserNameLookup" />
+    </field>
+    <field name="BankID" type="Int32" label="Bank ID">
+      <items style="Lookup" dataController="Bank" newDataView="createForm1" dataValueField="BankID" dataTextField="BankName" />
+    </field>
+    <field name="BankName" type="String" readOnly="true" label="Bank Name" length="50" />
+    <field name="ChequeNo" type="String" label="Cheque No" length="50" />
+    <field name="ChequeDT" type="DateTime" dataFormatString="dd-MMM-yyyy" label="Cheque Date" />
+    <field name="Particulars" type="String" label="Particulars" length="250" />
+    <field name="Mrno" type="String" label="Mrno" length="50" />
+    <field name="RefNo" type="String" label="Ref No" length="500" />
+    <field name="BankCardID" type="Int32" label="Bank Card ID">
+      <items style="Lookup" dataController="BankCard" newDataView="createForm1" dataValueField="BankCardID" dataTextField="CardTypeName" />
+    </field>
+    <field name="BankCardTypeName" type="String" readOnly="true" label="Bank Card Type Name" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Card Recharge Report" reportLabel="Card Recharge Report" reportTemplate="true" sortExpression="TranDate Desc">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
+        <dataField fieldName="MemberCode" columns="50" />
+        <dataField fieldName="MemberCellPhone" />
+        <dataField fieldName="DepositAmount" columns="15" aggregate="Sum" />
+        <dataField fieldName="PaidAmount" columns="15" />
+        <dataField fieldName="PayTypeID" columns="15" />
+        <dataField fieldName="TranDate" columns="20" />
+        <dataField fieldName="CreatedBy" columns="50" />
+        <dataField fieldName="CreatedDt" columns="20" />
+        <dataField fieldName="BankID" aliasFieldName="BankName" hidden="true" />
+        <dataField fieldName="ChequeNo" columns="50" />
+        <dataField fieldName="ChequeDT" columns="20" />
+        <dataField fieldName="Mrno" columns="50" />
+        <dataField fieldName="RefNo" />
+        <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Card Transaction">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Review Member Card (Deposit)" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberCellPhone" />
+            <dataField fieldName="MemberCardID" columns="15" aliasFieldName="MemberCardNumber" />
+            <dataField fieldName="DepositAmount" columns="15" />
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" hidden="true" />
+            <dataField fieldName="TranDate" columns="20" textMode="Static" />
+            <dataField fieldName="CreatedBy" columns="50" hidden="true" />
+            <dataField fieldName="CreatedDt" columns="20" hidden="true" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="Particulars" />
+            <dataField fieldName="Mrno" columns="50" />
+            <dataField fieldName="RefNo" />
+            <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
+            <dataField fieldName="IsApproved" hidden="true" />
+          </dataFields>
+        </category>
+        <category headerText="Member Information" id="c2" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="MemberCategoryName" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Card Transaction">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="New Member Card (Deposit)" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
+            <dataField fieldName="MemberCellPhone" />
+            <dataField fieldName="MemberCardID" columns="15" aliasFieldName="MemberCardNumber" />
+            <dataField fieldName="DepositAmount" columns="15" />
+            <dataField fieldName="PayTypeID" aliasFieldName="PayTypePayTypeName" hidden="true" />
+            <dataField fieldName="TranDate" columns="20" textMode="Static" />
+            <dataField fieldName="CreatedBy" columns="50" hidden="true" />
+            <dataField fieldName="CreatedDt" columns="20" hidden="true" />
+            <dataField fieldName="BankID" aliasFieldName="BankName" />
+            <dataField fieldName="ChequeNo" columns="50" />
+            <dataField fieldName="ChequeDT" columns="20" />
+            <dataField fieldName="Particulars" />
+            <dataField fieldName="Mrno" columns="50" />
+            <dataField fieldName="RefNo" />
+            <dataField fieldName="BankCardID" aliasFieldName="BankCardTypeName" />
+          </dataFields>
+        </category>
+        <category headerText="Member Information" id="c2" flow="NewColumn">
+          <dataFields>
+            <dataField fieldName="MemberStatus" columns="50" />
+            <dataField fieldName="MemberNationality" columns="50" />
+            <dataField fieldName="MemberNameOfMember" rows="5" />
+            <dataField fieldName="MemberCategoryName" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" roles="Administrators,CardAdmin" whenHRef="false:" />
+      <action id="a3" commandName="Delete" whenHRef="false:" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" whenHRef="false:" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" whenHRef="false:" />
+      <action id="a9" />
+      <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" roles="Administrators,CardAdmin" whenHRef="false:" />
+      <action id="a2" commandName="Delete" whenHRef="false:" roles="Administrators,CardAdmin" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="Administrators,CardAdmin" whenHRef="false:" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" roles="Administrators,CardAdmin" whenHRef="false:" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+  <businessRules>
+    <rule id="r100" commandName="Select" type="Sql" phase="Before"><![CDATA[-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @TranDate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @TranDate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end]]></rule>
+  </businessRules>
+</dataController>

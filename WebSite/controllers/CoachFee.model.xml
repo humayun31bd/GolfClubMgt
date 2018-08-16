@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="CoachFee" alias="CoachFee" created="2018-08-05T16:48:49" modified="2018-08-12T12:10:55" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="341" y="20">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+      <foreignKeyColumn columnName="PaytypeID" parentColumnName="ProfessionId" />
+    </foreignKey>
+    <foreignKey id="Service" parentTableSchema="dbo" parentTableName="MemberService" x="341" y="365">
+      <foreignKeyColumn columnName="ServiceID" parentColumnName="ServiceID" />
+    </foreignKey>
+    <foreignKey id="HoleType" parentTableSchema="dbo" parentTableName="HoleType" x="341" y="528">
+      <foreignKeyColumn columnName="HoleTypeID" parentColumnName="HoleTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberInfo" parentTableSchema="dbo" parentTableName="MemberInfo" x="38" y="486">
+      <foreignKeyColumn columnName="MemberProID" parentColumnName="MemberID" />
+    </foreignKey>
+    <foreignKey id="PayType" parentTableSchema="dbo" parentTableName="PayType" x="316" y="284">
+      <foreignKeyColumn columnName="PaytypeID" parentColumnName="PayTypeID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank" x="277" y="393">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="CoachFeeID" fieldName="CoachFeeID" label="Coach Fee ID" />
+    <column name="MRNO" fieldName="Mrno" label="Mrno" />
+    <column name="MRDate" fieldName="Mrdate" label="MR Date" format="g" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="MemberGuestName" fieldName="MemberGuestName" label="Member Guest Name" />
+    <column name="MemberProID" fieldName="MemberProID" label="Member Pro ID" aliasColumnName="NameOfMember" aliasForeignKey="MemberInfo" />
+    <column name="NameOfMember" fieldName="MemberInfoNameOfMember" label="Member Info Name Of Member" foreignKey="MemberInfo" />
+    <column name="ServiceID" fieldName="ServiceID" label="Service ID" aliasColumnName="ServiceName" aliasForeignKey="Service" />
+    <column name="ServiceName" fieldName="ServiceName" label="Service Name" foreignKey="Service" />
+    <column name="MTimefrom" fieldName="Mtimefrom" label="M Timefrom" format="t" />
+    <column name="MTimeTo" fieldName="MtimeTo" label="M Time To" format="t" />
+    <column name="HoleTypeID" fieldName="HoleTypeID" label="Hole Type ID" aliasColumnName="HoleTypeDesc" aliasForeignKey="HoleType" />
+    <column name="HoleTypeDesc" fieldName="HoleTypeDesc" label="Hole Type" foreignKey="HoleType" />
+    <column name="Amount" fieldName="Amount" label="Amount" />
+    <column name="PaytypeID" fieldName="PaytypeID" label="Paytype ID" aliasColumnName="PayTypeName" aliasForeignKey="PayType" />
+    <column name="PayTypeName" fieldName="PayTypePayTypeName" label="Pay Type" foreignKey="PayType" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDT" fieldName="ChequeDT" label="Cheque DT" format="g" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+    <column name="DT" fieldName="DT" label="DT" />
+    <column name="FT" fieldName="FT" label="FT" />
+  </columns>
+</dataModel>

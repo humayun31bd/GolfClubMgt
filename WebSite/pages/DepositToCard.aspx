@@ -5,8 +5,5 @@
     <div data-activator="Tab|Recharge Card">
       <div id="view1" data-controller="MemberCardTransactionDeposit" data-view="grid1" data-selection-mode="multiple"></div>
     </div>
-    <div data-activator="Tab|Deposit Approved">
-      <div id="view2" data-controller="MemberCardDepositApproved" data-view="grid1" data-selection-mode="multiple"></div>
-    </div>
   </div>
 </asp:Content>

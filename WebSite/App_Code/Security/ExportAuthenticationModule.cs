@@ -70,7 +70,7 @@ namespace MyCompany.Security
                 	ValidateUserIdentity(app, authorization);
                 else
                 	if (authorization.StartsWith("Bearer ", StringComparison.CurrentCultureIgnoreCase))
-                    	ValidateUserTicket(app, authorization.Substring(7));
+                    	ValidateUserToken(app, authorization.Substring(7));
             }
             else
             {
@@ -78,13 +78,6 @@ namespace MyCompany.Security
                 	return;
                 if (appServices.AuthenticateRequest(app.Context))
                 	return;
-                HttpCookie c = app.Request.Cookies[FormsAuthentication.FormsCookieName];
-                if (c != null)
-                {
-                    FormsAuthenticationTicket t = FormsAuthentication.Decrypt(c.Value);
-                    if (!(String.IsNullOrEmpty(t.Name)))
-                    	return;
-                }
                 RequestAuthentication(app);
             }
         }
@@ -92,7 +85,7 @@ namespace MyCompany.Security
         private void contextEndRequest(object sender, EventArgs e)
         {
             HttpApplication app = ((HttpApplication)(sender));
-            if (app.Response.StatusCode == 401)
+            if ((app.Response.StatusCode == 401) && (app.Context.Items["IgnoreBasicAuthenticationRequest"] == null))
             	RequestAuthentication(app);
         }
         
@@ -119,13 +112,11 @@ namespace MyCompany.Security
             }
         }
         
-        private void ValidateUserTicket(HttpApplication app, string authorization)
+        private void ValidateUserToken(HttpApplication app, string authorization)
         {
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authorization);
-            if (ApplicationServices.Current.ValidateTicket(ticket))
-            	app.Context.User = new RolePrincipal(new FormsIdentity(new FormsAuthenticationTicket(ticket.Name, false, 10)));
-            else
+            if (!(ApplicationServices.Current.ValidateToken(authorization)))
             {
+                app.Context.Items["IgnoreBasicAuthenticationRequest"] = true;
                 app.Response.StatusCode = 401;
                 app.Response.StatusDescription = "Access Denied";
                 app.Response.Write("Access denied. Please authenticate.");

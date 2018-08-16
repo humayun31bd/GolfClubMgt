@@ -18,9 +18,9 @@ namespace MyCompany.Rules
         /// with a command name that matches "Report" and argument that matches "CustomSMS".
         /// </summary>
         [Rule("r101")]
-        public void r101Implementation(MemberInfoSMSModel instance)
+        public void r101Implementation(MemberInfoSMSModel instance,string Parameters_SMSBODY)
         {
-            string Parameters_SMSBODY = "Send sms";
+            //string Parameters_SMSBODY = "Send sms";
             /*
             // This is the placeholder for method implementation.
             clsGeneralLib oclsGeneralLib = new clsGeneralLib();
@@ -61,7 +61,7 @@ namespace MyCompany.Rules
             {
                 Result.ShowAlert("Please Select Member");
                 this.PreventDefault();
-                Result.NavigateUrl = String.Format("~/Pages/MemberInfo.aspx");
+                Result.NavigateUrl = String.Format("~/Pages/EmailSMS.aspx");
             }
         
         }

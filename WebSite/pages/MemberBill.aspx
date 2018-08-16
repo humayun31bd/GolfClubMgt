@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeFile="MemberBill.aspx.cs" Inherits="Pages_MemberBill"  Title="Bill Approval Pending" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PageTitleContentPlaceHolder" runat="Server">Bill Approval Pending</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PageContentPlaceHolder" runat="Server">
-  <div data-flow="row">
-    <div data-activator="Tab|Member Bill Approval">
-      <div id="view1" data-controller="MemberBill" data-view="grid1" data-show-in-summary="true" data-page-size="25" data-selection-mode="multiple" data-tags="modal-never" data-show-description="false"></div>
+  <div data-flow="row" style="padding-top:8px">
+    <div data-activator="Tab|Member Payments Approval List">
+      <div id="view2" data-controller="MemberBillApproval" data-view="grid1" data-selection-mode="multiple" data-show-quick-find="false"></div>
     </div>
-    <div data-activator="Tab|Member Bill Approved">
-      <div id="view2" data-controller="MemberBillApproved" data-view="grid1" data-selection-mode="multiple" data-tags="modal-never"></div>
+    <div data-activator="Tab|Game Registration Payment Approval List">
+      <div id="view1" data-controller="GameRegisterApproval" data-view="grid1" data-selection-mode="multiple" data-show-quick-find="false"></div>
     </div>
   </div>
 </asp:Content>

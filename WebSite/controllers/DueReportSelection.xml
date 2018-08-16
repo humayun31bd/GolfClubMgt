@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="DueReportSelection" label="DueReportSelection" conflictDetection="overwriteChanges" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <fields>
+    <field name="MemberCode" type="String" label="Membership No" length="50" />
+    <field name="MemberCaregoryID" type="Int32" label="Member Caregory">
+      <items style="Lookup" dataController="MemberCategory" dataView="grid1" dataTextField="CategoryName" dataValueField="MemberCategoryID" />
+    </field>
+  </fields>
+</dataController>

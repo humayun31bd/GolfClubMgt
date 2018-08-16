@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="BankCard" alias="BankCard" created="2018-07-27T06:35:43" modified="2018-07-27T06:35:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="BankCardID" fieldName="BankCardID" label="Bank Card ID" />
+    <column name="CardTypeName" fieldName="CardTypeName" label="Card Type Name" />
+  </columns>
+</dataModel>

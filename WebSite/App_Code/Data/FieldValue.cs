@@ -106,7 +106,7 @@ namespace MyCompany.Data
         {
             get
             {
-                return (_modified && !(ReadOnly));
+                return (_modified && (_noCheck || !(ReadOnly)));
             }
             set
             {
@@ -132,7 +132,7 @@ namespace MyCompany.Data
             get
             {
                 CheckModified();
-                if (Modified || ReadOnly)
+                if (Modified)
                 	return NewValue;
                 else
                 	return OldValue;

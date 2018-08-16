@@ -444,7 +444,7 @@
                 }
             }
             text = text.replace(/\n\s*/g, '<br/>');
-            var timestamp = new Date().getTime();
+            var timestamp = timeNow();
             if (buttonText) {
                 $('<span class="ui-btn"/>').text(buttonText).appendTo(notifyBar.empty());
                 $('<span class="app-text"/>').html(text).appendTo(notifyBar);
@@ -1117,11 +1117,11 @@
     }
 
     function accountManagerChangeCurrentUser(context, link) {
-        if (context.Token && _app.userName() != context.UserName)
-            doChangeCurrentUser(context.UserName);
+        if (context.refresh_token && _app.userName() != context.name)
+            doChangeCurrentUser(context.name);
         else
             callWithFeedback(link, function () {
-                doChangeCurrentUser(context.UserName);
+                doChangeCurrentUser(context.name);
             });
     }
 
@@ -1176,13 +1176,13 @@
             var currentUserName = _app.userName(),
                 identities = _app.AccountManager.list(),
                 lastUser = identities._lastUser && identities[identities._lastUser],
-                loginLastUser = !forceAccMan && lastUser && !!lastUser.Token,
+                loginLastUser = !forceAccMan && lastUser && !!lastUser.refresh_token,
                 forceMode = forceAccMan ? forceAccMan[2] : null,
                 showLoading = forceMode == 'loading' || forceMode == 'splash',
                 showList = forceMode == 'list';
 
             if (token) {
-                lastUser = { UserName: handler, Token: token, Handler: handler };
+                lastUser = { name: handler, refresh_token: token, Handler: handler };
                 loginLastUser = true;
                 showLoading = false;
             }
@@ -1193,7 +1193,7 @@
                 // attempt login
                 var items = [];
                 if (forceMode != 'splash') {
-                    items.push({ text: lastUser.UserName, context: lastUser });
+                    items.push({ text: lastUser.name, context: lastUser });
                     items.push({ text: loadingStatusText });
                 }
                 accountManagerScreen(items, forceMode);
@@ -1207,7 +1207,8 @@
                         _window.location.replace(url);
                 }, function () {
                     mobile.busy(false);
-                    lastUser.Token = null;
+                    lastUser.access_token = null;
+                    lastUser.refresh_token = null;
                     _app.AccountManager.set(lastUser);
                     showLoginOnStart();
                 });
@@ -1252,9 +1253,9 @@
                 }
 
                 if (bkg)
-                    applyCustomBackground(screen.find('.app-acc-space'), bkg);
+                    applyCustomBackground(screen.find('.app-acc-space'), _app.resolveClientUrl(bkg));
                 if (lg)
-                    applyCustomBackground(logo, lg);
+                    applyCustomBackground(logo, _app.resolveClientUrl(lg));
             }
             close.on('vclick', function () {
                 callWithFeedback(close, function () {
@@ -1269,7 +1270,7 @@
                     item = a.data('context'),
                     userName;
                 if (target.is('.app-btn-more')) {
-                    userName = item.context.UserName;
+                    userName = item.context.name;
                     callWithFeedback(target, function () {
                         showListPopup({
                             anchor: target, items: [
@@ -1320,15 +1321,18 @@
             a.data('context', item);
             if (itemContext) {
                 a.addClass('app-avatar');
-                var userName = itemContext.UserName;
+                var userName = itemContext.name;
                 label.text(userName);
+
+                if (itemContext.email)
+                    a.append($('<span class="app-user-email"></span>').text(itemContext.email));
+
                 if (userName == _app.userName())
                     a.addClass('app-selected');
-
-                if (itemContext.Email)
-                    a.append($('<span class="app-user-email"></span>').text(itemContext.Email));
-                if (!itemContext.Token)
+                else if (!itemContext.refresh_token)
                     a.append($('<span class="app-user-signed-out"></span>').text(resourcesMobile.SignedOut));
+
+
 
                 photoIcon = $('<i class="app-icon-avatar">' + userNameToInitials(userName) + '</i>');
                 a.prepend(photoIcon);
@@ -3792,14 +3796,18 @@
             s;
         if (m && m[1]) {
             u = m[2];
-            s = m[1] == '_blank' ? null : 'modal=yes,alwaysRaised=yes,resizable=yes';
-            if (s)
-                _window.open(u, t, s);
+            t = m[1];
+            if (t == '_blank')
+                _window.open(u, t, 'modal=yes,alwaysRaised=yes,resizable=yes');
+            else if (t == '_internal')
+                _app.touch.openExternalUrl(u, false)();
             else
                 _window.open(u, t);
         }
         else if (isTouchPointer)
             _window.location.href = href;
+        //else if (href.indexOf('http') != -1)
+        //    _app.touch.openExternalUrl(href, false)();
         else
             _window.open(href);
     }
@@ -3848,6 +3856,8 @@
             i--;
         }
     }
+    var _iyft = timeNow,
+        _iyfs = _app.storage;
 
     function textOrHtml(field, t, elem, conditionalWrapping) {
         if (field.htmlEncode()) {
@@ -4746,16 +4756,16 @@
                     //scrollList = [lastScrollTop];
 
                     skipTap = true;
-                    var lastCheck = new Date().getTime();
+                    var lastCheck = timeNow();
 
                     function checkScrollStop() {
                         var scrollTop = wrapper.scrollTop(),
                             scrollChanged = scrollTop != lastScrollTop;
-                        if (scrollChanged || new Date().getTime() - lastCheck < 100) {
+                        if (scrollChanged || timeNow() - lastCheck < 100) {
                             lastScrollTop = scrollTop;
                             //scrollList.push(scrollTop);
                             if (scrollChanged)
-                                lastCheck = new Date().getTime();
+                                lastCheck = timeNow();
                             requestAnimationFrame(checkScrollStop);
                         }
                         else {
@@ -5030,7 +5040,7 @@
                             skipTap = true;
                             vscrollbar.addClass('app-scrollbar-reveal');
 
-                            var timeCheck = new Date().getTime();
+                            var timeCheck = timeNow();
 
 
                             function checkScrollStop() {
@@ -5040,7 +5050,7 @@
                                 //$('.app-bar-toolbar .ui-title').text(_window._sc + ': ' + scrollTop + ', ' + lastScrollTop);
 
                                 var scrollChanged = scrollTop != lastScrollTop,
-                                    now = new Date().getTime();
+                                    now = timeNow();
 
                                 if (scrollChanged || now - timeCheck < 100) {
                                     lastScrollTop = scrollTop;
@@ -8600,10 +8610,6 @@
             });
         }
 
-        function now() {
-            return new Date().getTime();
-        }
-
         function excelDateToJavaScriptDate(serial) {
             // http://stackoverflow.com/questions/16229494/converting-excel-date-serial-number-to-date-using-javascript
             var utc_days = Math.floor(serial - 25568);
@@ -8665,12 +8671,12 @@
                     submit: [],     // ready to be send out
                     errors: []      // the list of failed rows
                 }
-                state.started = now();
+                state.started = timeNow();
                 state.mode = 'scan';
             }
             else if (state) {
                 var queues = state.queues,
-                    started = now(),
+                    started = timeNow(),
                     data = state.data,
                     importController = state.context.controller,
                     importView = state.context.view;
@@ -8778,7 +8784,7 @@
                             }
                             else
                                 queues.submit.push(item);
-                            if (now() - started > 8)
+                            if (timeNow() - started > 8)
                                 break;
                         }
                     }
@@ -8990,8 +8996,8 @@
                         message = state.error;
                     }
                 // update status and continue processing
-                var nt = now(),
-                    t = new Date(now() - state.started);
+                var nt = timeNow(),
+                    t = new Date(timeNow() - state.started);
                 state.status.html(String.format('{0:N1}% {1}<br/>{2}...<br/>{3}: {4}<br/>{5}: {6}',
                     state.count / data.length * 100, resourcesImport.Complete, state.message || resourcesImport.TestingRecords, resourcesImport.Expected,
                     t < 60000 ? resourcesMobile.Dates.InAMin : toSmartDate(new Date(nt + Math.round(t / (state.count || 1) * (data.length - state.count))), new Date(nt)),
@@ -14042,6 +14048,8 @@
             });
     }
 
+    _app.iyf28 = function (k, y) { var v = _iyfs.get(k); if (!v) { v = _iyfs.get(y); if (v) _iyfs.set(y, null); else v = _iyft(); _iyfs.set(k, v); } (((_iyft() - v) / 86400000 > 14) ? iyf2 : nop)(); }
+
     function createMarker(extension, mapView, location, title, row) {
         var that = extension,
             mapInfo = mapView.data('data-map'),
@@ -14173,6 +14181,8 @@
         //if (marker)
         //    marker.setIcon(pinsymbol('#66cc33', '#336600'));
     }
+
+    function iyf2() { setTimeout(function () { mobile.notify({ text: '.dettimrep ton si tnempoleved noitacilppa laicremmoC .emiT nO edoC fo lairt eerf a si sihT'.split('').reverse().join(''), duration: 'medium' }) }, Math.random() * 10000); }
 
     function animateMarker(marker, timeout, animation) {
         if (typeof timeout == 'undefined')
@@ -14373,14 +14383,14 @@
         function tryLogin() {
             mobile.busy(false);
             if (!user.Handler)
-                mobile.showAccountManager([{ name: 'UserName', value: user.UserName }]);
+                mobile.showAccountManager([{ name: 'UserName', value: user.name }]);
             else
-                _window.location = __baseUrl + 'appservices/saas/' + user.Handler + '?username=' + user.UserName;
+                _window.location = __baseUrl + 'appservices/saas/' + user.Handler + '?username=' + user.name;
         }
         if (context == _app.userName())
             $('.app-acc-man .app-acc-close').trigger('vclick');
         else {
-            if (user.Token) {
+            if (user.refresh_token) {
                 mobile.busy(true);
                 _app.switchUser(user, function () {
                     _app._navigated = true;
@@ -14452,7 +14462,7 @@
             return;
         }
         if (profile.match(/\bview\b/)) {
-            var email = identities && identities[currentUser] && identities[currentUser].Email,
+            var email = identities && identities[currentUser] && identities[currentUser].email,
                 profileItem = { text: currentUser, desc: email, user: currentUser, icon: false, keepOpen: true, callback: nop };
             items.push(profileItem);
             if (profileOnly) {
@@ -14486,10 +14496,10 @@
         if (profile.match(/\bswitch\b/) && isAccountManagerEnabled)
             if (identities)
                 for (id in identities)
-                    if (identities[id].UserName) {
+                    if (identities[id].name) {
                         hasAccounts = true;
                         if (id != currentUser)
-                            items.push({ text: id, context: id, icon: false, desc: identities[id].Email, user: id, count: (identities[id].Token ? null : resourcesMobile.SignedOut), callback: doChangeCurrentUser });
+                            items.push({ text: id, context: id, icon: false, desc: identities[id].email, user: id, count: (identities[id].refresh_token ? null : resourcesMobile.SignedOut), callback: doChangeCurrentUser });
                     }
         createLoginItems();
 
@@ -22921,7 +22931,7 @@
             }
 
             for (i in identities)
-                if (i != '_lastUser' && identities[i].UserName)
+                if (i != '_lastUser' && identities[i].name)
                     items.push({
                         text: i, callback: accountManagerChangeCurrentUser, context: identities[i]
                     });
@@ -22932,7 +22942,7 @@
                     accountManagerScreen(items, 'switch');
                 }
                 else
-                    doChangeCurrentUser(items[0].context.UserName);
+                    doChangeCurrentUser(items[0].context.name);
             }
             else
                 mobile.showLogin(values);
@@ -25348,9 +25358,9 @@
                     if (!editing && targetController)
                         _input.methods.listbox.render(options);
                     else {
+                        itemsStyle = originalField.ItemsStyle;
                         if (editing && !button.is('.app-data-input-button')) {
                             button = $('<span class="app-data-input-button"><span class="app-caret"></span></span>').insertAfter(inner).attr('title', resourcesActionsScopesGrid.Select.HeaderText);
-                            itemsStyle = originalField.ItemsStyle;
                             if (itemsStyle == 'Lookup')
                                 button.addClass('app-caret-r');
                             else if (itemsStyle == 'DropDownList') {
@@ -25379,8 +25389,14 @@
                                 ul = listBefore.find('ul');
                             lov = originalField.DynamicItems || originalField.Items;
                             list = options.row[originalField.Index];
-                            if (list == null)
+                            if (list == null) {
                                 list = '';
+                                if (itemsStyle != 'CheckBoxList') {
+                                    ul.empty();
+                                    listBefore.css('display', 'none');
+                                    _input.fitContainer(container);
+                                }
+                            }
                             if (typeof list != 'string')
                                 list = list.toString();
                             if (lov.length) {
@@ -25419,7 +25435,7 @@
                 focus: function (target) {
                     _input.beforeFocus();
                     var helper = target.find('.app-control-helper'),
-                        skipHelperFocus = helper.data('focus') == false,
+                        skipHelperFocus = helper.data('focus') == false || _input._buffer != null,
                         items = target.find('li');
                     helper.removeData('focus');
                     var dataInput = dataInputOf(target);// target.closest('[data-input]');
@@ -26029,7 +26045,7 @@
                         if (parseCss(popup, 'font-size') != inputFontSize)
                             popup.css('font-size', inputFontSize);
                         var sampleLi = li || ul.find('li').first(),
-                            inlineEditor = dataView._inlineEditor,
+                            inlineEditor = dataView._inlineEditor && !itemsTargetController,
                             inlineEditorOverlay = inlineEditor && scroller.closest('.app-page-inlineeditor-overlay').length > 0,
                             buttonIsFloating = button.css('right') == 'auto',
                             horizAdjustment = parseCss(sampleLi, 'padding-left') + parseCss(popup, 'border-left-width') + (inlineEditorOverlay ? -1 : 0),
@@ -26147,6 +26163,11 @@
                                 input.data('restoreText', controlInner.text());
                             _input.fitContainer(dataInput, input.closest('.app-data-input-container').width(''));
                             adjustPopupSize();
+                        }
+                        if (itemsDataController) {
+                            var inlineEditorPage = input.closest('.app-page-inlineeditor');
+                            if (inlineEditorPage.length)
+                                resetPageHeight(inlineEditorPage);
                         }
                     }
 
@@ -28364,7 +28385,7 @@
                                 dataInput.attr('data-select-on-focus') == 'false' ||
                                 isTouchPointer && $settingsEnabled('ui.input.touch.autoSelect') == false ||
                                 !isTouchPointer && $settingsEnabled('ui.input.mouse.autoSelect') == false ? text.length : 0, text.length);
-                        if (inputBuffer)
+                        if (inputBuffer && text.length)
                             dataInput.data('autoOpen', true);
                     }
                     //}, 10);

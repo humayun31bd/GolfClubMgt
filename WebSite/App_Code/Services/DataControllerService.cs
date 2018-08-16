@@ -4,6 +4,7 @@ using System.Text;
 using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
+using Newtonsoft.Json.Linq;
 using MyCompany.Data;
 
 namespace MyCompany.Services
@@ -163,6 +164,15 @@ namespace MyCompany.Services
         public object Themes()
         {
             return ApplicationServices.Themes().ToString();
+        }
+        
+        public virtual object Invoke(string method, JObject args)
+        {
+            ServiceRequestHandler handler = null;
+            object result = null;
+            if (ApplicationServices.RequestHandlers.TryGetValue(method.ToLower(), out handler))
+            	result = handler.HandleRequest(this, args);
+            return result;
         }
     }
 }

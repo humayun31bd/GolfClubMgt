@@ -8,7 +8,7 @@
     <field name="Email" type="String" label="Email" length="50" showInSummary="true" />
     <field name="OnAccountOf" type="String" label="On Account Of" length="88" showInSummary="true" />
     <field name="DueAmount" type="Decimal" label="Due Amount" readOnly="true" />
-    <field name="BillDate" type="DateTime" label="Bill Date" />
+    <field name="BillDate" type="DateTime" label="Bill Date" dataFormatString="MMM-yyyy" />
     <field name="CompanyName" type="String" label="Company Name" readOnly="true" length="150" />
     <field name="CompanyAddress" type="String" label="Company Address" readOnly="true" length="150" />
   </fields>
@@ -21,8 +21,8 @@
         <dataField fieldName="NameOfMember" />
         <dataField fieldName="Email" columns="50" />
         <dataField fieldName="OnAccountOf" />
-        <dataField fieldName="DueAmount" columns="15" />
-        <dataField fieldName="BillDate" columns="10" dataFormatString="MMM-yyyy" hidden="true" />
+        <dataField fieldName="DueAmount" columns="15" aggregate="Sum" />
+        <dataField fieldName="BillDate" columns="10" dataFormatString="MMM-yyyy" />
         <dataField fieldName="CompanyName" hidden="true" />
         <dataField fieldName="CompanyAddress" hidden="true" />
       </dataFields>
@@ -89,8 +89,8 @@
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
       <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
-      <action commandName="Report" headerText="Print Due Statement" confirmation="_controller=DateRangeSelection&#xD;&#xA;_title=Select Report Option" id="a100" commandArgument="PrintDueStatement" />
-      <action commandName="Report" commandArgument="SendEmailtoMember" headerText="Send Email" id="a101" />
+      <action commandName="Report" headerText="Print Due Statement" confirmation="_controller=DueReportSelection&#xD;&#xA;_title=Select Report Option" id="a100" commandArgument="PrintDueStatement" />
+      <action commandName="Report" commandArgument="SendEmailtoMember" headerText="Send Email" id="a101" roles="nondelivery" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />

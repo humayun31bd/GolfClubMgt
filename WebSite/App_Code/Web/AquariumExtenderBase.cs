@@ -34,7 +34,7 @@ namespace MyCompany.Web
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
         private bool _ignoreCombinedScript;
         
-        private static bool _enableMinifiedScript;
+        private static bool _enableMinifiedScript = true;
         
         public AquariumExtenderBase(string clientComponentName)
         {
@@ -231,6 +231,8 @@ namespace MyCompany.Web
             scripts.Add(CreateScriptReference(("~/js/daf/touch-edit" + fileType)));
             scripts.Add(CreateScriptReference(("~/js/daf/touch-charts" + fileType)));
             scripts.Add(CreateScriptReference(("~/js/sys/unicode" + fileType)));
+            if (!(String.IsNullOrEmpty(ApplicationServices.Current.AddScripts())))
+            	scripts.Add(CreateScriptReference("~/js/daf/add.min.js"));
             if (Context.Request.Url.Host.Equals("localhost") && File.Exists(Context.Server.MapPath("~/js/codeontime.designer.js")))
             	scripts.Add(CreateScriptReference("~/js/codeontime.designer.js"));
             ApplicationServices.Current.ConfigureScripts(scripts);

@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="MemberService" alias="MemberService" created="2018-04-09T20:38:28" modified="2018-04-09T20:45:15" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
-  <foreignKeys />
+<dataModel baseSchema="dbo" baseTable="MemberService" alias="MemberService" created="2018-04-09T20:38:28" modified="2018-07-07T16:42:33" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="CoaDetail" parentTableSchema="dbo" parentTableName="CoaDetail" x="303" y="20">
+      <foreignKeyColumn columnName="CoaDetailID" parentColumnName="CoaDetailID" />
+    </foreignKey>
+  </foreignKeys>
   <columns>
     <column name="ServiceID" fieldName="ServiceID" label="Service ID" />
     <column name="ServiceName" fieldName="ServiceName" label="Service Name" />
     <column name="ServiceFee" fieldName="ServiceFee" label="Service Fee" />
+    <column name="IsActive" fieldName="IsActive" label="Is Active" />
+    <column name="CoaDetailID" fieldName="CoaDetailID" label="Coa Detail ID" aliasColumnName="AccName" aliasForeignKey="CoaDetail" />
+    <column name="AccName" fieldName="CoaDetailAccName" label="Ledger Name" foreignKey="CoaDetail" />
+    <column name="LedgerName" fieldName="LedgerName" label="Ledger Name" />
   </columns>
 </dataModel>

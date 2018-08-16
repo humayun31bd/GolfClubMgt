@@ -5,8 +5,5 @@
     <div data-activator="Tab|Tournament Payment Approval">
       <div id="view2" data-controller="TourRegisterMemberApproval" data-selection-mode="multiple"></div>
     </div>
-    <div data-activator="Tab|Tournament Payment Approved">
-      <div id="view3" data-controller="TourRegisterMemberApproved"></div>
-    </div>
   </div>
 </asp:Content>

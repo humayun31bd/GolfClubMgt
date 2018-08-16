@@ -191,7 +191,7 @@
                             <div class="col-sm-12" id="infoMessage1" style="font-size: 20px; text-align: center; background-color: #ffffff; color: red">
                             </div>
                             <div class="cp-booking-inner">
-                                <form class="" action="http://192.168.9.239/golf/registration/reg_tee_member" method="POST">
+                                <form class="" action="http://localhost/golf/registration/reg_tee_member" method="POST">
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12" style=" font-size: 25px;">
                                             <div class="col-sm-6">

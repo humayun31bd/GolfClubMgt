@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <dataController name="MemberService" conflictDetection="overwriteChanges" label="Member Service" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <commands>
-    <command id="command1" type="Text">
-      <text><![CDATA[
-select
+    <command id="command1" type="Text" custom="false">
+      <text><![CDATA[select
 	"MemberService"."ServiceID" "ServiceID"
 	,"MemberService"."ServiceName" "ServiceName"
 	,"MemberService"."ServiceFee" "ServiceFee"
+	,"MemberService"."IsActive" "IsActive"
+	,"MemberService"."CoaDetailID" "CoaDetailID"
+	,"CoaDetail"."AccName" "CoaDetailAccName"
+	,"MemberService"."LedgerName" "LedgerName"
 from "dbo"."MemberService" "MemberService"
+	left join "dbo"."CoaDetail" "CoaDetail" on "MemberService"."CoaDetailID" = "CoaDetail"."CoaDetailID"
 ]]></text>
     </command>
     <command id="ServiceIDIdentityCommand" type="Text" event="Inserted">
@@ -21,6 +25,12 @@ from "dbo"."MemberService" "MemberService"
     <field name="ServiceID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Service ID" readOnly="true" />
     <field name="ServiceName" type="String" label="Service Name" length="50" showInSummary="true" />
     <field name="ServiceFee" type="Decimal" label="Service Fee" showInSummary="true" />
+    <field name="IsActive" type="Boolean" default="((1))" label="Is Active" showInSummary="true" />
+    <field name="CoaDetailID" type="Int32" label="Coa Detail ID" showInSummary="true" contextFields="AccFundID=15">
+      <items style="Lookup" dataController="CoaDetail" newDataView="createForm1" dataValueField="CoaDetailID" dataTextField="AccName" dataView="grid1" copy="LedgerName=CoaDetailAccName" />
+    </field>
+    <field name="CoaDetailAccName" type="String" readOnly="true" label="Ledger Name" length="150" />
+    <field name="LedgerName" type="String" label="Ledger Name" length="50" />
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Member Service">
@@ -28,6 +38,9 @@ from "dbo"."MemberService" "MemberService"
       <dataFields>
         <dataField fieldName="ServiceName" columns="50" />
         <dataField fieldName="ServiceFee" columns="15" />
+        <dataField fieldName="IsActive" />
+        <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" hidden="true" />
+        <dataField fieldName="LedgerName" columns="50" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Service">
@@ -38,6 +51,9 @@ from "dbo"."MemberService" "MemberService"
           <dataFields>
             <dataField fieldName="ServiceName" columns="50" />
             <dataField fieldName="ServiceFee" columns="15" />
+            <dataField fieldName="IsActive" />
+            <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="LedgerName" columns="50" hidden="true" />
           </dataFields>
         </category>
       </categories>
@@ -50,6 +66,9 @@ from "dbo"."MemberService" "MemberService"
           <dataFields>
             <dataField fieldName="ServiceName" columns="50" watermark="Entering Service Name" />
             <dataField fieldName="ServiceFee" columns="15" watermark="Entering Service Fee" />
+            <dataField fieldName="IsActive" />
+            <dataField fieldName="CoaDetailID" aliasFieldName="CoaDetailAccName" />
+            <dataField fieldName="LedgerName" columns="50" hidden="true" />
           </dataFields>
         </category>
       </categories>
@@ -117,4 +136,7 @@ from "dbo"."MemberService" "MemberService"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
+  <businessRules>
+    <rule id="r100" commandName="Insert|Update" type="Sql" phase="Before"><![CDATA[Set @LedgerName = @CoaDetailAccName]]></rule>
+  </businessRules>
 </dataController>

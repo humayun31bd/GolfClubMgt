@@ -88,7 +88,7 @@ from "dbo"."MemberGameReg" "MemberGameReg"
     </field>
     <field name="FlightSchStartTime" type="String" readOnly="true" label="Flight Sch Start Time" length="6" />
     <field name="FlightSchFlightSchNo" type="Int32" readOnly="true" label="Flight Sch Flight Sch No" />
-    <field name="PlayDate" type="DateTime" dataFormatString="g" label="Play Date" showInSummary="true" />
+    <field name="PlayDate" type="DateTime" dataFormatString="dd-MMM-yyyy hh:mm tt" label="Play Date" showInSummary="true" />
     <field name="HoleTypeID" type="Int32" label="Hole Type ID" showInSummary="true">
       <items style="Lookup" dataController="HoleType" newDataView="createForm1" dataValueField="HoleTypeID" dataTextField="HoleTypeDesc" />
     </field>
@@ -140,7 +140,7 @@ from "dbo"."MemberGameReg" "MemberGameReg"
     <field name="BallBoyFee" type="Decimal" label="Ball Boy Fee" />
     <field name="GolfCartFee" type="Decimal" label="Golf Cart Fee" />
     <field name="RegNo" type="String" label="Reg No" length="50" />
-    <field name="RegDate" type="DateTime" dataFormatString="g" label="Reg Date" />
+    <field name="RegDate" type="DateTime" dataFormatString="dd-MMM-yyyy hh:mm tt" label="Reg Date" />
     <field name="HandiCap" type="Int32" label="Handi Cap" />
     <field name="EstTeeOffTime" type="DateTime" dataFormatString="g" label="Est Tee Off Time" />
     <field name="DelayTime" type="Int32" label="Delay Time" />
@@ -175,6 +175,7 @@ from "dbo"."MemberGameReg" "MemberGameReg"
         <dataField fieldName="FlightSchFlightSchNo" columns="15" />
         <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
         <dataField fieldName="MemberNameOfMember" />
+        <dataField fieldName="HandiCap" columns="15" />
         <dataField fieldName="RegNo" columns="50" />
         <dataField fieldName="RegDate" columns="20" />
         <dataField fieldName="PlayDate" columns="20" />
@@ -199,7 +200,6 @@ from "dbo"."MemberGameReg" "MemberGameReg"
         <dataField fieldName="BallBoyBallBoyName" columns="50" />
         <dataField fieldName="NeedGolfCart" />
         <dataField fieldName="GolfCartID" aliasFieldName="GolfCartCode" />
-        <dataField fieldName="HandiCap" columns="15" />
         <dataField fieldName="EstTeeOffTime" columns="20" />
       </dataFields>
     </view>
@@ -349,9 +349,6 @@ from "dbo"."MemberGameReg" "MemberGameReg"
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
       <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
-      <action commandName="SQL" headerText="Approved" confirmation="Do you Confirm ?" id="a100">
-        <data><![CDATA[Exec USP_MemberGameRegBillApproved @GRegisterID]]></data>
-      </action>
       <action commandName="Navigate" commandArgument="_blank:ClubReport.aspx?_ReportID=2&amp;_GregisterID={GregisterID}" headerText="Print Bill" id="a101" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
@@ -377,5 +374,18 @@ from "dbo"."MemberGameReg" "MemberGameReg"
       <action id="a7" whenLastCommandName="New" commandName="Cancel" />
     </actionGroup>
   </actions>
-  <businessRules />
+  <businessRules>
+    <rule id="r100" commandName="Select" type="Sql" phase="Before"><![CDATA[-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @RegDate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @RegDate_Filter_Between2 = convert(nvarchar(10),getdate(),101)
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end]]></rule>
+  </businessRules>
 </dataController>

@@ -227,7 +227,7 @@ from "dbo"."TourRegisterMember" "TourRegisterMember"
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
       <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" whenHRef="false:" />
-      <action commandName="SQL" headerText="Approved" id="a100">
+      <action commandName="SQL" headerText="Approved" id="a100" roles="NonDelivery">
         <data><![CDATA[Exec USP_TournamentBillApproved @TourRegisterID]]></data>
       </action>
     </actionGroup>

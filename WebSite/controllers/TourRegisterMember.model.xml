@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="dbo" baseTable="TourRegisterMember" alias="TourRegisterMember" created="2018-05-12T13:11:00" modified="2018-05-12T13:12:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="dbo" baseTable="TourRegisterMember" alias="TourRegisterMember" created="2018-05-12T13:11:00" modified="2018-07-27T06:39:22" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Tournament" parentTableSchema="dbo" parentTableName="Tournament" x="359" y="20">
       <foreignKeyColumn columnName="TournamentID" parentColumnName="TournamentID" />

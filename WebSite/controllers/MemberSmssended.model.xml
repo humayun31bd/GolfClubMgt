@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberSMSSended" alias="MemberSMSSended" created="2018-07-14T10:15:46" modified="2018-07-14T10:15:59" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="MemberSMSSendID" fieldName="MemberSmssendID" label="Member SMS Send ID" />
+    <column name="DeliveryDate" fieldName="DeliveryDate" label="Delivery Date" format="g" />
+    <column name="SendingText" fieldName="SendingText" label="Sending Text" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+  </columns>
+</dataModel>

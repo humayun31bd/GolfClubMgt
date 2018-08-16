@@ -16,6 +16,7 @@ namespace MyCompany.Rules
         public void BuildNewMemberInfoNonMember()
         {
             UpdateFieldValue("MemberTypeID", 2);
+            UpdateFieldValue("NonMemberCatID", 1);
         }
     }
 }

@@ -63,7 +63,7 @@ from "dbo"."MemberCard" "MemberCard"
     <field name="MemberCategoryName" type="String" readOnly="true" label="Member Category Name" length="150" />
   </fields>
   <views>
-    <view id="grid1" type="Grid" commandId="command1" label="Member Card">
+    <view id="grid1" type="Grid" commandId="command1" label="Member Card Issue">
       <headerText>$DefaultGridViewDescription</headerText>
       <dataFields>
         <dataField fieldName="MemberID" aliasFieldName="MemberNameOfMember" />
@@ -71,6 +71,7 @@ from "dbo"."MemberCard" "MemberCard"
         <dataField fieldName="MemberCategoryID" columns="15" />
         <dataField fieldName="MemberCellPhone" />
         <dataField fieldName="CardNumber" columns="50" />
+        <dataField fieldName="CardBalance" columns="15" />
         <dataField fieldName="CreatedDt" columns="20" />
         <dataField fieldName="CreatedBy" columns="50" />
         <dataField fieldName="MemberCategoryName" />
@@ -78,10 +79,10 @@ from "dbo"."MemberCard" "MemberCard"
         <dataField fieldName="IsVarifiedPin" />
       </dataFields>
     </view>
-    <view id="editForm1" type="Form" commandId="command1" label="Review Member Card">
+    <view id="editForm1" type="Form" commandId="command1" label="Review Member Card Issue">
       <headerText>$DefaultEditViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="Member Card" flow="NewColumn">
+        <category id="c1" headerText="Member Card Issue" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
@@ -101,7 +102,7 @@ from "dbo"."MemberCard" "MemberCard"
         </category>
       </categories>
     </view>
-    <view id="createForm1" type="Form" commandId="command1" label="New Member Card">
+    <view id="createForm1" type="Form" commandId="command1" label="New Member Card Issue">
       <headerText>$DefaultCreateViewDescription</headerText>
       <categories>
         <category id="c1" flow="NewColumn">
@@ -152,21 +153,11 @@ from "dbo"."MemberCard" "MemberCard"
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,CardAdmin" />
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,AddMemberCard" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
-      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
-    </actionGroup>
-    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
-      <action id="a1" commandName="ExportCsv" />
-      <action id="a2" />
-      <action id="a3" commandName="ExportRowset" />
-      <action id="a4" commandName="ExportRss" />
-      <action id="a5" />
-      <action id="a6" commandName="Import" commandArgument="createForm1" />
-      <action id="a7" commandName="DataSheet" />
-      <action id="a8" commandName="Grid" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" roles="DeleteMemberCard" />
     </actionGroup>
     <actionGroup id="ag6" scope="ActionBar" headerText="Record">
       <action id="a1" whenLastCommandName="Edit" commandName="Update" />

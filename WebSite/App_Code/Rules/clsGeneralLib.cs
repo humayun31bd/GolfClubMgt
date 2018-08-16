@@ -15,11 +15,11 @@ using System.Web;
 /// </summary>
 public class clsGeneralLib
 {
-	public clsGeneralLib()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
+    public clsGeneralLib()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
     }
     public class Member
     {
@@ -110,7 +110,7 @@ public class clsGeneralLib
     }
 
     public int SendSMSTo(string pMobileNO, string pMemberName, string pMessage)
-    { 
+    {
         int isSendSMSSuccess = 100;
         #region [AppSetting]
         string debugSMSSttings = ConfigurationManager.AppSettings["debugSMS"].ToString();
@@ -167,12 +167,16 @@ public class clsGeneralLib
 
         AllSmsSend = false;
         string CloudSrv = ConfigurationManager.AppSettings["CloudServer"].ToString();
-        CloudSrv = "45.35.4.235";
+        ///CloudSrv = "45.35.4.235";
         string sConnectionType = ConfigurationManager.AppSettings["ConnectionType"].ToString();
         string cldSrvdb = ConfigurationManager.AppSettings["CloudServerdb"].ToString();
         SqlConnection connection = new SqlConnection();
         sConnectionType = "SQLSERVER";
-        connection.ConnectionString = connHelper("SQLSERVER", CloudSrv, cldSrvdb, "MyCloudAdmin", "MyCloudAdmin@786!#");
+
+        string CONN_STRING = System.Configuration.ConfigurationManager.ConnectionStrings["MyCompany"].ConnectionString;
+        connection = new SqlConnection(CONN_STRING);
+        ///connection.ConnectionString = connHelper("SQLSERVER", CloudSrv, cldSrvdb, "MyCloudAdmin", "MyCloudAdmin@786!#");
+
         #endregion
         try
         {
@@ -185,7 +189,7 @@ public class clsGeneralLib
             throw new Exception("Database connection failed. Please try it later.");
             ///MessageBox.Show("Cloud Server Status : " + ex.Message);
         }
-            
+
         #region [Reader Provider record]
         string strSelect = "select * from SMSProvider where SMSAccountName='" + SMSAccountName + "'";
         SqlCommand cmd1 = new SqlCommand();
@@ -245,252 +249,252 @@ public class clsGeneralLib
         #region [variables]
 
         int rowsAffected3 = 0;
-            int rowsAffected1 = 0;
-                
-                
-            string SMSNoticeBody = string.Empty;
-            string SmsSendDate = string.Empty;
-            string MemberName = string.Empty;
-            bool IsSensSMS = false;
-                
-            #endregion
-            #region [Read Member Data]
+        int rowsAffected1 = 0;
 
-            SMSNoticeBody = pMemberName + " : " + pMessage.ToString();
 
-            #endregion
-            if (connection.State == 0)
+        string SMSNoticeBody = string.Empty;
+        string SmsSendDate = string.Empty;
+        string MemberName = string.Empty;
+        bool IsSensSMS = false;
+
+        #endregion
+        #region [Read Member Data]
+
+        SMSNoticeBody = pMemberName + " : " + pMessage.ToString();
+
+        #endregion
+        if (connection.State == 0)
+        {
+            connection.Open();
+        }
+        try
+        {
+            if (IsSensSMS == false)
             {
-                connection.Open();
-            }
-            try
-            {
-                if (IsSensSMS == false)
+
+                if (SMSBalanceold > 0)
                 {
-                       
-                    if (SMSBalanceold > 0)
+                    #region [Enough balance to send sms]
+
+
+                    string mobileno = pMobileNO;
+                    string[] strmobile = FormatMobileNo(mobileno);
+                    int SMSOutLogID = 0;
+                    if (strmobile[0] == "0")
                     {
-                        #region [Enough balance to send sms]
-
-
-                        string mobileno = pMobileNO;
-                        string[] strmobile = FormatMobileNo(mobileno);
-                        int SMSOutLogID = 0;
-                        if (strmobile[0] == "0")
+                        if (StrProvider == "PresentIT")
                         {
-                            if (StrProvider == "PresentIT")
+                            if (debugSMS == false)
                             {
-                                if (debugSMS == false)
+                                #region [PresentIT]
+
+
+                                cmd1 = new SqlCommand();
+                                if (connection.State == 0)
                                 {
-                                    #region [PresentIT]
-
-
-                                    cmd1 = new SqlCommand();
-                                    if (connection.State == 0)
-                                    {
-                                        connection.Open();
-                                    }
-                                    cmd1.Connection = connection;
-                                    if (SMSOutLogID == 0)
-                                    {
-                                        #region [insert record send sms]
-                                        strInsert = "USP_InsertUpdateSMSDelevary";
-                                        cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
-                                        cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
-                                        cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
-                                        cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
-                                        cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@type", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@MessageID", SqlDbType.Int).Value = DBNull.Value;
-                                        cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
-                                        cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
-
-                                        cmd1.CommandType = CommandType.StoredProcedure;
-
-                                        cmd1.CommandText = strInsert;
-                                        rowsAffected1 = cmd1.ExecuteNonQuery();
-                                        #endregion
-                                        SMSOutLogID = (int)cmd1.Parameters["@SMSOutLogIDRef"].Value;
-                                    }
-
-                                    #region [Json response]
-
-                                    var restRequestClass = new RestRequestClass()
-                                    {
-                                        from = SenderMobileNumber,
-                                        to = strmobile[1].ToString(),
-                                        text = SMSNoticeBody
-                                    };
-                                    var json = JsonConvert.SerializeObject(restRequestClass);
-
-                                    var client = new RestClient(StrSMSEndPoint);
-                                    var request = new RestRequest(Method.POST);
-                                    request.AddHeader("accept", "application/xml");
-                                    request.AddHeader("content-type", "application/xml");
-                                    request.AddHeader("authorization", "Basic " + HashAutor);
-                                    request.AddParameter("application/json", json, ParameterType.RequestBody);
-
-                                    try
-                                    {
-                                        if (!IsSimulateSMS)
-                                        {
-                                            IRestResponse response = client.Execute(request);
-                                            if (!string.IsNullOrEmpty(response.Content))
-                                            {
-                                                #region [api response]
-
-                                                JObject o = JObject.Parse(response.Content);
-                                                smsto = o["messages"][0]["to"].ToString();
-                                                groupid = o["messages"][0]["status"]["groupId"].ToString();
-                                                groupname = o["messages"][0]["status"]["groupName"].ToString();
-                                                statusid = o["messages"][0]["status"]["id"].ToString();
-                                                statusname = o["messages"][0]["status"]["name"].ToString();
-                                                description = o["messages"][0]["status"]["description"].ToString();
-                                                smsCount = o["messages"][0]["smsCount"].ToString();
-                                                messageId = o["messages"][0]["messageId"].ToString();
-                                                status = response.ResponseStatus.ToString();
-                                                statuscode = response.StatusCode.ToString();
-                                                statusDescription = response.StatusDescription.ToString();
-                                                if (!string.IsNullOrEmpty(smsCount))
-                                                {
-                                                    TotalSMSDeducted = TotalSMSDeducted + Convert.ToInt32(smsCount);
-                                                    /// if failed
-                                                    /// send mail to system Admin and sms to Administrator
-                                                    ///
-                                                }
-                                                #endregion
-                                            }
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        isSendSMSSuccess = 106;
-                                        return (isSendSMSSuccess);
-                                        ////MessageBox.Show(ex.Message.ToString());
-                                    }
-                                    #endregion
+                                    connection.Open();
                                 }
-
-                                if (string.IsNullOrEmpty(statusid))
+                                cmd1.Connection = connection;
+                                if (SMSOutLogID == 0)
                                 {
-                                    statusid = "0";
-                                }
-                                if (string.IsNullOrEmpty(groupid))
-                                {
-                                    groupid = "0";
-                                }
-                                if (string.IsNullOrEmpty(smsCount))
-                                {
-                                    smsCount = "0";
-                                }
-                                if (SMSOutLogID > 0)
-                                {
-                                    cmd1 = new SqlCommand();
-                                    if (connection.State == 0)
-                                    {
-                                        connection.Open();
-                                    }
-                                    cmd1.Connection = connection;
-                                    #region [insert record for send sms]
+                                    #region [insert record send sms]
                                     strInsert = "USP_InsertUpdateSMSDelevary";
                                     cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
                                     cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
                                     cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
                                     cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
-                                    cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = 15;
-                                    cmd1.Parameters.Add("@type", SqlDbType.Int).Value = 1;
-                                    cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = statusid;
-                                    cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = statusname;
-                                    cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DateTime.Now;
-                                    cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = providerid;
-                                    cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = groupid;
-                                    cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = groupname;
-                                    cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = description;
-                                    cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = smsCount;
-                                    cmd1.Parameters.Add("@MessageID", SqlDbType.NVarChar).Value = messageId;
+                                    cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@type", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = DBNull.Value;
+                                    cmd1.Parameters.Add("@MessageID", SqlDbType.Int).Value = DBNull.Value;
                                     cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
                                     cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
 
                                     cmd1.CommandType = CommandType.StoredProcedure;
 
                                     cmd1.CommandText = strInsert;
-                                    //cmd1.Transaction = Transection;
                                     rowsAffected1 = cmd1.ExecuteNonQuery();
                                     #endregion
+                                    SMSOutLogID = (int)cmd1.Parameters["@SMSOutLogIDRef"].Value;
                                 }
 
-                                    #endregion
-                            }                                
-                        }
-                        else
-                        {
-                            #region [No Provider set]
-                            strInsert = "INSERT INTO [dbo].[SMSDelivery] " +
-                                        " (ReceiptNumber" +
-                                        " ,SenderNumber" +
-                                        " ,sMessage" +
-                                        " ,delay " +
-                                        " ,type" +
-                                        " ,DeliveryStatusID" +
-                                        " ,Result" +
-                                        " ,DeliveryTime)" +
-                                        " VALUES" +
-                                        " ('" + strmobile[1].ToString() + "'" +
-                                        " , '" + SenderMobileNumber + "'" +
-                                        " , N'" + SMSNoticeBody + "'" +
-                                        " , " + 15 + "" +
-                                            " , 1" +
-                                            " , 8 " +
-                                            " , 'recipient mobile number is invalid'" +
-                                            " , '" + DateTime.Now + "')";
-                            cmd1 = new SqlCommand();
-                            if (connection.State == 0)
-                            {
-                                connection.Open();
-                            }
-                            cmd1.Connection = connection;
-                            cmd1.CommandType = CommandType.Text;
-                            cmd1.CommandText = strInsert;
-                            //cmd1.Transaction = Transection;
-                            rowsAffected1 = cmd1.ExecuteNonQuery();
-                            #endregion
-                        }
+                                #region [Json response]
 
-                        #endregion
+                                var restRequestClass = new RestRequestClass()
+                                {
+                                    from = SenderMobileNumber,
+                                    to = strmobile[1].ToString(),
+                                    text = SMSNoticeBody
+                                };
+                                var json = JsonConvert.SerializeObject(restRequestClass);
+
+                                var client = new RestClient(StrSMSEndPoint);
+                                var request = new RestRequest(Method.POST);
+                                request.AddHeader("accept", "application/xml");
+                                request.AddHeader("content-type", "application/xml");
+                                request.AddHeader("authorization", "Basic " + HashAutor);
+                                request.AddParameter("application/json", json, ParameterType.RequestBody);
+
+                                try
+                                {
+                                    if (!IsSimulateSMS)
+                                    {
+                                        IRestResponse response = client.Execute(request);
+                                        if (!string.IsNullOrEmpty(response.Content))
+                                        {
+                                            #region [api response]
+
+                                            JObject o = JObject.Parse(response.Content);
+                                            smsto = o["messages"][0]["to"].ToString();
+                                            groupid = o["messages"][0]["status"]["groupId"].ToString();
+                                            groupname = o["messages"][0]["status"]["groupName"].ToString();
+                                            statusid = o["messages"][0]["status"]["id"].ToString();
+                                            statusname = o["messages"][0]["status"]["name"].ToString();
+                                            description = o["messages"][0]["status"]["description"].ToString();
+                                            smsCount = o["messages"][0]["smsCount"].ToString();
+                                            messageId = o["messages"][0]["messageId"].ToString();
+                                            status = response.ResponseStatus.ToString();
+                                            statuscode = response.StatusCode.ToString();
+                                            statusDescription = response.StatusDescription.ToString();
+                                            if (!string.IsNullOrEmpty(smsCount))
+                                            {
+                                                TotalSMSDeducted = TotalSMSDeducted + Convert.ToInt32(smsCount);
+                                                /// if failed
+                                                /// send mail to system Admin and sms to Administrator
+                                                ///
+                                            }
+                                            #endregion
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    isSendSMSSuccess = 106;
+                                    return (isSendSMSSuccess);
+                                    ////MessageBox.Show(ex.Message.ToString());
+                                }
+                                #endregion
+                            }
+
+                            if (string.IsNullOrEmpty(statusid))
+                            {
+                                statusid = "0";
+                            }
+                            if (string.IsNullOrEmpty(groupid))
+                            {
+                                groupid = "0";
+                            }
+                            if (string.IsNullOrEmpty(smsCount))
+                            {
+                                smsCount = "0";
+                            }
+                            if (SMSOutLogID > 0)
+                            {
+                                cmd1 = new SqlCommand();
+                                if (connection.State == 0)
+                                {
+                                    connection.Open();
+                                }
+                                cmd1.Connection = connection;
+                                #region [insert record for send sms]
+                                strInsert = "USP_InsertUpdateSMSDelevary";
+                                cmd1.Parameters.Add("@SMSOutLogID", SqlDbType.Int).Value = SMSOutLogID;
+                                cmd1.Parameters.Add("@ReceiptNumber", SqlDbType.NVarChar).Value = strmobile[1].ToString();
+                                cmd1.Parameters.Add("@SenderNumber", SqlDbType.NVarChar).Value = SenderMobileNumber;
+                                cmd1.Parameters.Add("@sMessage", SqlDbType.NVarChar).Value = SMSNoticeBody;
+                                cmd1.Parameters.Add("@delay", SqlDbType.Int).Value = 15;
+                                cmd1.Parameters.Add("@type", SqlDbType.Int).Value = 1;
+                                cmd1.Parameters.Add("@DeliveryStatusID", SqlDbType.Int).Value = statusid;
+                                cmd1.Parameters.Add("@Result", SqlDbType.NVarChar).Value = statusname;
+                                cmd1.Parameters.Add("@DeliveryTime", SqlDbType.DateTime).Value = DateTime.Now;
+                                cmd1.Parameters.Add("@ProviderID", SqlDbType.Int).Value = providerid;
+                                cmd1.Parameters.Add("@SMSGroupID", SqlDbType.Int).Value = groupid;
+                                cmd1.Parameters.Add("@SMSGroupName", SqlDbType.NVarChar).Value = groupname;
+                                cmd1.Parameters.Add("@StatusDescription", SqlDbType.NVarChar).Value = description;
+                                cmd1.Parameters.Add("@SMSCount", SqlDbType.Int).Value = smsCount;
+                                cmd1.Parameters.Add("@MessageID", SqlDbType.NVarChar).Value = messageId;
+                                cmd1.Parameters.Add("@SMSOutLogIDRef", SqlDbType.Int).Value = 0;
+                                cmd1.Parameters["@SMSOutLogIDRef"].Direction = ParameterDirection.Output;
+
+                                cmd1.CommandType = CommandType.StoredProcedure;
+
+                                cmd1.CommandText = strInsert;
+                                //cmd1.Transaction = Transection;
+                                rowsAffected1 = cmd1.ExecuteNonQuery();
+                                #endregion
+                            }
+
+                                #endregion
+                        }
                     }
                     else
                     {
-                        isSendSMSSuccess = 102;
-                        ///MessageBox.Show("Balance is not eanough to send sms.....Please Purchase SMS....");
-                        return (isSendSMSSuccess);
-                        //PopUp("SMS Balance is 0, Please Recharge Balance amount");
-                        ///MessageBox.Show("SMS Balance is 0, Please Recharge Balance amount");
+                        #region [No Provider set]
+                        strInsert = "INSERT INTO [dbo].[SMSDelivery] " +
+                                    " (ReceiptNumber" +
+                                    " ,SenderNumber" +
+                                    " ,sMessage" +
+                                    " ,delay " +
+                                    " ,type" +
+                                    " ,DeliveryStatusID" +
+                                    " ,Result" +
+                                    " ,DeliveryTime)" +
+                                    " VALUES" +
+                                    " ('" + strmobile[1].ToString() + "'" +
+                                    " , '" + SenderMobileNumber + "'" +
+                                    " , N'" + SMSNoticeBody + "'" +
+                                    " , " + 15 + "" +
+                                        " , 1" +
+                                        " , 8 " +
+                                        " , 'recipient mobile number is invalid'" +
+                                        " , '" + DateTime.Now + "')";
+                        cmd1 = new SqlCommand();
+                        if (connection.State == 0)
+                        {
+                            connection.Open();
+                        }
+                        cmd1.Connection = connection;
+                        cmd1.CommandType = CommandType.Text;
+                        cmd1.CommandText = strInsert;
+                        //cmd1.Transaction = Transection;
+                        rowsAffected1 = cmd1.ExecuteNonQuery();
+                        #endregion
                     }
-                    //end check sms balance     
-                    AllSmsSend = true;
+
+                    #endregion
                 }
                 else
                 {
-                    AllSmsSend = true;
+                    isSendSMSSuccess = 102;
+                    ///MessageBox.Show("Balance is not eanough to send sms.....Please Purchase SMS....");
+                    return (isSendSMSSuccess);
+                    //PopUp("SMS Balance is 0, Please Recharge Balance amount");
+                    ///MessageBox.Show("SMS Balance is 0, Please Recharge Balance amount");
                 }
+                //end check sms balance     
+                AllSmsSend = true;
             }
-            catch (Exception ex)
+            else
             {
-                isSendSMSSuccess = 103;
-                ///MessageBox.Show("SMS Sending Fail: " + ex.Message.ToString());
-                //Transection.Rollback();
+                AllSmsSend = true;
             }
+        }
+        catch (Exception ex)
+        {
+            isSendSMSSuccess = 103;
+            ///MessageBox.Show("SMS Sending Fail: " + ex.Message.ToString());
+            //Transection.Rollback();
+        }
         #endregion
         #region [sms send count balance update]
-            SMSBalanceNew = SMSBalanceold - TotalSMSDeducted;
+        SMSBalanceNew = SMSBalanceold - TotalSMSDeducted;
         strBalanceUpdate = "Update SMSBalance set  SMSBalanceQty=" + SMSBalanceNew + " where SMSAccountName='" + SMSAccountName + "'";
         cmd1 = new SqlCommand();
         if (connection.State == 0)
@@ -520,7 +524,7 @@ public class clsGeneralLib
             sSQL = sSQL + " ON M.MemberCategoryID = C.MemberCategoryID Left Outer Join dbo.MemberStatus S";
             sSQL = sSQL + " ON M.MemberStatusID = S.MemberStatusID Left Outer Join dbo.MemberGroup G";
             sSQL = sSQL + " ON M.MemberGroupID = G.MemberGroupID";
-            if (pMemberID>0)
+            if (pMemberID > 0)
             {
                 sSQL = sSQL + " where M.MemberID = " + pMemberID + "";
             }
@@ -605,4 +609,43 @@ public class clsGeneralLib
         }
         return oMemberModel;
     }
+
+    public string GetDueSMSMessage()
+    {
+        string smsMessage = "";
+        DataTable dt = new DataTable();
+        string CONN_STRING = System.Configuration.ConfigurationManager.ConnectionStrings["MyCompany"].ConnectionString;
+        SqlConnection con = new SqlConnection(CONN_STRING);
+        {
+            //
+            string sSQL = "Select DueSMSMessage  ";
+            sSQL = sSQL + " From dbo.SMSConfig  ";
+
+            SqlCommand cmd = new SqlCommand(sSQL, con);
+
+            cmd.CommandType = CommandType.Text;
+            //cmd.Parameters.Add("@VoucherHeadID", SqlDbType.NVarChar).Value = pVoucherHeadID;
+            SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+            try
+            {
+
+                adpt.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow rw in dt.Rows)
+                    {
+                        if (rw["DueSMSMessage"] != DBNull.Value)
+                        {
+                            smsMessage = Convert.ToString(rw["DueSMSMessage"].ToString());
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return smsMessage;
+        }
+    }
+
 }

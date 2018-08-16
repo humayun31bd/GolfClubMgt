@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MemberRestBarBillCollection" alias="MemberRestBarBillCollection" created="2018-07-03T07:40:08" modified="2018-07-27T06:40:42" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MemberRestaurentBill" parentTableSchema="dbo" parentTableName="MemberRestBarBill" x="392" y="20">
+      <foreignKeyColumn columnName="MemberRestaurentBillID" parentColumnName="MemberRestaurentBillID" />
+    </foreignKey>
+    <foreignKey id="Member" parentTableSchema="dbo" parentTableName="MemberInfo" x="392" y="204">
+      <foreignKeyColumn columnName="MemberID" parentColumnName="MemberID" />
+      <foreignKeyColumn columnName="BankID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberCategory" parentTableSchema="dbo" parentTableName="MemberCategory" baseForeignKey="Member" x="1062" y="20">
+      <foreignKeyColumn columnName="MemberCategoryID" parentColumnName="MemberCategoryID" />
+    </foreignKey>
+    <foreignKey id="MemberStatus" parentTableSchema="dbo" parentTableName="MemberStatus" baseForeignKey="Member" x="1062" y="250">
+      <foreignKeyColumn columnName="MemberStatusID" parentColumnName="MemberStatusID" />
+    </foreignKey>
+    <foreignKey id="MemberType" parentTableSchema="dbo" parentTableName="MemberType" baseForeignKey="Member" x="1062" y="414">
+      <foreignKeyColumn columnName="MemberTypeID" parentColumnName="MemberTypeID" />
+    </foreignKey>
+    <foreignKey id="MemberNationality" parentTableSchema="dbo" parentTableName="Nationality" baseForeignKey="Member" x="1062" y="554">
+      <foreignKeyColumn columnName="NationalityID" parentColumnName="NationalityID" />
+    </foreignKey>
+    <foreignKey id="PayType" parentTableSchema="dbo" parentTableName="PayType" x="392" y="527">
+      <foreignKeyColumn columnName="PayTypeID" parentColumnName="PayTypeID" />
+    </foreignKey>
+    <foreignKey id="Bank" parentTableSchema="dbo" parentTableName="Bank" x="378" y="153">
+      <foreignKeyColumn columnName="BankID" parentColumnName="BankID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="MemberRestaurentBillColID" fieldName="MemberRestaurentBillColID" label="Member Restaurent Bill Col ID" />
+    <column name="MemberRestaurentBillID" fieldName="MemberRestaurentBillID" label="Member Restaurent Bill ID" aliasColumnName="Comments" aliasForeignKey="MemberRestaurentBill" />
+    <column name="Comments" fieldName="MemberRestaurentBillComments" label="Member Restaurent Bill Comments" foreignKey="MemberRestaurentBill" />
+    <column name="MemberID" fieldName="MemberID" label="Member ID" aliasColumnName="MemberCode" aliasForeignKey="Member" />
+    <column name="MemberCode" fieldName="MemberCode" label="Member Code" foreignKey="Member" />
+    <column name="CategoryName" fieldName="MemberCategoryName" label="Member Category Name" foreignKey="MemberCategory" />
+    <column name="MemberStatus" fieldName="MemberStatus" label="Member Status" foreignKey="MemberStatus" />
+    <column name="MemberTypeDesc" fieldName="MemberTypeDesc" label="Member Type Desc" foreignKey="MemberType" />
+    <column name="Nationality" fieldName="MemberNationality" label="Member Nationality" foreignKey="MemberNationality" />
+    <column name="AccFundID" fieldName="AccFundID" label="Acc Fund ID" />
+    <column name="SaleDate" fieldName="SaleDate" label="Sale Date" format="g" />
+    <column name="FeeAmount" fieldName="FeeAmount" label="Fee Amount" />
+    <column name="PaidAmount" fieldName="PaidAmount" label="Paid Amount" />
+    <column name="Comments" fieldName="Comments" label="Comments" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="IsRestaurent" fieldName="IsRestaurent" label="Is Restaurent" />
+    <column name="IsBar" fieldName="IsBar" label="Is Bar" />
+    <column name="PayTypeID" fieldName="PayTypeID" label="Pay Type ID" aliasColumnName="PayTypeName" aliasForeignKey="PayType" />
+    <column name="PayTypeName" fieldName="PayTypeName" label="Pay Type Name" foreignKey="PayType" />
+    <column name="ChequeNo" fieldName="ChequeNo" label="Cheque No" />
+    <column name="ChequeDate" fieldName="ChequeDate" label="Cheque Date" format="g" />
+    <column name="BankID" fieldName="BankID" label="Bank ID" aliasColumnName="BankName" aliasForeignKey="Bank" />
+    <column name="BankName" fieldName="BankName" label="Bank Name" foreignKey="Bank" />
+  </columns>
+</dataModel>

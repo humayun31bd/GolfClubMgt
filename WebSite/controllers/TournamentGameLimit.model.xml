@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TournamentGameLimit" alias="TournamentGameLimit" created="2018-07-06T22:39:35" modified="2018-07-13T11:36:44" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="GameCategory" parentTableSchema="dbo" parentTableName="GameCategory" x="316" y="20">
+      <foreignKeyColumn columnName="GameCategoryID" parentColumnName="GameCategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="TourGameID" fieldName="TourGameID" label="Tour Game ID" />
+    <column name="IsAgeLimit" fieldName="IsAgeLimit" label="Is Age Limit" />
+    <column name="AgeFrom" fieldName="AgeFrom" label="Age From" />
+    <column name="AgeTo" fieldName="AgeTo" label="Age To" />
+    <column name="IsHandicapLimit" fieldName="IsHandicapLimit" label="Is Handicap Limit" />
+    <column name="HandicapFrom" fieldName="HandicapFrom" label="Handicap From" />
+    <column name="HandicapTo" fieldName="HandicapTo" label="Handicap To" />
+    <column name="GameCategoryID" fieldName="GameCategoryID" label="Game Category ID" aliasColumnName="GameCategoryName" aliasForeignKey="GameCategory" />
+    <column name="GameCategoryName" fieldName="GameCategoryGameCategoryName" label="Game Category Game Category Name" foreignKey="GameCategory" />
+    <column name="GameName" fieldName="GameName" label="Game Name" />
+  </columns>
+</dataModel>
