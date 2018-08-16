@@ -195,8 +195,7 @@ if (@Session_FromDate is null)
 Exec dbo.MemberStatusChanged @MemberStatusChangeID,@Session_FromDate
 ]]></rule>
     <rule id="r103" commandName="Delete" type="Sql" phase="Before"><![CDATA[Exec dbo.MemberStatusChangedCanceled @MemberStatusChangeID]]></rule>
-    <rule id="r104" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[Exec USP_MemberAbsenteeGoesNew @MemberCode, @NewMemberStatusID
-set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
+    <rule id="r104" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
 ]]></rule>
   </businessRules>
 </dataController>

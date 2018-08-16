@@ -56255,4 +56255,12 @@ set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
 </Script>
     </update>
   </c>
+  <c y="NodeSet" t="2018-08-16T10:34:56">
+    <controller name="MemberStatusChange" />
+    <rule id="r104" />
+    <update>
+      <Script>set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
+</Script>
+    </update>
+  </c>
 </log>
