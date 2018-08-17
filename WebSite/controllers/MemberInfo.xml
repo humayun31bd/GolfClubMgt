@@ -156,10 +156,10 @@ from "dbo"."MemberInfo" "MemberInfo"
       <dataView controller="MemberCard" view="AllMembers" filterFields="MemberID" />
     </field>
     <field name="MemberInfoSpouse" type="DataView" label="Member Spouse">
-      <dataView controller="MemberInfoSpouse" view="grid1" filterFields="ParentMemberID" />
+      <dataView controller="MemberInfoSpouse" view="grid1" />
     </field>
     <field name="MemberInfoChild" type="DataView" label="Member Childrens">
-      <dataView controller="MemberInfoChild" view="grid1" filterFields="ParentMemberID" />
+      <dataView controller="MemberInfoChild" view="grid1" />
     </field>
   </fields>
   <views>
@@ -195,6 +195,7 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataField fieldName="MonthlySubcriptionFee" columns="15" aggregate="Sum" hidden="true" />
         <dataField fieldName="ContributionFee" columns="15" />
         <dataField fieldName="AnualFee" columns="15" aggregate="Sum" hidden="true" />
+        <dataField fieldName="ParentMemberID" columns="15" aliasFieldName="MemberInfo1NameOfMember" />
       </dataFields>
     </view>
     <view id="AllMembers" type="Grid" commandId="command1" label="Members" access="Public">
@@ -282,16 +283,6 @@ from "dbo"."MemberInfo" "MemberInfo"
             <dataField fieldName="PresentAddress" />
             <dataField fieldName="Photo" columns="15" />
             <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
-          </dataFields>
-        </category>
-        <category headerText="Spouse" id="c4" tab="Spouse">
-          <dataFields>
-            <dataField fieldName="MemberInfoSpouse" columns="15" />
-          </dataFields>
-        </category>
-        <category headerText="Childrens" tab="Childrens" id="c5">
-          <dataFields>
-            <dataField fieldName="MemberInfoChild" columns="15" />
           </dataFields>
         </category>
       </categories>
@@ -384,7 +375,7 @@ from "dbo"."MemberInfo" "MemberInfo"
       <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,AddMemberRegistration" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberRegistration" />
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="Administrator,EditMemberRegistration" />
       <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" roles="DeleteMemberRegistration" />
     </actionGroup>
     <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
@@ -469,7 +460,7 @@ set @MonthlySubscriptionFee = @MonthlyFee]]></rule>
     <rule id="r103" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[----Exec dbo.USP_MemberCode_Insert @MemberID
 Exec dbo.USP_MemberSubscriptionDueCreate @MemberCode, @BusinessRules_UserName
 
-Exec dbo.USP_MemberSpouseChildrenCodeChanged  @MemberCode, @BusinessRules_UserName
+Exec dbo.USP_MemberSpouseChildrenCodeChanged  @MemberID,@MemberCode, @BusinessRules_UserName
 
 ]]></rule>
     <rule id="r104" type="JavaScript" commandName="Insert|Update" phase="Before" name="SubsriptionDate_Validator"><![CDATA[var fieldValue = [SubsriptionDate];
@@ -504,6 +495,12 @@ begin
     /* set the focus on the field and display an error */
     set @Result_Focus = 'Email,Required field.'
 end
+]]></rule>
+    <rule id="r101" commandName="Edit" type="Sql" phase="Before"><![CDATA[-- debug
+Declare @Session_ParentMemberID int
+-- end debug
+
+Set @Session_ParentMemberID @MemberID
 ]]></rule>
   </businessRules>
 </dataController>

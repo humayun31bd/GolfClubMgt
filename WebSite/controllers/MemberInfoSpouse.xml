@@ -162,7 +162,6 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataField fieldName="MemberCode" columns="50" />
         <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
         <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
-        <dataField fieldName="SubsriptionDate" columns="20" />
         <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
         <dataField fieldName="NationalityID" aliasFieldName="Nationality" />
         <dataField fieldName="CellPhone" />
@@ -173,13 +172,10 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataField fieldName="MemberTypeID" aliasFieldName="MemberTypeMemberTypeDesc" hidden="true" />
         <dataField fieldName="ClubName" />
         <dataField fieldName="NonMemberCatID" aliasFieldName="NonMemberCategoryNonMemCateory" />
-        <dataField fieldName="LastPaySubsDate" columns="20" />
-        <dataField fieldName="LastPayContDate" columns="20" />
         <dataField fieldName="RefNumber" columns="50" />
         <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-        <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-        <dataField fieldName="WelfareContributionDT" columns="20" />
         <dataField fieldName="MemberInfo1NameOfMember" rows="5" hidden="true" />
+        <dataField fieldName="ParentMemberID" columns="15" aliasFieldName="MemberInfo1NameOfMember" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Member  Spouse Information">
@@ -211,7 +207,6 @@ from "dbo"."MemberInfo" "MemberInfo"
             <dataField fieldName="RefNumber" columns="50" />
             <dataField fieldName="RecomendetMemberShipNo" columns="50" />
             <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-            <dataField fieldName="WelfareContributionDT" columns="20" />
           </dataFields>
         </category>
         <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -254,8 +249,6 @@ from "dbo"."MemberInfo" "MemberInfo"
             <dataField fieldName="ClubName" />
             <dataField fieldName="RefNumber" columns="50" />
             <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-            <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-            <dataField fieldName="WelfareContributionDT" columns="20" />
           </dataFields>
         </category>
         <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -299,7 +292,7 @@ from "dbo"."MemberInfo" "MemberInfo"
       <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
     </actionGroup>
     <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="AddSpouseMemberRegistration" />
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrator,AddSpouseMemberRegistration" />
     </actionGroup>
     <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
       <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberRegistration" />
@@ -338,7 +331,9 @@ from "dbo"."MemberInfo" "MemberInfo"
     <rule id="r100" commandName="Insert|Update" type="Sql" phase="Before"><![CDATA[if (@MemberOfType is null)
 set @MemberOfType = 'Spouse Of Member'
 	]]></rule>
-    <rule id="r102" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[Exec [dbo].[USP_MemberParentData_Update]  @MemberID,@ParentMemberID]]></rule>
+    <rule id="r102" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[Exec dbo.USP_MemberCode_Insert @MemberID
+Exec USP_MemberParentData_Update @MemberID, @ParentmemberID
+]]></rule>
     <rule id="r103" type="JavaScript" commandName="Insert|Update" phase="Before" name="ParentMemberID_Validator"><![CDATA[
 var fieldValue = [ParentMemberID];
 if (fieldValue == null) {
@@ -347,5 +342,16 @@ if (fieldValue == null) {
     // set the focus on the field and display an error
     this.result.focus('ParentMemberID', 'Required field.');
 }]]></rule>
+    <rule id="r101" commandName="Select" type="Sql" phase="Before"><![CDATA[-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end]]></rule>
   </businessRules>
 </dataController>

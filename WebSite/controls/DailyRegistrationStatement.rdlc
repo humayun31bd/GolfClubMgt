@@ -9,16 +9,16 @@
               <Width>0.32292in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.5625in</Width>
+              <Width>0.50125in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.57292in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6875in</Width>
+              <Width>0.74875in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.58334in</Width>
+              <Width>0.5625in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.875in</Width>
@@ -30,7 +30,7 @@
               <Width>0.4375in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.5in</Width>
+              <Width>0.45959in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.5in</Width>
@@ -193,7 +193,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>MemberNo</Value>
+                              <Value>Member ship no</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1097,13 +1097,15 @@
                             <TextRun>
                               <Value>=Fields!CollectionDate.Value</Value>
                               <Style>
-                                <FontFamily>Tahoma</FontFamily>
+                                <FontFamily>Arial Narrow</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>dd-MMM-yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CollectionDate</rd:DefaultName>
@@ -2418,7 +2420,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.53in</Top>
         <Height>2.29167in</Height>
-        <Width>7.72001in</Width>
+        <Width>7.65876in</Width>
         <Style>
           <Border>
             <Style>None</Style>

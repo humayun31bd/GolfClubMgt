@@ -165,7 +165,7 @@
                 //console.log("yyy", self.member.memberId, mID);
                 $http({
                     method: "GET",
-                    url: "http://api.kgc-bd.com/api/MemberCurrentDue/bymembercode/" + mID,
+                    url: "http://localhost:2997/api/MemberCurrentDue/bymembercode/" + mID,
                     //cache: $templateCache
                 }).then(function (response) {
                    //self.status = response.status;
@@ -209,7 +209,7 @@
             /*For First Time Load*/
             self.getInitialData = function () {
 
-                $http.get('http://api.kgc-bd.com/api/Service/All').then(function (response) {
+                $http.get('http://localhost:2997/api/Service/All').then(function (response) {
                     if (response.data) {
                         self.services = response.data;
                     }
@@ -268,7 +268,7 @@
 
                 $http({
                     method: "POST",
-                    url: "http://api.kgc-bd.com/api/Service/CreateMemberServiceDue",
+                    url: "http://localhost:2997/api/Service/CreateMemberServiceDue",
                     data: obj
                 }).then(function (response) {
                     ////self.member.memberId means membercode

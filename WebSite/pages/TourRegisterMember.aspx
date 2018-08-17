@@ -328,7 +328,7 @@
 
                 ///$scope.regDate = new format(Date(), 'MM/dd/yyyy').toString();
                 ///@scopre.teeId = 1;
-                $http.get('http://api.kgc-bd.com/api/Game/GetTees').then(function (response) {
+                $http.get('http://localhost:2997/api/Game/GetTees').then(function (response) {
 
                     if (response.data) {
                         $scope.teeList = response.data;
@@ -339,7 +339,7 @@
                     $scope.status = response.status;
                 });
 
-                $http.get('http://api.kgc-bd.com/api/Game/GeTournaments').then(function (response) {
+                $http.get('http://localhost:2997/api/Game/GeTournaments').then(function (response) {
 
                     if (response.data) {
                         $scope.tournamentList = response.data;
@@ -350,7 +350,7 @@
                     $scope.status = response.status;
                 });
 
-                $http.get('http://api.kgc-bd.com/api/Game/GetGameCategory').then(function (response) {
+                $http.get('http://localhost:2997/api/Game/GetGameCategory').then(function (response) {
 
                     if (response.data) {
                         $scope.categoryList = response.data;
@@ -372,7 +372,7 @@
                 var a = GameCateoryID;
                 var aTeeID = TeeID;
 
-                $http.get('http://api.kgc-bd.com/api/Game/TournamentFlightSch?pTournamentID=' + b +
+                $http.get('http://localhost:2997/api/Game/TournamentFlightSch?pTournamentID=' + b +
                     '&pGameCateoryID=' + a + '&pTeeID=' + aTeeID +
                     '&pTodate=' + "'" + pdate + "'" + '&pTodate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
 
@@ -460,7 +460,7 @@
 
                     };
                     $scope.isValidate = function () {
-                        $http.get('http://api.kgc-bd.com/api/Member/GetMemberCardIsActive?sCardNumber=' +
+                        $http.get('http://localhost:2997/api/Member/GetMemberCardIsActive?sCardNumber=' +
                             $scope.paymentType
                             .checkNumber + '&spin=' + $scope.paymentType.pincode + '&pamount=' + $scope
                             .grandTotal).then(
@@ -535,7 +535,7 @@
                     }
 
 
-                    $http.get('http://api.kgc-bd.com/api/Game/GetHoleTypes').then(function (response) {
+                    $http.get('http://localhost:2997/api/Game/GetHoleTypes').then(function (response) {
 
                         if (response.data) {
                             $scope.holeList = response.data;
@@ -552,7 +552,7 @@
 
                     $scope.memberinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Member/bycode/' + $scope.info).then(function (
+                        $http.get('http://localhost:2997/api/Member/bycode/' + $scope.info).then(function (
                             response) {
 
                             if (response.data) {
@@ -564,7 +564,7 @@
                             self.status = response.status;
                         });
 
-                        $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (
+                        $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (
                             response) {
 
                             if (response.data) {
@@ -584,7 +584,7 @@
                     $scope.tournamnetFee = function (holeId) {
 
                         console.log($scope.minfo.MemberGroupID, holeId, tId)
-                        $http.get('http://api.kgc-bd.com/api/Game/GeTournamentFees?pTournamentID=' + tId +
+                        $http.get('http://localhost:2997/api/Game/GeTournamentFees?pTournamentID=' + tId +
                             '&pMemberGroupID=' + $scope.minfo.MemberGroupID + '&pHoleTypeID=' + holeId
                         ).then(
                             function (response) {
@@ -644,13 +644,13 @@
 
                         $http({
                             method: "POST",
-                            url: "http://api.kgc-bd.com/api/Game/CreateMemberTournamentPay",
+                            url: "http://localhost:2997/api/Game/CreateMemberTournamentPay",
                             data: obj
                         }).then(function (response) {
                            
                             rDate = format(new Date($scope.regDate), "MM/dd/yyyy").toString();
                             console.log(rDate);
-                            $http.get('http://api.kgc-bd.com/api/Game/TournamentFlightSch?pTournamentID=' + tId +
+                            $http.get('http://localhost:2997/api/Game/TournamentFlightSch?pTournamentID=' + tId +
                                 '&pGameCateoryID=' + gameCat + '&pTeeID=' + TeeID +
                                 '&pTodate=' + "'" + rDate + "'" + '&pTodate1=' + "'" + rDate + ' 23:59:59' + "'").then(function (response) {
 

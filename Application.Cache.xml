@@ -64,8 +64,8 @@
       </containers>
       <dataViews>
         <dataView id="view1" controller="MemberInfo" view="grid1" container="container1" activator="Tab" text="Registrated Member" multiSelect="true" tag="modal-never" />
-        <dataView id="view3" container="container1" controller="MemberInfoSpouse" view="grid1" activator="Tab" text="Spouse " tag="modal-never&#xD;&#xA;" />
-        <dataView id="view2" container="container1" controller="MemberInfoChild" activator="Tab" text="Children" tag="modal-never&#xD;&#xA;" view="grid1" />
+        <dataView id="view2" container="container1" controller="MemberInfoSpouse" activator="Tab" text="Spouse of Member" />
+        <dataView id="view3" container="container1" controller="MemberInfoChild" activator="Tab" text="Children of Member" />
       </dataViews>
       <controls />
       <about>This page allows member information management.</about>
@@ -550,7 +550,7 @@
         <container id="c101" flow="NewRow" />
       </containers>
       <dataViews>
-        <dataView id="view1" container="c101" controller="CoachFeeReport" view="grid1" activator="Tab" />
+        <dataView id="view1" container="c101" controller="CoachFeeReport" view="grid1" />
       </dataViews>
     </page>
     <page name="ClubReport" index="1670" title="Club Report" roles="*" useExtenders="false" generate="FirstTimeOnly">

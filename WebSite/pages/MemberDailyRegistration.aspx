@@ -497,7 +497,7 @@
 
 
                 var pdate = $scope.regDate ? format($scope.regDate, 'MM/dd/yyyy').toString() : format(new Date(), 'MM/dd/yyyy').toString();
-                $http.get('http://api.kgc-bd.com/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
+                $http.get('http://localhost:2997/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
                     '&pGameDate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
 
                         if (response.data) {
@@ -582,7 +582,7 @@
 
                     $scope.getInitialData = function () {
                         var pdate = format($scope.regDate, 'MM/dd/yyyy').toString();
-                        $http.get('http://api.kgc-bd.com/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
+                        $http.get('http://localhost:2997/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
                             '&pGameDate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
                                 if (response.data) {
                                     $scope.schyList = response.data;
@@ -649,7 +649,7 @@
 
                     };
                     $scope.isValidate = function () {
-                        $http.get('http://api.kgc-bd.com/api/Member/GetMemberCardIsActive?sCardNumber=' +
+                        $http.get('http://localhost:2997/api/Member/GetMemberCardIsActive?sCardNumber=' +
                             $scope.paymentType
                             .checkNumber + '&spin=' + $scope.paymentType.pincode + '&pamount=' + $scope
                             .grandTotal).then(
@@ -716,7 +716,7 @@
                     }
 
 
-                    $http.get('http://api.kgc-bd.com/api/Game/GetHoleTypes').then(function (response) {
+                    $http.get('http://localhost:2997/api/Game/GetHoleTypes').then(function (response) {
 
                         if (response.data) {
                             $scope.holeList = response.data;
@@ -731,7 +731,7 @@
 
                     $scope.memberinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Member/GetByCard?MemberCard=' + $scope.infocard + '&pHashCode=INTOIT').then(function (
+                        $http.get('http://localhost:2997/api/Member/GetByCard?MemberCard=' + $scope.infocard + '&pHashCode=INTOIT').then(function (
                             response) {
 
                             if (response.data) {
@@ -746,7 +746,7 @@
                             self.status = response.status;
                         });
 
-                        $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (
+                        $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (
                             response) {
 
                             if (response.data) {
@@ -765,7 +765,7 @@
 
                     $scope.cadeeinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Game/GetCaddiebyID?ID=' + $scope.cadeinfo).then(
+                        $http.get('http://localhost:2997/api/Game/GetCaddiebyID?ID=' + $scope.cadeinfo).then(
                             function (response) {
 
                                 /*console.log(response.data);*/
@@ -792,7 +792,7 @@
 
                     $scope.ballboyinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Game/GetBallBoybyID?ID=' + $scope.bboyinfo).then(
+                        $http.get('http://localhost:2997/api/Game/GetBallBoybyID?ID=' + $scope.bboyinfo).then(
                             function (response) {
 
                                 if (response.data) {
@@ -826,7 +826,7 @@
                         $scope.memberfee = {};
                         console.log("hole", hole, '$scope.infocard', $scope.infocard, $scope.playDate)
                         var memcardid = $scope.infocard;
-                        $http.get('http://api.kgc-bd.com/api/Game/GetGameFeeByCard?pMemberCard=' + memcardid +
+                        $http.get('http://localhost:2997/api/Game/GetGameFeeByCard?pMemberCard=' + memcardid +
                             '&pHoleTypeID=' + hole + '&pGameDate=' + format($scope.playDate, 'MM/dd/yyyy').toString()).then(
                             function (response) {
 
@@ -965,7 +965,7 @@
 
                         $http({
                             method: "POST",
-                            url: "http://api.kgc-bd.com/api/Game/CreateMemberGamePayByMemberNew",
+                            url: "http://localhost:2997/api/Game/CreateMemberGamePayByMemberNew",
                             data: obj
                         }).then(function (response) {
 
@@ -980,7 +980,7 @@
 
 				
 
-                            $http.get('http://api.kgc-bd.com/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
+                            $http.get('http://localhost:2997/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
                                 '&pGameDate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
                                     if (response.data) {
                                         $scope.schyList = response.data;
@@ -1116,7 +1116,7 @@
 
                     $scope.getInitialData = function () {
                         var pdate = format($scope.regDate, 'MM/dd/yyyy').toString();
-                        $http.get('http://api.kgc-bd.com/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
+                        $http.get('http://localhost:2997/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
                             '&pGameDate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
                                 if (response.data) {
                                     $scope.schyList = response.data;
@@ -1220,7 +1220,7 @@
                     }
 
 
-                    $http.get('http://api.kgc-bd.com/api/Game/GetHoleTypes').then(function (response) {
+                    $http.get('http://localhost:2997/api/Game/GetHoleTypes').then(function (response) {
 
                         if (response.data) {
                             $scope.holeList = response.data;
@@ -1236,7 +1236,7 @@
                         // $scope.addVKI();
                         console.log('game edit', $scope.minfo);
 
-                        $http.get('http://api.kgc-bd.com/api/Member/bycode/' + $scope.info).then(function (
+                        $http.get('http://localhost:2997/api/Member/bycode/' + $scope.info).then(function (
                             response) {
 
                             if (response.data) {
@@ -1250,7 +1250,7 @@
                             self.status = response.status;
                         });
 
-                        $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (
+                        $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (
                             response) {
 
                             if (response.data) {
@@ -1269,7 +1269,7 @@
 
                     $scope.cadeeinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Game/GetCaddiebyID?ID=' + $scope.cadeinfo).then(
+                        $http.get('http://localhost:2997/api/Game/GetCaddiebyID?ID=' + $scope.cadeinfo).then(
                             function (response) {
 
                                 if (response.data) {
@@ -1287,7 +1287,7 @@
 
                     $scope.ballboyinfo = function () {
 
-                        $http.get('http://api.kgc-bd.com/api/Game/GetBallBoybyID?ID=' + $scope.bboyinfo).then(
+                        $http.get('http://localhost:2997/api/Game/GetBallBoybyID?ID=' + $scope.bboyinfo).then(
                             function (response) {
 
                                 if (response.data) {
@@ -1309,7 +1309,7 @@
 
                         $scope.memberfee = {};
 
-                        $http.get('http://api.kgc-bd.com/api/Game/GetGameFee?pMemberCode=' + $scope.info +
+                        $http.get('http://localhost:2997/api/Game/GetGameFee?pMemberCode=' + $scope.info +
                             '&pHoleTypeID=' + hole + '&pGameDate=' + format($scope.playDate, 'MM/dd/yyyy').toString()).then(
                             function (response) {
 
@@ -1402,12 +1402,12 @@
 
                         $http({
                             method: "POST",
-                            url: "http://api.kgc-bd.com/api/Game/CreateMemberGameExtraPay",
+                            url: "http://localhost:2997/api/Game/CreateMemberGameExtraPay",
                             data: obj
                         }).then(function (response) {
 
                             var pdate = response.data.RegDate;
-                            $http.get('http://api.kgc-bd.com/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
+                            $http.get('http://localhost:2997/api/Game/GameFlightSchedules?pGameDate=' + "'" + pdate + "'" +
                                 '&pGameDate1=' + "'" + pdate + ' 23:59:59' + "'").then(function (response) {
                                     if (response.data) {
                                         $scope.schyList = response.data;

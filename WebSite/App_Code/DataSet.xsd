@@ -243,6 +243,7 @@
               <Mapping SourceColumn="CompanyAddress" DataSetColumn="CompanyAddress" />
               <Mapping SourceColumn="ChequeNo" DataSetColumn="ChequeNo" />
               <Mapping SourceColumn="ChequeDT" DataSetColumn="ChequeDT" />
+              <Mapping SourceColumn="CollectionBy" DataSetColumn="CollectionBy" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -501,6 +502,9 @@
               <Mapping SourceColumn="ProName" DataSetColumn="ProName" />
               <Mapping SourceColumn="CompanyName" DataSetColumn="CompanyName" />
               <Mapping SourceColumn="CompanyAddress" DataSetColumn="CompanyAddress" />
+              <Mapping SourceColumn="DT" DataSetColumn="DT" />
+              <Mapping SourceColumn="FT" DataSetColumn="FT" />
+              <Mapping SourceColumn="ProCode" DataSetColumn="ProCode" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -512,7 +516,7 @@
   <xs:element name="DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DataSet" msprop:Generator_UserDSName="DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="USP_MonthlyBill_VoucherPrint" msprop:Generator_TableClassName="USP_MonthlyBill_VoucherPrintDataTable" msprop:Generator_TableVarName="tableUSP_MonthlyBill_VoucherPrint" msprop:Generator_TablePropName="USP_MonthlyBill_VoucherPrint" msprop:Generator_RowDeletingName="USP_MonthlyBill_VoucherPrintRowDeleting" msprop:Generator_RowChangingName="USP_MonthlyBill_VoucherPrintRowChanging" msprop:Generator_RowEvHandlerName="USP_MonthlyBill_VoucherPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_MonthlyBill_VoucherPrintRowDeleted" msprop:Generator_UserTableName="USP_MonthlyBill_VoucherPrint" msprop:Generator_RowChangedName="USP_MonthlyBill_VoucherPrintRowChanged" msprop:Generator_RowEvArgName="USP_MonthlyBill_VoucherPrintRowChangeEvent" msprop:Generator_RowClassName="USP_MonthlyBill_VoucherPrintRow">
+        <xs:element name="USP_MonthlyBill_VoucherPrint" msprop:Generator_TableClassName="USP_MonthlyBill_VoucherPrintDataTable" msprop:Generator_TableVarName="tableUSP_MonthlyBill_VoucherPrint" msprop:Generator_RowChangedName="USP_MonthlyBill_VoucherPrintRowChanged" msprop:Generator_TablePropName="USP_MonthlyBill_VoucherPrint" msprop:Generator_RowDeletingName="USP_MonthlyBill_VoucherPrintRowDeleting" msprop:Generator_RowChangingName="USP_MonthlyBill_VoucherPrintRowChanging" msprop:Generator_RowEvHandlerName="USP_MonthlyBill_VoucherPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_MonthlyBill_VoucherPrintRowDeleted" msprop:Generator_RowClassName="USP_MonthlyBill_VoucherPrintRow" msprop:Generator_UserTableName="USP_MonthlyBill_VoucherPrint" msprop:Generator_RowEvArgName="USP_MonthlyBill_VoucherPrintRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -615,7 +619,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_GameRegister_VoucherPrint" msprop:Generator_TableClassName="USP_GameRegister_VoucherPrintDataTable" msprop:Generator_TableVarName="tableUSP_GameRegister_VoucherPrint" msprop:Generator_RowChangedName="USP_GameRegister_VoucherPrintRowChanged" msprop:Generator_TablePropName="USP_GameRegister_VoucherPrint" msprop:Generator_RowDeletingName="USP_GameRegister_VoucherPrintRowDeleting" msprop:Generator_RowChangingName="USP_GameRegister_VoucherPrintRowChanging" msprop:Generator_RowEvHandlerName="USP_GameRegister_VoucherPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_GameRegister_VoucherPrintRowDeleted" msprop:Generator_RowClassName="USP_GameRegister_VoucherPrintRow" msprop:Generator_UserTableName="USP_GameRegister_VoucherPrint" msprop:Generator_RowEvArgName="USP_GameRegister_VoucherPrintRowChangeEvent">
+        <xs:element name="USP_GameRegister_VoucherPrint" msprop:Generator_TableClassName="USP_GameRegister_VoucherPrintDataTable" msprop:Generator_TableVarName="tableUSP_GameRegister_VoucherPrint" msprop:Generator_TablePropName="USP_GameRegister_VoucherPrint" msprop:Generator_RowDeletingName="USP_GameRegister_VoucherPrintRowDeleting" msprop:Generator_RowChangingName="USP_GameRegister_VoucherPrintRowChanging" msprop:Generator_RowEvHandlerName="USP_GameRegister_VoucherPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_GameRegister_VoucherPrintRowDeleted" msprop:Generator_UserTableName="USP_GameRegister_VoucherPrint" msprop:Generator_RowChangedName="USP_GameRegister_VoucherPrintRowChanged" msprop:Generator_RowEvArgName="USP_GameRegister_VoucherPrintRowChangeEvent" msprop:Generator_RowClassName="USP_GameRegister_VoucherPrintRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -789,7 +793,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_TableClassName="USP_CaddieBallBoySubsidyFeeReportDataTable" msprop:Generator_TableVarName="tableUSP_CaddieBallBoySubsidyFeeReport" msprop:Generator_RowChangedName="USP_CaddieBallBoySubsidyFeeReportRowChanged" msprop:Generator_TablePropName="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_RowDeletingName="USP_CaddieBallBoySubsidyFeeReportRowDeleting" msprop:Generator_RowChangingName="USP_CaddieBallBoySubsidyFeeReportRowChanging" msprop:Generator_RowEvHandlerName="USP_CaddieBallBoySubsidyFeeReportRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CaddieBallBoySubsidyFeeReportRowDeleted" msprop:Generator_RowClassName="USP_CaddieBallBoySubsidyFeeReportRow" msprop:Generator_UserTableName="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_RowEvArgName="USP_CaddieBallBoySubsidyFeeReportRowChangeEvent">
+        <xs:element name="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_TableClassName="USP_CaddieBallBoySubsidyFeeReportDataTable" msprop:Generator_TableVarName="tableUSP_CaddieBallBoySubsidyFeeReport" msprop:Generator_TablePropName="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_RowDeletingName="USP_CaddieBallBoySubsidyFeeReportRowDeleting" msprop:Generator_RowChangingName="USP_CaddieBallBoySubsidyFeeReportRowChanging" msprop:Generator_RowEvHandlerName="USP_CaddieBallBoySubsidyFeeReportRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CaddieBallBoySubsidyFeeReportRowDeleted" msprop:Generator_UserTableName="USP_CaddieBallBoySubsidyFeeReport" msprop:Generator_RowChangedName="USP_CaddieBallBoySubsidyFeeReportRowChanged" msprop:Generator_RowEvArgName="USP_CaddieBallBoySubsidyFeeReportRowChangeEvent" msprop:Generator_RowClassName="USP_CaddieBallBoySubsidyFeeReportRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FlightSchID" msprop:Generator_ColumnVarNameInTable="columnFlightSchID" msprop:Generator_ColumnPropNameInRow="FlightSchID" msprop:Generator_ColumnPropNameInTable="FlightSchIDColumn" msprop:Generator_UserColumnName="FlightSchID" type="xs:int" minOccurs="0" />
@@ -857,7 +861,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_Member_DueStatement" msprop:Generator_TableClassName="USP_Member_DueStatementDataTable" msprop:Generator_TableVarName="tableUSP_Member_DueStatement" msprop:Generator_TablePropName="USP_Member_DueStatement" msprop:Generator_RowDeletingName="USP_Member_DueStatementRowDeleting" msprop:Generator_RowChangingName="USP_Member_DueStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_DueStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_DueStatementRowDeleted" msprop:Generator_UserTableName="USP_Member_DueStatement" msprop:Generator_RowChangedName="USP_Member_DueStatementRowChanged" msprop:Generator_RowEvArgName="USP_Member_DueStatementRowChangeEvent" msprop:Generator_RowClassName="USP_Member_DueStatementRow">
+        <xs:element name="USP_Member_DueStatement" msprop:Generator_TableClassName="USP_Member_DueStatementDataTable" msprop:Generator_TableVarName="tableUSP_Member_DueStatement" msprop:Generator_RowChangedName="USP_Member_DueStatementRowChanged" msprop:Generator_TablePropName="USP_Member_DueStatement" msprop:Generator_RowDeletingName="USP_Member_DueStatementRowDeleting" msprop:Generator_RowChangingName="USP_Member_DueStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_DueStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_DueStatementRowDeleted" msprop:Generator_RowClassName="USP_Member_DueStatementRow" msprop:Generator_UserTableName="USP_Member_DueStatement" msprop:Generator_RowEvArgName="USP_Member_DueStatementRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -910,7 +914,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_Member_CollectionSummary" msprop:Generator_TableClassName="USP_Member_CollectionSummaryDataTable" msprop:Generator_TableVarName="tableUSP_Member_CollectionSummary" msprop:Generator_TablePropName="USP_Member_CollectionSummary" msprop:Generator_RowDeletingName="USP_Member_CollectionSummaryRowDeleting" msprop:Generator_RowChangingName="USP_Member_CollectionSummaryRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_CollectionSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_CollectionSummaryRowDeleted" msprop:Generator_UserTableName="USP_Member_CollectionSummary" msprop:Generator_RowChangedName="USP_Member_CollectionSummaryRowChanged" msprop:Generator_RowEvArgName="USP_Member_CollectionSummaryRowChangeEvent" msprop:Generator_RowClassName="USP_Member_CollectionSummaryRow">
+        <xs:element name="USP_Member_CollectionSummary" msprop:Generator_TableClassName="USP_Member_CollectionSummaryDataTable" msprop:Generator_TableVarName="tableUSP_Member_CollectionSummary" msprop:Generator_RowChangedName="USP_Member_CollectionSummaryRowChanged" msprop:Generator_TablePropName="USP_Member_CollectionSummary" msprop:Generator_RowDeletingName="USP_Member_CollectionSummaryRowDeleting" msprop:Generator_RowChangingName="USP_Member_CollectionSummaryRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_CollectionSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_CollectionSummaryRowDeleted" msprop:Generator_RowClassName="USP_Member_CollectionSummaryRow" msprop:Generator_UserTableName="USP_Member_CollectionSummary" msprop:Generator_RowEvArgName="USP_Member_CollectionSummaryRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CollectionDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCollectionDate" msprop:Generator_ColumnPropNameInRow="CollectionDate" msprop:Generator_ColumnPropNameInTable="CollectionDateColumn" msprop:Generator_UserColumnName="CollectionDate" type="xs:dateTime" minOccurs="0" />
@@ -947,7 +951,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_Member_CollectionStatement" msprop:Generator_TableClassName="USP_Member_CollectionStatementDataTable" msprop:Generator_TableVarName="tableUSP_Member_CollectionStatement" msprop:Generator_TablePropName="USP_Member_CollectionStatement" msprop:Generator_RowDeletingName="USP_Member_CollectionStatementRowDeleting" msprop:Generator_RowChangingName="USP_Member_CollectionStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_CollectionStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_CollectionStatementRowDeleted" msprop:Generator_UserTableName="USP_Member_CollectionStatement" msprop:Generator_RowChangedName="USP_Member_CollectionStatementRowChanged" msprop:Generator_RowEvArgName="USP_Member_CollectionStatementRowChangeEvent" msprop:Generator_RowClassName="USP_Member_CollectionStatementRow">
+        <xs:element name="USP_Member_CollectionStatement" msprop:Generator_TableClassName="USP_Member_CollectionStatementDataTable" msprop:Generator_TableVarName="tableUSP_Member_CollectionStatement" msprop:Generator_RowChangedName="USP_Member_CollectionStatementRowChanged" msprop:Generator_TablePropName="USP_Member_CollectionStatement" msprop:Generator_RowDeletingName="USP_Member_CollectionStatementRowDeleting" msprop:Generator_RowChangingName="USP_Member_CollectionStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_CollectionStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_CollectionStatementRowDeleted" msprop:Generator_RowClassName="USP_Member_CollectionStatementRow" msprop:Generator_UserTableName="USP_Member_CollectionStatement" msprop:Generator_RowEvArgName="USP_Member_CollectionStatementRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PaidBy" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPaidBy" msprop:Generator_ColumnPropNameInRow="PaidBy" msprop:Generator_ColumnPropNameInTable="PaidByColumn" msprop:Generator_UserColumnName="PaidBy" minOccurs="0">
@@ -1021,10 +1025,17 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ChequeDT" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnChequeDT" msprop:Generator_ColumnPropNameInRow="ChequeDT" msprop:Generator_ColumnPropNameInTable="ChequeDTColumn" msprop:Generator_UserColumnName="ChequeDT" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CollectionBy" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCollectionBy" msprop:Generator_ColumnPropNameInRow="CollectionBy" msprop:Generator_ColumnPropNameInTable="CollectionByColumn" msprop:Generator_UserColumnName="CollectionBy" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_Member_DueStatementAsOn" msprop:Generator_TableClassName="USP_Member_DueStatementAsOnDataTable" msprop:Generator_TableVarName="tableUSP_Member_DueStatementAsOn" msprop:Generator_RowChangedName="USP_Member_DueStatementAsOnRowChanged" msprop:Generator_TablePropName="USP_Member_DueStatementAsOn" msprop:Generator_RowDeletingName="USP_Member_DueStatementAsOnRowDeleting" msprop:Generator_RowChangingName="USP_Member_DueStatementAsOnRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_DueStatementAsOnRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_DueStatementAsOnRowDeleted" msprop:Generator_RowClassName="USP_Member_DueStatementAsOnRow" msprop:Generator_UserTableName="USP_Member_DueStatementAsOn" msprop:Generator_RowEvArgName="USP_Member_DueStatementAsOnRowChangeEvent">
+        <xs:element name="USP_Member_DueStatementAsOn" msprop:Generator_TableClassName="USP_Member_DueStatementAsOnDataTable" msprop:Generator_TableVarName="tableUSP_Member_DueStatementAsOn" msprop:Generator_TablePropName="USP_Member_DueStatementAsOn" msprop:Generator_RowDeletingName="USP_Member_DueStatementAsOnRowDeleting" msprop:Generator_RowChangingName="USP_Member_DueStatementAsOnRowChanging" msprop:Generator_RowEvHandlerName="USP_Member_DueStatementAsOnRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_Member_DueStatementAsOnRowDeleted" msprop:Generator_UserTableName="USP_Member_DueStatementAsOn" msprop:Generator_RowChangedName="USP_Member_DueStatementAsOnRowChanged" msprop:Generator_RowEvArgName="USP_Member_DueStatementAsOnRowChangeEvent" msprop:Generator_RowClassName="USP_Member_DueStatementAsOnRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -1077,7 +1088,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_MemberCardTransaction_Print" msprop:Generator_TableClassName="USP_MemberCardTransaction_PrintDataTable" msprop:Generator_TableVarName="tableUSP_MemberCardTransaction_Print" msprop:Generator_TablePropName="USP_MemberCardTransaction_Print" msprop:Generator_RowDeletingName="USP_MemberCardTransaction_PrintRowDeleting" msprop:Generator_RowChangingName="USP_MemberCardTransaction_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_MemberCardTransaction_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_MemberCardTransaction_PrintRowDeleted" msprop:Generator_UserTableName="USP_MemberCardTransaction_Print" msprop:Generator_RowChangedName="USP_MemberCardTransaction_PrintRowChanged" msprop:Generator_RowEvArgName="USP_MemberCardTransaction_PrintRowChangeEvent" msprop:Generator_RowClassName="USP_MemberCardTransaction_PrintRow">
+        <xs:element name="USP_MemberCardTransaction_Print" msprop:Generator_TableClassName="USP_MemberCardTransaction_PrintDataTable" msprop:Generator_TableVarName="tableUSP_MemberCardTransaction_Print" msprop:Generator_RowChangedName="USP_MemberCardTransaction_PrintRowChanged" msprop:Generator_TablePropName="USP_MemberCardTransaction_Print" msprop:Generator_RowDeletingName="USP_MemberCardTransaction_PrintRowDeleting" msprop:Generator_RowChangingName="USP_MemberCardTransaction_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_MemberCardTransaction_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_MemberCardTransaction_PrintRowDeleted" msprop:Generator_RowClassName="USP_MemberCardTransaction_PrintRow" msprop:Generator_UserTableName="USP_MemberCardTransaction_Print" msprop:Generator_RowEvArgName="USP_MemberCardTransaction_PrintRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -1169,7 +1180,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_CardTransactionMR_Print" msprop:Generator_TableClassName="USP_CardTransactionMR_PrintDataTable" msprop:Generator_TableVarName="tableUSP_CardTransactionMR_Print" msprop:Generator_RowChangedName="USP_CardTransactionMR_PrintRowChanged" msprop:Generator_TablePropName="USP_CardTransactionMR_Print" msprop:Generator_RowDeletingName="USP_CardTransactionMR_PrintRowDeleting" msprop:Generator_RowChangingName="USP_CardTransactionMR_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CardTransactionMR_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CardTransactionMR_PrintRowDeleted" msprop:Generator_RowClassName="USP_CardTransactionMR_PrintRow" msprop:Generator_UserTableName="USP_CardTransactionMR_Print" msprop:Generator_RowEvArgName="USP_CardTransactionMR_PrintRowChangeEvent">
+        <xs:element name="USP_CardTransactionMR_Print" msprop:Generator_TableClassName="USP_CardTransactionMR_PrintDataTable" msprop:Generator_TableVarName="tableUSP_CardTransactionMR_Print" msprop:Generator_TablePropName="USP_CardTransactionMR_Print" msprop:Generator_RowDeletingName="USP_CardTransactionMR_PrintRowDeleting" msprop:Generator_RowChangingName="USP_CardTransactionMR_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CardTransactionMR_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CardTransactionMR_PrintRowDeleted" msprop:Generator_UserTableName="USP_CardTransactionMR_Print" msprop:Generator_RowChangedName="USP_CardTransactionMR_PrintRowChanged" msprop:Generator_RowEvArgName="USP_CardTransactionMR_PrintRowChangeEvent" msprop:Generator_RowClassName="USP_CardTransactionMR_PrintRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -1227,7 +1238,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_CaddieBallBoyFeeReport" msprop:Generator_TableClassName="USP_CaddieBallBoyFeeReportDataTable" msprop:Generator_TableVarName="tableUSP_CaddieBallBoyFeeReport" msprop:Generator_TablePropName="USP_CaddieBallBoyFeeReport" msprop:Generator_RowDeletingName="USP_CaddieBallBoyFeeReportRowDeleting" msprop:Generator_RowChangingName="USP_CaddieBallBoyFeeReportRowChanging" msprop:Generator_RowEvHandlerName="USP_CaddieBallBoyFeeReportRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CaddieBallBoyFeeReportRowDeleted" msprop:Generator_UserTableName="USP_CaddieBallBoyFeeReport" msprop:Generator_RowChangedName="USP_CaddieBallBoyFeeReportRowChanged" msprop:Generator_RowEvArgName="USP_CaddieBallBoyFeeReportRowChangeEvent" msprop:Generator_RowClassName="USP_CaddieBallBoyFeeReportRow">
+        <xs:element name="USP_CaddieBallBoyFeeReport" msprop:Generator_TableClassName="USP_CaddieBallBoyFeeReportDataTable" msprop:Generator_TableVarName="tableUSP_CaddieBallBoyFeeReport" msprop:Generator_RowChangedName="USP_CaddieBallBoyFeeReportRowChanged" msprop:Generator_TablePropName="USP_CaddieBallBoyFeeReport" msprop:Generator_RowDeletingName="USP_CaddieBallBoyFeeReportRowDeleting" msprop:Generator_RowChangingName="USP_CaddieBallBoyFeeReportRowChanging" msprop:Generator_RowEvHandlerName="USP_CaddieBallBoyFeeReportRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CaddieBallBoyFeeReportRowDeleted" msprop:Generator_RowClassName="USP_CaddieBallBoyFeeReportRow" msprop:Generator_UserTableName="USP_CaddieBallBoyFeeReport" msprop:Generator_RowEvArgName="USP_CaddieBallBoyFeeReportRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FlightSchID" msprop:Generator_ColumnVarNameInTable="columnFlightSchID" msprop:Generator_ColumnPropNameInRow="FlightSchID" msprop:Generator_ColumnPropNameInTable="FlightSchIDColumn" msprop:Generator_UserColumnName="FlightSchID" type="xs:int" minOccurs="0" />
@@ -1302,7 +1313,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_DailyRegistrationStatement" msprop:Generator_TableClassName="USP_DailyRegistrationStatementDataTable" msprop:Generator_TableVarName="tableUSP_DailyRegistrationStatement" msprop:Generator_RowChangedName="USP_DailyRegistrationStatementRowChanged" msprop:Generator_TablePropName="USP_DailyRegistrationStatement" msprop:Generator_RowDeletingName="USP_DailyRegistrationStatementRowDeleting" msprop:Generator_RowChangingName="USP_DailyRegistrationStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_DailyRegistrationStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_DailyRegistrationStatementRowDeleted" msprop:Generator_RowClassName="USP_DailyRegistrationStatementRow" msprop:Generator_UserTableName="USP_DailyRegistrationStatement" msprop:Generator_RowEvArgName="USP_DailyRegistrationStatementRowChangeEvent">
+        <xs:element name="USP_DailyRegistrationStatement" msprop:Generator_TableClassName="USP_DailyRegistrationStatementDataTable" msprop:Generator_TableVarName="tableUSP_DailyRegistrationStatement" msprop:Generator_TablePropName="USP_DailyRegistrationStatement" msprop:Generator_RowDeletingName="USP_DailyRegistrationStatementRowDeleting" msprop:Generator_RowChangingName="USP_DailyRegistrationStatementRowChanging" msprop:Generator_RowEvHandlerName="USP_DailyRegistrationStatementRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_DailyRegistrationStatementRowDeleted" msprop:Generator_UserTableName="USP_DailyRegistrationStatement" msprop:Generator_RowChangedName="USP_DailyRegistrationStatementRowChanged" msprop:Generator_RowEvArgName="USP_DailyRegistrationStatementRowChangeEvent" msprop:Generator_RowClassName="USP_DailyRegistrationStatementRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -1414,7 +1425,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_CoachFeePrint" msprop:Generator_TableClassName="USP_CoachFeePrintDataTable" msprop:Generator_TableVarName="tableUSP_CoachFeePrint" msprop:Generator_RowChangedName="USP_CoachFeePrintRowChanged" msprop:Generator_TablePropName="USP_CoachFeePrint" msprop:Generator_RowDeletingName="USP_CoachFeePrintRowDeleting" msprop:Generator_RowChangingName="USP_CoachFeePrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CoachFeePrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CoachFeePrintRowDeleted" msprop:Generator_RowClassName="USP_CoachFeePrintRow" msprop:Generator_UserTableName="USP_CoachFeePrint" msprop:Generator_RowEvArgName="USP_CoachFeePrintRowChangeEvent">
+        <xs:element name="USP_CoachFeePrint" msprop:Generator_TableClassName="USP_CoachFeePrintDataTable" msprop:Generator_TableVarName="tableUSP_CoachFeePrint" msprop:Generator_TablePropName="USP_CoachFeePrint" msprop:Generator_RowDeletingName="USP_CoachFeePrintRowDeleting" msprop:Generator_RowChangingName="USP_CoachFeePrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CoachFeePrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CoachFeePrintRowDeleted" msprop:Generator_UserTableName="USP_CoachFeePrint" msprop:Generator_RowChangedName="USP_CoachFeePrintRowChanged" msprop:Generator_RowEvArgName="USP_CoachFeePrintRowChangeEvent" msprop:Generator_RowClassName="USP_CoachFeePrintRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MRNO" msprop:Generator_ColumnVarNameInTable="columnMRNO" msprop:Generator_ColumnPropNameInRow="MRNO" msprop:Generator_ColumnPropNameInTable="MRNOColumn" msprop:Generator_UserColumnName="MRNO" minOccurs="0">
@@ -1495,7 +1506,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USP_CoachFeeMR_Print" msprop:Generator_TableClassName="USP_CoachFeeMR_PrintDataTable" msprop:Generator_TableVarName="tableUSP_CoachFeeMR_Print" msprop:Generator_TablePropName="USP_CoachFeeMR_Print" msprop:Generator_RowDeletingName="USP_CoachFeeMR_PrintRowDeleting" msprop:Generator_RowChangingName="USP_CoachFeeMR_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CoachFeeMR_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CoachFeeMR_PrintRowDeleted" msprop:Generator_UserTableName="USP_CoachFeeMR_Print" msprop:Generator_RowChangedName="USP_CoachFeeMR_PrintRowChanged" msprop:Generator_RowEvArgName="USP_CoachFeeMR_PrintRowChangeEvent" msprop:Generator_RowClassName="USP_CoachFeeMR_PrintRow">
+        <xs:element name="USP_CoachFeeMR_Print" msprop:Generator_TableClassName="USP_CoachFeeMR_PrintDataTable" msprop:Generator_TableVarName="tableUSP_CoachFeeMR_Print" msprop:Generator_RowChangedName="USP_CoachFeeMR_PrintRowChanged" msprop:Generator_TablePropName="USP_CoachFeeMR_Print" msprop:Generator_RowDeletingName="USP_CoachFeeMR_PrintRowDeleting" msprop:Generator_RowChangingName="USP_CoachFeeMR_PrintRowChanging" msprop:Generator_RowEvHandlerName="USP_CoachFeeMR_PrintRowChangeEventHandler" msprop:Generator_RowDeletedName="USP_CoachFeeMR_PrintRowDeleted" msprop:Generator_RowClassName="USP_CoachFeeMR_PrintRow" msprop:Generator_UserTableName="USP_CoachFeeMR_Print" msprop:Generator_RowEvArgName="USP_CoachFeeMR_PrintRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MemberID" msprop:Generator_ColumnVarNameInTable="columnMemberID" msprop:Generator_ColumnPropNameInRow="MemberID" msprop:Generator_ColumnPropNameInTable="MemberIDColumn" msprop:Generator_UserColumnName="MemberID" type="xs:int" minOccurs="0" />
@@ -1592,6 +1603,15 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DT" msprop:Generator_ColumnVarNameInTable="columnDT" msprop:Generator_ColumnPropNameInRow="DT" msprop:Generator_ColumnPropNameInTable="DTColumn" msprop:Generator_UserColumnName="DT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FT" msprop:Generator_ColumnVarNameInTable="columnFT" msprop:Generator_ColumnPropNameInRow="FT" msprop:Generator_ColumnPropNameInTable="FTColumn" msprop:Generator_UserColumnName="FT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ProCode" msprop:Generator_ColumnVarNameInTable="columnProCode" msprop:Generator_ColumnPropNameInRow="ProCode" msprop:Generator_ColumnPropNameInTable="ProCodeColumn" msprop:Generator_UserColumnName="ProCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

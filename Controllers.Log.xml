@@ -56263,4 +56263,633 @@ set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
 </Script>
     </update>
   </c>
+  <c y="NodeSet" t="2018-08-16T10:44:01">
+    <controller name="MemberStatusChange" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Insert|Update</CommandName>
+      <Phase>After</Phase>
+      <Script>Exec USP_MemberAbsenteeGoesNew @MemberCode, @NewMemberStatusID
+</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-16T10:44:22">
+    <controller name="MemberStatusChange" />
+    <rule id="r102" />
+    <update>
+      <CommandName>Custom</CommandName>
+      <CommandArgument>PostingAbsentee</CommandArgument>
+      <Script>--debug
+DECLARE @Session_FromDate Datetime
+--end debug
+
+if (@Session_FromDate is null)
+	set @Session_FromDate = getdate()
+	
+Exec dbo.MemberStatusChanged @MemberStatusChangeID,@Session_FromDate
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T10:48:43">
+    <controller name="MemberStatusChange" />
+    <rule id="r101" />
+    <update>
+      <Script>Exec USP_MemberAbsenteeGoesNew @MemberID, @NewMemberStatusID
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:10:25">
+    <controller name="MemberStatusChange" />
+    <rule id="r101" />
+    <update>
+      <Script>Exec USP_MemberAbsenteeGoesNew @MemberID, @NewMemberStatusID,@TransferDate,@ExpireDate
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:15">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <update>
+      <Hidden>false</Hidden>
+      <Aggregate>Sum</Aggregate>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberNationality" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberTypeDesc" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberStatus" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberGroupName" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberCategoryName" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberGenderDesc" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:37:25">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <view id="grid1" />
+    <dataField fieldName="BalanceAmount" />
+    <move>
+      <controller name="AbsenteeMemberFeeAdjust" />
+      <view id="grid1" />
+      <dataField fieldName="MemberCellPhone" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:40:11">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <field name="DueMonth" />
+    <update>
+      <Label>Month of</Label>
+      <DataFormatString>MMM-yyyy</DataFormatString>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:40:36">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <field name="BalanceAmount" />
+    <update>
+      <Label>Amount</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:40:46">
+    <controller name="AbsenteeMemberFeeAdjust" />
+    <field name="BalanceAmount" />
+    <update>
+      <Label>Amount to be Adjusted</Label>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T11:41:26">
+    <controller name="MemberStatusChange" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <update>
+      <Collapsed>true</Collapsed>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T12:06:08">
+    <controller name="MemberStatusChange" />
+    <actionGroup id="ag2" />
+    <insert type="action">
+      <CommandName>Custom</CommandName>
+      <CommandArgument>PostingAbsentee</CommandArgument>
+      <HeaderText>Approved</HeaderText>
+      <CausesValidation>true</CausesValidation>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-16T12:06:13">
+    <controller name="MemberStatusChange" />
+    <actionGroup id="ag2" />
+    <action id="a1" />
+    <after>
+      <controller name="MemberStatusChange" />
+      <actionGroup id="ag2" />
+      <action id="a100" />
+    </after>
+  </c>
+  <c y="NodeSet" t="2018-08-16T12:06:16">
+    <controller name="MemberStatusChange" />
+    <actionGroup id="ag2" />
+    <action id="a100" />
+    <move>
+      <controller name="MemberStatusChange" />
+      <actionGroup id="ag2" />
+      <action id="a1" />
+    </move>
+  </c>
+  <c y="NodeSet" t="2018-08-16T12:06:50">
+    <controller name="MemberStatusChange" />
+    <actionGroup id="ag2" />
+    <action id="a100" />
+    <update>
+      <Roles>Administrators,AbsenteeBillCreate</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T13:44:18">
+    <controller name="MemberInfo" />
+    <rule id="r103" />
+    <update>
+      <Script>----Exec dbo.USP_MemberCode_Insert @MemberID
+Exec dbo.USP_MemberSubscriptionDueCreate @MemberCode, @BusinessRules_UserName
+
+Exec dbo.USP_MemberSpouseChildrenCodeChanged  @MemberID,@MemberCode, @BusinessRules_UserName
+
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:15:45">
+    <controller name="CoachFee" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Select</CommandName>
+      <Phase>Before</Phase>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @MRDate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @MRDate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:33:30">
+    <controller name="CoachFee" />
+    <rule id="r101" />
+    <update>
+      <Phase>Before</Phase>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:34:39">
+    <controller name="CoachFee" />
+    <rule id="r102" />
+    <update>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @Mrdate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @Mrdate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:58:02">
+    <controller name="CoachFeeReport" />
+    <view id="grid1" />
+    <update>
+      <SortExpression>Mrdate Desc</SortExpression>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:58:37">
+    <controller name="CoachFeeReport" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Select</CommandName>
+      <Phase>Before</Phase>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @Mrdate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @Mrdate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:09:40">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="SubsriptionDate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:09:46">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="LastPaySubsDate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:09:48">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="LastPayContDate" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:09:54">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="OcmnoOfDaysPlayed" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:09:58">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:10:26">
+    <controller name="MemberInfoSpouse" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:10:41">
+    <controller name="MemberInfoSpouse" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:10:45">
+    <controller name="MemberInfoSpouse" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="OcmnoOfDaysPlayed" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:18">
+    <controller name="MemberInfoChild" />
+    <view id="grid1" />
+    <dataField fieldName="OcmnoOfDaysPlayed" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:21">
+    <controller name="MemberInfoChild" />
+    <view id="grid1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:35">
+    <controller name="MemberInfoChild" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="OcmnoOfDaysPlayed" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:38">
+    <controller name="MemberInfoChild" />
+    <view id="editForm1" />
+    <category id="c1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:55">
+    <controller name="MemberInfoChild" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="OcmnoOfDaysPlayed" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:11:57">
+    <controller name="MemberInfoChild" />
+    <view id="createForm1" />
+    <category id="c1" />
+    <dataField fieldName="WelfareContributionDT" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:13:03">
+    <controller name="MemberInfo" />
+    <field name="MemberInfoChild" />
+    <update>
+      <DataViewFilterFields />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:13:37">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <copy>
+      <controller name="MemberInfoSpouse" />
+      <field name="ParentMemberID" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:14:02">
+    <controller name="MemberInfoSpouse" />
+    <view id="grid1" />
+    <dataField fieldName="ParentMemberID" />
+    <update>
+      <Alias>MemberInfo1NameOfMember</Alias>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:14:25">
+    <controller name="MemberInfo" />
+    <view id="grid1" />
+    <copy>
+      <controller name="MemberInfo" />
+      <field name="ParentMemberID" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-08-16T03:14:32">
+    <controller name="MemberInfo" />
+    <view id="grid1" />
+    <dataField fieldName="ParentMemberID" />
+    <update>
+      <Alias>MemberInfo1NameOfMember</Alias>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T03:30:17">
+    <controller name="MemberInfo" />
+    <actionGroup id="ag4" />
+    <action id="a1" />
+    <update>
+      <Roles>Administrator,EditMemberRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T03:37:56">
+    <controller name="MemberInfoChild" />
+    <actionGroup id="ag3" />
+    <action id="a1" />
+    <update>
+      <Roles>Administrator,AddMemberChildRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T03:38:21">
+    <controller name="MemberInfoSpouse" />
+    <actionGroup id="ag3" />
+    <action id="a1" />
+    <update>
+      <Roles>Administrator,AddSpouseMemberRegistration</Roles>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T07:40:18">
+    <controller name="MemberInfoChild" />
+    <view id="grid1" />
+    <copy>
+      <controller name="MemberInfoChild" />
+      <field name="ParentMemberID" />
+    </copy>
+  </c>
+  <c y="NodeSet" t="2018-08-17T07:40:25">
+    <controller name="MemberInfoChild" />
+    <view id="grid1" />
+    <dataField fieldName="ParentMemberID" />
+    <update>
+      <Alias>MemberInfo1NameOfMember</Alias>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T07:40:54">
+    <controller name="MemberInfo" />
+    <field name="MemberInfoChild" />
+    <update>
+      <DataViewFilterFields>ParentMemberID</DataViewFilterFields>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:00:52">
+    <controller name="MemberInfo" />
+    <field name="MemberInfoChild" />
+    <update>
+      <DataViewController />
+      <DataViewId />
+      <DataViewFilterFields />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:01:49">
+    <controller name="MemberInfo" />
+    <field name="MemberInfoSpouse" />
+    <update>
+      <DataViewFilterFields />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:05:35">
+    <controller name="MemberInfoSpouse" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Select</CommandName>
+      <Phase>Before</Phase>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal1 = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:07:15">
+    <controller name="MemberInfo" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Edit</CommandName>
+      <Phase>Before</Phase>
+      <Script>-- debug
+Declare @Session_ParentMemberID int
+-- end debug
+
+Set @Session_ParentMemberID @MemberID
+</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:11:09">
+    <controller name="MemberInfo" />
+    <field name="MemberInfoChild" />
+    <update>
+      <DataViewController>MemberInfoChild</DataViewController>
+      <DataViewId>grid1</DataViewId>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:11:25">
+    <controller name="MemberInfoSpouse" />
+    <rule id="r101" />
+    <update>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal1 = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:12:01">
+    <controller name="MemberInfoChild" />
+    <insert type="rule">
+      <Type>Sql</Type>
+      <CommandName>Select</CommandName>
+      <Phase>Before</Phase>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal1 = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </insert>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:12:11">
+    <controller name="MemberInfoChild" />
+    <rule id="r101" />
+    <update>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:12:34">
+    <controller name="MemberInfoSpouse" />
+    <rule id="r101" />
+    <update>
+      <Script>-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:24:39">
+    <controller name="MemberInfo" />
+    <view id="editForm1" />
+    <category id="c4" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:24:42">
+    <controller name="MemberInfo" />
+    <view id="editForm1" />
+    <category id="c5" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:28:26">
+    <controller name="MemberInfoChild" />
+    <rule id="r102" />
+    <update>
+      <CommandName>Insert|Update</CommandName>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:29:39">
+    <controller name="MemberInfoChild" />
+    <rule id="r102" />
+    <update>
+      <Script>Exec dbo.USP_MemberCode_Insert @MemberID
+Exec USP_MemberParentData_Update @MemberID, @ParentmemberID
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:34:53">
+    <controller name="MemberInfoSpouse" />
+    <rule id="r102" />
+    <update>
+      <Script>Exec dbo.USP_MemberCode_Insert @MemberID
+Exec USP_MemberParentData_Update @MemberID, @ParentmemberID
+</Script>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:39:27">
+    <controller name="MemberInfoChild" />
+    <view id="editForm1" />
+    <dataField fieldName="ParentMemberID" />
+    <update>
+      <Alias>MemberInfo1NameOfMember</Alias>
+      <Hidden>false</Hidden>
+      <DataViewShowInSummary>false</DataViewShowInSummary>
+    </update>
+  </c>
 </log>

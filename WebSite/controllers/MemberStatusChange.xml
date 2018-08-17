@@ -74,7 +74,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
     <view id="editForm1" type="Form" commandId="command1" label="Review Member Status Change">
       <headerText>$DefaultEditViewDescription</headerText>
       <categories>
-        <category id="c1" headerText="Member Status Change" wrap="true" floating="true" flow="NewColumn">
+        <category id="c1" headerText="Member Status Change" wrap="true" collapsed="true" floating="true" flow="NewColumn">
           <description><![CDATA[$DefaultEditDescription]]></description>
           <dataFields>
             <dataField fieldName="MemberID" aliasFieldName="MemberShipNo" />
@@ -132,6 +132,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
       <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
     </actionGroup>
     <actionGroup id="ag2" scope="Form">
+      <action commandName="Custom" commandArgument="PostingAbsentee" headerText="Approved" id="a100" roles="Administrators,AbsenteeBillCreate" />
       <action id="a1" commandName="Edit" />
       <action id="a2" commandName="Delete" />
       <action id="a3" commandName="Cancel" />
@@ -185,7 +186,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
     <rule id="r100" commandName="New" type="Sql" phase="Before"><![CDATA[Set @TransferDate = getdate()
 set @ExpireDate = DateAdd(month,12,@TransferDate)
 ]]></rule>
-    <rule id="r102" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[--debug
+    <rule id="r102" commandName="Custom" type="Sql" phase="After" commandArgument="PostingAbsentee"><![CDATA[--debug
 DECLARE @Session_FromDate Datetime
 --end debug
 
@@ -196,6 +197,8 @@ Exec dbo.MemberStatusChanged @MemberStatusChangeID,@Session_FromDate
 ]]></rule>
     <rule id="r103" commandName="Delete" type="Sql" phase="Before"><![CDATA[Exec dbo.MemberStatusChangedCanceled @MemberStatusChangeID]]></rule>
     <rule id="r104" commandName="Calculate" type="Sql" phase="Execute"><![CDATA[set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
+]]></rule>
+    <rule id="r101" commandName="Insert|Update" type="Sql" phase="After"><![CDATA[Exec USP_MemberAbsenteeGoesNew @MemberID, @NewMemberStatusID,@TransferDate,@ExpireDate
 ]]></rule>
   </businessRules>
 </dataController>

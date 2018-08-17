@@ -51,10 +51,10 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
     <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
     <field name="MemberTypeDesc" type="String" readOnly="true" label="Member Type Desc" length="50" />
     <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
-    <field name="DueMonth" type="DateTime" dataFormatString="g" label="Due Month" showInSummary="true" />
+    <field name="DueMonth" type="DateTime" dataFormatString="MMM-yyyy" label="Month of" showInSummary="true" />
     <field name="FeeAmount" type="Decimal" default="((0))" label="Fee Amount" showInSummary="true" />
     <field name="AdjustedAmount" type="Decimal" default="((0))" label="Adjusted Amount" showInSummary="true" />
-    <field name="BalanceAmount" type="Decimal" default="((0))" label="Balance Amount" showInSummary="true" />
+    <field name="BalanceAmount" type="Decimal" default="((0))" label="Amount to be Adjusted" showInSummary="true" />
     <field name="IsApproved" type="Boolean" default="((0))" label="Is Approved" />
   </fields>
   <views>
@@ -63,6 +63,10 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
       <dataFields>
         <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
         <dataField fieldName="MemberNameOfMember" />
+        <dataField fieldName="DueMonth" columns="20" />
+        <dataField fieldName="FeeAmount" columns="15" />
+        <dataField fieldName="AdjustedAmount" columns="15" />
+        <dataField fieldName="BalanceAmount" columns="15" aggregate="Sum" />
         <dataField fieldName="MemberCellPhone" />
         <dataField fieldName="MemberGenderDesc" columns="50" />
         <dataField fieldName="MemberCategoryName" />
@@ -70,10 +74,6 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
         <dataField fieldName="MemberStatus" columns="50" />
         <dataField fieldName="MemberTypeDesc" columns="50" />
         <dataField fieldName="MemberNationality" columns="50" />
-        <dataField fieldName="DueMonth" columns="20" />
-        <dataField fieldName="FeeAmount" columns="15" />
-        <dataField fieldName="AdjustedAmount" columns="15" />
-        <dataField fieldName="BalanceAmount" columns="15" />
         <dataField fieldName="IsApproved" />
       </dataFields>
     </view>

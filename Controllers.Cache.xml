@@ -51,10 +51,10 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
       <field name="MemberStatus" type="String" readOnly="true" label="Member Status" length="50" />
       <field name="MemberTypeDesc" type="String" readOnly="true" label="Member Type Desc" length="50" />
       <field name="MemberNationality" type="String" readOnly="true" label="Member Nationality" length="50" />
-      <field name="DueMonth" type="DateTime" dataFormatString="g" label="Due Month" showInSummary="true" />
+      <field name="DueMonth" type="DateTime" dataFormatString="MMM-yyyy" label="Month of" showInSummary="true" />
       <field name="FeeAmount" type="Decimal" default="((0))" label="Fee Amount" showInSummary="true" />
       <field name="AdjustedAmount" type="Decimal" default="((0))" label="Adjusted Amount" showInSummary="true" />
-      <field name="BalanceAmount" type="Decimal" default="((0))" label="Balance Amount" showInSummary="true" />
+      <field name="BalanceAmount" type="Decimal" default="((0))" label="Amount to be Adjusted" showInSummary="true" />
       <field name="IsApproved" type="Boolean" default="((0))" label="Is Approved" />
     </fields>
     <views>
@@ -63,6 +63,11 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
         <dataFields>
           <dataField fieldName="MemberID" aliasFieldName="MemberCode" />
           <dataField fieldName="MemberNameOfMember" />
+          <dataField fieldName="DueMonth" columns="20" />
+          <dataField fieldName="FeeAmount" columns="15" />
+          <dataField fieldName="AdjustedAmount" columns="15" />
+          <dataField fieldName="BalanceAmount" columns="15" aggregate="Sum">
+          </dataField>
           <dataField fieldName="MemberCellPhone" />
           <dataField fieldName="MemberGenderDesc" columns="50" />
           <dataField fieldName="MemberCategoryName" />
@@ -70,10 +75,6 @@ from "dbo"."AbsenteeMemberFeeAdjust" "AbsenteeMemberFeeAdjust"
           <dataField fieldName="MemberStatus" columns="50" />
           <dataField fieldName="MemberTypeDesc" columns="50" />
           <dataField fieldName="MemberNationality" columns="50" />
-          <dataField fieldName="DueMonth" columns="20" />
-          <dataField fieldName="FeeAmount" columns="15" />
-          <dataField fieldName="AdjustedAmount" columns="15" />
-          <dataField fieldName="BalanceAmount" columns="15" />
           <dataField fieldName="IsApproved" />
         </dataFields>
       </view>
@@ -1258,7 +1259,18 @@ from "dbo"."CoachFee" "CoachFee"
     </actions>
     <businessRules>
       <rule id="r100" commandName="Insert" type="Sql" phase="After">Exec dbo.USP_CoachFee_CodeInsert @CoachFeeID</rule>
-      <rule id="r101" commandName="Insert" type="Sql" phase="Execute">Set @PayTypeID = 1</rule>
+      <rule id="r101" commandName="Insert" type="Sql" phase="Before">Set @PayTypeID = 1</rule>
+      <rule id="r102" commandName="Select" type="Sql" phase="Before">-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @Mrdate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @Mrdate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</rule>
     </businessRules>
   </dataController>
   <dataController name="CoaDetail" conflictDetection="overwriteChanges" label="Coa Detail" nativeSchema="dbo" nativeTableName="CoaDetail" connectionStringName="GalfClub" generateDataAccessObjects="true">
@@ -8214,10 +8226,10 @@ from "dbo"."MemberInfo" "MemberInfo"
         <dataView controller="MemberCard" filterFields="MemberID" view="AllMembers" />
       </field>
       <field name="MemberInfoSpouse" type="DataView" label="Member Spouse">
-        <dataView controller="MemberInfoSpouse" filterFields="ParentMemberID" view="grid1" />
+        <dataView controller="MemberInfoSpouse" view="grid1" />
       </field>
       <field name="MemberInfoChild" type="DataView" label="Member Childrens">
-        <dataView controller="MemberInfoChild" filterFields="ParentMemberID" view="grid1" />
+        <dataView controller="MemberInfoChild" view="grid1" />
       </field>
     </fields>
     <views>
@@ -8260,6 +8272,8 @@ from "dbo"."MemberInfo" "MemberInfo"
           </dataField>
           <dataField fieldName="ContributionFee" columns="15" />
           <dataField fieldName="AnualFee" columns="15" aggregate="Sum" hidden="true">
+          </dataField>
+          <dataField fieldName="ParentMemberID" columns="15" aliasFieldName="MemberInfo1NameOfMember">
           </dataField>
         </dataFields>
       </view>
@@ -8374,16 +8388,6 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="MemberGroupMemberGroupName" columns="50" />
             </dataFields>
           </category>
-          <category headerText="Spouse" id="c4" tab="Spouse">
-            <dataFields>
-              <dataField fieldName="MemberInfoSpouse" columns="15" />
-            </dataFields>
-          </category>
-          <category headerText="Childrens" tab="Childrens" id="c5">
-            <dataFields>
-              <dataField fieldName="MemberInfoChild" columns="15" />
-            </dataFields>
-          </category>
         </categories>
       </view>
       <view id="createForm1" type="Form" commandId="command1" label="New Member Information">
@@ -8489,7 +8493,7 @@ from "dbo"."MemberInfo" "MemberInfo"
         <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrators,AddMemberRegistration" />
       </actionGroup>
       <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberRegistration" />
+        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="Administrator,EditMemberRegistration" />
         <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" roles="DeleteMemberRegistration" />
       </actionGroup>
       <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
@@ -8574,7 +8578,7 @@ set @MonthlySubscriptionFee = @MonthlyFee</rule>
       <rule id="r103" commandName="Insert|Update" type="Sql" phase="After">----Exec dbo.USP_MemberCode_Insert @MemberID
 Exec dbo.USP_MemberSubscriptionDueCreate @MemberCode, @BusinessRules_UserName
 
-Exec dbo.USP_MemberSpouseChildrenCodeChanged  @MemberCode, @BusinessRules_UserName
+Exec dbo.USP_MemberSpouseChildrenCodeChanged  @MemberID,@MemberCode, @BusinessRules_UserName
 
 </rule>
       <rule id="r104" type="JavaScript" commandName="Insert|Update" phase="Before" name="SubsriptionDate_Validator">var fieldValue = [SubsriptionDate];
@@ -8609,6 +8613,12 @@ begin
     /* set the focus on the field and display an error */
     set @Result_Focus = 'Email,Required field.'
 end
+</rule>
+      <rule id="r101" commandName="Edit" type="Sql" phase="Before">-- debug
+Declare @Session_ParentMemberID int
+-- end debug
+
+Set @Session_ParentMemberID @MemberID
 </rule>
     </businessRules>
   </dataController>
@@ -10732,7 +10742,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
       <view id="editForm1" type="Form" commandId="command1" label="Review Member Status Change">
         <headerText>$DefaultEditViewDescription</headerText>
         <categories>
-          <category id="c1" headerText="Member Status Change" floating="true" wrap="true">
+          <category id="c1" headerText="Member Status Change" floating="true" wrap="true" collapsed="true">
             <description>$DefaultEditDescription</description>
             <dataFields>
               <dataField fieldName="MemberID" aliasFieldName="MemberShipNo" />
@@ -10792,6 +10802,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
         <action id="a10" commandName="BatchEdit" commandArgument="editForm1" />
       </actionGroup>
       <actionGroup id="ag2" scope="Form">
+        <action commandName="Custom" commandArgument="PostingAbsentee" headerText="Approved" id="a100" roles="Administrators,AbsenteeBillCreate" />
         <action id="a1" commandName="Edit" />
         <action id="a2" commandName="Delete" />
         <action id="a3" commandName="Cancel" />
@@ -10845,7 +10856,7 @@ from "dbo"."MemberStatusChange" "MemberStatusChange"
       <rule id="r100" commandName="New" type="Sql" phase="Before">Set @TransferDate = getdate()
 set @ExpireDate = DateAdd(month,12,@TransferDate)
 </rule>
-      <rule id="r102" commandName="Insert|Update" type="Sql" phase="After">--debug
+      <rule id="r102" commandName="Custom" type="Sql" phase="After" commandArgument="PostingAbsentee">--debug
 DECLARE @Session_FromDate Datetime
 --end debug
 
@@ -10856,6 +10867,8 @@ Exec dbo.MemberStatusChanged @MemberStatusChangeID,@Session_FromDate
 </rule>
       <rule id="r103" commandName="Delete" type="Sql" phase="Before">Exec dbo.MemberStatusChangedCanceled @MemberStatusChangeID</rule>
       <rule id="r104" commandName="Calculate" type="Sql" phase="Execute">set @ExpireDate = DateAdd(d,-1,DateAdd(m,12,@TransferDate))
+</rule>
+      <rule id="r101" commandName="Insert|Update" type="Sql" phase="After">Exec USP_MemberAbsenteeGoesNew @MemberID, @NewMemberStatusID,@TransferDate,@ExpireDate
 </rule>
     </businessRules>
   </dataController>
@@ -15359,7 +15372,6 @@ from "dbo"."MemberInfo" "MemberInfo"
           <dataField fieldName="MemberCode" columns="50" />
           <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
           <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
-          <dataField fieldName="SubsriptionDate" columns="20" />
           <dataField fieldName="GenderID" aliasFieldName="GenderDesc" />
           <dataField fieldName="NationalityID" aliasFieldName="Nationality" />
           <dataField fieldName="CellPhone" />
@@ -15371,13 +15383,11 @@ from "dbo"."MemberInfo" "MemberInfo"
           </dataField>
           <dataField fieldName="ClubName" />
           <dataField fieldName="NonMemberCatID" aliasFieldName="NonMemberCategoryNonMemCateory" />
-          <dataField fieldName="LastPaySubsDate" columns="20" />
-          <dataField fieldName="LastPayContDate" columns="20" />
           <dataField fieldName="RefNumber" columns="50" />
           <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-          <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-          <dataField fieldName="WelfareContributionDT" columns="20" />
           <dataField fieldName="MemberInfo1NameOfMember" rows="5" hidden="true">
+          </dataField>
+          <dataField fieldName="ParentMemberID" columns="15" aliasFieldName="MemberInfo1NameOfMember">
           </dataField>
         </dataFields>
       </view>
@@ -15418,7 +15428,6 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="RefNumber" columns="50" />
               <dataField fieldName="RecomendetMemberShipNo" columns="50" />
               <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-              <dataField fieldName="WelfareContributionDT" columns="20" />
             </dataFields>
           </category>
           <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -15469,8 +15478,6 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="ClubName" />
               <dataField fieldName="RefNumber" columns="50" />
               <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-              <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-              <dataField fieldName="WelfareContributionDT" columns="20" />
             </dataFields>
           </category>
           <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -15514,7 +15521,7 @@ from "dbo"."MemberInfo" "MemberInfo"
         <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
       </actionGroup>
       <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="AddSpouseMemberRegistration" />
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrator,AddSpouseMemberRegistration" />
       </actionGroup>
       <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
         <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberRegistration" />
@@ -15553,7 +15560,9 @@ from "dbo"."MemberInfo" "MemberInfo"
       <rule id="r100" commandName="Insert|Update" type="Sql" phase="Before">if (@MemberOfType is null)
 set @MemberOfType = 'Spouse Of Member'
 	</rule>
-      <rule id="r102" commandName="Insert|Update" type="Sql" phase="After">Exec [dbo].[USP_MemberParentData_Update]  @MemberID,@ParentMemberID</rule>
+      <rule id="r102" commandName="Insert|Update" type="Sql" phase="After">Exec dbo.USP_MemberCode_Insert @MemberID
+Exec USP_MemberParentData_Update @MemberID, @ParentmemberID
+</rule>
       <rule id="r103" type="JavaScript" commandName="Insert|Update" phase="Before" name="ParentMemberID_Validator">
 var fieldValue = [ParentMemberID];
 if (fieldValue == null) {
@@ -15562,6 +15571,17 @@ if (fieldValue == null) {
     // set the focus on the field and display an error
     this.result.focus('ParentMemberID', 'Required field.');
 }</rule>
+      <rule id="r101" commandName="Select" type="Sql" phase="Before">-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</rule>
     </businessRules>
   </dataController>
   <dataController name="MemberInfoChild" label="MemberInfoChild" conflictDetection="overwriteChanges">
@@ -15740,9 +15760,9 @@ from "dbo"."MemberInfo" "MemberInfo"
           <dataField fieldName="ClubName" />
           <dataField fieldName="RefNumber" columns="50" />
           <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-          <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-          <dataField fieldName="WelfareContributionDT" columns="20" />
           <dataField fieldName="MemberInfo1NameOfMember" rows="5" hidden="true">
+          </dataField>
+          <dataField fieldName="ParentMemberID" columns="15" aliasFieldName="MemberInfo1NameOfMember">
           </dataField>
         </dataFields>
       </view>
@@ -15756,7 +15776,7 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="Photo" columns="15" />
               <dataField fieldName="MemberCategoryID" aliasFieldName="MemberCategoryName" />
               <dataField fieldName="MemberStatusID" aliasFieldName="MemberStatus" />
-              <dataField fieldName="ParentMemberID" aliasFieldName="MemberCode">
+              <dataField fieldName="ParentMemberID" aliasFieldName="MemberInfo1NameOfMember">
               </dataField>
               <dataField fieldName="MemberCode" columns="50" textMode="Text">
               </dataField>
@@ -15783,8 +15803,6 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="ClubName" />
               <dataField fieldName="RefNumber" columns="50" />
               <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-              <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-              <dataField fieldName="WelfareContributionDT" columns="20" />
             </dataFields>
           </category>
           <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -15839,8 +15857,6 @@ from "dbo"."MemberInfo" "MemberInfo"
               <dataField fieldName="ClubName" />
               <dataField fieldName="RefNumber" columns="50" />
               <dataField fieldName="RecomendetMemberShipNo" columns="50" />
-              <dataField fieldName="OcmnoOfDaysPlayed" columns="15" />
-              <dataField fieldName="WelfareContributionDT" columns="20" />
             </dataFields>
           </category>
           <category headerText="Personnel" id="c3" flow="NewColumn">
@@ -15884,7 +15900,7 @@ from "dbo"."MemberInfo" "MemberInfo"
         <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
       </actionGroup>
       <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="AddMemberChildRegistration" />
+        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" roles="Administrator,AddMemberChildRegistration" />
       </actionGroup>
       <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
         <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" roles="EditMemberRegistration" />
@@ -15956,7 +15972,20 @@ if (fieldValue == null) {
     // set the focus on the field and display an error
     this.result.focus('ParentMemberID', 'Required field.');
 }</rule>
-      <rule id="r102" commandName="Insert" type="Sql" phase="After">Exec dbo.USP_MemberCode_Insert @MemberID</rule>
+      <rule id="r102" commandName="Insert|Update" type="Sql" phase="After">Exec dbo.USP_MemberCode_Insert @MemberID
+Exec USP_MemberParentData_Update @MemberID, @ParentmemberID
+</rule>
+      <rule id="r101" commandName="Select" type="Sql" phase="Before">-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @ParentMemberID_Filter_Equal = @Session_ParentMemberID
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</rule>
     </businessRules>
   </dataController>
   <dataController name="LockerBillFilter" label="LockerBillFilter" conflictDetection="overwriteChanges" generateDataAccessObjects="false">
@@ -29374,7 +29403,7 @@ from "dbo"."CoachFee" "CoachFee"
       <field name="FT" type="Boolean" label="FT" />
     </fields>
     <views xmlns="urn:schemas-codeontime-com:data-aquarium">
-      <view id="grid1" type="Grid" commandId="command1" label="Coaching Fee Collection">
+      <view id="grid1" type="Grid" commandId="command1" label="Coaching Fee Collection" sortExpression="Mrdate Desc">
         <headerText>$DefaultGridViewDescription</headerText>
         <dataFields>
           <dataField fieldName="Mrno" columns="50" />
@@ -29505,6 +29534,17 @@ from "dbo"."CoachFee" "CoachFee"
     </actions>
     <businessRules xmlns="urn:schemas-codeontime-com:data-aquarium">
       <rule id="r100" commandName="Report" commandArgument="PrintCoachFeeStatement" type="Code" phase="Execute" />
+      <rule id="r101" commandName="Select" type="Sql" phase="Before">-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @Mrdate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @Mrdate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end</rule>
     </businessRules>
   </dataController>
   <dataController name="MemberCardRechargeReport" label="MemberCardRechargeReport" conflictDetection="overwriteChanges">

@@ -476,7 +476,7 @@
                 //console.log("yyy", self.member.memberIde, mID);
                 $http({
                     method: "GET",
-                    url: "http://api.kgc-bd.com/api/MemberCurrentDue/bymembercode/" + mID,
+                    url: "http://localhost:2997/api/MemberCurrentDue/bymembercode/" + mID,
                     //cache: $templateCache
                 }).then(function (response) {
 
@@ -584,7 +584,7 @@
             /*For First Time Load*/
             self.getInitialData = function () {
 
-                $http.get('http://api.kgc-bd.com/api/Service/All').then(function (response) {
+                $http.get('http://localhost:2997/api/Service/All').then(function (response) {
 
                     if (response.data) {
                         self.services = response.data;
@@ -596,7 +596,7 @@
                     self.status = response.status;
                 });
 
-                $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (response) {
+                $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (response) {
 
                     if (response.data) {
                         self.banks = response.data;
@@ -681,7 +681,7 @@
                     months -= from.getMonth() + 1;
                     months += to.getMonth() + 1;
                     */
-                    $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (respons) {
+                    $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (respons) {
                         $scope.variablname = response;
                     })
 
@@ -760,7 +760,7 @@
 
                 $http({
                     method: "POST",
-                    url: "http://api.kgc-bd.com/api/MemberBill/CreateMemberPay",
+                    url: "http://localhost:2997/api/MemberBill/CreateMemberPay",
                     data: obj
                 }).then(function (response) {
                     ////self.member.memberId means membercode

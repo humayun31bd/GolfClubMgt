@@ -1016,6 +1016,7 @@
                         $scope.memberfee = {};
                         var memid = $scope.info;
                         console.log('hole', hole, '$scope.holeId', $scope.holeId);
+                        $scope.holeId = hole;
 
                         $http.get('http://localhost:2997/api/Game/GetGameFee?pMemberCode=' + memid +
                             '&pHoleTypeID=' + hole + '&pGameDate=' + format($scope.regDate, 'MM/dd/yyyy').toString()).then(
@@ -1176,6 +1177,7 @@
                                 "IsSinglePlayer": 1,
                                 "IsGroupPlayer": 0,
                                 "BallBoyID": $scope.bboyinfo > 0 ? $scope.bboyinfo : 0,
+                                "BallBoyCode": $scope.bboyinfo > 0 ? $scope.bboyinfo : 0,
                                 "BallBoyFee": $scope.bboyinfo > 0 ? $scope.pbcheck ? 0 : $scope.fee.m_BallBoyFee : $scope.fee.m_BallBoyFee,
                                 "CaddieFee": $scope.pbcheck ? 0 : $scope.fee.m_CaddieFee,
                                 "CaddieID": $scope.cadeinfo,
@@ -1183,6 +1185,7 @@
                                 "CaddiePermanent": $scope.pbcheck ? $scope.pbcheck : 0,
                                 "NeedGolfCart": ($scope.needgcart ? $scope.needgcart : 0),
                                 "GolfCartID": ($scope.needgcartID ? $scope.needgcartID : 0),
+                                "GolfCartCode": ($scope.needgcartID ? $scope.needgcartID : 0),
                                 "GolfCartFee": $scope.cartfee.m_GolfCartFee,
                                 "GolfCartHoleTypeID": $scope.ball8,
                                 "GreenFee": $scope.fee.m_GreenFee,
@@ -1383,8 +1386,11 @@
                     $scope.fee.m_CaddieSubsidy = p.m_CaddieSubsidy
                     $scope.fee.m_BallBoyFee = p.m_BallBoyFee
                     $scope.fee.m_BallBoySubsidy = p.m_BallBoySubsidy
+                    $scope.fee.m_GolfCartFee = p.m_GolfCartFee
+                    $scope.cartfee.m_GolfCartFee = p.m_GolfCartFee
 
-                    $scope.bboyinfo = p.m_BallBoyID>0?p.m_BallBoyID:''
+                    $scope.bboyinfo = p.m_BallBoyID > 0 ? p.m_BallBoyID : ''
+                    $scope.bboyinfo = p.m_BallBoyCode > 0 ? p.m_BallBoyCode : ''
                     $scope.cadeinfo = p.m_CaddieID>0?p.m_CaddieID:''
                     ///$scope.cadeinfo = p.m_CaddieCode
                     $scope.needgcart = p.m_NeedGolfCart ? 1 : 0
@@ -1693,13 +1699,13 @@
                                 $scope.grandTotal += 1000;
                                 $scope.Preball8 = 1000;
                                 console.log("$scope.Preball82nd", $scope.Preball8);
-
+                                $scope.cartfee.m_GolfCartFee = $scope.Preball8;
                             } else {
 
                                 if ($scope.ball8 === 2) {
                                     $scope.grandTotal += 2000;
                                     $scope.Preball8 = 2000;
-
+                                    $scope.cartfee.m_GolfCartFee = $scope.Preball8;
                                 } else {
 
 
@@ -1783,7 +1789,8 @@
                                 "GRegisterID": p.m_GRegisterID,
                                 "IsSinglePlayer": 1,
                                 "IsGroupPlayer": 0,
-                                "BallBoyID": $scope.bboyinfo?$scope.bboyinfo:0,
+                                "BallBoyID": $scope.bboyinfo ? $scope.bboyinfo : 0,
+                                "BallBoyCode": $scope.bboyinfo?$scope.bboyinfo:0,
                                 "BallBoyFee": $scope.pbcheck ? 0 : $scope.fee.m_BallBoyFee,
                                 "CaddieFee": $scope.pbcheck ? 0 : $scope.fee.m_CaddieFee,
                                 "CaddieID": $scope.cadeinfo ? $scope.cadeinfo : 0,
@@ -1791,6 +1798,7 @@
                                 "CaddiePermanent": ($scope.pbcheck ? $scope.pbcheck : 0),
                                 "NeedGolfCart": $scope.needgcart,
                                 "GolfCartID": ($scope.needgcartID ? $scope.needgcartID : 0),
+                                "GolfCartCode": ($scope.needgcartID ? $scope.needgcartID : 0),
                                 "GolfCartFee": ($scope.cartfee.m_GolfCartFee ? $scope.cartfee.m_GolfCartFee : 0),
                                 "GolfCartHoleTypeID": ($scope.ball8 ? $scope.ball8 : 0),
                                 "GreenFee": $scope.fee.m_GreenFee,
@@ -1839,7 +1847,7 @@
 
                             if (response.data.ErrorCode > 0) {
                                 /*console.log('response..error > 0', response.data);*/
-                                alert("Registration failed." + response.data.ErrorMessage);
+                                alert("Registration update failed." + response.data.ErrorMessage);
                                 return
                             }
 

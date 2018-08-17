@@ -222,6 +222,17 @@ from "dbo"."CoachFee" "CoachFee"
   </actions>
   <businessRules>
     <rule id="r100" commandName="Insert" type="Sql" phase="After"><![CDATA[Exec dbo.USP_CoachFee_CodeInsert @CoachFeeID]]></rule>
-    <rule id="r101" commandName="Insert" type="Sql" phase="Execute"><![CDATA[Set @PayTypeID = 1]]></rule>
+    <rule id="r101" commandName="Insert" type="Sql" phase="Before"><![CDATA[Set @PayTypeID = 1]]></rule>
+    <rule id="r102" commandName="Select" type="Sql" phase="Before"><![CDATA[-- assign a filter if the client-side data view is not tagged
+if @BusinessRules_Tags is null
+begin
+    -- tag the data view
+    set @BusinessRules_Tags = 'Filtered'
+    -- assign a filter range to Order Date
+    set @Mrdate_Filter_Between1 = convert(nvarchar(10),getdate(),101)
+    set @Mrdate_Filter_Between2 = convert(nvarchar(10),getdate(),101)+ ' 23:59:59'
+    -- let the user know that the "soft" filter has been applied
+    ---set @Result_ShowViewMessage = 'A "soft" filter has been applied.'
+end]]></rule>
   </businessRules>
 </dataController>

@@ -493,7 +493,7 @@
                 //console.log("yyy", self.member.memberIde, mID);
                 $http({
                     method: "GET",
-                    url: "http://api.kgc-bd.com/api/MemberCurrentDue/bymembercode/" + mID,
+                    url: "http://localhost:2997/api/MemberCurrentDue/bymembercode/" + mID,
                     //cache: $templateCache
                 }).then(function (response) {
 
@@ -601,7 +601,7 @@
             /*For First Time Load*/
             self.getInitialData = function () {
 
-                $http.get('http://api.kgc-bd.com/api/Service/All').then(function (response) {
+                $http.get('http://localhost:2997/api/Service/All').then(function (response) {
 
                     if (response.data) {
                         self.services = response.data;
@@ -613,7 +613,7 @@
                     self.status = response.status;
                 });
 
-                $http.get('http://api.kgc-bd.com/api/MemberBill/GetBanks').then(function (response) {
+                $http.get('http://localhost:2997/api/MemberBill/GetBanks').then(function (response) {
 
                     if (response.data) {
                         self.banks = response.data;
@@ -693,8 +693,8 @@
                 if (from && to) {
 
                     var subsidueamount = 0;
-                    /*api.kgc-bd.com*/
-                    $http.get('http://api.kgc-bd.com/api/MemberBill/GetSubscriptionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                    /*localhost:2997*/
+                    $http.get('http://localhost:2997/api/MemberBill/GetSubscriptionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
                         subsidueamount = response.data.MemberSubscriptionFeeDue;
                         self.subscriptionFeeTotal = subsidueamount;
                         self.calculateTotalAmount();
@@ -708,8 +708,8 @@
             self.getcontrwfdueAmount = function (from, to) {
                 if (from && to) {
                     var subsidueamount = 0;
-                    /*api.kgc-bd.com*/
-                    $http.get('http://api.kgc-bd.com/api/MemberBill/GetContributionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                    /*localhost:2997*/
+                    $http.get('http://localhost:2997/api/MemberBill/GetContributionDueBill?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
                         subsidueamount = response.data.MemberContributionFeeDue;
                         self.welFareContributionTotal = subsidueamount;
                         self.calculateTotalAmount();
@@ -724,8 +724,8 @@
                 if (from && to) {
 
                     var subsidueamount = 0;
-                    /*api.kgc-bd.com*/
-                    $http.get('http://api.kgc-bd.com/api/MemberBill/getMemberLockerBillDue?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
+                    /*localhost:2997*/
+                    $http.get('http://localhost:2997/api/MemberBill/getMemberLockerBillDue?pMemberCode=' + self.kaisar + "&&pFromDate=" + format(new Date(from), "MM/dd/yyyy").toString() + "&pToDate=" + format(new Date(to), "MM/dd/yyyy").toString()).then(function (response) {
                         console.log('MemberLockerFeeDue', response.data);
                         subsidueamount = response.data.MemberLockerFeeDue;
                         self.lockerFeeTotal = subsidueamount;
@@ -811,7 +811,7 @@
 
                 $http({
                     method: "POST",
-                    url: "http://api.kgc-bd.com/api/MemberBill/CreateMemberPayNew",
+                    url: "http://localhost:2997/api/MemberBill/CreateMemberPayNew",
                     data: obj
                 }).then(function (response) {
                     ////self.member.memberId means membercode

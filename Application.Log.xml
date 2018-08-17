@@ -5844,4 +5844,51 @@ model-never</Tag>
     <page name="AbsenteeMemberFeeAdjust" />
     <delete />
   </c>
+  <c y="NodeSet" t="2018-08-16T16:23:26">
+    <page name="CoachingFeeStatement" />
+    <dataView id="view1" />
+    <update>
+      <Activator />
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:56:37">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-16T16:56:40">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <delete />
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:25:01">
+    <page name="MemberInfo" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberInfoSpouse</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:25:09">
+    <page name="MemberInfo" />
+    <container id="container1" />
+    <copyRef type="controller">
+      <Controller>MemberInfoChild</Controller>
+    </copyRef>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:30:49">
+    <page name="MemberInfo" />
+    <dataView id="view2" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Spouse of Member</Text>
+    </update>
+  </c>
+  <c y="NodeSet" t="2018-08-17T08:31:04">
+    <page name="MemberInfo" />
+    <dataView id="view3" />
+    <update>
+      <Activator>Tab</Activator>
+      <Text>Children of Member</Text>
+    </update>
+  </c>
 </log>
