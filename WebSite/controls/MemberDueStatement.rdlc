@@ -587,7 +587,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox27">
+                    <Textbox Name="Textbox18">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -603,7 +603,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox27</rd:DefaultName>
+                      <rd:DefaultName>Textbox18</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -993,12 +993,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox18">
+                    <Textbox Name="PresentAddress">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -1006,7 +1005,7 @@
                           <TextRuns>
                             <TextRun>
                               <Label>Address</Label>
-                              <Value>=First(Fields!CompanyAddress.Value, "DataSet1")</Value>
+                              <Value>=Fields!PresentAddress.Value</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                                 <FontFamily>Arial Narrow</FontFamily>
@@ -1016,7 +1015,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox18</rd:DefaultName>
+                      <rd:DefaultName>PresentAddress</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1096,7 +1095,7 @@
         <Top>0.39458in</Top>
         <Left>0.23833in</Left>
         <Height>1in</Height>
-        <Width>6.625in</Width>
+        <Width>6.62501in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1264,6 +1263,14 @@
         </Field>
         <Field Name="CompanyAddress">
           <DataField>CompanyAddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MemberStatus">
+          <DataField>MemberStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PresentAddress">
+          <DataField>PresentAddress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

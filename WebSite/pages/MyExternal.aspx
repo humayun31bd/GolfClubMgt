@@ -78,7 +78,7 @@
                     <div class="col-sm-4 col-md-4 bordered-div no-padding nb-left nb-top nb-right nb-bottom">
                         <table class="table cs-table bordered-div col-sm-12">
                             <tr>
-                                <td>Additional Amount</td>
+                                <td>Payable Amount</td>
                                 <td>: {{ctrl.member.additionalAmount}}</td>
                             </tr>
                             <tr>
@@ -401,7 +401,7 @@
 
                                 <td style="vertical-align: middle">
                                     <input type="checkbox" ng-model="ctrl.paymentType.paidFromAddAmount">
-                                    <label class="label-ch">Paid From additional amount</label>
+                                    <label class="label-ch">Paid From Payable amount</label>
                                 </td>
                             </tr>
                             <!-- </table>
@@ -501,6 +501,8 @@
 
                     //self.status = response.status;
                     if (response.data) {
+                        self.PayableRefundID = response.data.PayableRefundID;
+                        console.log('self.PayableRefundID', self.PayableRefundID);
 
                         self.serviceItemdue = response.data.ServicesDue;
                         self.member = {

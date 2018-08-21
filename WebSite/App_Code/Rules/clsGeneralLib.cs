@@ -37,6 +37,7 @@ public class clsGeneralLib
         public int GameRegisterID { get; set; }
         public int TournamentRegisterID { get; set; }
         public int HandiCap { get; set; }
+        public bool IsActive { get; set; }
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
     }
@@ -519,7 +520,7 @@ public class clsGeneralLib
         {
             //
             string sSQL = "Select  MemberID,NameOfMember,MemberCode,M.MemberCategoryID,M.MemberStatusID,M.MemberGroupID,C.CategoryName,M.CellPhone,";
-            sSQL = sSQL + " S.MemberStatus MemberStatusName,G.MemberGroupName,MemberOfType,HandiCap ";
+            sSQL = sSQL + " S.MemberStatus MemberStatusName,G.MemberGroupName,MemberOfType,HandiCap, IsActive ";
             sSQL = sSQL + " From dbo.MemberInfo M Left Outer Join dbo.MemberCategory C ";
             sSQL = sSQL + " ON M.MemberCategoryID = C.MemberCategoryID Left Outer Join dbo.MemberStatus S";
             sSQL = sSQL + " ON M.MemberStatusID = S.MemberStatusID Left Outer Join dbo.MemberGroup G";
@@ -587,6 +588,10 @@ public class clsGeneralLib
                         {
                             oMemberModel.MemberCategoryID = Convert.ToInt32(rw["MemberCategoryID"].ToString());
                         }
+                        if (rw["IsActive"] != DBNull.Value)
+                        {
+                            oMemberModel.IsActive = Convert.ToBoolean(rw["IsActive"].ToString());
+                        }
                         if (rw["HandiCap"] != DBNull.Value)
                         {
                             oMemberModel.HandiCap = Convert.ToInt32(rw["HandiCap"].ToString());
@@ -647,5 +652,56 @@ public class clsGeneralLib
             return smsMessage;
         }
     }
+
+    public class MemberActiveStatus
+    {
+        public string member_id { get; set; }
+        public bool active_status { get; set; }
+
+    }
+
+    public int SendMemberStatus(string MemberCode, bool pactive_status)
+    {
+        int iRet = 0;
+
+
+
+        #region [Json response]
+
+        string strMemberActivePoint = ConfigurationManager.AppSettings["MemberActivePoint"].ToString();
+
+        var restRequestClass = new MemberActiveStatus()
+        {
+            member_id = MemberCode,
+            active_status = pactive_status
+        };
+        var clientdata = JsonConvert.SerializeObject(restRequestClass);
+        var client = new RestClient(strMemberActivePoint);
+        var request = new RestRequest(Method.POST);
+        request.AddHeader("content-Type", "application/json");
+        request.AddParameter("client", clientdata, ParameterType.RequestBody);
+        try
+        {
+            IRestResponse response = client.Execute(request);
+            if (!string.IsNullOrEmpty(response.Content))
+            {
+                #region [api response]
+
+                #endregion
+            }
+
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            ////MessageBox.Show(ex.Message.ToString());
+        }
+        #endregion
+
+
+
+        return (iRet);
+    }
+
 
 }

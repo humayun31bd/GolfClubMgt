@@ -384,5 +384,6 @@ begin
     set @Result_Focus = 'HandiCap,Required field.'
 end
 ]]></rule>
+    <rule id="r103" commandName="Insert|Update" type="Code" phase="Execute" commandArgument="NonMemberSignUp" />
   </businessRules>
 </dataController>

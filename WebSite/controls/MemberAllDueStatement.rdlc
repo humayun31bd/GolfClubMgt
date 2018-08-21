@@ -61,6 +61,14 @@
           <DataField>CompanyAddress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="MemberStatus">
+          <DataField>MemberStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PresentAddress">
+          <DataField>PresentAddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet</rd:DataSetName>
@@ -390,7 +398,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <Textbox Name="Textbox18">
+                            <Textbox Name="PresentAddress">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -398,7 +406,7 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Label>Address</Label>
-                                      <Value>=First(Fields!CompanyAddress.Value, "DataSet1")</Value>
+                                      <Value>=First(Fields!PresentAddress.Value)</Value>
                                       <Style>
                                         <FontStyle>Italic</FontStyle>
                                         <FontFamily>Arial Narrow</FontFamily>
@@ -408,7 +416,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox18</rd:DefaultName>
+                              <rd:DefaultName>PresentAddress</rd:DefaultName>
                               <Top>1.02653in</Top>
                               <Left>1.51593in</Left>
                               <Height>0.25in</Height>

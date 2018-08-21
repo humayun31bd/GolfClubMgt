@@ -1988,7 +1988,7 @@
         <Top>0.655in</Top>
         <Left>0.02306in</Left>
         <Height>2.17708in</Height>
-        <Width>7.19444in</Width>
+        <Width>7.19443in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2191,7 +2191,7 @@
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.25in</RightMargin>
     <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <BottomMargin>0.5in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
